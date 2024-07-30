@@ -1,0 +1,10 @@
+Layout and functionality stays the same - Changing content/design
+
+Small design changes
+
+different UI for mobile and web based/desktop
+
+surface oil category customization add another tab so when user enters custom data it selects correct surface oil category
+
+
+
