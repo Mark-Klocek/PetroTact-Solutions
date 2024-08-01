@@ -12,8 +12,7 @@ class functions:
                     functions.create_oiltype_section(page),
                     functions.create_SurfaceOilCategory_section(page)
                 ]
-            ),
-            
+            ),            
             
 
         )
@@ -22,7 +21,7 @@ class functions:
         return ft.Container(
             content=ft.Text("Inputs", size=20, font_family="Roboto"),
             bgcolor=ft.colors.BLACK26,
-            padding=5,
+            padding=0,
             alignment=ft.alignment.center_left,           
         )
 
@@ -33,40 +32,48 @@ class functions:
             content=ft.Column(
                 controls=[functions.create_substrate_header(page),
                           functions.create_substrate_selection(page)]),
-            bgcolor=ft.colors.BLACK26,
-            padding=5,
-            alignment=ft.alignment.center_left,
+            padding=0,
+            
             
         )
     def create_substrate_header(page):
         return ft.Container(
             content=ft.Text("Substrate"),
             bgcolor=ft.colors.BLUE_800,
-            padding=5,
+            padding=0,
             alignment=ft.alignment.center_left,
             
         )
     def create_substrate_selection(page):
         return ft.Container(
             content=ft.Row(
-                controls=[ft.Text("Inputs here"), ft.Text("Magnified picture + short description on this side")]),
+                controls=[ft.Container(content=ft.Text("Inputs Here",color=ft.colors.BLACK54),bgcolor=ft.colors.WHITE70,padding=0,expand=True), 
+                          ft.Container(content=ft.Text("Picture/desc. here",color=ft.colors.BLACK54),bgcolor=ft.colors.AMBER_100,padding=0,expand=True)
+                          ]
+                          ),
             bgcolor=ft.colors.BLACK26,
-            padding=5
+            padding=0
         )
+    
+
+
 #third column in inputs, another container containing oiltype selections
     def create_oiltype_section(page):
         return ft.Container(
             content=ft.Text("Oil Type"),
             bgcolor=ft.colors.BLACK26,
-            padding=5,
+            padding=0,
             alignment=ft.alignment.top_left
         )
+
+
+
 #fourth and final column, container to select surface oil category
     def create_SurfaceOilCategory_section(page):
         return ft.Container(
             content=ft.Text("Surface Oil Category"),
             bgcolor=ft.colors.BLACK26,
-            padding=5,
+            padding=0,
             alignment= ft.alignment.top_left
         )
     

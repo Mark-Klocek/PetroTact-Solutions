@@ -14,9 +14,12 @@ def main(page:ft.Page):
     )
     
     def resize(e):
-        #main input container
+        #################################
+        #### main input container #######
+        #################################
         input_container.width = page.width * 0.3
         input_container.height = page.height
+
         #input header
         input_container.content.controls[0].height = page.height * 0.05
         
@@ -26,12 +29,14 @@ def main(page:ft.Page):
         substrate_container = input_container.content.controls[1]
             #setting substrate container to be set to 40% of the height of the page
         substrate_container.height = page.height * 0.4
-            #setting the heading window of the substrate window to the top 20% of the entirety of the substrate window
-        substrate_container_header = substrate_container.content.controls[0]
-        substrate_container_header.height = substrate_container.height * 0.15
-            #setting the selection area of the substrate window to fill the rest of the available window space
-        substrate_container_selection = substrate_container.content.controls[1]
-        substrate_container_selection.height = substrate_container.height * 0.85
+        substrate_container.width = page.width * 0.3
+        substrate_header = substrate_container.content.controls[0]
+        substrate_header.height= substrate_container.height * 0.1
+        substrate_row = substrate_container.content.controls[1]
+        substrate_row.content.controls[0].height = substrate_container.height * 0.85
+        substrate_row.content.controls[1].height = substrate_container.height * 0.85
+          
+        
         
         
         
@@ -47,7 +52,9 @@ def main(page:ft.Page):
         
         
         
-        #main results container
+        #################################
+        #### main results container #####
+        #################################
         results_container.width= page.width * 0.7
         results_container.height = page.height
 
