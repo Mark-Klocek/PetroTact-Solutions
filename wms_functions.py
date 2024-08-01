@@ -36,6 +36,7 @@ class functions:
             alignment=ft.alignment.center_left,
             
         )
+#third column in inputs, another container containing oiltype selections
     def create_oiltype_section(page):
         return ft.Container(
             content=ft.Text("Oil Type"),
@@ -43,6 +44,7 @@ class functions:
             padding=5,
             alignment=ft.alignment.top_left
         )
+#fourth and final column, container to select surface oil category
     def create_SurfaceOilCategory_section(page):
         return ft.Container(
             content=ft.Text("Surface Oil Category"),
@@ -50,4 +52,33 @@ class functions:
             padding=5,
             alignment= ft.alignment.top_left
         )
+
+#Beginning of 2nd side of application, results portion
+    def create_results_container(page):
+        return ft.Container(
+            content=ft.Tabs(
+                selected_index=0,
+                animation_duration=50,
+                indicator_tab_size=150,
+                tabs=[
+                    ft.Tab(
+                        text="Results",
+                        content=ft.Container(
+                            content=ft.Text("This is where the results will go"),
+                            alignment=ft.alignment.center),
+                    ),
+
+                    ft.Tab(
+                        text="View Summary",
+                        content=ft.Container(
+                            content=ft.Text("This is where the summary will go"),
+                            alignment=ft.alignment.center)
+                    )
+                ],
+            ),
+
+            alignment=ft.alignment.top_right,
+            width=page.width * 0.7
+        )
+    
 
