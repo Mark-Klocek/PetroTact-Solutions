@@ -13,7 +13,7 @@ class functions:
                     functions.create_SurfaceOilCategory_section(page)
                 ]
             ),
-            width=page.width * 0.3,
+            
             
 
         )
@@ -30,11 +30,28 @@ class functions:
 #second column in inputs column which is another container, this time for the substrate selection
     def create_substrate_section(page):
         return ft.Container(
-            content=ft.Column(controls=[ft.Text("Substrate")]),
+            content=ft.Column(
+                controls=[functions.create_substrate_header(page),
+                          functions.create_substrate_selection(page)]),
             bgcolor=ft.colors.BLACK26,
             padding=5,
             alignment=ft.alignment.center_left,
             
+        )
+    def create_substrate_header(page):
+        return ft.Container(
+            content=ft.Text("Substrate"),
+            bgcolor=ft.colors.BLUE_800,
+            padding=5,
+            alignment=ft.alignment.center_left,
+            
+        )
+    def create_substrate_selection(page):
+        return ft.Container(
+            content=ft.Row(
+                controls=[ft.Text("Inputs here"), ft.Text("Magnified picture + short description on this side")]),
+            bgcolor=ft.colors.BLACK26,
+            padding=5
         )
 #third column in inputs, another container containing oiltype selections
     def create_oiltype_section(page):
@@ -52,7 +69,26 @@ class functions:
             padding=5,
             alignment= ft.alignment.top_left
         )
+    
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#######RESULTS HALF#######RESULTS HALF ##### RESULTS HALF #############RESULTS HALF#######RESULTS HALF ##### RESULTS HALF #############RESULTS HALF#######RESULTS HALF ##### RESULTS HALF #############RESULTS HALF#######RESULTS HALF ##### RESULTS HALF #############RESULTS HALF#######RESULTS HALF ##### RESULTS HALF ######
+#######RESULTS HALF#######RESULTS HALF ##### RESULTS HALF #############RESULTS HALF#######RESULTS HALF ##### RESULTS HALF #############RESULTS HALF#######RESULTS HALF ##### RESULTS HALF #############RESULTS HALF#######RESULTS HALF ##### RESULTS HALF #############RESULTS HALF#######RESULTS HALF ##### RESULTS HALF ######
+#######RESULTS HALF#######RESULTS HALF ##### RESULTS HALF #############RESULTS HALF#######RESULTS HALF ##### RESULTS HALF #############RESULTS HALF#######RESULTS HALF ##### RESULTS HALF #############RESULTS HALF#######RESULTS HALF ##### RESULTS HALF #############RESULTS HALF#######RESULTS HALF ##### RESULTS HALF ######
+#######RESULTS HALF#######RESULTS HALF ##### RESULTS HALF #############RESULTS HALF#######RESULTS HALF ##### RESULTS HALF #############RESULTS HALF#######RESULTS HALF ##### RESULTS HALF #############RESULTS HALF#######RESULTS HALF ##### RESULTS HALF #############RESULTS HALF#######RESULTS HALF ##### RESULTS HALF ######
 #Beginning of 2nd side of application, results portion
     def create_results_container(page):
         return ft.Container(
@@ -63,16 +99,12 @@ class functions:
                 tabs=[
                     ft.Tab(
                         text="Results",
-                        content=ft.Container(
-                            content=ft.Text("This is where the results will go"),
-                            alignment=ft.alignment.center),
+                        content=functions.create_results_tab(page)
                     ),
 
                     ft.Tab(
                         text="View Summary",
-                        content=ft.Container(
-                            content=ft.Text("This is where the summary will go"),
-                            alignment=ft.alignment.center)
+                        content=functions.create_viewSummary_tab(page)
                     )
                 ],
             ),
@@ -80,5 +112,16 @@ class functions:
             alignment=ft.alignment.top_right,
             width=page.width * 0.7
         )
-    
+    def create_results_tab(page):
+        return ft.Container(
+            content=ft.Text("This is where the results will go"),
+            alignment=ft.alignment.center,
+            bgcolor=ft.colors.BLACK26
+        )
+    def create_viewSummary_tab(page):
+        return ft.Container(
+            content=ft.Text("This is where the summary will go"),
+            alignment=ft.alignment.center,
+            bgcolor=ft.colors.BLACK26
+        )
 
