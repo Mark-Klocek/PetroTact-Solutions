@@ -1,8 +1,13 @@
 import flet as ft
 
 class functions:
+
 #Dividing applications into two halves - Input side (30% of horizontal surface coverage) and Results side (70% of horizontal surface coverage)
-#Input side known as input container is a column of other containers
+
+#######################################################################################
+######################### INPUT CONTAINER #############################################
+#######################################################################################
+
     def create_input_container(page):
         return ft.Container(
             content=ft.Column(
@@ -16,7 +21,10 @@ class functions:
             
 
         )
-#first column which of the input container which is just the header saying "inputs"
+#############################
+##### HEADER CONTAINER ######
+#############################
+
     def create_input_header(page):
         return ft.Container(
             content=ft.Text("Inputs", size=20, font_family="Roboto"),
@@ -24,9 +32,10 @@ class functions:
             padding=0,
             alignment=ft.alignment.center_left,           
         )
+#############################
+#### SUBSTRATE CONTAINER ####
+#############################
 
-
-#second column in inputs column which is another container, this time for the substrate selection
     def create_substrate_section(page):
         return ft.Container(
             content=ft.Column(
@@ -56,8 +65,10 @@ class functions:
         )
     
 
+#############################
+#### OIL TYPE CONTAINER #####
+#############################
 
-#third column in inputs, another container containing oiltype selections
     def create_oiltype_section(page):
         return ft.Container(
             content=ft.Text("Oil Type"),
@@ -67,8 +78,10 @@ class functions:
         )
 
 
+#############################
+# SURFACE OIL CAT.CONTAINER #
+#############################
 
-#fourth and final column, container to select surface oil category
     def create_SurfaceOilCategory_section(page):
         return ft.Container(
             content=ft.Text("Surface Oil Category"),
@@ -79,24 +92,10 @@ class functions:
     
 
 
+#######################################################################################
+############################# RESULTS CONTAINER #######################################
+#######################################################################################
 
-
-
-
-
-
-
-
-
-
-
-
-
-#######RESULTS HALF#######RESULTS HALF ##### RESULTS HALF #############RESULTS HALF#######RESULTS HALF ##### RESULTS HALF #############RESULTS HALF#######RESULTS HALF ##### RESULTS HALF #############RESULTS HALF#######RESULTS HALF ##### RESULTS HALF #############RESULTS HALF#######RESULTS HALF ##### RESULTS HALF ######
-#######RESULTS HALF#######RESULTS HALF ##### RESULTS HALF #############RESULTS HALF#######RESULTS HALF ##### RESULTS HALF #############RESULTS HALF#######RESULTS HALF ##### RESULTS HALF #############RESULTS HALF#######RESULTS HALF ##### RESULTS HALF #############RESULTS HALF#######RESULTS HALF ##### RESULTS HALF ######
-#######RESULTS HALF#######RESULTS HALF ##### RESULTS HALF #############RESULTS HALF#######RESULTS HALF ##### RESULTS HALF #############RESULTS HALF#######RESULTS HALF ##### RESULTS HALF #############RESULTS HALF#######RESULTS HALF ##### RESULTS HALF #############RESULTS HALF#######RESULTS HALF ##### RESULTS HALF ######
-#######RESULTS HALF#######RESULTS HALF ##### RESULTS HALF #############RESULTS HALF#######RESULTS HALF ##### RESULTS HALF #############RESULTS HALF#######RESULTS HALF ##### RESULTS HALF #############RESULTS HALF#######RESULTS HALF ##### RESULTS HALF #############RESULTS HALF#######RESULTS HALF ##### RESULTS HALF ######
-#Beginning of 2nd side of application, results portion
     def create_results_container(page):
         return ft.Container(
             content=ft.Tabs(

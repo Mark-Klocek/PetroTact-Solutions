@@ -14,47 +14,57 @@ def main(page:ft.Page):
     )
     
     def resize(e):
-        #################################
-        #### main input container #######
-        #################################
+        #######################################################################################
+        ############################### INPUT CONTAINER #######################################
+        #######################################################################################
         input_container.width = page.width * 0.3
         input_container.height = page.height
 
-        #input header
-        input_container.content.controls[0].height = page.height * 0.05
+        #############################
+        ###### HEADER CONTAINER #####
+        #############################
+
+            #creation of header container as 1st column within input container: setting height and width as compared to parent input container
+        input_header_container = input_container.content.controls[0]
+        input_header_container.height = page.height * 0.05
+        input_header_container.width = page.width * 0.3
         
         
-        #substrate container
-            #assigning substrate container variable to position within the main input container
-        substrate_container = input_container.content.controls[1]
-            #setting substrate container to be set to 40% of the height of the page
-        substrate_container.height = page.height * 0.4
-        substrate_container.width = page.width * 0.3
-        substrate_header = substrate_container.content.controls[0]
-        substrate_header.height= substrate_container.height * 0.1
-        substrate_row = substrate_container.content.controls[1]
-        substrate_row.content.controls[0].height = substrate_container.height * 0.85
-        substrate_row.content.controls[1].height = substrate_container.height * 0.85
-          
-        
-        
-        
-        
-        #oil type container
+        #############################
+        ### SUBSTRATE CONTAINER  ####
+        #############################
+            
+            #creation of substrait container as 2nd column within input container column : setting height and width as compared to parent input container
+        input_substrate_container = input_container.content.controls[1]            
+        input_substrate_container.height = page.height * 0.4
+        input_substrate_container.width = page.width * 0.3
+            #first container within substrate container, known as header creation and dimensions with regard to parent container
+        input_substrate_header = input_substrate_container.content.controls[0]
+        input_substrate_header.height= input_substrate_container.height * 0.1
+        input_substrate_header.width = input_substrate_container.width
+
+        input_substrate_row = input_substrate_container.content.controls[1]
+        input_substrate_row_a = input_substrate_row.content.controls[0]
+        input_substrate_row_b = input_substrate_row.content.controls[1]
+        input_substrate_row_a.width = input_substrate_container.width * 0.3
+        input_substrate_row_b.width = input_substrate_container.width * 0.7
+        input_substrate_row.content.controls[0].height = input_substrate_container.height * 0.85
+        input_substrate_row.content.controls[1].height = input_substrate_container.height * 0.85
+
+        #############################
+        ##### OIL TYPE CONTAINER ####
+        #############################
         input_container.content.controls[2].height = page.height * 0.15
         
         
-        #Surface Oil Category container
-        input_container.content.controls[3].height = page.height * 0.35
-
-
+        #############################
+        # SURFACE OIL CAT.CONTAINER #
+        #############################
+        input_container.content.controls[3].height = page.height * 0.35       
         
-        
-        
-        
-        #################################
-        #### main results container #####
-        #################################
+        #######################################################################################
+        ############################### RESULTS CONTAINER #####################################
+        #######################################################################################
         results_container.width= page.width * 0.7
         results_container.height = page.height
 
