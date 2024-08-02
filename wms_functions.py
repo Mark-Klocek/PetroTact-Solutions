@@ -13,7 +13,7 @@ class functions:
             content=ft.Column(
                 controls=[
                     functions.create_input_header(page),
-                    functions.create_substrate_section(page),
+                    functions.create_substrate_container(page),
                     functions.create_oiltype_section(page),
                     functions.create_SurfaceOilCategory_section(page)
                 ]
@@ -36,16 +36,18 @@ class functions:
 #### SUBSTRATE CONTAINER ####
 #############################
 
-    def create_substrate_section(page):
+    def create_substrate_container(page):
         return ft.Container(
             content=ft.Column(
-                controls=[functions.create_substrate_header(page),
-                          functions.create_substrate_selection(page)]),
+                controls=[functions.create_substrate_header_container(page),
+                          functions.create_substrate_row_container(page)],
+                          spacing=0),
             padding=0,
             
             
+            
         )
-    def create_substrate_header(page):
+    def create_substrate_header_container(page):
         return ft.Container(
             content=ft.Text("Substrate"),
             bgcolor=ft.colors.BLUE_800,
@@ -53,17 +55,28 @@ class functions:
             alignment=ft.alignment.center_left,
             
         )
-    def create_substrate_selection(page):
+    def create_substrate_row_container(page):
         return ft.Container(
             content=ft.Row(
-                controls=[ft.Container(content=ft.Text("Inputs Here",color=ft.colors.BLACK54),bgcolor=ft.colors.WHITE70,padding=0,expand=True), 
-                          ft.Container(content=ft.Text("Picture/desc. here",color=ft.colors.BLACK54),bgcolor=ft.colors.AMBER_100,padding=0,expand=True)
-                          ]
+                controls=[functions.create_substrate_row_a(page),
+                          functions.create_substrate_row_b(page)],
+                          spacing=0
                           ),
-            bgcolor=ft.colors.BLACK26,
+            
             padding=0
         )
-    
+    def create_substrate_row_a(page):
+        return ft.Container(
+            content = ft.Text("Inputs Here",color="Black"),
+            bgcolor = ft.colors.WHITE,
+            padding=0
+        )
+    def create_substrate_row_b(page):
+        return ft.Container(
+            content= ft.Text("Picture/Desc here",color="Black"),
+            bgcolor= ft.colors.AMBER,
+            padding=0
+        )
 
 #############################
 #### OIL TYPE CONTAINER #####

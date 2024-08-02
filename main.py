@@ -36,20 +36,25 @@ def main(page:ft.Page):
             
             #creation of substrait container as 2nd column within input container column : setting height and width as compared to parent input container
         input_substrate_container = input_container.content.controls[1]            
-        input_substrate_container.height = page.height * 0.4
+        input_substrate_container.height = page.height * 0.5
         input_substrate_container.width = page.width * 0.3
             #first container within substrate container, known as header creation and dimensions with regard to parent container
         input_substrate_header = input_substrate_container.content.controls[0]
         input_substrate_header.height= input_substrate_container.height * 0.1
         input_substrate_header.width = input_substrate_container.width
-
+            #creating row as 2nd column within substrate container, which will contain a row with inputs row and picture/description row, setting dimensions with regard to parent container
         input_substrate_row = input_substrate_container.content.controls[1]
+        input_substrate_row.height = input_substrate_container.height * 0.9
+        input_substrate_row.width = input_substrate_container.width
+            #creating first container within row that will contain inputs, dimensions tied to parent container
         input_substrate_row_a = input_substrate_row.content.controls[0]
+        input_substrate_row_a.width = input_substrate_row.width * 0.3
+        input_substrate_row_a.height = input_substrate_row.height
+            #creating 2nd container within row that will contain picture/description, dimensions tied to parent container
         input_substrate_row_b = input_substrate_row.content.controls[1]
-        input_substrate_row_a.width = input_substrate_container.width * 0.3
-        input_substrate_row_b.width = input_substrate_container.width * 0.7
-        input_substrate_row.content.controls[0].height = input_substrate_container.height * 0.85
-        input_substrate_row.content.controls[1].height = input_substrate_container.height * 0.85
+        input_substrate_row_b.height = input_substrate_row.height
+        input_substrate_row_b.width = input_substrate_row.width * 0.70
+        
 
         #############################
         ##### OIL TYPE CONTAINER ####
@@ -60,7 +65,7 @@ def main(page:ft.Page):
         #############################
         # SURFACE OIL CAT.CONTAINER #
         #############################
-        input_container.content.controls[3].height = page.height * 0.35       
+        input_container.content.controls[3].height = page.height * 0.25       
         
         #######################################################################################
         ############################### RESULTS CONTAINER #####################################
@@ -70,6 +75,6 @@ def main(page:ft.Page):
 
 
         page.update()
-    page.on_resize = resize
+    page.on_resized = resize
     resize(None)
 ft.app(main)
