@@ -80,11 +80,11 @@ class functions:
         
     def create_substrate_row_a_column_containers(page):
         items = []
-        for i in range(len(substrate_selection_description)):
+        for i in range(len(substrate_row_a_description)):
             items.append(
                 ft.Container(
-                    content= ft.Text(f'{substrate_selection_description[i]}',color="Black"),
-                    alignment= ft.alignment.center,
+                    content= functions.create_substrate_row_a_column_container_content(page,i),
+                    bgcolor=ft.colors.BLUE,
                     expand=True
                 )
             )
@@ -92,6 +92,20 @@ class functions:
     
     def create_substrate_row_a_column_container_content(page, i):
         return ft.Row(
+            controls=[
+                ft.Container(
+                    content=ft.Image(src='images\questionmark.png'),
+                    padding=5
+                    
+                ),
+                ft.Container(
+                    content=ft.Text(substrate_row_a_description[i],color="Black"),
+                    alignment=ft.alignment.center_left,
+                    padding=0,
+                    expand=True
+                    
+                )
+            ]
         )
     
     def create_substrate_row_b(page):
@@ -175,10 +189,18 @@ class functions:
 
 
 substrate_selection_pictures = []
-substrate_selection_description = ["Sand-mixed Sediment",
+substrate_row_a_description = ["Sand-mixed Sediment",
                                    "Coarse Sediment Beach",
                                    "Cobble/Boulder",
                                    "Bedrock or Solid (includes ice)",
                                    "Wetland - Vegetation",
                                    "Oiled Debris",
                                    "Snow"]
+substrate_row_b_pictures = []
+substrate_row_b_description = ["Beaches composed of sand or a combination of sand, granules,pebbles and cobbles.",
+                               "A beach where the clearly dominant material is pebbles and/or cobbles",
+                               "A beach where the clearly dominant material is cobbles and/or boulders.",
+                               "Bedrock Shorelines are impermeable outcrops of consolidated native rock.",
+                               "A coastal zone that is covered at least once a month at high tide and which supports salt-tolerant plants.",
+                               "Scattered organic or inorganic materials that have washed up onto the shore.",
+                               "A shoreline composed of seasonal snow that covers the underlying substrate."]
