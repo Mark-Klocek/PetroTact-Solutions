@@ -94,7 +94,7 @@ class functions:
         return ft.Row(
             controls=[
                 ft.Container(
-                    content=ft.Image(src='images\questionmark.png'),
+                    content=ft.Image(src=substrate_row_a_pictures[i]),
                     padding=5
                     
                 ),
@@ -188,7 +188,14 @@ class functions:
 
 
 
-substrate_selection_pictures = []
+substrate_row_a_pictures = [r"images\substrate_row_a_img\sand-mixed-sediment-substrate-row-a.png",
+                                r"images\substrate_row_a_img\coarse-sediment-beach-substrate-row-a.png",
+                                r"images\substrate_row_a_img\cobble-boulder-substrate-row-a.png",
+                               r"images\substrate_row_a_img\bedrock-or-solid-includes-ice-substrate-row-a.png",
+                                r"images\substrate_row_a_img\wetland-vegetation-substrate-row-a.png",
+                                r"images\substrate_row_a_img\oiled-debris-substrate-row-a.png",
+                                r"images\substrate_row_a_img\snow-substrate-row-a.png"]
+
 substrate_row_a_description = ["Sand-mixed Sediment",
                                    "Coarse Sediment Beach",
                                    "Cobble/Boulder",
