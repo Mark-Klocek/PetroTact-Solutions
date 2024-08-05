@@ -40,11 +40,11 @@ def main(page:ft.Page):
         input_substrate_container.width = page.width * 0.3
             #first container within substrate container, known as header creation and dimensions with regard to parent container
         input_substrate_header = input_substrate_container.content.controls[0]
-        input_substrate_header.height= input_substrate_container.height * 0.1
+        input_substrate_header.height= input_substrate_container.height * 0.07
         input_substrate_header.width = input_substrate_container.width
             #creating row as 2nd column within substrate container, which will contain a row with inputs row and picture/description row, setting dimensions with regard to parent container
         input_substrate_row = input_substrate_container.content.controls[1]
-        input_substrate_row.height = input_substrate_container.height * 0.9
+        input_substrate_row.height = input_substrate_container.height * 0.93
         input_substrate_row.width = input_substrate_container.width
             #creating first container within row that will contain inputs, dimensions tied to parent container
         input_substrate_row_a = input_substrate_row.content.controls[0]

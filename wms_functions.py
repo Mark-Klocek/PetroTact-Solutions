@@ -43,16 +43,19 @@ class functions:
                           functions.create_substrate_row_container(page)],
                           spacing=0),
             padding=0,
+            bgcolor=ft.colors.WHITE,
+            border_radius=ft.border_radius.all(10)
             
             
             
         )
     def create_substrate_header_container(page):
         return ft.Container(
-            content=ft.Text("Substrate"),
-            bgcolor=ft.colors.BLUE_800,
-            padding=0,
+            content=ft.Text("Substrate",color="Black",font_family="Roboto", weight=ft.FontWeight.BOLD),
+            bgcolor=ft.colors.GREY,
+            padding= ft.padding.only(left=10),
             alignment=ft.alignment.center_left,
+            
             
         )
     def create_substrate_row_container(page):
@@ -63,7 +66,8 @@ class functions:
                           spacing=0
                           ),
             
-            padding=0
+            padding=0,
+            
         )
     def create_substrate_row_a(page):
         return ft.Container(
@@ -84,7 +88,7 @@ class functions:
             items.append(
                 ft.Container(
                     content= functions.create_substrate_row_a_column_container_content(page,i),
-                    bgcolor=ft.colors.BLUE,
+                    
                     expand=True
                 )
             )
@@ -95,7 +99,9 @@ class functions:
             controls=[
                 ft.Container(
                     content=ft.Image(src=substrate_row_a_pictures[i]),
-                    padding=5
+                    padding=5,
+                    
+                    
                     
                 ),
                 ft.Container(
@@ -203,7 +209,13 @@ substrate_row_a_description = ["Sand-mixed Sediment",
                                    "Wetland - Vegetation",
                                    "Oiled Debris",
                                    "Snow"]
-substrate_row_b_pictures = []
+substrate_row_b_pictures = [r"images\substrate_row_b_img\sand-mixed-sediment-substrate-row-b.png",
+                            r"images\substrate_row_b_img\coarse-sediment-beach-subsrate-row-b.png",
+                            r"images\substrate_row_b_img\cobble-boulder-substrate-row-b.png",
+                            r"images\substrate_row_b_img\bedrock-or-solid-includes-ice-substrate-row-b.png",
+                            r"images\substrate_row_b_img\wetland-vegetation-substrate-row-b.png",
+                            r"images\substrate_row_b_img\oiled-debris-substrate-row-b.png",
+                            r"images\substrate_row_b_img\snow-substrate-row-b.png"]
 substrate_row_b_description = ["Beaches composed of sand or a combination of sand, granules,pebbles and cobbles.",
                                "A beach where the clearly dominant material is pebbles and/or cobbles",
                                "A beach where the clearly dominant material is cobbles and/or boulders.",
