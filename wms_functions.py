@@ -67,17 +67,40 @@ class functions:
         )
     def create_substrate_row_a(page):
         return ft.Container(
-            content = ft.Text("Inputs Here",color="Black"),
+            content = functions.create_substrate_row_a_column(page),
             bgcolor = ft.colors.WHITE,
             padding=0
         )
+    def create_substrate_row_a_column(page):
+        return ft.Column(
+            controls = functions.create_substrate_row_a_column_containers(page),
+            spacing=0
+                
+            )
+        
+    def create_substrate_row_a_column_containers(page):
+        items = []
+        for i in range(len(substrate_selection_description)):
+            items.append(
+                ft.Container(
+                    content= ft.Text(f'{substrate_selection_description[i]}',color="Black"),
+                    alignment= ft.alignment.center,
+                    expand=True
+                )
+            )
+        return items
+    
+    def create_substrate_row_a_column_container_content(page, i):
+        return ft.Row(
+        )
+    
     def create_substrate_row_b(page):
         return ft.Container(
             content= ft.Text("Picture/Desc here",color="Black"),
             bgcolor= ft.colors.AMBER,
             padding=0
         )
-
+    
 #############################
 #### OIL TYPE CONTAINER #####
 #############################
@@ -144,3 +167,18 @@ class functions:
             bgcolor=ft.colors.BLACK26
         )
 
+#######################################################################################
+####################### TEXT / PICTURE ARRAYS #########################################
+#######################################################################################
+
+
+
+
+substrate_selection_pictures = []
+substrate_selection_description = ["Sand-mixed Sediment",
+                                   "Coarse Sediment Beach",
+                                   "Cobble/Boulder",
+                                   "Bedrock or Solid (includes ice)",
+                                   "Wetland - Vegetation",
+                                   "Oiled Debris",
+                                   "Snow"]

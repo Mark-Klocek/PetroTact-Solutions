@@ -48,12 +48,12 @@ def main(page:ft.Page):
         input_substrate_row.width = input_substrate_container.width
             #creating first container within row that will contain inputs, dimensions tied to parent container
         input_substrate_row_a = input_substrate_row.content.controls[0]
-        input_substrate_row_a.width = input_substrate_row.width * 0.3
+        input_substrate_row_a.width = input_substrate_row.width * 0.5
         input_substrate_row_a.height = input_substrate_row.height
             #creating 2nd container within row that will contain picture/description, dimensions tied to parent container
         input_substrate_row_b = input_substrate_row.content.controls[1]
         input_substrate_row_b.height = input_substrate_row.height
-        input_substrate_row_b.width = input_substrate_row.width * 0.70
+        input_substrate_row_b.width = input_substrate_row.width * 0.5
         
 
         #############################
