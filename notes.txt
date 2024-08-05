@@ -11,3 +11,11 @@ To do:
     b-Container with abbreviated description of selection a
     c-button that brings up custom surface oil category calculator
     d-input that allows custom input of oil segment length(i.e. in KM or M)
+
+
+https://www.owenscoastal.com/
+
+timeline for project - end of oct/nov
+$15k for the entire project
+$5k upfront $10k completion
+
