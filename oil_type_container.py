@@ -24,7 +24,7 @@ def create_oil_type_header_container(page):
     return ft.Container(
         content= ft.Text("Oil Type", color="Black", weight=ft.FontWeight.BOLD, font_family="Roboto"),
         bgcolor=ft.colors.GREY,
-        padding= ft.padding.only(left=10),
+        padding= 2,
         alignment=ft.alignment.center_left
     )
 def create_oil_type_column_b_container(page):
@@ -39,7 +39,7 @@ def create_oil_type_column_b_row(page):
         oil_type_column_b_row.append(
             ft.Container(
                 content= ft.Image(src=pics_and_desc.oil_type_column_b_pictures[i]),
-                padding= 5
+                padding= 2
                 
             )
         )
