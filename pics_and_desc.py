@@ -29,3 +29,21 @@ substrate_row_b_description = ["Beaches composed of sand or a combination of san
                                "A coastal zone that is covered at least once a month at high tide and which supports salt-tolerant plants.",
                                "Scattered organic or inorganic materials that have washed up onto the shore.",
                                "A shoreline composed of seasonal snow that covers the underlying substrate."]
+
+
+
+oil_type_column_b_pictures = [r"images\oil_type_column_b_images\oil_type_column_b_volatile.png",
+                              r"images\oil_type_column_b_images\oil_type_column_b_light.png",
+                              r"images\oil_type_column_b_images\oil_type_column_b_medium.png",
+                              r"images\oil_type_column_b_images\oil_type_column_b_heavy.png",
+                              r"images\oil_type_column_b_images\oil_type_column_b_solid.png"]
+oil_type_column_c_description = ["Gasoline Products",
+                                 "Diesel and light crudes",
+                                 "Intermediate products and medium crudes",
+                                 "Residual products and heavy crudes",
+                                 "Bitumen, tar, asphalt"]
+oil_type_column_d_description =["Viscosity like water",
+                                "Viscosity like water",
+                                "",
+                                "Viscosity like molasses",
+                                "Does not pour"]

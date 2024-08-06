@@ -1,6 +1,7 @@
 import flet as ft
-import pics_and_desc
 import substrate_container
+import oil_type_container
+import surface_oil_category
 
 class functions:
 
@@ -16,8 +17,8 @@ class functions:
                 controls=[
                     functions.create_input_header(page),
                     substrate_container.create_substrate_container(page),
-                    functions.create_oiltype_section(page),
-                    functions.create_SurfaceOilCategory_section(page)
+                    oil_type_container.create_oiltype_section(page),
+                    surface_oil_category.create_SurfaceOilCategory_section(page)
                 ]
             ),          
             
@@ -35,37 +36,6 @@ class functions:
             padding=0,
             alignment=ft.alignment.center_left,           
         )
-#############################
-#### SUBSTRATE CONTAINER ####
-#############################
-
-#############################
-#### OIL TYPE CONTAINER #####
-#############################
-
-    def create_oiltype_section(page):
-        return ft.Container(
-            content=ft.Text("Oil Type"),
-            bgcolor=ft.colors.BLACK26,
-            padding=0,
-            alignment=ft.alignment.top_left
-        )
-        
-
-
-#############################
-# SURFACE OIL CAT.CONTAINER #
-#############################
-
-    def create_SurfaceOilCategory_section(page):
-        return ft.Container(
-            content=ft.Text("Surface Oil Category"),
-            bgcolor=ft.colors.BLACK26,
-            padding=0,
-            alignment= ft.alignment.top_left
-        )
-    
-
 
 #######################################################################################
 ############################# RESULTS CONTAINER #######################################

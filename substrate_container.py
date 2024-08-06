@@ -2,7 +2,7 @@ import flet as ft
 import pics_and_desc
 substrate_row_a_containers = []
 substrate_row_b_container = None
-substrate_selected_index = None
+substrate_selected_index = 0
 
 
 def create_substrate_container(page):
@@ -50,7 +50,9 @@ def substrate_row_a_container_click(i, page):
             controls=[
                 ft.Container(
                     content= ft.Image(src=pics_and_desc.substrate_row_b_pictures[i]),
-                    expand=True),
+                    expand=True,
+                    alignment=ft.alignment.center),
+                    
                 ft.Container(
                     content = ft.Text(pics_and_desc.substrate_row_b_description[i], color="Black"),
                     alignment = ft.alignment.center,
@@ -89,8 +91,9 @@ def create_substrate_row_a_column(page):
     
 def create_substrate_row_a_column_containers(page):
     global substrate_row_a_containers
+    global substrate_selected_index
     substrate_row_a_containers = []
-    for i in range(len(pics_and_desc.substrate_row_a_description)):
+    for i in range(len(pics_and_desc.substrate_row_a_description)):           
         substrate_row_a_containers.append(
             ft.Container(
                 content= create_substrate_row_a_column_container_content(page,i),                   
@@ -98,6 +101,10 @@ def create_substrate_row_a_column_containers(page):
                 on_click=substrate_row_a_container_click(i, page)
             )
         )
+    if substrate_selected_index == 0:
+        substrate_row_a_containers[0].bgcolor = ft.colors.AMBER
+        substrate_row_a_containers[0].content = create_substrate_row_a_column_container_content(page,0)
+            
     return substrate_row_a_containers
 
 def create_substrate_row_a_column_container_content(page, i):
@@ -124,9 +131,27 @@ def create_substrate_row_a_column_container_content(page, i):
 
 def create_substrate_row_b_container(page):
         global substrate_row_b_container
-        container = ft.Container(
-            content= ft.Column(),
-            bgcolor= ft.colors.AMBER,
-            padding=0)
+        if substrate_selected_index == 0:
+            container = ft.Container(
+                content = ft.Column(
+                    controls=[
+                        ft.Container(
+                            content= ft.Image(src=pics_and_desc.substrate_row_b_pictures[0]),
+                            expand=True,
+                            alignment=ft.alignment.center),
+                        ft.Container(
+                            content = ft.Text(pics_and_desc.substrate_row_b_description[0], color="Black"),
+                            alignment = ft.alignment.center,
+                            padding= 5 ),
+                        ft.Container(
+                            content= ft.Text("Read More >>>", weight=ft.FontWeight.BOLD, color="Black", font_family="Roboto"),
+                            alignment=ft.alignment.bottom_right,
+                            padding= 5)]),
+                bgcolor=ft.colors.AMBER)
+        else:
+            container = ft.Container(
+                content= ft.Column(),
+                bgcolor= ft.colors.AMBER,
+                padding=0)
         substrate_row_b_container = container
         return container
