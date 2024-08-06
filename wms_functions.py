@@ -36,21 +36,22 @@ class functions:
 #############################
 #### SUBSTRATE CONTAINER ####
 #############################
+    substrate_row_a_containers = []
     substrate_row_b_container = None
+    substrate_selected_index = None
+    
 
     def create_substrate_container(page):
-        return ft.Container(
+        container = ft.Container(
             content=ft.Column(
                 controls=[functions.create_substrate_header_container(page),
                           functions.create_substrate_row_container(page)],
                           spacing=0),
             padding=0,
             bgcolor=ft.colors.WHITE,
-            border_radius=ft.border_radius.all(10)
-            
-            
-            
+            border_radius=ft.border_radius.all(10)            
         )
+        return container
     def create_substrate_header_container(page):
         return ft.Container(
             content=ft.Text("Substrate",color="Black",font_family="Roboto", weight=ft.FontWeight.BOLD),
@@ -73,18 +74,36 @@ class functions:
         )
     def substrate_row_a_container_click(i, page):
         def handle_click(e):
+
+            if functions.substrate_selected_index is not None and functions.substrate_selected_index != i:
+                functions.substrate_row_a_containers[functions.substrate_selected_index].bgcolor = ft.colors.TRANSPARENT
+                functions.substrate_row_a_containers[functions.substrate_selected_index].content = functions.create_substrate_row_a_column_container_content(page, functions.substrate_selected_index)
+            
             functions.substrate_row_b_container.content = ft.Column(
                 controls=[
                     ft.Container(
                         content= ft.Image(src=pics_and_desc.substrate_row_b_pictures[i]),
                         expand=True),
-                    ft.Text(pics_and_desc.substrate_row_b_description[i], color="Black"),
                     ft.Container(
-                        content= ft.Text("Read More", weight=ft.FontWeight.BOLD),
-                        alignment=ft.alignment.bottom_right
+                        content = ft.Text(pics_and_desc.substrate_row_b_description[i], color="Black"),
+                        alignment = ft.alignment.center,
+                        padding= 5 ),
+                    ft.Container(
+                        content= ft.Text("Read More >>>", weight=ft.FontWeight.BOLD, color="Black", font_family="Roboto"),
+                        alignment=ft.alignment.bottom_right,
+                        padding= 5
+                        
                     )
                 ]
             )
+            functions.substrate_row_a_containers[i].content = ft.Container(
+                    content= functions.create_substrate_row_a_column_container_content(page,i),                   
+                    expand=True,
+                    bgcolor=ft.colors.AMBER,
+                    
+                )
+
+            functions.substrate_selected_index = i
             page.update()
         return handle_click
     
@@ -102,15 +121,16 @@ class functions:
             )
         
     def create_substrate_row_a_column_containers(page):
-        items = []
+        functions.substrate_row_a_containers = []
         for i in range(len(pics_and_desc.substrate_row_a_description)):
-            items.append(
+            functions.substrate_row_a_containers.append(
                 ft.Container(
                     content= functions.create_substrate_row_a_column_container_content(page,i),                   
-                    expand=True
+                    expand=True,
+                    on_click=functions.substrate_row_a_container_click(i, page)
                 )
             )
-        return items
+        return functions.substrate_row_a_containers
     
     def create_substrate_row_a_column_container_content(page, i):
         return ft.Row(
@@ -118,7 +138,8 @@ class functions:
                 ft.Container(
                     content=ft.Image(src=pics_and_desc.substrate_row_a_pictures[i]),
                     padding=5, 
-                    on_click=functions.substrate_row_a_container_click(i, page)              
+                    on_click=functions.substrate_row_a_container_click(i, page) ,
+                    bgcolor=ft.colors.TRANSPARENT             
                 ),
 
                 ft.Container(
@@ -126,7 +147,8 @@ class functions:
                     alignment=ft.alignment.center_left,
                     padding=0,
                     on_click=functions.substrate_row_a_container_click(i, page), 
-                    expand=True
+                    expand=True,
+                    bgcolor=ft.colors.TRANSPARENT
                 )
             ]
         )
