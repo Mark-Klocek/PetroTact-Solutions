@@ -17,7 +17,7 @@ class functions:
                 controls=[
                     functions.create_input_header(page),
                     substrate_container.create_substrate_container(page),
-                    oil_type_container.create_oiltype_section(page),
+                    oil_type_container.create_oil_type_section(page),
                     surface_oil_category.create_SurfaceOilCategory_section(page)
                 ]
             ),          

@@ -60,7 +60,24 @@ def main(page:ft.Page):
         #############################
         ##### OIL TYPE CONTAINER ####
         #############################
-        input_container.content.controls[2].height = page.height * 0.15
+        input_oil_type_container = input_container.content.controls[2]
+        input_oil_type_container.height = page.height * 0.15
+
+        input_oil_type_container_column_a = input_oil_type_container.content.controls[0]
+        input_oil_type_container_column_a.height = input_oil_type_container.height * 0.15
+        input_oil_type_container_column_a.width = input_oil_type_container.width
+
+        input_oil_type_container_column_b = input_oil_type_container.content.controls[1]
+        input_oil_type_container_column_b.height = input_oil_type_container.height * 0.55
+        input_oil_type_container_column_b.width = input_oil_type_container.width
+
+        input_oil_type_container_column_c = input_oil_type_container.content.controls[2]
+        input_oil_type_container_column_c.height = input_oil_type_container.height * 0.15
+        input_oil_type_container_column_c.width = input_oil_type_container.width
+
+        input_oil_type_container_column_d = input_oil_type_container.content.controls[3]
+        input_oil_type_container_column_d.height = input_oil_type_container.height * 0.15
+        input_oil_type_container_column_d.width = input_oil_type_container.width
         
         
         #############################

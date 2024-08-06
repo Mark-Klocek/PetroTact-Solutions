@@ -13,7 +13,7 @@ def create_substrate_container(page):
                         spacing=0),
         padding=0,
         bgcolor=ft.colors.WHITE,
-        border_radius=ft.border_radius.all(10)            
+        border_radius=ft.border_radius.only(top_left=10, top_right=10)            
     )
     return container
 def create_substrate_header_container(page):
@@ -22,6 +22,7 @@ def create_substrate_header_container(page):
         bgcolor=ft.colors.GREY,
         padding= ft.padding.only(left=10),
         alignment=ft.alignment.center_left,
+        
         
         
     )
