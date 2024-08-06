@@ -1,4 +1,5 @@
 import flet as ft
+import pics_and_desc
 
 class functions:
 
@@ -35,6 +36,7 @@ class functions:
 #############################
 #### SUBSTRATE CONTAINER ####
 #############################
+    substrate_row_b_container = None
 
     def create_substrate_container(page):
         return ft.Container(
@@ -61,15 +63,32 @@ class functions:
     def create_substrate_row_container(page):
         return ft.Container(
             content=ft.Row(
-                controls=[functions.create_substrate_row_a(page),
-                          functions.create_substrate_row_b(page)],
+                controls=[functions.create_substrate_row_a_container(page),
+                          functions.create_substrate_row_b_container(page)],
                           spacing=0
                           ),
             
             padding=0,
             
         )
-    def create_substrate_row_a(page):
+    def substrate_row_a_container_click(i, page):
+        def handle_click(e):
+            functions.substrate_row_b_container.content = ft.Column(
+                controls=[
+                    ft.Container(
+                        content= ft.Image(src=pics_and_desc.substrate_row_b_pictures[i]),
+                        expand=True),
+                    ft.Text(pics_and_desc.substrate_row_b_description[i], color="Black"),
+                    ft.Container(
+                        content= ft.Text("Read More", weight=ft.FontWeight.BOLD),
+                        alignment=ft.alignment.bottom_right
+                    )
+                ]
+            )
+            page.update()
+        return handle_click
+    
+    def create_substrate_row_a_container(page):
         return ft.Container(
             content = functions.create_substrate_row_a_column(page),
             bgcolor = ft.colors.WHITE,
@@ -84,11 +103,10 @@ class functions:
         
     def create_substrate_row_a_column_containers(page):
         items = []
-        for i in range(len(substrate_row_a_description)):
+        for i in range(len(pics_and_desc.substrate_row_a_description)):
             items.append(
                 ft.Container(
-                    content= functions.create_substrate_row_a_column_container_content(page,i),
-                    
+                    content= functions.create_substrate_row_a_column_container_content(page,i),                   
                     expand=True
                 )
             )
@@ -98,28 +116,29 @@ class functions:
         return ft.Row(
             controls=[
                 ft.Container(
-                    content=ft.Image(src=substrate_row_a_pictures[i]),
-                    padding=5,
-                    
-                    
-                    
+                    content=ft.Image(src=pics_and_desc.substrate_row_a_pictures[i]),
+                    padding=5, 
+                    on_click=functions.substrate_row_a_container_click(i, page)              
                 ),
+
                 ft.Container(
-                    content=ft.Text(substrate_row_a_description[i],color="Black"),
+                    content=ft.Text(pics_and_desc.substrate_row_a_description[i],color="Black"),
                     alignment=ft.alignment.center_left,
                     padding=0,
+                    on_click=functions.substrate_row_a_container_click(i, page), 
                     expand=True
-                    
                 )
             ]
         )
     
-    def create_substrate_row_b(page):
-        return ft.Container(
-            content= ft.Text("Picture/Desc here",color="Black"),
-            bgcolor= ft.colors.AMBER,
-            padding=0
-        )
+    
+    def create_substrate_row_b_container(page):
+            container = ft.Container(
+                content= ft.Column(),
+                bgcolor= ft.colors.AMBER,
+                padding=0)
+            functions.substrate_row_b_container = container
+            return container
     
 #############################
 #### OIL TYPE CONTAINER #####
@@ -132,6 +151,7 @@ class functions:
             padding=0,
             alignment=ft.alignment.top_left
         )
+        
 
 
 #############################
@@ -194,32 +214,3 @@ class functions:
 
 
 
-substrate_row_a_pictures = [r"images\substrate_row_a_img\sand-mixed-sediment-substrate-row-a.png",
-                                r"images\substrate_row_a_img\coarse-sediment-beach-substrate-row-a.png",
-                                r"images\substrate_row_a_img\cobble-boulder-substrate-row-a.png",
-                               r"images\substrate_row_a_img\bedrock-or-solid-includes-ice-substrate-row-a.png",
-                                r"images\substrate_row_a_img\wetland-vegetation-substrate-row-a.png",
-                                r"images\substrate_row_a_img\oiled-debris-substrate-row-a.png",
-                                r"images\substrate_row_a_img\snow-substrate-row-a.png"]
-
-substrate_row_a_description = ["Sand-mixed Sediment",
-                                   "Coarse Sediment Beach",
-                                   "Cobble/Boulder",
-                                   "Bedrock or Solid (includes ice)",
-                                   "Wetland - Vegetation",
-                                   "Oiled Debris",
-                                   "Snow"]
-substrate_row_b_pictures = [r"images\substrate_row_b_img\sand-mixed-sediment-substrate-row-b.png",
-                            r"images\substrate_row_b_img\coarse-sediment-beach-subsrate-row-b.png",
-                            r"images\substrate_row_b_img\cobble-boulder-substrate-row-b.png",
-                            r"images\substrate_row_b_img\bedrock-or-solid-includes-ice-substrate-row-b.png",
-                            r"images\substrate_row_b_img\wetland-vegetation-substrate-row-b.png",
-                            r"images\substrate_row_b_img\oiled-debris-substrate-row-b.png",
-                            r"images\substrate_row_b_img\snow-substrate-row-b.png"]
-substrate_row_b_description = ["Beaches composed of sand or a combination of sand, granules,pebbles and cobbles.",
-                               "A beach where the clearly dominant material is pebbles and/or cobbles",
-                               "A beach where the clearly dominant material is cobbles and/or boulders.",
-                               "Bedrock Shorelines are impermeable outcrops of consolidated native rock.",
-                               "A coastal zone that is covered at least once a month at high tide and which supports salt-tolerant plants.",
-                               "Scattered organic or inorganic materials that have washed up onto the shore.",
-                               "A shoreline composed of seasonal snow that covers the underlying substrate."]
