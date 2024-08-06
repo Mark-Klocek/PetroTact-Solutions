@@ -9,7 +9,8 @@ def main(page:ft.Page):
 
     page.add(ft.Row(
         controls=[input_container,results_container],
-        expand=True
+        expand=True,
+        
         )        
     )
     
