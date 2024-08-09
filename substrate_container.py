@@ -13,7 +13,8 @@ def create_substrate_container(page):
                         spacing=0),
         padding=0,
         bgcolor=ft.colors.WHITE,
-        border_radius=ft.border_radius.only(top_left=10, top_right=10)            
+        border_radius=ft.border_radius.only(top_left=10, top_right=10),
+                    
     )
     return container
 def create_substrate_header_container(page):
@@ -57,19 +58,14 @@ def substrate_row_a_container_click(i, page):
                 ft.Container(
                     content = ft.Text(pics_and_desc.substrate_row_b_description[i], color="Black"),
                     alignment = ft.alignment.center,
-                    padding= 5 ),
-                ft.Container(
-                    content= ft.Text("Read More >>>", weight=ft.FontWeight.BOLD, color="Black", font_family="Roboto"),
-                    alignment=ft.alignment.bottom_right,
-                    padding= 5
-                    
-                )
+                    padding= 5 )
+                
             ]
         )
         substrate_row_a_containers[i].content = ft.Container(
                 content= create_substrate_row_a_column_container_content(page,i),                   
                 expand=True,
-                bgcolor=ft.colors.AMBER,
+                bgcolor=ft.colors.ORANGE,
                 
             )
 
@@ -100,10 +96,11 @@ def create_substrate_row_a_column_containers(page):
                 content= create_substrate_row_a_column_container_content(page,i),                   
                 expand=True,
                 on_click=substrate_row_a_container_click(i, page)
+                 
             )
         )
     if substrate_selected_index == 0:
-        substrate_row_a_containers[0].bgcolor = ft.colors.AMBER
+        substrate_row_a_containers[0].bgcolor = ft.colors.ORANGE
         substrate_row_a_containers[0].content = create_substrate_row_a_column_container_content(page,0)
             
     return substrate_row_a_containers
@@ -119,7 +116,7 @@ def create_substrate_row_a_column_container_content(page, i):
             ),
 
             ft.Container(
-                content=ft.Text(pics_and_desc.substrate_row_a_description[i],color="Black"),
+                content=ft.Text(pics_and_desc.substrate_row_a_description[i],color="Black",size=max),
                 alignment=ft.alignment.center_left,
                 padding=0,
                 on_click=substrate_row_a_container_click(i, page), 
@@ -143,16 +140,13 @@ def create_substrate_row_b_container(page):
                         ft.Container(
                             content = ft.Text(pics_and_desc.substrate_row_b_description[0], color="Black"),
                             alignment = ft.alignment.center,
-                            padding= 5 ),
-                        ft.Container(
-                            content= ft.Text("Read More >>>", weight=ft.FontWeight.BOLD, color="Black", font_family="Roboto"),
-                            alignment=ft.alignment.bottom_right,
-                            padding= 5)]),
-                bgcolor=ft.colors.AMBER)
+                            padding= 5 )]),
+                            
+                bgcolor=ft.colors.ORANGE)
         else:
             container = ft.Container(
                 content= ft.Column(),
-                bgcolor= ft.colors.AMBER,
+                bgcolor= ft.colors.ORANGE,
                 padding=0)
         substrate_row_b_container = container
         return container
