@@ -8,11 +8,11 @@ def main(page:ft.Page):
     results_container=functions.create_results_container(page)
     
 
-    page.add(ft.Row(
-        controls=[input_container,results_container],
-        expand=True,
-        
-        )        
+    page.add(ft.Container(
+        content=ft.Row(
+            controls=[input_container,results_container],
+            expand=True),
+        padding=2)        
     )
     
     def resize(e):
@@ -42,7 +42,7 @@ def main(page:ft.Page):
             
             #creation of substrait container as 2nd column within input container column : setting height and width as compared to parent input container
         input_substrate_container = input_container.content.controls[1]            
-        input_substrate_container.height = page.height * 0.5
+        input_substrate_container.height = page.height * 0.4
         input_substrate_container.width = page.width * 0.3
         
         
@@ -73,7 +73,7 @@ def main(page:ft.Page):
         ##### OIL TYPE CONTAINER ####
         #############################
         input_oil_type_container = input_container.content.controls[2]
-        input_oil_type_container.height = page.height * 0.15
+        input_oil_type_container.height = page.height * 0.20
 
         input_oil_type_container_column_a = input_oil_type_container.content.controls[0]
         input_oil_type_container_column_a.height = input_oil_type_container.height * 0.15
@@ -90,7 +90,7 @@ def main(page:ft.Page):
         input_oil_type_container_column_c.content.size = input_oil_type_container_column_c.height * 0.7
 
         input_oil_type_container_column_d = input_oil_type_container.content.controls[3]
-        input_oil_type_container_column_d.height = input_oil_type_container.height * 0.15
+        input_oil_type_container_column_d.height = input_oil_type_container.height * 0.14
         input_oil_type_container_column_d.width = input_oil_type_container.width
         input_oil_type_container_column_d.content.size = input_oil_type_container_column_d.height * 0.7
         
@@ -98,7 +98,7 @@ def main(page:ft.Page):
         #############################
         # SURFACE OIL CAT.CONTAINER #
         #############################
-        input_container.content.controls[3].height = page.height * 0.25       
+        input_container.content.controls[3].height = page.height * 0.3       
         
         #######################################################################################
         ############################### RESULTS CONTAINER #####################################

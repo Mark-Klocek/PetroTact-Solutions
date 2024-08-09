@@ -55,24 +55,26 @@ def substrate_row_a_container_click(i, page):
             substrate_row_a_containers[substrate_selected_index].bgcolor = ft.colors.TRANSPARENT
             substrate_row_a_containers[substrate_selected_index].content = create_substrate_row_a_column_container_content(page, substrate_selected_index)
         
-        substrate_row_b_container.content = ft.Column(
-            controls=[
-                ft.Container(
-                    content= ft.Image(src=pics_and_desc.substrate_row_b_pictures[i]),
-                    expand=True,
-                    alignment=ft.alignment.center),
-                    
-                ft.Container(
-                    content = ft.Text(pics_and_desc.substrate_row_b_description[i], color="Black"),
-                    alignment = ft.alignment.center,
-                    padding= 5 )
-                
-            ]
+        substrate_row_b_container.content = ft.Container(
+            content = ft.Column(
+                controls=[
+                    ft.Container(
+                        content= ft.Image(src=pics_and_desc.substrate_row_b_pictures[i]),
+                        expand=True,
+                        alignment=ft.alignment.center),
+                        
+                    ft.Container(
+                        content = ft.Text(pics_and_desc.substrate_row_b_description[i], color="Black"),
+                        alignment = ft.alignment.center,
+                        padding=10)],spacing=0        
+                    ),
+            border=ft.Border(left=ft.BorderSide(5,ft.colors.ORANGE))
         )
         substrate_row_a_containers[i].content = ft.Container(
                 content= create_substrate_row_a_column_container_content(page,i),                   
                 expand=True,
                 bgcolor=ft.colors.ORANGE,
+                border=ft.Border(right=ft.BorderSide(10,ft.colors.ORANGE))
                 
             )
 
@@ -130,7 +132,8 @@ def create_substrate_row_a_column_container_content(page, i):
                 expand=True,
                 bgcolor=ft.colors.TRANSPARENT
             )
-        ]
+        ],spacing=0
+        
     )
 
 
@@ -148,10 +151,12 @@ def create_substrate_row_b_container(page):
                         ft.Container(
                             content = ft.Text(pics_and_desc.substrate_row_b_description[0], color="Black"),
                             alignment = ft.alignment.center,
-                            padding=5 )]),
+                            padding=15)],
+                            spacing=0),
+                
                             
                 bgcolor=ft.colors.ORANGE,
-                border=ft.Border(right=ft.BorderSide(1,ft.colors.BLACK)))
+                border=ft.Border(right=ft.BorderSide(1,ft.colors.BLACK), left=ft.BorderSide(5, ft.colors.ORANGE)))
                 
         else:
             container = ft.Container(
