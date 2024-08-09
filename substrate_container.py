@@ -12,8 +12,11 @@ def create_substrate_container(page):
                         create_substrate_row_container(page)],
                         spacing=0),
         padding=0,
+        
         bgcolor=ft.colors.WHITE,
-        border_radius=ft.border_radius.only(top_left=10, top_right=10),
+        border_radius=ft.border_radius.only(top_left=10, top_right=10)
+        
+        
                     
     )
     return container
@@ -23,6 +26,9 @@ def create_substrate_header_container(page):
         bgcolor=ft.colors.GREY,
         padding= ft.padding.only(left=10),
         alignment=ft.alignment.center_left,
+        border_radius=ft.border_radius.only(top_left=10,top_right=10),
+        border=ft.Border(top=ft.BorderSide(1, ft.colors.BLACK), left=ft.BorderSide(1,ft.colors.BLACK),right=ft.BorderSide(1,ft.colors.BLACK))
+        
         
         
         
@@ -36,6 +42,7 @@ def create_substrate_row_container(page):
                         ),
         
         padding=0,
+        border=ft.Border(bottom=ft.BorderSide(1,ft.colors.BLACK),left=ft.BorderSide(1,ft.colors.BLACK),right=ft.BorderSide(1,ft.colors.BLACK))
         
     )
 def substrate_row_a_container_click(i, page):
@@ -137,12 +144,15 @@ def create_substrate_row_b_container(page):
                             content= ft.Image(src=pics_and_desc.substrate_row_b_pictures[0]),
                             expand=True,
                             alignment=ft.alignment.center),
+                            
                         ft.Container(
                             content = ft.Text(pics_and_desc.substrate_row_b_description[0], color="Black"),
                             alignment = ft.alignment.center,
-                            padding= 5 )]),
+                            padding=5 )]),
                             
-                bgcolor=ft.colors.ORANGE)
+                bgcolor=ft.colors.ORANGE,
+                border=ft.Border(right=ft.BorderSide(1,ft.colors.BLACK)))
+                
         else:
             container = ft.Container(
                 content= ft.Column(),

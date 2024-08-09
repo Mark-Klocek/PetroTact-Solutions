@@ -18,7 +18,7 @@ def main(page:ft.Page):
     def resize(e):
         def resize_text(container):
             if isinstance(container.content, ft.Text):
-                container.content.size = container.height * 0.8
+                container.content.size = container.height * 0.6
         #######################################################################################
         ############################### INPUT CONTAINER #######################################
         #######################################################################################
@@ -54,8 +54,8 @@ def main(page:ft.Page):
 
             #creating row as 2nd column within substrate container, which will contain a row with inputs row and picture/description row, setting dimensions with regard to parent container
         input_substrate_row = input_substrate_container.content.controls[1]
-        input_substrate_row.height = input_substrate_container.height * 0.93
-        input_substrate_row.width = input_substrate_container.width
+        input_substrate_row.height = input_substrate_container.height * 0.93 -1
+        input_substrate_row.width = input_substrate_container.width - 13
 
             #creating first container within row that will contain inputs, dimensions tied to parent container
         input_substrate_row_a = input_substrate_row.content.controls[0]
@@ -108,7 +108,7 @@ def main(page:ft.Page):
 
 
         page.update()
-    
+    page.bgcolor="#69707E"
     page.on_resized = resize
     resize(None)
     

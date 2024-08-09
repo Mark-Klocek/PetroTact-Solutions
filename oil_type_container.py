@@ -16,8 +16,8 @@ def create_oil_type_section(page):
             
         ),
         bgcolor=ft.colors.WHITE,
-        padding=0,
-        border_radius=ft.border_radius.only(top_left=10, top_right=10),)
+        padding=0.5,
+        border_radius=ft.border_radius.only(top_left=10, top_right=10))
     oil_type_container = container
     return container
 
@@ -60,13 +60,18 @@ def create_oil_type_header_container(page):
         content= ft.Text("Oil Type", color="Black", weight=ft.FontWeight.BOLD, font_family="Roboto"),
         bgcolor=ft.colors.GREY,
         padding= ft.padding.only(left=5),
-        alignment=ft.alignment.center_left
+        alignment=ft.alignment.center_left,
+        border_radius=ft.border_radius.only(top_left=10,top_right=10),
+        border=ft.Border(top=ft.BorderSide(1, ft.colors.BLACK), left=ft.BorderSide(1,ft.colors.BLACK),right=ft.BorderSide(1,ft.colors.BLACK))
         
     )
 def create_oil_type_column_b_container(page):
-    return ft.Row(
-        controls=create_oil_type_column_b_row(page),
-        alignment=ft.MainAxisAlignment.SPACE_AROUND,
+    return ft.Container(
+        content = ft.Row(
+            controls=create_oil_type_column_b_row(page),
+            alignment=ft.MainAxisAlignment.SPACE_AROUND,),
+        border=ft.Border(left=ft.BorderSide(1,ft.colors.BLACK),right=ft.BorderSide(1,ft.colors.BLACK))
+        
         
     )
 
@@ -98,7 +103,9 @@ def create_oil_type_column_c_container(page):
         content= ft.Text("Column C", color="Black",font_family="Roboto",weight=ft.FontWeight.BOLD),
         bgcolor=ft.colors.ORANGE, 
         alignment=ft.alignment.center_left,
-        padding=ft.padding.only(left=10))
+        padding=ft.padding.only(left=10),
+        border=ft.Border(left=ft.BorderSide(1,ft.colors.BLACK),right=ft.BorderSide(1,ft.colors.BLACK)))
+        
 
 def create_oil_type_column_d_container(page):
     return ft.Container(
@@ -106,4 +113,5 @@ def create_oil_type_column_d_container(page):
         content=ft.Text("Column d", color="Black", font_family="Roboto",weight=ft.FontWeight.BOLD),  
         bgcolor=ft.colors.ORANGE,
         alignment=ft.alignment.center_left,
-        padding=ft.padding.only(left=10))
+        padding=ft.padding.only(left=10),
+        border=ft.Border(bottom=ft.BorderSide(1,ft.colors.BLACK),left=ft.BorderSide(1,ft.colors.BLACK),right=ft.BorderSide(1,ft.colors.BLACK)))

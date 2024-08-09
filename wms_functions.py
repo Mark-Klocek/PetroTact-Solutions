@@ -19,8 +19,14 @@ class functions:
                     substrate_container.create_substrate_container(page),
                     oil_type_container.create_oil_type_section(page),
                     surface_oil_category.create_SurfaceOilCategory_section(page)
-                ]
-            ),          
+                ],
+                spacing=3
+                
+            ),  
+            bgcolor="#D9CEB7",
+            padding=6,
+            border_radius=ft.border_radius.only(top_left=10,top_right=10)
+                
             
 
         )
@@ -31,10 +37,11 @@ class functions:
 
     def create_input_header(page):
         return ft.Container(
-            content=ft.Text("Inputs", size=20, font_family="Roboto"),
-            bgcolor=ft.colors.BLACK26,
+            content=ft.Text("Inputs", size=20,color="Black", font_family="Roboto"),
+            bgcolor=ft.colors.TRANSPARENT,
             padding=0,
-            alignment=ft.alignment.center_left,           
+            alignment=ft.alignment.center,
+            border_radius=ft.border_radius.only(top_left=10,top_right=10)           
         )
 
 #######################################################################################
