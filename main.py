@@ -68,6 +68,7 @@ def main(page:ft.Page):
         input_substrate_row_b.height = input_substrate_row.height
         input_substrate_row_b.width = input_substrate_row.width * 0.5
         
+        
 
         #############################
         ##### OIL TYPE CONTAINER ####

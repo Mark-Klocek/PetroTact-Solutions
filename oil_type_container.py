@@ -69,7 +69,7 @@ def create_oil_type_header_container(page):
         padding= ft.padding.only(left=5),
         alignment=ft.alignment.center_left,
         border_radius=ft.border_radius.only(top_left=8,top_right=10),
-        #border=ft.Border(top=ft.BorderSide(1, ft.colors.BLACK), left=ft.BorderSide(1,ft.colors.BLACK),right=ft.BorderSide(1,ft.colors.BLACK))
+        
         
     )
 def create_oil_type_column_b_container(page):
@@ -92,8 +92,8 @@ def create_oil_type_column_b_row(page):
         )
     if oil_type_selected_index == 0:
         oil_type_column_b_containers[0] = ft.Container(
-                content=create_oil_type_column_b_row_contents(page,i),
-                padding=5,
+                content=create_oil_type_column_b_row_contents(page,0),
+                padding=0,
                 expand=True,
                 on_click=oil_type_columb_b_click(page,i),
                 bgcolor=ft.colors.ORANGE,
