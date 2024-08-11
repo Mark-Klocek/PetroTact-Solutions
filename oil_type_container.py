@@ -85,7 +85,7 @@ def create_oil_type_column_b_row(page):
         oil_type_column_b_containers.append(
             ft.Container(
                 content=create_oil_type_column_b_row_contents(page, i),
-                padding=5,
+                padding=0,
                 expand=True,
                 on_click=oil_type_columb_b_click(page, i)
             )

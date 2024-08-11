@@ -1,5 +1,7 @@
 import flet as ft
 import pics_and_desc
+import surface_oil_category
+
 substrate_row_a_containers = []
 substrate_row_b_container = None
 substrate_selected_index = 0
@@ -79,6 +81,14 @@ def substrate_row_a_container_click(i, page):
                 
                 
             )
+        
+        surface_oil_category.surface_oil_container.content.controls[1] = ft.Container(
+                                                                            content = ft.Image(
+                                                                                    src= pics_and_desc.surface_oil_category_pictures[i],
+                                                                                    fit=ft.ImageFit.COVER),
+                                                                            padding=5,
+                                                                            bgcolor=ft.colors.WHITE
+                                                                            )
 
         substrate_selected_index = i
         page.update()
