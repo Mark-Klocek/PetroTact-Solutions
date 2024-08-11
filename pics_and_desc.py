@@ -47,3 +47,11 @@ oil_type_column_d_description =["Viscosity like water",
                                 "",
                                 "Viscosity like molasses",
                                 "Does not pour"]
+
+surface_oil_category_pictures = [r"images\surface_oil_category_column_b_pictures\surface_oil_category_sand_mixed_sediment.png",
+                                 r"images\surface_oil_category_column_b_pictures\surface_oil_category_coarse_sediment_beach.png",
+                                 r"images\surface_oil_category_column_b_pictures\surface_oil_category_cobble_boulder.png",
+                                 r"images\surface_oil_category_column_b_pictures\surface_oil_category_bedrock_or_solid_includes_ice.png",
+                                 r"images\surface_oil_category_column_b_pictures\surface_oil_category_wetland_vegetation.png",
+                                 r"images\surface_oil_category_column_b_pictures\surface_oil_category_oiled_debris.png",
+                                 r"images\surface_oil_category_column_b_pictures\surface_oil_category_snow.png"]

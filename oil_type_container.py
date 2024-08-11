@@ -8,11 +8,11 @@ def create_oil_type_section(page):
     global oil_type_container
     container = ft.Container(
         content=ft.Column(
-            controls=[create_oil_type_header_container(page),
-                      create_oil_type_column_b_container(page),
-                      create_oil_type_column_c_container(page),
-                      create_oil_type_column_d_container(page),],
-            spacing=0,
+                controls=[create_oil_type_header_container(page),
+                        create_oil_type_column_b_container(page),
+                        create_oil_type_column_c_container(page),
+                        create_oil_type_column_d_container(page),],
+                spacing=0,
             
         ),
         bgcolor=ft.colors.WHITE,
@@ -93,7 +93,7 @@ def create_oil_type_column_b_row(page):
     if oil_type_selected_index == 0:
         oil_type_column_b_containers[0] = ft.Container(
                 content=create_oil_type_column_b_row_contents(page,0),
-                padding=0,
+                padding=5,
                 expand=True,
                 on_click=oil_type_columb_b_click(page,i),
                 bgcolor=ft.colors.ORANGE,
