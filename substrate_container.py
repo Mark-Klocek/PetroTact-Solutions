@@ -2,6 +2,7 @@ import flet as ft
 import pics_and_desc
 import surface_oil_category
 
+
 substrate_row_a_containers = []
 substrate_row_b_container = None
 substrate_selected_index = 0
@@ -68,7 +69,8 @@ def substrate_row_a_container_click(i, page):
                     ft.Container(
                         content = ft.Text(pics_and_desc.substrate_row_b_description[i], color="Black"),
                         alignment = ft.alignment.center,
-                        padding=5)],spacing=0,                               
+                        padding=5)],
+                spacing=0,                               
                     ),
             padding=0,
             border=ft.Border(left=ft.BorderSide(5,ft.colors.ORANGE))
@@ -142,12 +144,13 @@ def create_substrate_row_a_column_container_content(page, i):
             ),
 
             ft.Container(
-                content=ft.Text(pics_and_desc.substrate_row_a_description[i],color="Black",size=max),
+                content=ft.Text(pics_and_desc.substrate_row_a_description[i],color="Black", size= page.height * 0.4 / 7 * 0.35 -1),
                 alignment=ft.alignment.center_left,
                 padding=0,
                 on_click=substrate_row_a_container_click(i, page), 
                 expand=True,
                 bgcolor=ft.colors.TRANSPARENT
+                
             )
         ],spacing=0
         

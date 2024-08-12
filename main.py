@@ -14,9 +14,20 @@ def main(page:ft.Page):
             expand=True),
         padding=2)        
     )
+
+    '''width = 1440
+    height = 1080
+
+    page.window_width = width
+    page.window_height = height'''
+    '''for container in substrate_container.substrate_row_a_containers:
+            c = container.content.controls[1].content 
+            if input_substrate_row_a_container_1:
+                c.content.size = input_substrate_row_a_container_1.height * 0.30'''
     
-    page.window_max_width = 1280 * 1.5
-    page.window_max_height = 720 * 1.5
+    
+    page.window.max_width = 1280 * 1.5
+    page.window.max_height = 720 * 1.5
 
     def resize(e):
         def resize_text(container):
@@ -64,7 +75,19 @@ def main(page:ft.Page):
         input_substrate_row_a = input_substrate_row.content.controls[0]
         input_substrate_row_a.width = input_substrate_row.width * 0.5
         input_substrate_row_a.height = input_substrate_row.height
-               
+
+        input_substrate_row_a_container_1 = substrate_container.substrate_row_a_containers[0]
+        input_substrate_row_a_container_1.height = input_substrate_row_a.height / 7
+        input_substrate_row_a_container_1.width = input_substrate_row_a
+
+        for container in substrate_container.substrate_row_a_containers:
+            row = container.content  
+            if isinstance(row, ft.Row):
+                second_container = row.controls[1]  
+                if isinstance(second_container.content, ft.Text):
+                    text_control = second_container.content
+                    text_control.size = input_substrate_row_a_container_1.height * 0.35
+                    
 
             #creating 2nd container within row that will contain picture/description, dimensions tied to parent container
         input_substrate_row_b = input_substrate_row.content.controls[1]

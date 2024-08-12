@@ -33,14 +33,14 @@ def oil_type_columb_b_click(page, i):
         if oil_type_selected_index is not None and oil_type_selected_index != i:
             row_b.controls[oil_type_selected_index] = ft.Container(
                 content=create_oil_type_column_b_row_contents(page,oil_type_selected_index),
-                padding=5,
+                padding=0,
                 expand=True,
                 on_click=oil_type_columb_b_click(page,oil_type_selected_index),
 
             )
         row_b.controls[i] = ft.Container(
                 content=create_oil_type_column_b_row_contents(page,i),
-                padding=5,
+                padding=0,
                 expand=True,
                 on_click=oil_type_columb_b_click(page,i),
                 bgcolor=ft.colors.ORANGE,
