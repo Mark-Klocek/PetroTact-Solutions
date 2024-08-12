@@ -65,8 +65,8 @@ class functions:
                         content=functions.create_viewSummary_tab(page)
                     )
                 ],
+            
             ),
-
             alignment=ft.alignment.top_right,
             width=page.width * 0.7
         )

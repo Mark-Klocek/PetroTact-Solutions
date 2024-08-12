@@ -40,7 +40,7 @@ def oil_type_columb_b_click(page, i):
             )
         row_b.controls[i] = ft.Container(
                 content=create_oil_type_column_b_row_contents(page,i),
-                padding=0,
+                padding=5,
                 expand=True,
                 on_click=oil_type_columb_b_click(page,i),
                 bgcolor=ft.colors.ORANGE,
@@ -75,6 +75,7 @@ def create_oil_type_header_container(page):
 def create_oil_type_column_b_container(page):
     return ft.Row(
             controls=create_oil_type_column_b_row(page),
+            height= page.height * 0.20 * 0.55
                 
     )
 

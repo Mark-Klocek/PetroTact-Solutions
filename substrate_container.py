@@ -167,7 +167,7 @@ def create_substrate_row_b_container(page):
                             
                             content= ft.Image(src=pics_and_desc.substrate_row_b_pictures[0],
                                               fit=ft.ImageFit.COVER),     
-                            expand=True,
+                            #expand=True,
                             
                             
                             padding=5),

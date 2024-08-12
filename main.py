@@ -1,6 +1,7 @@
 import flet as ft
 from wms_functions import functions
 import substrate_container
+import oil_type_container
 
 
 def main(page:ft.Page):
@@ -15,15 +16,12 @@ def main(page:ft.Page):
         padding=2)        
     )
 
-    '''width = 1440
-    height = 1080
+    width = 1366
+    height = 1024
 
     page.window_width = width
-    page.window_height = height'''
-    '''for container in substrate_container.substrate_row_a_containers:
-            c = container.content.controls[1].content 
-            if input_substrate_row_a_container_1:
-                c.content.size = input_substrate_row_a_container_1.height * 0.30'''
+    page.window_height = height
+    
     
     
     page.window.max_width = 1280 * 1.5
@@ -110,6 +108,8 @@ def main(page:ft.Page):
         input_oil_type_container_column_b = input_oil_type_container.content.controls[1]
         input_oil_type_container_column_b.height = input_oil_type_container.height * 0.55
         input_oil_type_container_column_b.width = input_oil_type_container.width
+        
+        
 
         input_oil_type_container_column_c = input_oil_type_container.content.controls[2]
         input_oil_type_container_column_c.height = input_oil_type_container.height * 0.15

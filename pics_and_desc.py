@@ -22,8 +22,8 @@ substrate_row_b_pictures = [r"images\substrate_row_b_img\sand-mixed-sediment-sub
                             r"images\substrate_row_b_img\oiled-debris-substrate-row-b.png",
                             r"images\substrate_row_b_img\snow-substrate-row-b.png"]
 
-substrate_row_b_description = ["Beaches composed of sand or a combination of sand, granules,pebbles and cobbles.",
-                               "A beach where the clearly dominant material is pebbles and/or cobbles",
+substrate_row_b_description = ["Beaches composed of sand or a combination of sand, granules, pebbles and cobbles.",
+                               "A beach where the clearly dominant material is pebbles and/or cobbles.",
                                "A beach where the clearly dominant material is cobbles and/or boulders.",
                                "Bedrock Shorelines are impermeable outcrops of consolidated native rock.",
                                "A coastal zone that is covered at least once a month at high tide and which supports salt-tolerant plants.",
@@ -61,3 +61,12 @@ surface_oil_category_description = ["Less than 0.5m wide \nGenerally less than 1
                                     "Less than 3m wide \nGenerally less than 10\% \distribution",
                                     "Between 0.5m and 3m wide \nGenerally 10\% to 50\% \distrubtion",
                                     "Greater than 3m wide \nGreater than 50\% \distribution"]
+
+
+
+'''create_oil_type_column_b_row_contents(page,i),
+                padding=0,
+                expand=True,
+                on_click=oil_type_columb_b_click(page,i),
+                bgcolor=ft.colors.ORANGE,
+                border=ft.Border(bottom=ft.BorderSide(50,ft.colors.ORANGE))'''
