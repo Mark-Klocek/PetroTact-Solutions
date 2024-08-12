@@ -37,6 +37,7 @@ oil_type_column_b_pictures = [r"images\oil_type_column_b_images\oil_type_column_
                               r"images\oil_type_column_b_images\oil_type_column_b_medium.png",
                               r"images\oil_type_column_b_images\oil_type_column_b_heavy.png",
                               r"images\oil_type_column_b_images\oil_type_column_b_solid.png"]
+oil_type_column_b_description = ["Volatile","Light","Medium","Heavy","Solid"]
 oil_type_column_c_description = ["Gasoline Products",
                                  "Diesel and light crudes",
                                  "Intermediate products and medium crudes",

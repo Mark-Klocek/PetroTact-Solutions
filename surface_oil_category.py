@@ -78,6 +78,6 @@ def create_surface_oil_column_e(page):
                                    color=ft.colors.BLACK,
                                    font_family="Roboto"),
                 bgcolor=ft.colors.TRANSPARENT,
-                alignment=ft.alignment.center,
+                alignment=ft.alignment.center_left,
                 
         )
