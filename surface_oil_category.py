@@ -72,6 +72,7 @@ def create_surface_oil_column_b(page):
                 
 def create_surface_oil_column_b_rows(page):
         global surface_oil_column_b_containers
+        global surface_oil_selected_index
         surface_oil_column_b_containers = []
         for i in range(4):
                 surface_oil_column_b_containers.append(
@@ -81,7 +82,9 @@ def create_surface_oil_column_b_rows(page):
                                 expand=True,
                                 on_click=surface_oil_column_b_click(page,i)
                         )
-                )   
+                )
+        if surface_oil_selected_index ==0:
+                surface_oil_column_b_containers[0].border=ft.border.all(5,ft.colors.ORANGE) 
         return surface_oil_column_b_containers             
         
 
