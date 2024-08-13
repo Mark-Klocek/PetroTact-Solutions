@@ -64,9 +64,12 @@ surface_oil_category_description = ["Less than 0.5m wide \nGenerally less than 1
 
 
 
-'''create_oil_type_column_b_row_contents(page,i),
+'''def create_surface_oil_column_b(page):
+        return ft.Container(
+                content= ft.Image(src=pics_and_desc.surface_oil_category_pictures[0], fit=ft.ImageFit.FIT_WIDTH),
                 padding=0,
-                expand=True,
-                on_click=oil_type_columb_b_click(page,i),
-                bgcolor=ft.colors.ORANGE,
-                border=ft.Border(bottom=ft.BorderSide(50,ft.colors.ORANGE))'''
+                bgcolor=ft.colors.WHITE,
+                border=ft.Border(right=ft.BorderSide(0.5,ft.colors.TRANSPARENT))
+                
+                
+        )'''

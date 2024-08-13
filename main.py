@@ -3,29 +3,30 @@ from wms_functions import functions
 import substrate_container
 import oil_type_container
 
+app_window = None
 
 def main(page:ft.Page):
     input_container = functions.create_input_container(page)
     results_container=functions.create_results_container(page)
-    
+    app_window = ft.Container(
+                    content=ft.Row(
+                        controls=[input_container,results_container],
+                        expand=True),
+                    padding=2)   
 
-    page.add(ft.Container(
-        content=ft.Row(
-            controls=[input_container,results_container],
-            expand=True),
-        padding=2)        
-    )
-
-    width = 1366
+    page.add(app_window)
+    '''width = 1366
     height = 1024
 
     page.window_width = width
-    page.window_height = height
+    page.window_height = height'''
     
     
-    
-    page.window.max_width = 1280 * 1.5
-    page.window.max_height = 720 * 1.5
+    '''app_window.width = 1280* 1.5
+    app_window.height = 720 * 1.5'''
+
+    page.window.max_width = 1280 
+    page.window.max_height = 720 
 
     def resize(e):
         def resize_text(container):
@@ -152,7 +153,7 @@ def main(page:ft.Page):
         #######################################################################################
         ############################### RESULTS CONTAINER #####################################
         #######################################################################################
-        results_container.width= page.width * 0.7
+        results_container.width= page.width * 0.68
         results_container.height = page.height * 0.98
 
 

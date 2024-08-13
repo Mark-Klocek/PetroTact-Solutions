@@ -84,12 +84,18 @@ def substrate_row_a_container_click(i, page):
                 
             )
         
-        surface_oil_category.surface_oil_container.content.controls[1] = ft.Container(
-                                                                            content = ft.Image(
-                                                                                    src= pics_and_desc.surface_oil_category_pictures[i],
-                                                                                    fit=ft.ImageFit.COVER),
-                                                                            padding=5,
-                                                                            bgcolor=ft.colors.WHITE
+        surface_oil_category.surface_oil_container.content.controls[1] = ft.Stack(
+                                                                            controls = [
+                                                                                            ft.Container(
+                                                                                                    content= ft.Image(src=pics_and_desc.surface_oil_category_pictures[i], fit=ft.ImageFit.FILL),
+                                                                                                    padding=5,
+                                                                                                    bgcolor=ft.colors.WHITE,
+                                                                                                    border=ft.Border(right=ft.BorderSide(0.5,ft.colors.TRANSPARENT))),
+                                                                                            ft.Row(
+                                                                                                    controls= surface_oil_category.create_surface_oil_column_b_rows(page)
+                                                                                            )],
+                                                                                            expand=True
+                                                                                            
                                                                             )
 
         substrate_selected_index = i
