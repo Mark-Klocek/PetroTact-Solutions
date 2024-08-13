@@ -92,7 +92,14 @@ def main(page:ft.Page):
         input_substrate_row_b = input_substrate_row.content.controls[1]
         input_substrate_row_b.height = input_substrate_row.height
         input_substrate_row_b.width = input_substrate_row.width * 0.5
-        
+            #column a within row b that has picture, standardizing it to be 75% of the size of row b
+        #input_substrate_row_b_column_a = input_substrate_row_b.content.controls[0]
+        #input_substrate_row_b_column_a.height = input_substrate_row_b.height * 0.75
+            #column b within row b that contains the description text
+        #input_substrate_row_b_column_b = input_substrate_row_b.content.controls[1]
+        #input_substrate_row_b_column_b.height = input_substrate_row_b.height * 0.24
+        #input_substrate_row_b_column_b.content.size = input_substrate_row_b_column_b.height * 0.2
+        #print(input_substrate_row_b_column_b.content)
         
 
         #############################

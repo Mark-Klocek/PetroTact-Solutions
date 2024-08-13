@@ -69,7 +69,7 @@ def substrate_row_a_container_click(i, page):
                     ft.Container(
                         content = ft.Text(pics_and_desc.substrate_row_b_description[i], color="Black"),
                         alignment = ft.alignment.center,
-                        padding=5)],
+                        padding=1)],
                 spacing=0,                               
                     ),
             padding=0,
@@ -84,20 +84,9 @@ def substrate_row_a_container_click(i, page):
                 
             )
         
-        surface_oil_category.surface_oil_container.content.controls[1] = ft.Stack(
-                                                                            controls = [
-                                                                                            ft.Container(
-                                                                                                    content= ft.Image(src=pics_and_desc.surface_oil_category_pictures[i], fit=ft.ImageFit.FILL),
-                                                                                                    padding=5,
-                                                                                                    bgcolor=ft.colors.WHITE,
-                                                                                                    border=ft.Border(right=ft.BorderSide(0.5,ft.colors.TRANSPARENT)),
-                                                                                                    alignment=ft.alignment.center),
-                                                                                            ft.Row(
-                                                                                                    controls= surface_oil_category.create_surface_oil_column_b_rows(page),
-                                                                                            )],
-                                                                                            expand=True
-                                                                                            
-                                                                            )
+        stack = surface_oil_category.surface_oil_container.content.controls[1]
+        stack.controls[0].content = ft.Image(src=pics_and_desc.surface_oil_category_pictures[i], fit=ft.ImageFit.FILL)
+                                                 
 
         substrate_selected_index = i
         page.update()
@@ -182,7 +171,7 @@ def create_substrate_row_b_container(page):
                             
                             
                         ft.Container(
-                            content = ft.Text(pics_and_desc.substrate_row_b_description[0], color="Black"),
+                            content = ft.Text(pics_and_desc.substrate_row_b_description[0], color="Black",max_lines=4),
                             alignment = ft.alignment.center,
                             padding=5)],
                         spacing=0),
