@@ -73,43 +73,41 @@ def create_oil_type_header_container(page):
         
     )
 def create_oil_type_column_b_container(page):
-    return ft.Row(
-            controls=create_oil_type_column_b_row(page),
-            height= page.height * 0.20 * 0.55
-                
+    return ft.Stack(
+        controls= [
+            ft.Container(
+                content = ft.Image(src=r"images\oil_type_column_b_images\background_b.png"),
+                padding=0,
+                bgcolor=ft.colors.WHITE,
+                border=ft.border.all(0.5,ft.colors.TRANSPARENT),
+                alignment=ft.alignment.center
+            
+            ),
+            ft.Row(
+                controls= create_oil_type_column_b_row(page)
+            )
+        ],
+        expand=True
     )
 
 def create_oil_type_column_b_row(page):
     global oil_type_selected_index
+    global oil_type_container
     oil_type_column_b_containers = []
-    for i in range(len(pics_and_desc.oil_type_column_b_pictures)):
+    for i in range(5):
         oil_type_column_b_containers.append(
             ft.Container(
-                content=create_oil_type_column_b_row_contents(page, i),
-                padding=0,
+                bgcolor=ft.colors.TRANSPARENT,
+                border=ft.border.all(1,ft.colors.RED),
                 expand=True,
-                on_click=oil_type_columb_b_click(page, i)
+                #on_click=surface_oil_column_b_click(page,i)
             )
         )
     if oil_type_selected_index == 0:
-        oil_type_column_b_containers[0] = ft.Container(
-                content=create_oil_type_column_b_row_contents(page,0),
-                padding=5,
-                expand=True,
-                on_click=oil_type_columb_b_click(page,i),
-                bgcolor=ft.colors.ORANGE,
-                border=ft.Border(bottom=ft.BorderSide(10,ft.colors.ORANGE))
-
-        ) 
+        oil_type_column_b_containers[0].border=ft.border.all(5,ft.colors.ORANGE)
     
     return oil_type_column_b_containers
 
-def create_oil_type_column_b_row_contents(page, i):
-    return ft.Image(
-        src=pics_and_desc.oil_type_column_b_pictures[i],
-        fit=ft.ImageFit.CONTAIN,
-        
-    )
 def create_oil_type_column_c_container(page):
          return ft.Container(
         
@@ -126,7 +124,7 @@ def create_oil_type_column_c_container(page):
 def create_oil_type_column_d_container(page):
     return ft.Container(
         
-        content=ft.Text(pics_and_desc.oil_type_column_d_description[0], color="Black", font_family="Roboto"),  
+        content=ft.Text(pics_and_desc.oil_type_column_d_description[0], color="Black", font_family="Roboto"),
         bgcolor=ft.colors.ORANGE,
         alignment=ft.alignment.center_left,
         padding=ft.padding.only(left=10),

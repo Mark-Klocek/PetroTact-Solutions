@@ -90,9 +90,10 @@ def substrate_row_a_container_click(i, page):
                                                                                                     content= ft.Image(src=pics_and_desc.surface_oil_category_pictures[i], fit=ft.ImageFit.FILL),
                                                                                                     padding=5,
                                                                                                     bgcolor=ft.colors.WHITE,
-                                                                                                    border=ft.Border(right=ft.BorderSide(0.5,ft.colors.TRANSPARENT))),
+                                                                                                    border=ft.Border(right=ft.BorderSide(0.5,ft.colors.TRANSPARENT)),
+                                                                                                    alignment=ft.alignment.center),
                                                                                             ft.Row(
-                                                                                                    controls= surface_oil_category.create_surface_oil_column_b_rows(page)
+                                                                                                    controls= surface_oil_category.create_surface_oil_column_b_rows(page),
                                                                                             )],
                                                                                             expand=True
                                                                                             
