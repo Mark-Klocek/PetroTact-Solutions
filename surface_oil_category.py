@@ -27,16 +27,18 @@ def create_SurfaceOilCategory_section(page):
         return container
 def surface_oil_column_b_click(page, i):
         def handle_click(e):
+
                 global surface_oil_column_b_containers
                 global surface_oil_container
                 global surface_oil_selected_index
-                surface_oil_column_b_containers[i] = ft.Container(
-                                                        bgcolor=ft.colors.TRANSPARENT,
-                                                        border=ft.border.all(5,ft.colors.ORANGE),
-                                                        expand=True
-                                                )
+                if surface_oil_selected_index is not None and surface_oil_selected_index != i:
+                        surface_oil_column_b_containers[surface_oil_selected_index].border = ft.border.all(1, ft.colors.TRANSPARENT)
+
+                surface_oil_column_b_containers[i].border = border=ft.border.all(8,ft.colors.ORANGE)
                 surface_oil_selected_index = i
+                surface_oil_container.content.controls[2].content = content = ft.Text(pics_and_desc.surface_oil_category_description[i],color= "Black", font_family="Roboto")
                 page.update()
+        return handle_click
 
 def create_surface_oil_header_column(page):
         return ft.Container(
@@ -59,7 +61,8 @@ def create_surface_oil_column_b(page):
                                         content= ft.Image(src=pics_and_desc.surface_oil_category_pictures[0], fit=ft.ImageFit.FIT_WIDTH),
                                         padding=5,
                                         bgcolor=ft.colors.WHITE,
-                                        border=ft.Border(right=ft.BorderSide(0.5,ft.colors.TRANSPARENT))),
+                                        border=ft.Border(right=ft.BorderSide(0.5,ft.colors.TRANSPARENT)),
+                                        alignment=ft.alignment.center),
                                 ft.Row(
                                         controls= create_surface_oil_column_b_rows(page)
                                 )],
@@ -74,7 +77,7 @@ def create_surface_oil_column_b_rows(page):
                 surface_oil_column_b_containers.append(
                         ft.Container(
                                 bgcolor=ft.colors.TRANSPARENT,
-                                border=ft.border.all(1,ft.colors.RED),
+                                border=ft.border.all(1,ft.colors.TRANSPARENT),
                                 expand=True,
                                 on_click=surface_oil_column_b_click(page,i)
                         )
@@ -89,7 +92,7 @@ def create_surface_oil_column_c(page):
                 
                 padding=ft.padding.only(left=2),
                 alignment=ft.alignment.center_left,
-                border=ft.Border(bottom=ft.BorderSide(5,ft.colors.ORANGE))
+                border=ft.Border(bottom=ft.BorderSide(5,ft.colors.ORANGE), top=ft.BorderSide(5,ft.colors.ORANGE))
 
         )
 def create_surface_oil_column_d(page):
