@@ -57,10 +57,10 @@ surface_oil_category_pictures = [r"images\surface_oil_category_column_b_pictures
                                  r"images\surface_oil_category_column_b_pictures\surface_oil_category_oiled_debris.png",
                                  r"images\surface_oil_category_column_b_pictures\surface_oil_category_snow.png"]
 
-surface_oil_category_description = ["Less than 0.5m wide \nGenerally less than 10% distribution",
-                                    "Less than 3m wide \nGenerally less than 10% distribution",
-                                    "Between 0.5m and 3m wide \nGenerally 10% to 50% distrubtion",
-                                    "Greater than 3m wide \nGreater than 50% distribution"]
+surface_oil_category_description = ["Less than 0.5m wide \nGenerally less than 10% distribution \nClick here to calculate the surface oil category",
+                                    "Less than 3m wide \nGenerally less than 10% distribution\nClick here to calculate the surface oil category",
+                                    "Between 0.5m and 3m wide \nGenerally 10% to 50% distrubtion\nClick here to calculate the surface oil category",
+                                    "Greater than 3m wide \nGreater than 50% distribution\nClick here to calculate the surface oil category"]
 
 surface_oil_category_column_b_description = ["Very Light", "Light", "Moderate", "Heavy"]
 

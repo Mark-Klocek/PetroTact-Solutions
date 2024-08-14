@@ -7,6 +7,7 @@ import substrate_container
 surface_oil_column_b_containers = []
 surface_oil_selected_index = 0
 surface_oil_container = None
+column_c_container = ft.Container()
 
 def create_SurfaceOilCategory_section(page):
         global surface_oil_container
@@ -15,8 +16,7 @@ def create_SurfaceOilCategory_section(page):
                     controls=[create_surface_oil_header_column(page),
                               create_surface_oil_column_b(page),
                               create_surface_oil_column_c(page),
-                              create_surface_oil_column_d(page),
-                              create_surface_oil_column_e(page)],
+                              create_surface_oil_column_d(page)],
                     spacing=-1),
             bgcolor=ft.colors.WHITE,
             padding=0,
@@ -39,7 +39,44 @@ def surface_oil_column_b_click(page, i):
                 surface_oil_container.content.controls[2].content= ft.Text(pics_and_desc.surface_oil_category_description[i],color= "Black", font_family="Roboto")
                 page.update()
         return handle_click
-
+def surface_oil_column_c_click(page):
+        global column_c_container
+        
+        def handle_click(e):
+                column_c_container.content = ft.Column(
+                        controls=[
+                                ft.Container(
+                                        content = ft.Dropdown(hint_text = "Oil width",
+                                                options=[ft.dropdown.Option("Wide > 6m"),
+                                                        ft.dropdown.Option("Medium 3 - 6m"),
+                                                        ft.dropdown.Option("Narrow 0.5 - 3m"),
+                                                        ft.dropdown.Option("Very narrow < 0.5m")]),
+                                        #height=app_window.height * 0.3
+                                        ),
+                                        
+                                ft.Container(
+                                        ft.Dropdown(hint_text = "Oil Distribution",
+                                                options=[ft.dropdown.Option("Trace < 1%",),
+                                                        ft.dropdown.Option("Sporadic 1 - 10%"),
+                                                        ft.dropdown.Option("Patchy 11 - 50%"),
+                                                        ft.dropdown.Option("Broken 51 - 90%"),
+                                                        ft.dropdown.Option("Continuous 91 - 100%")]),
+                                        ),
+                                ft.Container(
+                                        ft.Dropdown(hint_text= "Oil Distribution",
+                                                options=[ft.dropdown.Option("Pooled > 1cm"),
+                                                        ft.dropdown.Option("Cover 0.1 - 1cm"),
+                                                        ft.dropdown.Option("Coat 0.01 - 0.1cm"),
+                                                        ft.dropdown.Option("Stain or Film < 0.01cm")]),
+                                        )
+                                ],
+                        expand=True,
+                        spacing=2,
+                        alignment=ft.alignment.center
+                )
+                
+                page.update()
+        return handle_click    
 def create_surface_oil_header_column(page):
         return ft.Container(
                 content=ft.Text("Surface Oil Category",
@@ -89,26 +126,20 @@ def create_surface_oil_column_b_rows(page):
         
 
 def create_surface_oil_column_c(page):
-        return ft.Container(
-                content = ft.Text(pics_and_desc.surface_oil_category_description[0],color= "Black", font_family="Roboto"),
-                bgcolor=ft.colors.ORANGE,
-                
-                padding=ft.padding.only(left=2),
-                alignment=ft.alignment.center_left,
-                border=ft.Border(bottom=ft.BorderSide(5,ft.colors.ORANGE), top=ft.BorderSide(5,ft.colors.ORANGE))
+        global column_c_container
+        column_c_container = ft.Container(
+                                content = ft.Text(pics_and_desc.surface_oil_category_description[0],color= "Black", font_family="Roboto"),
+                                bgcolor=ft.colors.ORANGE,
+                                
+                                padding=ft.padding.only(left=2),
+                                alignment=ft.alignment.center_left,
+                                border=ft.Border(bottom=ft.BorderSide(5,ft.colors.ORANGE), top=ft.BorderSide(5,ft.colors.ORANGE)),
+                                on_click=surface_oil_column_c_click(page)
 
-        )
+                                )
+        return column_c_container
+
 def create_surface_oil_column_d(page):
-        return ft.Container(
-                content = ft.Text("Click here to calculate the Surface Oil Category", color="BLACK", weight=ft.FontWeight.BOLD, font_family="Roboto"),
-                bgcolor=ft.colors.ORANGE,
-                
-                padding=ft.padding.only(left=2),
-                alignment=ft.alignment.center_left,
-                border=ft.Border(top=ft.BorderSide(5,ft.colors.ORANGE))
-
-        )
-def create_surface_oil_column_e(page):
         return ft.Container(
                 content = ft.Text(" oil  length multiplier",
                                    color=ft.colors.BLACK,

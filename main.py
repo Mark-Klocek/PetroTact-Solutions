@@ -13,7 +13,8 @@ def main(page:ft.Page):
                         controls=[input_container,results_container],
                         expand=True),
                     padding=2)   
-
+    app_window.height = page.height
+    app_window.width = page.width
     page.add(app_window)
     '''width = 1366
     height = 1024
@@ -25,8 +26,8 @@ def main(page:ft.Page):
     '''app_window.width = 1280* 1.5
     app_window.height = 720 * 1.5'''
 
-    page.window.max_width = 1280 
-    page.window.max_height = 720 
+    #page.window.max_width = 1280 
+    #page.window.max_height = 720 
 
     def resize(e):
         def resize_text(container):
@@ -35,8 +36,8 @@ def main(page:ft.Page):
         #######################################################################################
         ############################### INPUT CONTAINER #######################################
         #######################################################################################
-        input_container.width = page.width * 0.3
-        input_container.height = page.height * 0.98
+        input_container.width = app_window.width * 0.3
+        input_container.height = app_window.height * 0.98
 
         #############################
         ###### HEADER CONTAINER #####
@@ -44,8 +45,8 @@ def main(page:ft.Page):
 
             #creation of header container as 1st column within input container: setting height and width as compared to parent input container
         input_header_container = input_container.content.controls[0]
-        input_header_container.height = page.height * 0.05
-        input_header_container.width = page.width * 0.3
+        input_header_container.height = app_window.height * 0.05
+        input_header_container.width = app_window.width * 0.3
         resize_text(input_header_container)
         
         
@@ -55,8 +56,8 @@ def main(page:ft.Page):
             
             #creation of substrait container as 2nd column within input container column : setting height and width as compared to parent input container
         input_substrate_container = input_container.content.controls[1]            
-        input_substrate_container.height = page.height * 0.4
-        input_substrate_container.width = page.width * 0.3
+        input_substrate_container.height = app_window.height * 0.4
+        input_substrate_container.width = app_window.width * 0.3
         
         
             #first container within substrate container, known as header creation and dimensions with regard to parent container
@@ -87,6 +88,7 @@ def main(page:ft.Page):
                     text_control = second_container.content
                     text_control.size = input_substrate_row_a_container_1.height * 0.35
                     
+                    
 
             #creating 2nd container within row that will contain picture/description, dimensions tied to parent container
         input_substrate_row_b = input_substrate_row.content.controls[1]
@@ -106,7 +108,7 @@ def main(page:ft.Page):
         ##### OIL TYPE CONTAINER ####
         #############################
         input_oil_type_container = input_container.content.controls[2]
-        input_oil_type_container.height = page.height * 0.20
+        input_oil_type_container.height = app_window.height * 0.20
 
         input_oil_type_container_column_a = input_oil_type_container.content.controls[0]
         input_oil_type_container_column_a.height = input_oil_type_container.height * 0.15
@@ -134,7 +136,7 @@ def main(page:ft.Page):
         # SURFACE OIL CAT.CONTAINER #
         #############################
         surface_oil_container = input_container.content.controls[3]
-        surface_oil_container.height = page.height * 0.3
+        surface_oil_container.height = app_window.height * 0.3
         
         surface_oil_header = surface_oil_container.content.controls[0]
         surface_oil_header.height = surface_oil_container.height * 0.10
@@ -146,22 +148,22 @@ def main(page:ft.Page):
           
 
         surface_oil_column_c = surface_oil_container.content.controls[2] #20
-        surface_oil_column_c.height = surface_oil_container.height * 0.25
-        surface_oil_column_c.content.size = surface_oil_column_c.height * 0.3
+        surface_oil_column_c.height = surface_oil_container.height * 0.4
+        surface_oil_column_c.content.size = surface_oil_column_c.height * 0.2
 
         surface_oil_column_d = surface_oil_container.content.controls[3] #9
-        surface_oil_column_d.height = surface_oil_container.height * 0.15
-        surface_oil_column_d.content.size = surface_oil_column_d.height * 0.4
+        surface_oil_column_d.height = surface_oil_container.height * 0.10
+        surface_oil_column_d.content.size = surface_oil_column_d.height * 0.6
 
-        surface_oil_column_e = surface_oil_container.content.controls[4] #14
-        surface_oil_column_e.height = surface_oil_container.height * 0.1
-        surface_oil_column_d.content.size = surface_oil_column_d.height * 0.4
+        #surface_oil_column_e = surface_oil_container.content.controls[4] #14
+        #surface_oil_column_e.height = surface_oil_container.height * 0.1
+        #surface_oil_column_d.content.size = surface_oil_column_d.height * 0.4
         
         #######################################################################################
         ############################### RESULTS CONTAINER #####################################
         #######################################################################################
-        results_container.width= page.width * 0.68
-        results_container.height = page.height * 0.98
+        results_container.width= app_window.width * 0.68
+        results_container.height = app_window.height * 0.98
 
 
         page.update()
