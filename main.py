@@ -99,12 +99,17 @@ def main(page:ft.Page):
         input_substrate_row_b.height = input_substrate_row.height
         input_substrate_row_b.width = input_substrate_row.width * 0.5
             #column a within row b that has picture, standardizing it to be 75% of the size of row b
-        #input_substrate_row_b_column_a = input_substrate_row_b.content.controls[0]
-        #input_substrate_row_b_column_a.height = input_substrate_row_b.height * 0.75
+        if isinstance(input_substrate_row_b.content,ft.Column):    
+            input_substrate_row_b_column_a = input_substrate_row_b.content.controls[0]
+            input_substrate_row_b_column_a.height = input_substrate_row_b.height * 0.75
+            input_substrate_row_b_column_a.update()
             #column b within row b that contains the description text
-        #input_substrate_row_b_column_b = input_substrate_row_b.content.controls[1]
-        #input_substrate_row_b_column_b.height = input_substrate_row_b.height * 0.24
-        #input_substrate_row_b_column_b.content.size = input_substrate_row_b_column_b.height * 0.2
+        if isinstance(input_substrate_row_b.content,ft.Column):
+            input_substrate_row_b_column_b = input_substrate_row_b.content.controls[1]
+            #input_substrate_row_b_column_b.height = input_substrate_row_b.height * 0.24
+            
+            input_substrate_row_b_column_b.content.size = input_substrate_row_b.height * 0.25 * 0.2 -1
+            input_substrate_row_b_column_b.update()
         #print(input_substrate_row_b_column_b.content)
         
 
@@ -153,7 +158,7 @@ def main(page:ft.Page):
 
         surface_oil_column_c = surface_oil_container.content.controls[2] #20
         surface_oil_column_c.height = surface_oil_container.height * 0.4
-        surface_oil_column_c.content.size = surface_oil_column_c.height * 0.2
+        surface_oil_column_c.content.size = surface_oil_column_c.height * 0.15
 
         surface_oil_column_d = surface_oil_container.content.controls[3] #9
         surface_oil_column_d.height = surface_oil_container.height * 0.10

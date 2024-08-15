@@ -1,6 +1,7 @@
 import flet as ft
 import pics_and_desc
 import surface_oil_category
+import global_variables
 
 
 
@@ -18,6 +19,7 @@ def create_substrate_container(page):
         padding=0,
         
         bgcolor=ft.colors.TRANSPARENT,
+        height= global_variables.app_window.height * 0.4
         
         
         
@@ -49,49 +51,7 @@ def create_substrate_row_container(page):
         border=ft.Border(bottom=ft.BorderSide(1,ft.colors.BLACK),left=ft.BorderSide(1,ft.colors.BLACK),right=ft.BorderSide(1,ft.colors.BLACK))
         
     )
-def substrate_row_a_container_click(i, page):
-    def handle_click(e):
-        global substrate_selected_index
-        global substrate_row_a_containers
-        global substrate_row_b_container
 
-        if substrate_selected_index is not None and substrate_selected_index != i:
-            substrate_row_a_containers[substrate_selected_index].bgcolor = ft.colors.WHITE
-            substrate_row_a_containers[substrate_selected_index].content = create_substrate_row_a_column_container_content(page, substrate_selected_index)
-            
-        substrate_row_b_container.content = ft.Container(
-            content = ft.Column(
-                controls=[
-                    ft.Container(
-                        content= ft.Image(src=pics_and_desc.substrate_row_b_pictures[i], fit=ft.ImageFit.COVER),
-                        expand=True,
-                        padding=5),
-                        
-                    ft.Container(
-                        content = ft.Text(pics_and_desc.substrate_row_b_description[i], color="Black"),
-                        alignment = ft.alignment.center,
-                        padding=1)],
-                spacing=0,                               
-                    ),
-            padding=0,
-            border=ft.Border(left=ft.BorderSide(5,ft.colors.ORANGE))
-        )
-        substrate_row_a_containers[i].content = ft.Container(
-                content= create_substrate_row_a_column_container_content(page,i),                   
-                expand=True,
-                padding=0,
-                bgcolor=ft.colors.ORANGE,
-                
-                
-            )
-        
-        stack = surface_oil_category.surface_oil_container.content.controls[1]
-        stack.controls[0].content = ft.Image(src=pics_and_desc.surface_oil_category_pictures[i], fit=ft.ImageFit.FILL)
-                                                 
-
-        substrate_selected_index = i
-        page.update()
-    return handle_click
 
 def create_substrate_row_a_container(page):
     return ft.Container(
@@ -172,7 +132,11 @@ def create_substrate_row_b_container(page):
                             
                             
                         ft.Container(
-                            content = ft.Text(pics_and_desc.substrate_row_b_description[0], color="Black",max_lines=4),
+                            content = ft.Text(pics_and_desc.substrate_row_b_description[0], 
+                                              color="Black",
+                                              max_lines=4,
+                                              size= global_variables.app_window.height * 0.4 * 0.93 * 0.25 * 0.2 -1),
+                                              
                             alignment = ft.alignment.center,
                             padding=5)],
                         spacing=0),
@@ -185,3 +149,48 @@ def create_substrate_row_b_container(page):
     
         substrate_row_b_container = container
         return container
+def substrate_row_a_container_click(i, page):
+    def handle_click(e):
+        global substrate_selected_index
+        global substrate_row_a_containers
+        global substrate_row_b_container
+
+        if substrate_selected_index is not None and substrate_selected_index != i:
+            substrate_row_a_containers[substrate_selected_index].bgcolor = ft.colors.WHITE
+            substrate_row_a_containers[substrate_selected_index].content = create_substrate_row_a_column_container_content(page, substrate_selected_index)
+            
+        substrate_row_b_container.content = ft.Container(
+            content = ft.Column(
+                controls=[
+                    ft.Container(
+                        content= ft.Image(src=pics_and_desc.substrate_row_b_pictures[i], fit=ft.ImageFit.COVER),
+                        expand=True,
+                        padding=5),
+                        
+                    ft.Container(
+                        content = ft.Text(pics_and_desc.substrate_row_b_description[i], 
+                                          color="Black",
+                                          size= global_variables.app_window.height * 0.4 * 0.93 * 0.25 * 0.2 -1),
+                        alignment = ft.alignment.center,
+                        padding=1)],
+                spacing=0,                               
+                    ),
+            padding=0,
+            border=ft.Border(left=ft.BorderSide(5,ft.colors.ORANGE))
+        )
+        substrate_row_a_containers[i].content = ft.Container(
+                content= create_substrate_row_a_column_container_content(page,i),                   
+                expand=True,
+                padding=0,
+                bgcolor=ft.colors.ORANGE,
+                
+                
+            )
+        
+        stack = surface_oil_category.surface_oil_container.content.controls[1]
+        stack.controls[0].content = ft.Image(src=pics_and_desc.surface_oil_category_pictures[i], fit=ft.ImageFit.FILL)
+                                                 
+
+        substrate_selected_index = i
+        page.update()
+    return handle_click
