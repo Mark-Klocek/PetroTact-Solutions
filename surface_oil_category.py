@@ -35,7 +35,7 @@ def surface_oil_column_b_click(page, i):
                 if surface_oil_selected_index is not None and surface_oil_selected_index != i:
                         surface_oil_column_b_containers[surface_oil_selected_index].border = ft.border.all(1, ft.colors.TRANSPARENT)
 
-                surface_oil_column_b_containers[i].border=ft.border.all(8,ft.colors.ORANGE)
+                surface_oil_column_b_containers[i].border=ft.border.all(5,ft.colors.ORANGE)
                 surface_oil_selected_index = i
                 surface_oil_container.content.controls[2].content= ft.Text(pics_and_desc.surface_oil_category_description[i],color= "Black", font_family="Roboto")
                 page.update()
