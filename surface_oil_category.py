@@ -104,14 +104,63 @@ def create_surface_oil_column_c(page):
 
 def create_surface_oil_column_d(page):
         return ft.Container(
-                content = ft.Text(" oil  length multiplier",
-                                   color=ft.colors.BLACK,
-                                   font_family="Roboto"),
-                bgcolor=ft.colors.TRANSPARENT,
-                alignment=ft.alignment.center_left,
-                
-        )
-
+                content = ft.Row(
+                        controls= [
+                                ft.Container(
+                                content=ft.Text(" oil  length multiplier",
+                                                color=ft.colors.BLACK,
+                                                font_family="Roboto"),
+                                                bgcolor=ft.colors.TRANSPARENT,
+                                                alignment=ft.alignment.center_left,
+                                                width=global_variables.app_window.width * 0.3 * 0.4),
+                                                
+                                
+                                ft.Container(
+                                        content=ft.TextField(
+                                                label="",
+                                                color=ft.colors.BLACK,
+                                                content_padding=1,
+                                                border_radius=ft.border_radius.all(0),
+                                                text_style=ft.TextStyle(size=global_variables.app_window.height * 0.3 * 0.4 * 0.28 * 0.5, font_family="Roboto"),
+                                        
+                                        
+                                                
+                                        ),
+                                        
+                                        width=global_variables.app_window.width * 0.3 * 0.2,
+                                        height= global_variables.app_window.height * 0.3 * 0.10 * 0.95),
+                                        
+                                        
+                                ft.Container(
+                                        content= ft.Dropdown(
+                                                        options=[ft.dropdown.Option("Kilometres"),
+                                                                ft.dropdown.Option("Metres"),
+                                                                ft.dropdown.Option("Nautical Miles"),
+                                                                ft.dropdown.Option("Miles"),
+                                                                ft.dropdown.Option("Yards"),
+                                                                ft.dropdown.Option("Feet")],
+                                                        border_radius=ft.border_radius.all(0),
+                                                        fill_color=ft.colors.WHITE,
+                                                        content_padding=ft.padding.symmetric(horizontal=5),
+                                                        bgcolor=ft.colors.WHITE,
+                                                        color=ft.colors.BLACK,
+                                                        value="Kilometres",
+                                                        alignment=ft.alignment.center,
+                                                        width=global_variables.app_window.width * 0.3 * 0.6,
+                                                        hint_style=ft.TextStyle(size=global_variables.app_window.height * 0.3 * 0.4 * 0.28 * 0.7)
+                                                        ),
+                                        width= global_variables.app_window.width * 0.3 * 0.3,
+                                        height= global_variables.app_window.height * 0.3 * 0.10 * 0.95
+                                )
+                                        ]
+                                                
+                                                
+                                                
+                                ),
+                        padding=2
+                                        
+                        
+                        )
 def surface_oil_column_b_click(page, i):
         def handle_click(e):
 
@@ -162,7 +211,7 @@ def surface_oil_column_c_click(page):
                                                         content_padding=ft.padding.symmetric(horizontal=5),
                                                         bgcolor=ft.colors.AMBER,
                                                         color=ft.colors.BLACK,
-                                                        
+                                                        value="Very narrow < 0.5m",
                                                         alignment=ft.alignment.center,
                                                         width=global_variables.app_window.width * 0.3 * 0.6,
                                                         hint_style=ft.TextStyle(size=global_variables.app_window.height * 0.3 * 0.4 * 0.28 * 0.7)
@@ -186,7 +235,7 @@ def surface_oil_column_c_click(page):
                                                         content_padding=ft.padding.symmetric(horizontal=5),
                                                         bgcolor=ft.colors.AMBER,
                                                         color=ft.colors.BLACK,
-                                                        
+                                                        value="Trace < 1%",
                                                         alignment=ft.alignment.center,
                                                         width=global_variables.app_window.width * 0.3 * 0.6,
                                                         hint_style=ft.TextStyle(size=global_variables.app_window.height * 0.3 * 0.4 * 0.28 * 0.7)
@@ -205,7 +254,7 @@ def surface_oil_column_c_click(page):
                                                         content_padding=ft.padding.symmetric(horizontal=5),
                                                         bgcolor=ft.colors.AMBER,
                                                         color=ft.colors.BLACK,
-                                                        
+                                                        value="Stain or Film < 0.01cm",
                                                         alignment=ft.alignment.center,
                                                         width=global_variables.app_window.width * 0.3 * 0.6,
                                                         hint_style=ft.TextStyle(size=global_variables.app_window.height * 0.3 * 0.4 * 0.28 * 0.7)
