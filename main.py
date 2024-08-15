@@ -2,7 +2,8 @@ import flet as ft
 from wms_functions import functions
 import substrate_container
 import global_variables
-
+import surface_oil_category
+import pics_and_desc
 
 
 
@@ -157,6 +158,10 @@ def main(page:ft.Page):
           
 
         surface_oil_column_c = surface_oil_container.content.controls[2] #20
+        surface_oil_column_c.content = ft.Text(pics_and_desc.surface_oil_category_description[surface_oil_category.surface_oil_selected_index],
+                                               color= "Black", 
+                                                font_family="Roboto",
+                                                size= global_variables.app_window.height * 0.3 * 0.15 * 0.4)
         surface_oil_column_c.height = surface_oil_container.height * 0.4
         surface_oil_column_c.content.size = surface_oil_column_c.height * 0.15
 
@@ -164,9 +169,7 @@ def main(page:ft.Page):
         surface_oil_column_d.height = surface_oil_container.height * 0.10
         surface_oil_column_d.content.size = surface_oil_column_d.height * 0.6
 
-        #surface_oil_column_e = surface_oil_container.content.controls[4] #14
-        #surface_oil_column_e.height = surface_oil_container.height * 0.1
-        #surface_oil_column_d.content.size = surface_oil_column_d.height * 0.4
+        
         
         #######################################################################################
         ############################### RESULTS CONTAINER #####################################

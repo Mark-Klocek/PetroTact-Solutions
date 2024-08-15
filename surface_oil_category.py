@@ -141,7 +141,7 @@ def surface_oil_column_c_click(page):
                                                         ft.dropdown.Option("Medium 3 - 6m"),
                                                         ft.dropdown.Option("Narrow 0.5 - 3m"),
                                                         ft.dropdown.Option("Very narrow < 0.5m")]),
-                                        #height=app_window.height * 0.3
+                                        height=global_variables.app_window.height * 0.3 * 0.4 * 0.28
                                         ),
                                         
                                 ft.Container(
@@ -151,13 +151,16 @@ def surface_oil_column_c_click(page):
                                                         ft.dropdown.Option("Patchy 11 - 50%"),
                                                         ft.dropdown.Option("Broken 51 - 90%"),
                                                         ft.dropdown.Option("Continuous 91 - 100%")]),
+                                        height=global_variables.app_window.height * 0.3 * 0.4 * 0.28
                                         ),
+                                        
                                 ft.Container(
                                         ft.Dropdown(hint_text= "Oil Distribution",
                                                 options=[ft.dropdown.Option("Pooled > 1cm"),
                                                         ft.dropdown.Option("Cover 0.1 - 1cm"),
                                                         ft.dropdown.Option("Coat 0.01 - 0.1cm"),
                                                         ft.dropdown.Option("Stain or Film < 0.01cm")]),
+                                        height=global_variables.app_window.height * 0.3 * 0.4 * 0.28
                                         )
                                 ],
                         expand=True,
