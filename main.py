@@ -14,7 +14,7 @@ def main(page:ft.Page):
                         controls=[input_container,results_container],
                         expand=True),
                     padding=2)   
-    substrate_container.app_window.height = page.height
+    substrate_container.app_window.height = page.height * 0.98
     substrate_container.app_window.width = page.width
     page.add(substrate_container.app_window)
     '''width = 1366
@@ -31,7 +31,7 @@ def main(page:ft.Page):
     #page.window.max_height = 720 
 
     def resize(e):
-        substrate_container.app_window.height = page.height
+        substrate_container.app_window.height = page.height * 0.98
         substrate_container.app_window.width = page.width
         def resize_text(container):
             if isinstance(container.content, ft.Text):
