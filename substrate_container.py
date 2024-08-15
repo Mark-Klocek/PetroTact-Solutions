@@ -3,10 +3,11 @@ import pics_and_desc
 import surface_oil_category
 
 
+
 substrate_row_a_containers = []
 substrate_row_b_container = None
 substrate_selected_index = 0
-app_window = ft.Container()
+
 
 def create_substrate_container(page):
     container = ft.Container(

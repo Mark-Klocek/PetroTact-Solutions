@@ -1,6 +1,8 @@
 import flet as ft
 import pics_and_desc
-import substrate_container
+import global_variables
+
+
 
 
 
@@ -22,7 +24,8 @@ def create_SurfaceOilCategory_section(page):
             bgcolor=ft.colors.WHITE,
             padding=0,
             border_radius=ft.border_radius.only(top_left=10,top_right=10),
-            border=ft.border.all(1.5,ft.colors.BLACK)
+            border=ft.border.all(1.5,ft.colors.BLACK),
+            height=global_variables.app_window.height * 0.3
         )
         surface_oil_container = container
         return container

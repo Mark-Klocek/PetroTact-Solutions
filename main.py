@@ -1,22 +1,23 @@
 import flet as ft
 from wms_functions import functions
 import substrate_container
-import oil_type_container
+import global_variables
 
 
 
 
 def main(page:ft.Page):
+    global_variables.app_window = page
     input_container = functions.create_input_container(page)
     results_container=functions.create_results_container(page)
-    substrate_container.app_window = ft.Container(
+    global_variables.app_window = ft.Container(
                     content=ft.Row(
                         controls=[input_container,results_container],
                         expand=True),
                     padding=2)   
-    substrate_container.app_window.height = page.height * 0.98
-    substrate_container.app_window.width = page.width
-    page.add(substrate_container.app_window)
+    global_variables.app_window.height = page.height * 0.98
+    global_variables.app_window.width = page.width
+    page.add(global_variables.app_window)
     '''width = 1366
     height = 1024
 
@@ -31,16 +32,16 @@ def main(page:ft.Page):
     #page.window.max_height = 720 
 
     def resize(e):
-        substrate_container.app_window.height = page.height * 0.98
-        substrate_container.app_window.width = page.width
+        global_variables.app_window.height = page.height * 0.98
+        global_variables.app_window.width = page.width
         def resize_text(container):
             if isinstance(container.content, ft.Text):
                 container.content.size = container.height * 0.6
         #######################################################################################
         ############################### INPUT CONTAINER #######################################
         #######################################################################################
-        input_container.width = substrate_container.app_window.width * 0.3
-        input_container.height = substrate_container.app_window.height * 0.98
+        input_container.width = global_variables.app_window.width * 0.3
+        input_container.height = global_variables.app_window.height * 0.98
 
         #############################
         ###### HEADER CONTAINER #####
@@ -48,8 +49,8 @@ def main(page:ft.Page):
 
             #creation of header container as 1st column within input container: setting height and width as compared to parent input container
         input_header_container = input_container.content.controls[0]
-        input_header_container.height = substrate_container.app_window.height * 0.05
-        input_header_container.width = substrate_container.app_window.width * 0.3
+        input_header_container.height = global_variables.app_window.height * 0.05
+        input_header_container.width = global_variables.app_window.width * 0.3
         resize_text(input_header_container)
         
         
@@ -59,8 +60,8 @@ def main(page:ft.Page):
             
             #creation of substrait container as 2nd column within input container column : setting height and width as compared to parent input container
         input_substrate_container = input_container.content.controls[1]            
-        input_substrate_container.height = substrate_container.app_window.height * 0.4
-        input_substrate_container.width = substrate_container.app_window.width * 0.3
+        input_substrate_container.height = global_variables.app_window.height * 0.4
+        input_substrate_container.width = global_variables.app_window.width * 0.3
         
         
             #first container within substrate container, known as header creation and dimensions with regard to parent container
@@ -111,7 +112,7 @@ def main(page:ft.Page):
         ##### OIL TYPE CONTAINER ####
         #############################
         input_oil_type_container = input_container.content.controls[2]
-        input_oil_type_container.height = substrate_container.app_window.height * 0.20
+        input_oil_type_container.height = global_variables.app_window.height * 0.20
 
         input_oil_type_container_column_a = input_oil_type_container.content.controls[0]
         input_oil_type_container_column_a.height = input_oil_type_container.height * 0.15
@@ -139,7 +140,7 @@ def main(page:ft.Page):
         # SURFACE OIL CAT.CONTAINER #
         #############################
         surface_oil_container = input_container.content.controls[3]
-        surface_oil_container.height = substrate_container.app_window.height * 0.3
+        surface_oil_container.height = global_variables.app_window.height * 0.3
         
         surface_oil_header = surface_oil_container.content.controls[0]
         surface_oil_header.height = surface_oil_container.height * 0.10
@@ -165,8 +166,8 @@ def main(page:ft.Page):
         #######################################################################################
         ############################### RESULTS CONTAINER #####################################
         #######################################################################################
-        results_container.width= substrate_container.app_window.width * 0.68
-        results_container.height = substrate_container.app_window.height * 0.98
+        results_container.width= global_variables.app_window.width * 0.68
+        results_container.height = global_variables.app_window.height * 0.98
 
 
         page.update()
