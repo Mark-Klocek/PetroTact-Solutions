@@ -64,12 +64,8 @@ def create_oil_type_header_container(page):
 def create_oil_type_column_b_container(page):
     return ft.Stack(
         controls= [
-            ft.Container(
-                content = ft.Image(src=r"images\oil_type_column_b_images\background_b.png"),
-                padding=0,
-                bgcolor=ft.colors.WHITE,
-                border=ft.border.all(0.5,ft.colors.TRANSPARENT),
-                alignment=ft.alignment.center
+            ft.Row(
+                controls = create_oil_type_column_b_background_row(page)
             
             ),
             ft.Row(
@@ -80,7 +76,16 @@ def create_oil_type_column_b_container(page):
         
         expand=True
     )
-
+def create_oil_type_column_b_background_row(page):
+    background_row = []
+    for i in range(len(pics_and_desc.oil_type_column_b_pictures)):
+        background_row.append(
+            ft.Container(
+                content=ft.Image(src=pics_and_desc.oil_type_column_b_pictures[i]),
+                expand=True
+            )
+        )
+    return background_row
 def create_oil_type_column_b_row(page):
     global oil_type_selected_index
     global oil_type_container
