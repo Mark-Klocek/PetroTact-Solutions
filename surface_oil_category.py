@@ -118,9 +118,10 @@ def surface_oil_column_b_click(page, i):
                 global surface_oil_column_b_containers
                 global surface_oil_container
                 global surface_oil_selected_index
+                global column_c_container
                 if surface_oil_selected_index is not None and surface_oil_selected_index != i:
                         surface_oil_column_b_containers[surface_oil_selected_index].border = ft.border.all(1, ft.colors.TRANSPARENT)
-
+                column_c_container.on_click =surface_oil_column_c_click(page)
                 surface_oil_column_b_containers[i].border=ft.border.all(5,ft.colors.ORANGE)
                 surface_oil_selected_index = i
                 surface_oil_container.content.controls[2].content= ft.Text(pics_and_desc.surface_oil_category_description[i],
@@ -133,40 +134,91 @@ def surface_oil_column_c_click(page):
         global column_c_container
         
         def handle_click(e):
-                column_c_container.content = ft.Column(
-                        controls=[
-                                ft.Container(
-                                        content = ft.Dropdown(hint_text = "Oil width",
-                                                options=[ft.dropdown.Option("Wide > 6m"),
-                                                        ft.dropdown.Option("Medium 3 - 6m"),
-                                                        ft.dropdown.Option("Narrow 0.5 - 3m"),
-                                                        ft.dropdown.Option("Very narrow < 0.5m")]),
-                                        height=global_variables.app_window.height * 0.3 * 0.4 * 0.28
-                                        ),
-                                        
-                                ft.Container(
-                                        ft.Dropdown(hint_text = "Oil Distribution",
-                                                options=[ft.dropdown.Option("Trace < 1%",),
-                                                        ft.dropdown.Option("Sporadic 1 - 10%"),
-                                                        ft.dropdown.Option("Patchy 11 - 50%"),
-                                                        ft.dropdown.Option("Broken 51 - 90%"),
-                                                        ft.dropdown.Option("Continuous 91 - 100%")]),
-                                        height=global_variables.app_window.height * 0.3 * 0.4 * 0.28
-                                        ),
-                                        
-                                ft.Container(
-                                        ft.Dropdown(hint_text= "Oil Distribution",
-                                                options=[ft.dropdown.Option("Pooled > 1cm"),
-                                                        ft.dropdown.Option("Cover 0.1 - 1cm"),
-                                                        ft.dropdown.Option("Coat 0.01 - 0.1cm"),
-                                                        ft.dropdown.Option("Stain or Film < 0.01cm")]),
-                                        height=global_variables.app_window.height * 0.3 * 0.4 * 0.28
-                                        )
-                                ],
-                        expand=True,
-                        spacing=2,
-                        alignment=ft.alignment.center
-                )
-                
+                column_c_container.on_click = False
+                column_c_container.content = ft.Row(
+                        controls = [
+                        
+                        ft.Column(
+                                controls=[ft.Text("Oil Width", size=global_variables.app_window.height * 0.3 * 0.4 * 0.28 * 0.55, font_family="Roboto", color=ft.colors.BLACK),
+                                          ft.Text("Oil Distribution", size=global_variables.app_window.height * 0.3 * 0.4 * 0.28 * 0.55, font_family="Roboto", color=ft.colors.BLACK),
+                                          ft.Text("Oil Thickness", size=global_variables.app_window.height * 0.3 * 0.4 * 0.28 * 0.55, font_family="Roboto", color=ft.colors.BLACK)],
+                                          expand=True,
+                                          alignment=ft.alignment.center
+                                          
+                        ),
+                        
+                        
+                        
+                        ft.Column(
+                                controls=[
+                                        ft.Container(
+                                                content = ft.Dropdown(
+                                                        options=[ft.dropdown.Option("Wide > 6m"),
+                                                                ft.dropdown.Option("Medium 3 - 6m"),
+                                                                ft.dropdown.Option("Narrow 0.5 - 3m"),
+                                                                ft.dropdown.Option("Very narrow < 0.5m")],
+                                                        border_radius=ft.border_radius.all(0),
+                                                        fill_color=ft.colors.AMBER,
+                                                        content_padding=ft.padding.symmetric(horizontal=5),
+                                                        bgcolor=ft.colors.AMBER,
+                                                        color=ft.colors.BLACK,
+                                                        
+                                                        alignment=ft.alignment.center,
+                                                        width=global_variables.app_window.width * 0.3 * 0.6,
+                                                        hint_style=ft.TextStyle(size=global_variables.app_window.height * 0.3 * 0.4 * 0.28 * 0.7)
+                                                        ),
+                                                                
+                                                height=global_variables.app_window.height * 0.3 * 0.4 * 0.28,
+                                                alignment= ft.alignment.center
+                                                
+                                                
+                                                ),
+                                                
+                                        ft.Container(
+                                                ft.Dropdown(
+                                                        options=[ft.dropdown.Option("Continuous 91 - 100%"),
+                                                                ft.dropdown.Option("Broken 51 - 90%"),
+                                                                ft.dropdown.Option("Patchy 11 - 50%"),
+                                                                ft.dropdown.Option("Sporadic 1 - 10%"),
+                                                                ft.dropdown.Option("Trace < 1%")],
+                                                        border_radius=ft.border_radius.all(0),
+                                                        fill_color=ft.colors.AMBER,
+                                                        content_padding=ft.padding.symmetric(horizontal=5),
+                                                        bgcolor=ft.colors.AMBER,
+                                                        color=ft.colors.BLACK,
+                                                        
+                                                        alignment=ft.alignment.center,
+                                                        width=global_variables.app_window.width * 0.3 * 0.6,
+                                                        hint_style=ft.TextStyle(size=global_variables.app_window.height * 0.3 * 0.4 * 0.28 * 0.7)
+                                                        ),
+                                                height=global_variables.app_window.height * 0.3 * 0.4 * 0.28
+                                                ),
+                                                
+                                        ft.Container(
+                                                ft.Dropdown(
+                                                        options=[ft.dropdown.Option("Pooled > 1cm"),
+                                                                ft.dropdown.Option("Cover 0.1 - 1cm"),
+                                                                ft.dropdown.Option("Coat 0.01 - 0.1cm"),
+                                                                ft.dropdown.Option("Stain or Film < 0.01cm")],
+                                                        border_radius=ft.border_radius.all(0),
+                                                        fill_color=ft.colors.AMBER,
+                                                        content_padding=ft.padding.symmetric(horizontal=5),
+                                                        bgcolor=ft.colors.AMBER,
+                                                        color=ft.colors.BLACK,
+                                                        
+                                                        alignment=ft.alignment.center,
+                                                        width=global_variables.app_window.width * 0.3 * 0.6,
+                                                        hint_style=ft.TextStyle(size=global_variables.app_window.height * 0.3 * 0.4 * 0.28 * 0.7)
+                                                        ),
+                                                                
+                                                height=global_variables.app_window.height * 0.3 * 0.4 * 0.28,
+                                                
+                                                )
+                                        ],
+                                expand=True,
+                                spacing=2,
+                                alignment=ft.alignment.center
+                        )]
+                )      
                 page.update()
         return handle_click    
