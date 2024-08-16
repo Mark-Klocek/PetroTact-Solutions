@@ -107,12 +107,14 @@ def create_surface_oil_column_d(page):
                 content = ft.Row(
                         controls= [
                                 ft.Container(
-                                content=ft.Text(" oil  length multiplier",
+                                content=ft.Text("Oil Length Multiplier",
                                                 color=ft.colors.BLACK,
-                                                font_family="Roboto"),
-                                                bgcolor=ft.colors.TRANSPARENT,
-                                                alignment=ft.alignment.center_left,
-                                                width=global_variables.app_window.width * 0.3 * 0.4),
+                                                font_family="Roboto",
+                                                size=global_variables.app_window.height * 0.3 * 0.1 * 0.65),
+                                bgcolor=ft.colors.TRANSPARENT,
+                                alignment=ft.alignment.center_left,
+                                width=global_variables.app_window.width * 0.3 * 0.4
+                                ),
                                                 
                                 
                                 ft.Container(
