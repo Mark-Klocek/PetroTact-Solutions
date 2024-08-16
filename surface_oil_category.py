@@ -183,6 +183,7 @@ def surface_oil_column_b_click(page, i):
         return handle_click
 def surface_oil_column_c_click(page):
         global column_c_container
+        global surface_oil_selected_index
         
         def handle_click(e):
                 column_c_container.on_click = False
@@ -216,7 +217,9 @@ def surface_oil_column_c_click(page):
                                                         value="Very narrow < 0.5m",
                                                         alignment=ft.alignment.center,
                                                         width=global_variables.app_window.width * 0.3 * 0.6,
-                                                        hint_style=ft.TextStyle(size=global_variables.app_window.height * 0.3 * 0.4 * 0.28 * 0.7)
+                                                        hint_style=ft.TextStyle(size=global_variables.app_window.height * 0.3 * 0.4 * 0.28 * 0.7),
+                                                        
+                                                        on_change=so_dropdown_change(page)
                                                         ),
                                                                 
                                                 height=global_variables.app_window.height * 0.3 * 0.4 * 0.28,
@@ -240,7 +243,8 @@ def surface_oil_column_c_click(page):
                                                         value="Trace < 1%",
                                                         alignment=ft.alignment.center,
                                                         width=global_variables.app_window.width * 0.3 * 0.6,
-                                                        hint_style=ft.TextStyle(size=global_variables.app_window.height * 0.3 * 0.4 * 0.28 * 0.7)
+                                                        hint_style=ft.TextStyle(size=global_variables.app_window.height * 0.3 * 0.4 * 0.28 * 0.7),
+                                                        on_change=so_dropdown_change(page)
                                                         ),
                                                 height=global_variables.app_window.height * 0.3 * 0.4 * 0.28
                                                 ),
@@ -259,7 +263,8 @@ def surface_oil_column_c_click(page):
                                                         value="Stain or Film < 0.01cm",
                                                         alignment=ft.alignment.center,
                                                         width=global_variables.app_window.width * 0.3 * 0.6,
-                                                        hint_style=ft.TextStyle(size=global_variables.app_window.height * 0.3 * 0.4 * 0.28 * 0.7)
+                                                        hint_style=ft.TextStyle(size=global_variables.app_window.height * 0.3 * 0.4 * 0.28 * 0.7),
+                                                        on_change=so_dropdown_change(page)
                                                         ),
                                                                 
                                                 height=global_variables.app_window.height * 0.3 * 0.4 * 0.28,
@@ -270,6 +275,28 @@ def surface_oil_column_c_click(page):
                                 spacing=2,
                                 alignment=ft.alignment.center
                         )]
-                )      
+                ) 
+                print(column_c_container.content.controls[1].controls[0].content.value,column_c_container.content.controls[1].controls[1].content.value,column_c_container.content.controls[1].controls[2].content.value)     
                 page.update()
-        return handle_click    
+        return handle_click  
+
+def so_dropdown_change(page):
+        def handle_change(e):
+                global column_c_container
+                global surface_oil_container
+                global surface_oil_selected_index
+                dd_selection_1 =column_c_container.content.controls[1].controls[0].content.value
+                dd_selection_2 =column_c_container.content.controls[1].controls[1].content.value
+                dd_selection_3 =column_c_container.content.controls[1].controls[2].content.value   
+                dd_selection = str(global_variables.so_dropdown_values[dd_selection_1])+str(global_variables.so_dropdown_values[dd_selection_2])+str(global_variables.so_dropdown_values[dd_selection_3])
+                column_selection = global_variables.so_columnd_dict[dd_selection]
+                if surface_oil_selected_index is not None and surface_oil_selected_index != column_selection:
+                                surface_oil_column_b_containers[surface_oil_selected_index].border = ft.border.all(1, ft.colors.TRANSPARENT)
+                surface_oil_column_b_containers[column_selection].border=ft.border.all(5,ft.colors.ORANGE)
+                surface_oil_selected_index = column_selection
+                print("dropdown selection =",dd_selection, "column selection= " ,column_selection,"new selected index = ",surface_oil_selected_index)
+
+                page.update()
+        return handle_change
+          
+        
