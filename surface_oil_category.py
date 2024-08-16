@@ -227,11 +227,11 @@ def surface_oil_column_c_click(page):
                                                 
                                         ft.Container(
                                                 ft.Dropdown(
-                                                        options=[ft.dropdown.Option("Continuous 91 - 100%"),
-                                                                ft.dropdown.Option("Broken 51 - 90%"),
-                                                                ft.dropdown.Option("Patchy 11 - 50%"),
+                                                        options=[ft.dropdown.Option("Trace < 1%"),
                                                                 ft.dropdown.Option("Sporadic 1 - 10%"),
-                                                                ft.dropdown.Option("Trace < 1%")],
+                                                                ft.dropdown.Option("Patchy 11 - 50%"),
+                                                                ft.dropdown.Option("Broken 51 - 90%"),
+                                                                ft.dropdown.Option("Continuous 91 - 100%")],
                                                         border_radius=ft.border_radius.all(0),
                                                         fill_color=ft.colors.AMBER,
                                                         content_padding=ft.padding.symmetric(horizontal=5),
