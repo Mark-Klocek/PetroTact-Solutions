@@ -1212,4 +1212,280 @@ matrix_dict = {
         "Mechanical Removal": ["--", "--", "--", "--", "--", "--"]
     }
 },
+"511": {
+    "Preferred Options": {
+        "Natural Recovery": [0, var, 0, 0, var, 0],
+        "In-situ Burning": [0.001, var, 50, 0.002, var, 50],
+        "Washing and Recovery": [0.04, var, 100, 0.048, var, 83.33],
+    },
+    "Not Applicable": {
+        "Bioremediation": ["--", "--", "--", "--", "--", "--"],
+        "In-situ Sediment Mixing and/or Relocation": ["--", "--", "--", "--", "--", "--"],
+        "Manual Removal": ["--", "--", "--", "--", "--", "--"],
+        "Mechanical Removal": ["--", "--", "--", "--", "--", "--"]
+    }
+},
+"512": {
+    "Preferred Options": {
+        "Natural Recovery": [0, var, 0, 0, var, 0],
+        "In-situ Burning": [0.001, var, 50, 0.002, var, 50],
+        "Washing and Recovery": [0.04, var, 100, 0.048, var, 83.33],
+    },
+    "Not Applicable": {
+        "Bioremediation": ["--", "--", "--", "--", "--", "--"],
+        "In-situ Sediment Mixing and/or Relocation": ["--", "--", "--", "--", "--", "--"],
+        "Manual Removal": ["--", "--", "--", "--", "--", "--"],
+        "Mechanical Removal": ["--", "--", "--", "--", "--", "--"]
+    }
+},
+"513": {
+    "Preferred Options": {
+        "Natural Recovery": [0, var, 0, 0, var, 0],
+        "In-situ Burning": [0.001, var, 50, 0.002, var, 50],
+        "Washing and Recovery": [0.05, var, 80, 0.06, var, 66.67],
+    },
+    "Not Applicable": {
+        "Bioremediation": ["--", "--", "--", "--", "--", "--"],
+        "In-situ Sediment Mixing and/or Relocation": ["--", "--", "--", "--", "--", "--"],
+        "Manual Removal": ["--", "--", "--", "--", "--", "--"],
+        "Mechanical Removal": ["--", "--", "--", "--", "--", "--"]
+    }
+},
+"514": {
+    "Preferred Options": {
+        "Natural Recovery": [0, var, 0, 0, var, 0],
+        "In-situ Burning": [0.001, var, 50, 0.002, var, 50],
+        "Washing and Recovery": [0.06, var, 66.67, 0.072, var, 55.56],
+    },
+    "Not Applicable": {
+        "Bioremediation": ["--", "--", "--", "--", "--", "--"],
+        "In-situ Sediment Mixing and/or Relocation": ["--", "--", "--", "--", "--", "--"],
+        "Manual Removal": ["--", "--", "--", "--", "--", "--"],
+        "Mechanical Removal": ["--", "--", "--", "--", "--", "--"]
+    }
+},
+"521": {
+    "Preferred Options": {
+        "Natural Recovery": [0, var, 0, 0, var, 0],
+        "In-situ Burning": [0.001, var, 50, 0.002, var, 50],
+        "Washing and Recovery": [0.04, var, 100, 0.048, var, 83.33],
+    },
+    "Not Applicable": {
+        "Bioremediation": ["--", "--", "--", "--", "--", "--"],
+        "In-situ Sediment Mixing and/or Relocation": ["--", "--", "--", "--", "--", "--"],
+        "Manual Removal": ["--", "--", "--", "--", "--", "--"],
+        "Mechanical Removal": ["--", "--", "--", "--", "--", "--"]
+    }
+},
+"522": {
+    "Preferred Options": {
+        "Natural Recovery": [0, var, 0, 0, var, 0],
+        "In-situ Burning": [0.001, var, 50, 0.002, var, 50],
+        "Washing and Recovery": [0.04, var, 100, 0.048, var, 83.33],
+    },
+    "Not Applicable": {
+        "Bioremediation": ["--", "--", "--", "--", "--", "--"],
+        "In-situ Sediment Mixing and/or Relocation": ["--", "--", "--", "--", "--", "--"],
+        "Manual Removal": ["--", "--", "--", "--", "--", "--"],
+        "Mechanical Removal": ["--", "--", "--", "--", "--", "--"]
+    }
+},
+"523": {
+    "Preferred Options": {
+        "Natural Recovery": [0, var, 0, 0, var, 0],
+        "In-situ Burning": [0.001, var, 50, 0.002, var, 50],
+        "Washing and Recovery": [0.05, var, 80, 0.06, var, 66.67],
+    },
+    "Not Applicable": {
+        "Bioremediation": ["--", "--", "--", "--", "--", "--"],
+        "In-situ Sediment Mixing and/or Relocation": ["--", "--", "--", "--", "--", "--"],
+        "Manual Removal": ["--", "--", "--", "--", "--", "--"],
+        "Mechanical Removal": ["--", "--", "--", "--", "--", "--"]
+    }
+},
+"524": {
+    "Preferred Options": {
+        "Natural Recovery": [0, var, 0, 0, var, 0],
+        "In-situ Burning": [0.001, var, 50, 0.002, var, 50],
+        "Washing and Recovery": [0.06, var, 66.67, 0.072, var, 55.56],
+    },
+    "Not Applicable": {
+        "Bioremediation": ["--", "--", "--", "--", "--", "--"],
+        "In-situ Sediment Mixing and/or Relocation": ["--", "--", "--", "--", "--", "--"],
+        "Manual Removal": ["--", "--", "--", "--", "--", "--"],
+        "Mechanical Removal": ["--", "--", "--", "--", "--", "--"]
+    }
+},
+"531": {
+    "Preferred Options": {
+        "Natural Recovery": [0, var, 0, 0, var, 0],
+        "In-situ Burning": [0.001, var, 50, 0.002, var, 50],
+        "Washing and Recovery": [0.04, var, 100, 0.048, var, 83.33],
+    },
+    "For Small Amounts Only": {
+        "Manual Removal": [0.12, var, 16.67, 0.48, var, 4.17],
+    },
+    "Not Applicable": {
+        "Bioremediation": ["--", "--", "--", "--", "--", "--"],
+        "In-situ Sediment Mixing and/or Relocation": ["--", "--", "--", "--", "--", "--"],
+        "Mechanical Removal": ["--", "--", "--", "--", "--", "--"]
+    }
+},
+"532": {
+    "Preferred Options": {
+        "Natural Recovery": [0, var, 0, 0, var, 0],
+        "In-situ Burning": [0.001, var, 50, 0.002, var, 50],
+        "Washing and Recovery": [0.04, var, 100, 0.048, var, 83.33],
+    },
+    "For Small Amounts Only": {
+        "Manual Removal": [0.17, var, 11.76, 0.68, var, 2.94],
+    },
+    "Not Applicable": {
+        "Bioremediation": ["--", "--", "--", "--", "--", "--"],
+        "In-situ Sediment Mixing and/or Relocation": ["--", "--", "--", "--", "--", "--"],
+        "Mechanical Removal": ["--", "--", "--", "--", "--", "--"]
+    }
+},
+"533": {
+    "Preferred Options": {
+        "Natural Recovery": [0, var, 0, 0, var, 0],
+        "In-situ Burning": [0.001, var, 50, 0.002, var, 50],
+        "Washing and Recovery": [0.05, var, 80, 0.06, var, 66.67],
+    },
+    "For Small Amounts Only": {
+        "Manual Removal": [0.27, var, 7.41, 1.08, var, 1.85],
+    },
+    "Not Applicable": {
+        "Bioremediation": ["--", "--", "--", "--", "--", "--"],
+        "In-situ Sediment Mixing and/or Relocation": ["--", "--", "--", "--", "--", "--"],
+        "Mechanical Removal": ["--", "--", "--", "--", "--", "--"]
+    }
+},
+"534": {
+    "Preferred Options": {
+        "Natural Recovery": [0, var, 0, 0, var, 0],
+        "In-situ Burning": [0.001, var, 50, 0.002, var, 50],
+        "Washing and Recovery": [0.07, var, 57.14, 0.084, var, 47.62],
+    },
+    "For Small Amounts Only": {
+        "Manual Removal": [0.47, var, 4.26, 1.88, var, 1.06],
+    },
+    "Not Applicable": {
+        "Bioremediation": ["--", "--", "--", "--", "--", "--"],
+        "In-situ Sediment Mixing and/or Relocation": ["--", "--", "--", "--", "--", "--"],
+        "Mechanical Removal": ["--", "--", "--", "--", "--", "--"]
+    }
+},
+"541": {
+    "Preferred Options": {
+        "In-situ Burning": [0.001, var, 50, 0.002, var, 50],
+    },
+    "For Small Amounts Only": {
+        "Natural Recovery": [0, var, 0, 0, var, 0],
+        "Manual Removal": [0.12, var, 16.67, 0.48, var, 4.17],
+    },
+    "Not Applicable": {
+        "Bioremediation": ["--", "--", "--", "--", "--", "--"],
+        "In-situ Sediment Mixing and/or Relocation": ["--", "--", "--", "--", "--", "--"],
+        "Mechanical Removal": ["--", "--", "--", "--", "--", "--"],
+        "Washing and Recovery": ["--", "--", "--", "--", "--", "--"]
+    }
+},
+"542": {
+    "Preferred Options": {
+        "In-situ Burning": [0.001, var, 50, 0.002, var, 50],
+    },
+    "For Small Amounts Only": {
+        "Natural Recovery": [0, var, 0, 0, var, 0],
+        "Manual Removal": [0.17, var, 11.76, 0.68, var, 2.94],
+    },
+    "Not Applicable": {
+        "Bioremediation": ["--", "--", "--", "--", "--", "--"],
+        "In-situ Sediment Mixing and/or Relocation": ["--", "--", "--", "--", "--", "--"],
+        "Mechanical Removal": ["--", "--", "--", "--", "--", "--"],
+        "Washing and Recovery": ["--", "--", "--", "--", "--", "--"]
+    }
+},
+"543": {
+    "Preferred Options": {
+        "In-situ Burning": [0.001, var, 50, 0.002, var, 50],
+    },
+    "For Small Amounts Only": {
+        "Natural Recovery": [0, var, 0, 0, var, 0],
+        "Manual Removal": [0.27, var, 7.41, 1.08, var, 1.85],
+    },
+    "Not Applicable": {
+        "Bioremediation": ["--", "--", "--", "--", "--", "--"],
+        "In-situ Sediment Mixing and/or Relocation": ["--", "--", "--", "--", "--", "--"],
+        "Mechanical Removal": ["--", "--", "--", "--", "--", "--"],
+        "Washing and Recovery": ["--", "--", "--", "--", "--", "--"]
+    }
+},
+"544": {
+    "Preferred Options": {
+        "In-situ Burning": [0.001, var, 50, 0.002, var, 50],
+    },
+    "For Small Amounts Only": {
+        "Natural Recovery": [0, var, 0, 0, var, 0],
+        "Manual Removal": [0.47, var, 4.26, 1.88, var, 1.06],
+    },
+    "Not Applicable": {
+        "Bioremediation": ["--", "--", "--", "--", "--", "--"],
+        "In-situ Sediment Mixing and/or Relocation": ["--", "--", "--", "--", "--", "--"],
+        "Mechanical Removal": ["--", "--", "--", "--", "--", "--"],
+        "Washing and Recovery": ["--", "--", "--", "--", "--", "--"]
+    }
+},
+"551": {
+    "For Small Amounts Only": {
+        "Manual Removal": [0.06, var, 33.33, 0.24, var, 8.33],
+    },
+    "Not Applicable": {
+        "Bioremediation": ["--", "--", "--", "--", "--", "--"],
+        "In-situ Burning": ["--", "--", "--", "--", "--", "--"],
+        "In-situ Sediment Mixing and/or Relocation": ["--", "--", "--", "--", "--", "--"],
+        "Mechanical Removal": ["--", "--", "--", "--", "--", "--"],
+        "Natural Recovery": ["--", "--", "--", "--", "--", "--"],
+        "Washing and Recovery": ["--", "--", "--", "--", "--", "--"]
+    }
+},
+"552": {
+    "For Small Amounts Only": {
+        "Manual Removal": [0.09, var, 22.22, 0.36, var, 5.56],
+    },
+    "Not Applicable": {
+        "Bioremediation": ["--", "--", "--", "--", "--", "--"],
+        "In-situ Burning": ["--", "--", "--", "--", "--", "--"],
+        "In-situ Sediment Mixing and/or Relocation": ["--", "--", "--", "--", "--", "--"],
+        "Mechanical Removal": ["--", "--", "--", "--", "--", "--"],
+        "Natural Recovery": ["--", "--", "--", "--", "--", "--"],
+        "Washing and Recovery": ["--", "--", "--", "--", "--", "--"]
+    }
+},
+"553": {
+    "For Small Amounts Only": {
+        "Manual Removal": [0.14, var, 14.29, 0.56, var, 3.57],
+    },
+    "Not Applicable": {
+        "Bioremediation": ["--", "--", "--", "--", "--", "--"],
+        "In-situ Burning": ["--", "--", "--", "--", "--", "--"],
+        "In-situ Sediment Mixing and/or Relocation": ["--", "--", "--", "--", "--", "--"],
+        "Mechanical Removal": ["--", "--", "--", "--", "--", "--"],
+        "Natural Recovery": ["--", "--", "--", "--", "--", "--"],
+        "Washing and Recovery": ["--", "--", "--", "--", "--", "--"]
+    }
+},
+"554": {
+    "For Small Amounts Only": {
+        "Manual Removal": [0.24, var, 8.33, 0.96, var, 2.08],
+    },
+    "Not Applicable": {
+        "Bioremediation": ["--", "--", "--", "--", "--", "--"],
+        "In-situ Burning": ["--", "--", "--", "--", "--", "--"],
+        "In-situ Sediment Mixing and/or Relocation": ["--", "--", "--", "--", "--", "--"],
+        "Mechanical Removal": ["--", "--", "--", "--", "--", "--"],
+        "Natural Recovery": ["--", "--", "--", "--", "--", "--"],
+        "Washing and Recovery": ["--", "--", "--", "--", "--", "--"]
+    }
+},
 }

@@ -276,7 +276,7 @@ def surface_oil_column_c_click(page):
                                 alignment=ft.alignment.center
                         )]
                 ) 
-                print(column_c_container.content.controls[1].controls[0].content.value,column_c_container.content.controls[1].controls[1].content.value,column_c_container.content.controls[1].controls[2].content.value)     
+                  
                 page.update()
         return handle_click  
 
@@ -294,8 +294,6 @@ def so_dropdown_change(page):
                                 surface_oil_column_b_containers[surface_oil_selected_index].border = ft.border.all(1, ft.colors.TRANSPARENT)
                 surface_oil_column_b_containers[column_selection].border=ft.border.all(5,ft.colors.ORANGE)
                 surface_oil_selected_index = column_selection
-                print("dropdown selection =",dd_selection, "column selection= " ,column_selection,"new selected index = ",surface_oil_selected_index)
-
                 page.update()
         return handle_change
           
