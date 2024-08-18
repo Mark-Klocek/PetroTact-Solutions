@@ -2,7 +2,6 @@ import flet as ft
 from wms_functions import functions
 import substrate_container
 import global_variables
-import surface_oil_category
 import pics_and_desc
 
 
@@ -26,6 +25,8 @@ def main(page:ft.Page):
     page.window_height = height'''
     
     
+    
+        
     '''app_window.width = 1280* 1.5
     app_window.height = 720 * 1.5'''
 
@@ -158,7 +159,7 @@ def main(page:ft.Page):
           
 
         surface_oil_column_c = surface_oil_container.content.controls[2] #20
-        surface_oil_column_c.content = ft.Text(pics_and_desc.surface_oil_category_description[surface_oil_category.surface_oil_selected_index],
+        surface_oil_column_c.content = ft.Text(pics_and_desc.surface_oil_category_description[global_variables.surface_oil_category_selected_index],
                                                color= "Black", 
                                                 font_family="Roboto",
                                                 size= global_variables.app_window.height * 0.3 * 0.15 * 0.4)
@@ -176,9 +177,8 @@ def main(page:ft.Page):
         #######################################################################################
         results_container.width= global_variables.app_window.width * 0.68
         results_container.height = global_variables.app_window.height * 0.98
-
-
         page.update()
+    
     page.bgcolor="#69707E"
     page.on_resized = resize
     resize(None)

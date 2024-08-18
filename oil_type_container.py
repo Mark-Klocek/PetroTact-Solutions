@@ -1,7 +1,8 @@
 import flet as ft
 import pics_and_desc
+import global_variables
 oil_type_column_b_containers = []
-oil_type_selected_index = 0
+
 oil_type_container = None
 
 def create_oil_type_section(page):
@@ -27,13 +28,13 @@ def oil_type_columb_b_click(page, i):
     def handle_click(e):
         
         global oil_type_container
-        global oil_type_selected_index
+        
         global oil_type_column_b_containers
 
         
-        if oil_type_selected_index is not None and oil_type_selected_index != i:
-            oil_type_column_b_containers[oil_type_selected_index].border = ft.border.all(1, ft.colors.TRANSPARENT)
-            oil_type_column_b_containers[oil_type_selected_index].bgcolor = ft.colors.TRANSPARENT
+        if global_variables.oil_type_selected_index is not None and global_variables.oil_type_selected_index != i:
+            oil_type_column_b_containers[global_variables.oil_type_selected_index].border = ft.border.all(1, ft.colors.TRANSPARENT)
+            oil_type_column_b_containers[global_variables.oil_type_selected_index].bgcolor = ft.colors.TRANSPARENT
         
 
             
@@ -43,7 +44,7 @@ def oil_type_columb_b_click(page, i):
         oil_type_container.content.controls[2].content = ft.Text(pics_and_desc.oil_type_column_c_description[i],weight=ft.FontWeight.BOLD,color="Black",font_family="Roboto",size=oil_type_container.content.controls[2].height * 0.7)
         oil_type_container.content.controls[3].content = ft.Text(pics_and_desc.oil_type_column_d_description[i],color="Black",font_family="Roboto",size=oil_type_container.content.controls[3].height * 0.7)
 
-        oil_type_selected_index = i
+        global_variables.oil_type_selected_index = i
         page.update()
     
     return handle_click
@@ -93,7 +94,6 @@ def create_oil_type_column_b_background_row(page):
         )
     return background_row
 def create_oil_type_column_b_row(page):
-    global oil_type_selected_index
     global oil_type_container
     global oil_type_column_b_containers
     oil_type_column_b_containers = []
@@ -106,7 +106,7 @@ def create_oil_type_column_b_row(page):
                 on_click=oil_type_columb_b_click(page,i)
             )
         )
-    if oil_type_selected_index == 0:
+    if global_variables.oil_type_selected_index == 0:
         oil_type_column_b_containers[0].border=ft.Border(bottom=ft.BorderSide(2,ft.colors.ORANGE))
         oil_type_column_b_containers[0].bgcolor = ft.colors.ORANGE
     

@@ -8,7 +8,7 @@ import global_variables
 
 
 surface_oil_column_b_containers = []
-surface_oil_selected_index = 0
+global_variables.surface_oil_category_selected_index = 0
 surface_oil_container = None
 column_c_container = ft.Container()
 
@@ -69,7 +69,6 @@ def create_surface_oil_column_b(page):
                 
 def create_surface_oil_column_b_rows(page):
         global surface_oil_column_b_containers
-        global surface_oil_selected_index
         surface_oil_column_b_containers = []
         for i in range(4):
                 surface_oil_column_b_containers.append(
@@ -80,7 +79,7 @@ def create_surface_oil_column_b_rows(page):
                                 on_click=surface_oil_column_b_click(page,i)
                         )
                 )
-        if surface_oil_selected_index ==0:
+        if global_variables.surface_oil_category_selected_index ==0:
                 surface_oil_column_b_containers[0].border=ft.border.all(5,ft.colors.ORANGE) 
         return surface_oil_column_b_containers             
         
@@ -168,13 +167,12 @@ def surface_oil_column_b_click(page, i):
 
                 global surface_oil_column_b_containers
                 global surface_oil_container
-                global surface_oil_selected_index
                 global column_c_container
-                if surface_oil_selected_index is not None and surface_oil_selected_index != i:
-                        surface_oil_column_b_containers[surface_oil_selected_index].border = ft.border.all(1, ft.colors.TRANSPARENT)
+                if global_variables.surface_oil_category_selected_index is not None and global_variables.surface_oil_category_selected_index != i:
+                        surface_oil_column_b_containers[global_variables.surface_oil_category_selected_index].border = ft.border.all(1, ft.colors.TRANSPARENT)
                 column_c_container.on_click =surface_oil_column_c_click(page)
                 surface_oil_column_b_containers[i].border=ft.border.all(5,ft.colors.ORANGE)
-                surface_oil_selected_index = i
+                global_variables.surface_oil_category_selected_index = i
                 surface_oil_container.content.controls[2].content= ft.Text(pics_and_desc.surface_oil_category_description[i],
                                                                            color= "Black", 
                                                                            font_family="Roboto",
@@ -182,9 +180,7 @@ def surface_oil_column_b_click(page, i):
                 page.update()
         return handle_click
 def surface_oil_column_c_click(page):
-        global column_c_container
-        global surface_oil_selected_index
-        
+        global column_c_container        
         def handle_click(e):
                 column_c_container.on_click = False
                 column_c_container.content = ft.Row(
@@ -284,16 +280,17 @@ def so_dropdown_change(page):
         def handle_change(e):
                 global column_c_container
                 global surface_oil_container
-                global surface_oil_selected_index
                 dd_selection_1 =column_c_container.content.controls[1].controls[0].content.value
                 dd_selection_2 =column_c_container.content.controls[1].controls[1].content.value
                 dd_selection_3 =column_c_container.content.controls[1].controls[2].content.value   
                 dd_selection = str(global_variables.so_dropdown_values[dd_selection_1])+str(global_variables.so_dropdown_values[dd_selection_2])+str(global_variables.so_dropdown_values[dd_selection_3])
                 column_selection = global_variables.so_columnd_dict[dd_selection]
-                if surface_oil_selected_index is not None and surface_oil_selected_index != column_selection:
-                                surface_oil_column_b_containers[surface_oil_selected_index].border = ft.border.all(1, ft.colors.TRANSPARENT)
+
+                if global_variables.surface_oil_category_selected_index is not None and global_variables.surface_oil_category_selected_index != column_selection:
+                                surface_oil_column_b_containers[global_variables.surface_oil_category_selected_index].border = ft.border.all(1, ft.colors.TRANSPARENT)
+                
                 surface_oil_column_b_containers[column_selection].border=ft.border.all(5,ft.colors.ORANGE)
-                surface_oil_selected_index = column_selection
+                global_variables.surface_oil_category_selected_index = column_selection
                 page.update()
         return handle_change
           

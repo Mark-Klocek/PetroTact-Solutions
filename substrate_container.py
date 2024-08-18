@@ -7,7 +7,7 @@ import global_variables
 
 substrate_row_a_containers = []
 substrate_row_b_container = None
-substrate_selected_index = 0
+
 
 
 def create_substrate_container(page):
@@ -69,7 +69,6 @@ def create_substrate_row_a_column(page):
     
 def create_substrate_row_a_column_containers(page):
     global substrate_row_a_containers
-    global substrate_selected_index
     substrate_row_a_containers = []
     for i in range(len(pics_and_desc.substrate_row_a_description)):           
         substrate_row_a_containers.append(
@@ -84,7 +83,7 @@ def create_substrate_row_a_column_containers(page):
             )
         )
 
-    if substrate_selected_index == 0:
+    if global_variables.substrate_selected_index == 0:
         substrate_row_a_containers[0].bgcolor = ft.colors.ORANGE
         substrate_row_a_containers[0].content = create_substrate_row_a_column_container_content(page,0)
             
@@ -116,7 +115,7 @@ def create_substrate_row_a_column_container_content(page, i):
 
 def create_substrate_row_b_container(page):
         global substrate_row_b_container
-        if substrate_selected_index == 0:
+        if global_variables.substrate_selected_index == 0:
             container = ft.Container(
                 content = ft.Column(
                     controls=[
@@ -151,13 +150,12 @@ def create_substrate_row_b_container(page):
         return container
 def substrate_row_a_container_click(i, page):
     def handle_click(e):
-        global substrate_selected_index
         global substrate_row_a_containers
         global substrate_row_b_container
 
-        if substrate_selected_index is not None and substrate_selected_index != i:
-            substrate_row_a_containers[substrate_selected_index].bgcolor = ft.colors.WHITE
-            substrate_row_a_containers[substrate_selected_index].content = create_substrate_row_a_column_container_content(page, substrate_selected_index)
+        if global_variables.substrate_selected_index is not None and global_variables.substrate_selected_index != i:
+            substrate_row_a_containers[global_variables.substrate_selected_index].bgcolor = ft.colors.WHITE
+            substrate_row_a_containers[global_variables.substrate_selected_index].content = create_substrate_row_a_column_container_content(page, global_variables.substrate_selected_index)
             
         substrate_row_b_container.content = ft.Container(
             content = ft.Column(
@@ -191,6 +189,6 @@ def substrate_row_a_container_click(i, page):
         stack.controls[0].content = ft.Image(src=pics_and_desc.surface_oil_category_pictures[i], fit=ft.ImageFit.FILL)
                                                  
 
-        substrate_selected_index = i
+        global_variables.substrate_selected_index = i
         page.update()
     return handle_click
