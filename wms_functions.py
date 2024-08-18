@@ -2,6 +2,8 @@ import flet as ft
 import substrate_container
 import oil_type_container
 import surface_oil_category
+import global_variables
+import view_summary
 
 class functions:
 
@@ -37,7 +39,7 @@ class functions:
 
     def create_input_header(page):
         return ft.Container(
-            content=ft.Text("Inputs", size=20,color="Black", font_family="Roboto"),
+            content=ft.Text("Inputs", size=20,color="Black",weight=ft.FontWeight.BOLD, font_family="Roboto"),
             bgcolor=ft.colors.TRANSPARENT,
             padding=0,
             alignment=ft.alignment.center,
@@ -50,49 +52,18 @@ class functions:
 
     def create_results_container(page):
         return ft.Container(
-            content=ft.Tabs(
-                selected_index=0,
-                animation_duration=50,
-                indicator_tab_size=True,
-                tabs=[
-                    ft.Tab(
-                        text="Results",
-                        content=functions.create_results_tab(page),
-                        
-                        
-                        
-                    ),
-
-                    ft.Tab(
-                        text="View Summary",
-                        content=functions.create_viewSummary_tab(page)
-                    )
-                ],
-                
-            
+            content=ft.Column(
+                controls=[view_summary.create_results_header(page),
+                          view_summary.create_results_content(page)],
+                spacing=0
             ),
-            
-            alignment=ft.alignment.top_right,
-            width=page.width * 0.7,
+            padding=3,
             
             
-        )
-    def create_results_tab(page):
-        return ft.Container(
-            content=ft.Text("This is where the results will go"),
-            alignment=ft.alignment.center,
-            bgcolor=ft.colors.BLACK26
-        )
-    def create_viewSummary_tab(page):
-        return ft.Container(
-            content=ft.Text("This is where the summary will go"),
-            alignment=ft.alignment.center,
-            bgcolor=ft.colors.BLACK26
         )
 
-#######################################################################################
-####################### TEXT / PICTURE ARRAYS #########################################
-#######################################################################################
+    
+
 
 
 

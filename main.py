@@ -167,10 +167,27 @@ def main(page:ft.Page):
         #######################################################################################
         results_container.width= global_variables.app_window.width * 0.68
         results_container.height = global_variables.app_window.height * 0.98
+
+        results_header = results_container.content.controls[0]
+        results_header.height = global_variables.app_window.height * 0.06
+        results_header.width = results_container.width
+
+        header_tabs = results_header.content.controls[0]
+        header_tabs.width = results_header.width * 0.35
+
+        tab_text_1 =header_tabs.content.controls[0].content
+        tab_text_1.size = results_header.height * 0.4
+
+        tab_text_2 = header_tabs.content.controls[1].content 
+        tab_text_2.size = results_header.height * 0.4
+
+        results_data_container = results_container.content.controls[1]
+
+        
         global_variables.selection= str(global_variables.substrate_selected_index)+str(global_variables.oil_type_selected_index)+str(global_variables.surface_oil_category_selected_index)
-        print(global_variables.selection)
+        print(header_tabs.content.controls[0].content)
         page.update()
-    
+        
     page.bgcolor="#69707E"
     page.on_resized = resize
     resize(None)
