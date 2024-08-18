@@ -4,6 +4,7 @@ var = ""
 substrate_selected_index = 0
 oil_type_selected_index = 0
 surface_oil_category_selected_index = 0
+selection = ''
 
 so_columnd_dict = {
     "111": 1,    "112": 1,    "113": 0,    "114": 0,    

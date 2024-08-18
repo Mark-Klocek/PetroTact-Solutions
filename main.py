@@ -18,17 +18,7 @@ def main(page:ft.Page):
     global_variables.app_window.height = page.height * 0.98
     global_variables.app_window.width = page.width
     page.add(global_variables.app_window)
-    '''width = 1366
-    height = 1024
-
-    page.window_width = width
-    page.window_height = height'''
-    
-    
-    
-        
-    '''app_window.width = 1280* 1.5
-    app_window.height = 720 * 1.5'''
+   
 
     #page.window.max_width = 1280 
     #page.window.max_height = 720 
@@ -177,6 +167,8 @@ def main(page:ft.Page):
         #######################################################################################
         results_container.width= global_variables.app_window.width * 0.68
         results_container.height = global_variables.app_window.height * 0.98
+        global_variables.selection= str(global_variables.substrate_selected_index)+str(global_variables.oil_type_selected_index)+str(global_variables.surface_oil_category_selected_index)
+        print(global_variables.selection)
         page.update()
     
     page.bgcolor="#69707E"

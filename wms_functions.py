@@ -53,11 +53,14 @@ class functions:
             content=ft.Tabs(
                 selected_index=0,
                 animation_duration=50,
-                indicator_tab_size=150,
+                indicator_tab_size=True,
                 tabs=[
                     ft.Tab(
                         text="Results",
-                        content=functions.create_results_tab(page)
+                        content=functions.create_results_tab(page),
+                        
+                        
+                        
                     ),
 
                     ft.Tab(
@@ -65,10 +68,14 @@ class functions:
                         content=functions.create_viewSummary_tab(page)
                     )
                 ],
+                
             
             ),
+            
             alignment=ft.alignment.top_right,
-            width=page.width * 0.7
+            width=page.width * 0.7,
+            
+            
         )
     def create_results_tab(page):
         return ft.Container(
