@@ -5,7 +5,8 @@ substrate_selected_index = 0
 oil_type_selected_index = 0
 surface_oil_category_selected_index = 0
 selection = ''
-
+results_tab_selected = True
+summary_tab_selected = False
 so_columnd_dict = {
     "111": 1,    "112": 1,    "113": 0,    "114": 0,    
     "121": 2,    "122": 2,    "123": 1,    "124": 0,    

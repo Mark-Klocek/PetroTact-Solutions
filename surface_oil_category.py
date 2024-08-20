@@ -272,7 +272,8 @@ def surface_oil_column_c_click(page):
                                 alignment=ft.alignment.center
                         )]
                 ) 
-                  
+                global_variables.selection= str(global_variables.substrate_selected_index)+str(global_variables.oil_type_selected_index)+str(global_variables.surface_oil_category_selected_index)
+                
                 page.update()
         return handle_click  
 
@@ -291,6 +292,7 @@ def so_dropdown_change(page):
                 
                 surface_oil_column_b_containers[column_selection].border=ft.border.all(5,ft.colors.ORANGE)
                 global_variables.surface_oil_category_selected_index = column_selection
+                global_variables.selection= str(global_variables.substrate_selected_index)+str(global_variables.oil_type_selected_index)+str(global_variables.surface_oil_category_selected_index)
                 page.update()
         return handle_change
           

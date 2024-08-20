@@ -3,13 +3,13 @@ from wms_functions import functions
 import substrate_container
 import global_variables
 import pics_and_desc
-
+import view_summary
 
 
 def main(page:ft.Page):
     global_variables.app_window = page
     input_container = functions.create_input_container(page)
-    results_container=functions.create_results_container(page)
+    results_container=view_summary.create_results_container(page)
     global_variables.app_window = ft.Container(
                     content=ft.Row(
                         controls=[input_container,results_container],
@@ -181,11 +181,14 @@ def main(page:ft.Page):
         tab_text_2 = header_tabs.content.controls[1].content 
         tab_text_2.size = results_header.height * 0.4
 
-        results_data_container = results_container.content.controls[1]
-
         
-        global_variables.selection= str(global_variables.substrate_selected_index)+str(global_variables.oil_type_selected_index)+str(global_variables.surface_oil_category_selected_index)
-        print(header_tabs.content.controls[0].content)
+        if global_variables.results_tab_selected == False:
+            view_summary.results_container.content.controls[1] = view_summary.create_summary_container(page)
+        
+        else:
+            view_summary.results_container.content.controls[1] = view_summary.create_results_content(page)
+        
+        
         page.update()
         
     page.bgcolor="#69707E"

@@ -187,8 +187,10 @@ def substrate_row_a_container_click(i, page):
         
         stack = surface_oil_category.surface_oil_container.content.controls[1]
         stack.controls[0].content = ft.Image(src=pics_and_desc.surface_oil_category_pictures[i], fit=ft.ImageFit.FILL)
-                                                 
+                                                     
 
         global_variables.substrate_selected_index = i
+        global_variables.selection= str(global_variables.substrate_selected_index)+str(global_variables.oil_type_selected_index)+str(global_variables.surface_oil_category_selected_index)
+        
         page.update()
     return handle_click

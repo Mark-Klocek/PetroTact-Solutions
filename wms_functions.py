@@ -50,17 +50,7 @@ class functions:
 ############################# RESULTS CONTAINER #######################################
 #######################################################################################
 
-    def create_results_container(page):
-        return ft.Container(
-            content=ft.Column(
-                controls=[view_summary.create_results_header(page),
-                          view_summary.create_results_content(page)],
-                spacing=0
-            ),
-            padding=3,
-            
-            
-        )
+   
 
     
 
