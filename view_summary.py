@@ -131,7 +131,7 @@ def create_results_content(page):
 def create_header_container(page):
     global data_header
     container = ft.Container(
-        content= ft.Text("Data header", color=ft.colors.BLACK),
+        content= ft.Text("Results header", color=ft.colors.BLACK),
         height=global_variables.app_window.height * 0.95 * 0.05,
         alignment=ft.alignment.center,
         bgcolor=ft.colors.TRANSPARENT,
@@ -143,7 +143,7 @@ def create_header_container(page):
 def create_data_body(page):
     global data_body
     container = ft.Container(
-        content= ft.Text("Data Body", color=ft.colors.BLACK),
+        content= ft.Text("Results Body", color=ft.colors.BLACK),
         height=global_variables.app_window.height * 0.95 * 0.75,
         alignment=ft.alignment.center,
         bgcolor=ft.colors.TRANSPARENT,
@@ -156,7 +156,7 @@ def create_data_body(page):
 def create_key_container(page):
     global data_key
     container = ft.Container(
-        content= ft.Text("Data Key", color=ft.colors.BLACK),
+        content= ft.Text("Results Key", color=ft.colors.BLACK),
         expand=True,
         alignment=ft.alignment.center,
         bgcolor=ft.colors.TRANSPARENT,
