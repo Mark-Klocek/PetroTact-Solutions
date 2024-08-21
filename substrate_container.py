@@ -29,7 +29,15 @@ def create_substrate_container(page):
     return container
 def create_substrate_header_container(page):
     return ft.Container(
-        content=ft.Text("Substrate",color="Black",font_family="Roboto", weight=ft.FontWeight.BOLD),
+        content=ft.Row(
+            controls = [
+                ft.Text("Substrate",color="Black",font_family="Roboto", weight=ft.FontWeight.BOLD),
+                ft.Icon(
+                        name=ft.icons.INFO_OUTLINED,
+                        size=global_variables.app_window.height * 0.95 * 0.15 * 0.20 * 0.8,
+                        color=ft.colors.ORANGE
+                    )]
+        ),
         bgcolor="#DCDCDC",
         padding= ft.padding.only(left=10),
         alignment=ft.alignment.center_left,

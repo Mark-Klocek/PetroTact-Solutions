@@ -37,11 +37,16 @@ def create_surface_oil_header_column(page):
         global surface_oil_header_container
         
         container = ft.Container(
-                content=ft.Text("Surface Oil Category",
-                                color="Black", 
-                                weight=ft.FontWeight.BOLD, 
-                                font_family="Roboto",
-                                ),
+                content=ft.Row(
+                        controls=[
+                                ft.Text("Surface Oil Category",color="Black",weight=ft.FontWeight.BOLD,font_family="Roboto"),
+                                ft.Icon(
+                                        name=ft.icons.INFO_OUTLINED,
+                                        size=global_variables.app_window.height * 0.95 * 0.15 * 0.20 * 0.8,
+                                        color=ft.colors.ORANGE
+                                        )
+                                ]
+                        ),
                 padding=ft.padding.only(left=2),
                 alignment=ft.alignment.center_left,                
                 border_radius=ft.border_radius.only(top_left=10,top_right=10),
@@ -309,7 +314,7 @@ def so_dropdown_change(page):
                         view_summary.results_container.content.controls[1] = view_summary.create_summary_container(page)        
                 else:
                         view_summary.results_container.content.controls[1] = view_summary.create_results_content(page)
-                        
+
                 page.update()
         return handle_change
           
