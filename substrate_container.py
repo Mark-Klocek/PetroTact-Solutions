@@ -30,7 +30,7 @@ def create_substrate_container(page):
 def create_substrate_header_container(page):
     return ft.Container(
         content=ft.Text("Substrate",color="Black",font_family="Roboto", weight=ft.FontWeight.BOLD),
-        bgcolor=ft.colors.GREY,
+        bgcolor="#DCDCDC",
         padding= ft.padding.only(left=10),
         alignment=ft.alignment.center_left,
         border_radius=ft.border_radius.only(top_left=10,top_right=10),

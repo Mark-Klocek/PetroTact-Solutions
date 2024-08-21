@@ -67,7 +67,7 @@ def oil_type_columb_b_click(page, i):
 def create_oil_type_header_container(page):
     return ft.Container(
         content= ft.Text("Oil Type", color="Black", weight=ft.FontWeight.BOLD, font_family="Roboto"),
-        bgcolor=ft.colors.GREY,
+        bgcolor="#DCDCDC",
         padding= ft.padding.only(left=5),
         alignment=ft.alignment.center_left,
         border_radius=ft.border_radius.only(top_left=8,top_right=10),
