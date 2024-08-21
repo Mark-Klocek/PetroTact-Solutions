@@ -197,10 +197,12 @@ def substrate_row_a_container_click(i, page):
         stack = surface_oil_category.surface_oil_container.content.controls[1]
         stack.controls[0].content = ft.Image(src=pics_and_desc.surface_oil_category_pictures[i], fit=ft.ImageFit.FILL)
                                                      
-
+        #updating selected index, complete selection, and filling table array with info from matrix dict, using selection as key
         global_variables.substrate_selected_index = i
         global_variables.selection= str(global_variables.substrate_selected_index)+str(global_variables.oil_type_selected_index)+str(global_variables.surface_oil_category_selected_index)
-
+        global_variables.generate_table_array(page)
+        
+        print(global_variables.table_array)
         #re-drawing output container
         if global_variables.results_tab_selected == False:
             view_summary.results_container.content.controls[1] = view_summary.create_summary_container(page)

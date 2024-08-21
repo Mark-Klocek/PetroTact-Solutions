@@ -4,9 +4,10 @@ var = ""
 substrate_selected_index = 0
 oil_type_selected_index = 0
 surface_oil_category_selected_index = 0
-selection = ''
+selection = '000'
 results_tab_selected = True
 summary_tab_selected = False
+table_array = []
 substrate = {
     0: "Sand-mixed Sediment",
     1: "Coarse Sediment Beach",
@@ -2107,5 +2108,16 @@ matrix_dict = {
 }
 
 
+#Creating infrastructure to build table on#
 
+
+def generate_table_array(page):
+    global table_array
+    table_array = []
+    for key, values in matrix_dict[selection].items():
+        category_list=[]
+        for tactic, info in values.items():
+            tactic_list = [tactic] + info
+            category_list.append(tactic_list)
+        table_array.append([key,category_list])
 

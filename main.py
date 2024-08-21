@@ -192,10 +192,16 @@ def main(page:ft.Page):
             view_summary.results_container.content.controls[1] = view_summary.create_results_content(page)
         
         
+        ####testing#########
+        global_variables.generate_table_array(page)
+        print(global_variables.table_array)
         page.update()
         
     page.bgcolor="#69707E"
     page.on_resized = resize
     resize(None)
+   
+    
+    
     
 ft.app(main)

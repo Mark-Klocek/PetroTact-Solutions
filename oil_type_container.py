@@ -45,8 +45,11 @@ def oil_type_columb_b_click(page, i):
         oil_type_container.content.controls[2].content = ft.Text(pics_and_desc.oil_type_column_c_description[i],weight=ft.FontWeight.BOLD,color="Black",font_family="Roboto",size=oil_type_container.content.controls[2].height * 0.7)
         oil_type_container.content.controls[3].content = ft.Text(pics_and_desc.oil_type_column_d_description[i],color="Black",font_family="Roboto",size=oil_type_container.content.controls[3].height * 0.7)
 
+        #updating selected index, total selection, and filling table array with data from matrix dict, using selection as key#
         global_variables.oil_type_selected_index = i
         global_variables.selection= str(global_variables.substrate_selected_index)+str(global_variables.oil_type_selected_index)+str(global_variables.surface_oil_category_selected_index)
+        global_variables.generate_table_array(page)
+        print(global_variables.table_array)
 
         #setting output container
         if global_variables.results_tab_selected == False:

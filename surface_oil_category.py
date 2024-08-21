@@ -178,7 +178,11 @@ def surface_oil_column_b_click(page, i):
                         surface_oil_column_b_containers[global_variables.surface_oil_category_selected_index].border = ft.border.all(1, ft.colors.TRANSPARENT)
                 column_c_container.on_click =surface_oil_column_c_click(page)
                 surface_oil_column_b_containers[i].border=ft.border.all(5,ft.colors.ORANGE)
+
                 global_variables.surface_oil_category_selected_index = i
+                global_variables.selection= str(global_variables.substrate_selected_index)+str(global_variables.oil_type_selected_index)+str(global_variables.surface_oil_category_selected_index)
+                global_variables.generate_table_array(page)
+                print(global_variables.table_array)
 
                 #setting output container
                 if global_variables.results_tab_selected == False:
@@ -287,7 +291,9 @@ def surface_oil_column_c_click(page):
                         )]
                 )
                  
-                global_variables.selection= str(global_variables.substrate_selected_index)+str(global_variables.oil_type_selected_index)+str(global_variables.surface_oil_category_selected_index)
+                #global_variables.selection= str(global_variables.substrate_selected_index)+str(global_variables.oil_type_selected_index)+str(global_variables.surface_oil_category_selected_index)
+                #global_variables.generate_table_array(page)
+                #print(global_variables.table_array)
                 
                 page.update()
         return handle_click  
@@ -308,6 +314,8 @@ def so_dropdown_change(page):
                 surface_oil_column_b_containers[column_selection].border=ft.border.all(5,ft.colors.ORANGE)
                 global_variables.surface_oil_category_selected_index = column_selection
                 global_variables.selection= str(global_variables.substrate_selected_index)+str(global_variables.oil_type_selected_index)+str(global_variables.surface_oil_category_selected_index)
+                global_variables.generate_table_array(page)
+                print(global_variables.table_array)
 
                 #setting output container 
                 if global_variables.results_tab_selected == False:
