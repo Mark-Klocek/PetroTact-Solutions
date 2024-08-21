@@ -7,6 +7,29 @@ surface_oil_category_selected_index = 0
 selection = ''
 results_tab_selected = True
 summary_tab_selected = False
+substrate = {
+    0: "Sand-mixed Sediment",
+    1: "Coarse Sediment Beach",
+    2: "Cobble / Boulder",
+    3: "Bedrock or Solid (includes ice)",
+    4: "Wetland - Vegetation",
+    5: "Oiled Debris",
+    6: "Snow"
+}
+surface_oil_category = {
+    0: "Very Light",
+    1: "Light",
+    2: "Moderate",
+    3: "Heavy"
+}
+oil_type = {
+    0: "Volatile",
+    1: "Light",
+    2: "Medium",
+    3: "Heavy",
+    4: "Solid"
+}
+shoreline_length = "--"
 so_columnd_dict = {
     "111": 1,    "112": 1,    "113": 0,    "114": 0,    
     "121": 2,    "122": 2,    "123": 1,    "124": 0,    

@@ -1,6 +1,7 @@
 import flet as ft
 import pics_and_desc
 import global_variables
+import view_summary
 
 
 
@@ -173,6 +174,14 @@ def surface_oil_column_b_click(page, i):
                 column_c_container.on_click =surface_oil_column_c_click(page)
                 surface_oil_column_b_containers[i].border=ft.border.all(5,ft.colors.ORANGE)
                 global_variables.surface_oil_category_selected_index = i
+
+                #setting output container
+                if global_variables.results_tab_selected == False:
+                        view_summary.results_container.content.controls[1] = view_summary.create_summary_container(page)        
+                else:
+                        view_summary.results_container.content.controls[1] = view_summary.create_results_content(page)
+
+
                 surface_oil_container.content.controls[2].content= ft.Text(pics_and_desc.surface_oil_category_description[i],
                                                                            color= "Black", 
                                                                            font_family="Roboto",
@@ -271,7 +280,8 @@ def surface_oil_column_c_click(page):
                                 spacing=2,
                                 alignment=ft.alignment.center
                         )]
-                ) 
+                )
+                 
                 global_variables.selection= str(global_variables.substrate_selected_index)+str(global_variables.oil_type_selected_index)+str(global_variables.surface_oil_category_selected_index)
                 
                 page.update()
@@ -293,6 +303,13 @@ def so_dropdown_change(page):
                 surface_oil_column_b_containers[column_selection].border=ft.border.all(5,ft.colors.ORANGE)
                 global_variables.surface_oil_category_selected_index = column_selection
                 global_variables.selection= str(global_variables.substrate_selected_index)+str(global_variables.oil_type_selected_index)+str(global_variables.surface_oil_category_selected_index)
+
+                #setting output container 
+                if global_variables.results_tab_selected == False:
+                        view_summary.results_container.content.controls[1] = view_summary.create_summary_container(page)        
+                else:
+                        view_summary.results_container.content.controls[1] = view_summary.create_results_content(page)
+                        
                 page.update()
         return handle_change
           

@@ -1,6 +1,7 @@
 import flet as ft
 import pics_and_desc
 import global_variables
+import view_summary
 oil_type_column_b_containers = []
 
 oil_type_container = None
@@ -46,7 +47,13 @@ def oil_type_columb_b_click(page, i):
 
         global_variables.oil_type_selected_index = i
         global_variables.selection= str(global_variables.substrate_selected_index)+str(global_variables.oil_type_selected_index)+str(global_variables.surface_oil_category_selected_index)
+
+        #setting output container
+        if global_variables.results_tab_selected == False:
+            view_summary.results_container.content.controls[1] = view_summary.create_summary_container(page)
         
+        else:
+            view_summary.results_container.content.controls[1] = view_summary.create_results_content(page)
         page.update()
     
     return handle_click
