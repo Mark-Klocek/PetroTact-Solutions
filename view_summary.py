@@ -313,11 +313,131 @@ def create_summary_body(page):
 def create_summary_information(page):
      global summary_information
      container = ft.Container(
-        content= ft.Text("Summary Key", color=ft.colors.BLACK),
+        content= ft.Column(
+             controls=[
+                  ft.Container(
+                       content= ft.Text("Information", weight=ft.FontWeight.BOLD,color=ft.colors.BLACK,font_family="Roboto", size=global_variables.app_window.height * 0.95 * 0.15 * 0.20 * 0.8),
+                       alignment=ft.alignment.center_left,
+                       height=global_variables.app_window.height * 0.95 * 0.15 * 0.23,
+                       bgcolor="#B8B8C7",
+                       border_radius=ft.border_radius.only(top_left=10,top_right=10),
+                       padding=ft.padding.only(left=10)
+                  ),
+                  ft.Container(
+                       content= ft.Row(
+                            controls=[
+                                 ft.Container(
+                                      content=ft.Column(
+                                           controls=[
+                                                ft.Container(
+                                                     content= ft.Row(
+                                                          controls=[
+                                                            ft.Text("Treatment Tactic Details",color=ft.colors.BLACK,weight=ft.FontWeight.BOLD,font_family="Roboto",size=global_variables.app_window.height * 0.95 * 0.15 * 0.20 * 0.7),
+                                                            
+                                                            ft.Icon(
+                                                               name=ft.icons.INFO_OUTLINED,
+                                                               size=global_variables.app_window.height * 0.95 * 0.15 * 0.20 * 0.8,
+                                                               color=ft.colors.ORANGE
+                                                            )
+                                                            
+                                                        ],
+                                                        alignment=ft.MainAxisAlignment.CENTER
+                                                        
+                                                     ),
+                                                    alignment=ft.alignment.center_right,
+                                                    bgcolor=ft.colors.TRANSPARENT,
+                                                    expand=True,
+                                                    padding=0
+                                                    ),
+                                                ft.Container(
+                                                     content= ft.Row(
+                                                          controls=[
+                                                            ft.Text("Endpoints",color=ft.colors.BLACK,weight=ft.FontWeight.BOLD,font_family="Roboto",size=global_variables.app_window.height * 0.95 * 0.15 * 0.20 * 0.7),
+
+                                                               ft.Icon(
+                                                               name=ft.icons.INFO_OUTLINED,
+                                                               size=global_variables.app_window.height * 0.95 * 0.15 * 0.20 * 0.8,
+                                                               color=ft.colors.ORANGE
+                                                            )
+                                                            
+                                                        ],
+                                                        alignment=ft.MainAxisAlignment.CENTER
+                                                     ),
+                                                    alignment=ft.alignment.center,
+                                                    bgcolor=ft.colors.TRANSPARENT,
+                                                    expand=True,
+                                                    padding=0
+                                                    ),       
+                                                ]
+                                      ),
+                                      alignment=ft.alignment.center_right,
+                                      bgcolor=ft.colors.TRANSPARENT,
+                                      expand=True,
+                                      padding=0,
+                                      border=ft.Border(right=ft.BorderSide(1, "#B8B8C7"))
+                                      
+                                 ),
+                                 ft.Container(
+                                      content=ft.Column(
+                                           controls=[
+                                                ft.Container(
+                                                     content= ft.Row(
+                                                          controls=[
+                                                            ft.Text("Waste Types",color=ft.colors.BLACK,weight=ft.FontWeight.BOLD,font_family="Roboto",size=global_variables.app_window.height * 0.95 * 0.15 * 0.20 * 0.7),
+                                                            
+                                                            ft.Icon(
+                                                               name=ft.icons.INFO_OUTLINED,
+                                                               size=global_variables.app_window.height * 0.95 * 0.15 * 0.20 * 0.8,
+                                                               color=ft.colors.ORANGE
+                                                            )
+                                                            
+                                                            
+                                                        ],
+                                                        alignment=ft.MainAxisAlignment.CENTER
+                                                     ),
+                                                    alignment=ft.alignment.center,
+                                                    bgcolor=ft.colors.TRANSPARENT,
+                                                    expand=True,
+                                                    padding=0
+                                                    ),
+                                                ft.Container(
+                                                     content= ft.Row(
+                                                          controls=[
+                                                               ft.Text("Waste Volume",color=ft.colors.BLACK,weight=ft.FontWeight.BOLD,font_family="Roboto",size=global_variables.app_window.height * 0.95 * 0.15 * 0.20 * 0.7),
+
+                                                               ft.Icon(
+                                                               name=ft.icons.INFO_OUTLINED,
+                                                               size=global_variables.app_window.height * 0.95 * 0.15 * 0.20 * 0.8,
+                                                               color=ft.colors.ORANGE
+                                                            )
+                                            
+                                                                ],
+                                                                alignment=ft.MainAxisAlignment.CENTER
+                                                     ),
+                                                    alignment=ft.alignment.center,
+                                                    bgcolor=ft.colors.TRANSPARENT,
+                                                    expand=True,
+                                                    padding=0
+                                                    ),       
+                                                ]
+                                      ),
+                                      alignment=ft.alignment.center,
+                                      bgcolor=ft.colors.TRANSPARENT,
+                                      expand=True,
+                                      padding=0
+                                      
+                                 )
+                            ]
+                       ),
+                       alignment=ft.alignment.center,
+                       expand=True
+
+                  )
+             ]
+        ),
         expand=True,
         alignment=ft.alignment.center,
-        bgcolor=ft.colors.TRANSPARENT,
-        border=ft.border.all(1,ft.colors.GREEN),
+        bgcolor="#FFFFFF",
         border_radius=ft.border_radius.all(10)
      )
      summary_information = container
