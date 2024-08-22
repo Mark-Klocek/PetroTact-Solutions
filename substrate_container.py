@@ -202,7 +202,7 @@ def substrate_row_a_container_click(i, page):
         global_variables.selection= str(global_variables.substrate_selected_index)+str(global_variables.oil_type_selected_index)+str(global_variables.surface_oil_category_selected_index)
         global_variables.generate_table_array(page)
         
-        print(global_variables.table_array)
+        
         #re-drawing output container
         if global_variables.results_tab_selected == False:
             view_summary.results_container.content.controls[1] = view_summary.create_summary_container(page)

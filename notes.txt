@@ -1,16 +1,7 @@
-To do: 
-
-1- Substrate Container split into Row with 2 containers
-    a-First row container turned into Column with 7 control buttons for substrate selection
-    b-Column with 2 items, a dynamically loaded image and a description with Read More buttons
-2- Oil Type Container into columns with two control
-    a-First control is a row containing the 5 different oil types
-    b-Second control is just a description of the activated button in the first columns
-3- Surface Oil Category split into column with 4 items
-    a-Row with 4 different oil categories
-    b-Container with abbreviated description of selection a
-    c-button that brings up custom surface oil category calculator
-    d-input that allows custom input of oil segment length(i.e. in KM or M)
+on_hover feedback for buttons
+text resize in substrate container doesnt work - likely due to container being rebuilt instead of referenced in my onclick function
+surface oil category pictures fixed, split one picture into 4?
+information buttons
 
 
 https://www.owenscoastal.com/

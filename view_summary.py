@@ -182,7 +182,7 @@ def create_summary_container(page):
           alignment=ft.alignment.center,
           bgcolor="#D2E0E8",
           expand=True,
-          height=global_variables.app_window.height * 0.98,
+          height=global_variables.app_window.height * 0.99,
           padding=5,
           
      )

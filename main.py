@@ -194,9 +194,23 @@ def main(page:ft.Page):
         
         ####testing#########
         global_variables.generate_table_array(page)
-        print(global_variables.table_array)
-        page.update()
         
+        page.update()
+
+    
+    
+    
+
+             
+         
+             
+        
+           
+            
+            
+                
+
+    #print(tactics)    
     page.bgcolor="#69707E"
     page.on_resized = resize
     resize(None)

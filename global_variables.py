@@ -1,6 +1,6 @@
 
 app_window = None
-var = ""
+var = "--"
 substrate_selected_index = 0
 oil_type_selected_index = 0
 surface_oil_category_selected_index = 0
@@ -2119,5 +2119,13 @@ def generate_table_array(page):
         for tactic, info in values.items():
             tactic_list = [tactic] + info
             category_list.append(tactic_list)
-        table_array.append([key,category_list])
+        if category_list:
+            table_array.append([key,category_list])
+    
+    for items in table_array:
+        print(items[0])
+        list = items[1]
+        for data in list:
+            print(data)
+    print("************************************************************")
 
