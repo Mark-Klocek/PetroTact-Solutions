@@ -14,6 +14,8 @@ summary_body = ft.Container()
 summary_information = ft.Container()
 
 
+
+
 def create_results_container(page):
         global results_container
         container = ft.Container(
@@ -181,7 +183,8 @@ def create_summary_container(page):
           bgcolor="#D2E0E8",
           expand=True,
           height=global_variables.app_window.height * 0.98,
-          padding=5
+          padding=5,
+          
      )
      summary_container = container
      return container
@@ -298,14 +301,56 @@ def create_summary_header(page):
      return container
 
 def create_summary_body(page):
+     body_height = global_variables.app_window.height * 0.95 * 0.65
+     text_size= body_height * 0.2 *0.5 * 0.4
      global summary_body
      container = ft.Container(
-        content= ft.Text("Summary Body", color=ft.colors.BLACK),
-        height=global_variables.app_window.height * 0.95 * 0.65,
+        content= ft.Column(
+             controls = [
+                  ft.Container(
+                       content= ft.Column(
+                            controls=[
+                                 ft.Container(
+                                   content =  ft.Row(
+                                   
+                                             controls=[
+                                                  ft.Text("Results", color=ft.colors.BLACK, weight=ft.FontWeight.BOLD,font_family="Roboto", size= text_size),
+                                                  ft.Text("Bulk Removal", color=ft.colors.BLACK, weight=ft.FontWeight.BOLD,font_family="Roboto", size= text_size,style=ft.TextStyle(italic=True)),
+                                                  ft.Text("Reduce to Stain", color=ft.colors.BLACK, weight=ft.FontWeight.BOLD,font_family="Roboto", size= text_size,style=ft.TextStyle(italic=True)),
+                                             ],
+                                             alignment=ft.MainAxisAlignment.SPACE_BETWEEN
+                                                  ),
+                                   height=body_height*0.2 * 0.65 * 0.4,
+                                   border_radius=ft.border_radius.all(11)
+                                             ),
+                              ft.Container(
+                                   content= create_body_header_rows(page),
+                                   expand=True
+                                   
+                              )
+                                   ],
+                              spacing=0
+                              ),
+                       height=body_height*0.2 * 0.65,
+                       bgcolor="#B8B8C7",
+                       padding=ft.padding.only(left=5, right=global_variables.app_window.width * 0.68 * 0.10)
+                       
+                  ),
+                  ft.Container(
+                       border=ft.Border(top=ft.BorderSide(2, color=ft.colors.WHITE)),
+                       expand=True
+                       
+                  )],
+                  spacing=0
+        ),
+        height=body_height,
         alignment=ft.alignment.center,
-        bgcolor=ft.colors.TRANSPARENT,
-        border=ft.border.all(1,ft.colors.BLUE),
-        border_radius=ft.border_radius.all(10)
+        bgcolor=ft.colors.WHITE,
+        border_radius=ft.border_radius.all(10),
+        padding=0,
+        border=ft.border.all(1, color="#B1CBD6")
+        
+        
      )
      summary_body = container
      return container
@@ -443,3 +488,83 @@ def create_summary_information(page):
      summary_information = container
      return container
  
+
+def create_body_header_rows(page):
+     body_height = global_variables.app_window.height * 0.95 * 0.65
+     text_size= body_height * 0.2 *0.5 * 0.4
+     smaller_text = text_size * 0.75
+     row_width = global_variables.app_window.width * 0.68 / 8 - 2.9
+     return ft.Row(
+          controls=[
+               ft.Container(
+                    bgcolor=ft.colors.TRANSPARENT,
+                    width=row_width
+               ),
+               ft.Container(
+                    bgcolor=ft.colors.TRANSPARENT,
+                    width=row_width,
+                    
+               ),
+               ft.Container(
+                    content=ft.Text("m³/m",color=ft.colors.BLACK, weight=ft.FontWeight.BOLD,font_family="Roboto", size=smaller_text),
+                    bgcolor=ft.colors.WHITE,
+                    alignment=ft.alignment.center,
+                    border_radius=ft.border_radius.only(top_left=15),
+                    width=row_width,
+                    border=ft.Border(bottom=ft.BorderSide(2, color=ft.colors.WHITE))
+               ),
+               ft.Container(
+                    content=ft.Text("Volume (m³)",color=ft.colors.BLACK, weight=ft.FontWeight.BOLD,font_family="Roboto", size=smaller_text),
+                    bgcolor=ft.colors.WHITE,
+                    alignment=ft.alignment.center,
+                    width=row_width,
+                    border=ft.Border(bottom=ft.BorderSide(2, color=ft.colors.WHITE))
+               ),
+               ft.Container(
+                    content=ft.Text(
+                         spans=[ft.TextSpan("Operational"),
+                                ft.TextSpan("\n"),
+                                ft.TextSpan( "    Waste %")],
+                         
+                         
+                         color=ft.colors.BLACK, weight=ft.FontWeight.BOLD,font_family="Roboto", size=smaller_text - 1),
+                    bgcolor=ft.colors.WHITE,
+                    alignment=ft.alignment.center,
+                    border_radius=ft.border_radius.only(top_right=15),
+                    border=ft.Border(right=ft.BorderSide(2, "#B8B8C7"),bottom=ft.BorderSide(2, ft.colors.WHITE)),
+                    width=row_width,
+               ),
+               ft.Container(
+                    content=ft.Text("m³/m",color=ft.colors.BLACK, weight=ft.FontWeight.BOLD,font_family="Roboto", size=smaller_text),
+                    bgcolor=ft.colors.WHITE,
+                    alignment=ft.alignment.center,
+                    border_radius=ft.border_radius.only(top_left=15),
+                    width=row_width,
+                    border=ft.Border(bottom=ft.BorderSide(2, color=ft.colors.WHITE))
+               ),
+               ft.Container(
+                    content=ft.Text("Volume (m³)",color=ft.colors.BLACK, weight=ft.FontWeight.BOLD,font_family="Roboto", size=smaller_text),
+                    bgcolor=ft.colors.WHITE,
+                    alignment=ft.alignment.center,
+                    width=row_width,
+                    border=ft.Border(bottom=ft.BorderSide(2, color=ft.colors.WHITE))
+               ),
+               ft.Container(
+                    content=ft.Text(
+                         spans=[ft.TextSpan("Operational"),
+                                ft.TextSpan("\n"),
+                                ft.TextSpan( "    Waste %")],
+                         
+                         
+                         color=ft.colors.BLACK, weight=ft.FontWeight.BOLD,font_family="Roboto", size=smaller_text - 1),
+                    bgcolor=ft.colors.WHITE,
+                    alignment=ft.alignment.center,
+                    border_radius=ft.border_radius.only(top_right=15),
+                    border=ft.Border(bottom=ft.BorderSide(2, color=ft.colors.WHITE)),
+                    width=row_width
+                    )
+                    
+          ],
+          #alignment=ft.MainAxisAlignment.SPACE_EVENLY,
+          spacing=0
+     )
