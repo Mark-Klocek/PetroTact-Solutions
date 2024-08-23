@@ -358,6 +358,7 @@ def create_summary_body(page):
         
      )
      summary_body = container
+     page.update()
      return container
 
 def create_summary_information(page):
@@ -580,17 +581,18 @@ def create_data_matrix(page):
      body_height = global_variables.app_window.height * 0.95 * 0.65
      text_size= body_height * 0.2 *0.5 * 0.4
      row_width = global_variables.app_window.width * 0.68 / 8 - 2.9
-     new_text_size = text_size * 0.65
+     new_text_size = text_size * 0.80
      option_height = body_height * 0.2 * 0.5 * 0.5 
-     row_height = option_height * 2
+     row_height = None
+     
      
      for items in global_variables.table_array:
           option_row = ft.Container(
-               content= ft.Text(items[0],color="#6F6F9D", weight=ft.FontWeight.BOLD,font_family="Roboto", size= text_size * 0.8,style=ft.TextStyle(italic=True)),
+               content= ft.Text(items[0],color="#6F6F9D", weight=ft.FontWeight.BOLD,font_family="Roboto", size= text_size * 0.75,style=ft.TextStyle(italic=True)),
                padding=ft.padding.only(left=2),
                alignment=ft.alignment.center_left,
                bgcolor="#EEEEEE",
-               height=option_height,
+               #height=option_height,
                width=global_variables.app_window.width * 67,
                
           )
@@ -602,21 +604,23 @@ def create_data_matrix(page):
                final_data = data[-1]
                del data[0]
                del data[-1]
+               if tactic == "In-situ Sediment Mixing and/or Relocation":
+                    row_height = option_height * 2
+               else:
+                    row_height = None
                tactic_container = ft.Container(
-                    content= ft.Text(tactic,color=ft.colors.BLACK,font_family="Roboto", size= new_text_size),
+                    content= ft.Text(tactic,color=ft.colors.BLACK,font_family="Roboto", size= new_text_size,text_align=ft.TextAlign.CENTER,no_wrap=False),
                     padding=0,
                     alignment=ft.alignment.center,
                     border=ft.Border(right=ft.BorderSide(1, "#B8B8C7")),
-                    #expand=True,
-                    width=row_width * 2 + 1,
+                    width=row_width * 2,
                     height= row_height
                )
                row_controls.append(tactic_container)
                for data_points in data:
                     data_point = ft.Container(
-                         content=ft.Text(data_points,color=ft.colors.BLACK,font_family="Roboto", size= new_text_size * 1.2),
+                         content=ft.Text(data_points,color=ft.colors.BLACK,font_family="Roboto", size= new_text_size),
                          alignment=ft.alignment.center,
-                         #expand=True,
                          border=ft.Border(right=ft.BorderSide(1, "#B8B8C7")),
                          width = row_width,
                          height= row_height,
@@ -626,11 +630,9 @@ def create_data_matrix(page):
                     )
                     row_controls.append(data_point)
                final_container = ft.Container(
-                    content= ft.Text(final_data,color=ft.colors.BLACK,font_family="Roboto", size= new_text_size * 1.2),
+                    content= ft.Text(final_data,color=ft.colors.BLACK,font_family="Roboto", size= new_text_size),
                     padding=0,
                     alignment=ft.alignment.center,
-                    #border=ft.Border(left=ft.BorderSide(1, "#B8B8C7")),
-                    #expand=True,
                     width=row_width,
                     height=row_height
                )
@@ -639,9 +641,11 @@ def create_data_matrix(page):
                tactic_row = ft.Row(
                     controls=row_controls,
                     spacing=0,
-                    expand=True
+                    expand=True,
+                    height= row_height
+                    
                )
-               print(row_controls)
+               
                matrix_array.append(tactic_row)
-     print(matrix_array)
+     
      return matrix_array

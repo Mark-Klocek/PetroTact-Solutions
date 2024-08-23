@@ -2122,10 +2122,6 @@ def generate_table_array(page):
         if category_list:
             table_array.append([key,category_list])
     
-    for items in table_array:
-        print(items[0])
-        list = items[1]
-        for data in list:
-            print(data)
-    print("************************************************************")
+    page.update()
+    
 
