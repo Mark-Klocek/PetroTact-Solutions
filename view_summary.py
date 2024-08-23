@@ -607,18 +607,18 @@ def create_data_matrix(page):
                     padding=0,
                     alignment=ft.alignment.center,
                     border=ft.Border(right=ft.BorderSide(1, "#B8B8C7")),
-                    expand=True,
-                    width=row_width * 2,
+                    #expand=True,
+                    width=row_width * 2 + 1,
                     height= row_height
                )
                row_controls.append(tactic_container)
                for data_points in data:
                     data_point = ft.Container(
-                         content=ft.Text(data_points,color=ft.colors.BLACK,font_family="Roboto", size= new_text_size),
+                         content=ft.Text(data_points,color=ft.colors.BLACK,font_family="Roboto", size= new_text_size * 1.2),
                          alignment=ft.alignment.center,
-                         expand=True,
+                         #expand=True,
                          border=ft.Border(right=ft.BorderSide(1, "#B8B8C7")),
-                         width = row_width * 0.5,
+                         width = row_width,
                          height= row_height,
                          padding=0
                          
@@ -626,19 +626,20 @@ def create_data_matrix(page):
                     )
                     row_controls.append(data_point)
                final_container = ft.Container(
-                    content= ft.Text(final_data,color=ft.colors.BLACK,font_family="Roboto", size= new_text_size),
+                    content= ft.Text(final_data,color=ft.colors.BLACK,font_family="Roboto", size= new_text_size * 1.2),
                     padding=0,
                     alignment=ft.alignment.center,
-                    border=ft.Border(left=ft.BorderSide(1, "#B8B8C7")),
-                    expand=True,
-                    width=row_width * 0.5,
+                    #border=ft.Border(left=ft.BorderSide(1, "#B8B8C7")),
+                    #expand=True,
+                    width=row_width,
                     height=row_height
                )
                row_controls.append(final_container)
 
                tactic_row = ft.Row(
                     controls=row_controls,
-                    spacing=0
+                    spacing=0,
+                    expand=True
                )
                print(row_controls)
                matrix_array.append(tactic_row)
