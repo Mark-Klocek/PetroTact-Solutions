@@ -45,6 +45,7 @@ def on_tab_click(page):
             header_container.content.controls[0].content.controls[1].border= ft.Border(bottom=ft.BorderSide(2, color="#D2E0E8"))
             results_container.content.controls[1] = create_summary_container(page)
             global_variables.results_tab_selected = False
+            global_variables.generate_table_array(page)
         else:
             
             header_container.content.controls[0].content.controls[1].bgcolor = "#A7ADBA"
@@ -58,6 +59,7 @@ def on_tab_click(page):
             
             results_container.content.controls[1] = create_results_content(page) 
             global_variables.results_tab_selected = True
+            global_variables.generate_table_array(page)
 
         
         page.update()
@@ -115,8 +117,12 @@ def create_results_content(page):
     container=  ft.Container(
         content=ft.Column(
             controls=[
-                create_header_container(page),
-                create_data_body(page),
+               
+                ft.Container(
+                     content= ft.Column(
+                         controls= create_data_body(page)
+                     )
+                ),
                 create_key_container(page)
             ],
             spacing=0
@@ -145,16 +151,19 @@ def create_header_container(page):
 
 def create_data_body(page):
     global data_body
-    container = ft.Container(
-        content= ft.Text("Results Body", color=ft.colors.BLACK),
-        height=global_variables.app_window.height * 0.95 * 0.75,
-        alignment=ft.alignment.center,
-        bgcolor=ft.colors.TRANSPARENT,
-        border=ft.border.all(1,ft.colors.BLUE)
-        
-    )
-    data_body = container
-    return container
+    data_body_height = global_variables.app_window.height * 0.95 * 0.75
+    option_array = []
+    for item in global_variables.table_array:
+     option_row = ft.Container(
+          content= ft.Text(item, color=ft.colors.BLACK),
+          height=data_body_height,
+          alignment=ft.alignment.center,
+          bgcolor=ft.colors.TRANSPARENT,
+          border=ft.border.all(1,ft.colors.BLUE)
+          
+     )
+     option_array.append(option_row)
+    return option_array
 
 def create_key_container(page):
     global data_key
@@ -604,12 +613,9 @@ def create_data_matrix(page):
                final_data = data[-1]
                del data[0]
                del data[-1]
-               if tactic == "In-situ Sediment Mixing and/or Relocation":
-                    row_height = option_height * 2
-               else:
-                    row_height = None
+               
                tactic_container = ft.Container(
-                    content= ft.Text(tactic,color=ft.colors.BLACK,font_family="Roboto", size= new_text_size,text_align=ft.TextAlign.CENTER,no_wrap=False),
+                    content= ft.Text(tactic,color=ft.colors.BLACK,font_family="Roboto", size= new_text_size * 0.9,text_align=ft.TextAlign.CENTER,no_wrap=False),
                     padding=0,
                     alignment=ft.alignment.center,
                     border=ft.Border(right=ft.BorderSide(1, "#B8B8C7")),

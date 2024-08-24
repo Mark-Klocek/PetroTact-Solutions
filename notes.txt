@@ -2,7 +2,8 @@ on_hover feedback for buttons
 text resize in substrate container doesnt work - likely due to container being rebuilt instead of referenced in my onclick function
 surface oil category pictures fixed, split one picture into 4?
 information buttons
-
+find a way to add a button to have a screenshot of the app
+file view help
 
 https://www.owenscoastal.com/
 
