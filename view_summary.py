@@ -20,7 +20,7 @@ def create_results_container(page):
         global results_container
         container = ft.Container(
             content=ft.Column(
-                controls=[create_results_header(page),
+                controls=[create_output_header(page),
                           create_results_content(page)],
                 spacing=0
             ),
@@ -65,7 +65,7 @@ def on_tab_click(page):
         page.update()
     return handle_click
           
-def create_results_header(page):
+def create_output_header(page):
         global header_container
         container = ft.Container(
             content=
@@ -117,13 +117,8 @@ def create_results_content(page):
     container=  ft.Container(
         content=ft.Column(
             controls=[
-               
-                ft.Container(
-                     content= ft.Column(
-                         controls= create_data_body(page)
-                     )
-                ),
-                create_key_container(page)
+               create_data_body(page),
+               create_key_container(page)
             ],
             spacing=0
             
@@ -131,40 +126,44 @@ def create_results_content(page):
         alignment=ft.alignment.center,
         bgcolor="#D2E0E8",
         expand=True,
-        height=global_variables.app_window.height * 0.98,
+        #height=global_variables.app_window.height * 0.98,
         
     )
     data_container = container
     return container
 
-def create_header_container(page):
-    global data_header
-    container = ft.Container(
-        content= ft.Text("Results header", color=ft.colors.BLACK),
-        height=global_variables.app_window.height * 0.95 * 0.05,
-        alignment=ft.alignment.center,
-        bgcolor=ft.colors.TRANSPARENT,
-        border=ft.border.all(1,ft.colors.RED)
-    )
-    data_header=container
-    return container
 
 def create_data_body(page):
     global data_body
     data_body_height = global_variables.app_window.height * 0.95 * 0.75
     option_array = []
-    for item in global_variables.table_array:
-     option_row = ft.Container(
-          content= ft.Text(item, color=ft.colors.BLACK),
-          height=data_body_height,
-          alignment=ft.alignment.center,
-          bgcolor=ft.colors.TRANSPARENT,
-          border=ft.border.all(1,ft.colors.BLUE)
-          
-     )
-     option_array.append(option_row)
-    return option_array
+    container = ft.Container(
+         content= ft.Column(
+              controls= create_results_columns(page)
+         )
+    )
+    data_body = container
+    return container
 
+def create_results_columns(page):
+     option_array = []
+     data_body_height = global_variables.app_window.height * 0.95 * 0.75 
+     option_height = data_body_height * .04
+     text_size = option_height * .8
+     remaining_height = data_body_height - (option_height * len(global_variables.table_array))
+
+     for items in global_variables.table_array:
+          option_row = ft.Container(
+               content= ft.Text(items[0],color=ft.colors.BLACK, weight=ft.FontWeight.BOLD,font_family="Roboto", size= text_size),
+               padding=ft.padding.only(left=2),
+               alignment=ft.alignment.center_left,
+               bgcolor="#EEEEEE",
+               height=option_height,
+               width=global_variables.app_window.width * 67,
+          )
+          option_array.append(option_row)
+          print(f"There are {len(global_variables.table_array)} options.  \n{items[0]} has {len(items[1])} tactics")
+     return option_array
 def create_key_container(page):
     global data_key
     container = ft.Container(
