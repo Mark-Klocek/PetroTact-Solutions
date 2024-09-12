@@ -709,10 +709,38 @@ def create_data_body_background(page):
      data_body_height = global_variables.app_window.height * 0.95 * 0.77
      option_height = data_body_height * .04
      parent_container_height = (global_variables.app_window.height) * 0.71
+     container_width = global_variables.app_window.width * .64 * .8
+     container_height = parent_container_height - option_height
+
+
      container = ft.Container(
-          height= parent_container_height - option_height,
-          border=ft.border.all(0.5, color="#ACACAC"),
-          width= global_variables.app_window.width * .64 * .8,
+          content= ft.Row(
+               controls=[
+                    ft.Container(
+                         height=container_height,
+                         width=container_width/4,
+                         border=ft.Border(right=ft.BorderSide(1, color="#ACACAC"))
+                    ),
+                    ft.Container(
+                         height=container_height,
+                         width=container_width/4,
+                         border=ft.Border(right=ft.BorderSide(1, color="#ACACAC"))
+                    ),
+                    ft.Container(
+                         height=container_height,
+                         width=container_width/4,
+                         border=ft.Border(right=ft.BorderSide(1, color="#ACACAC"))
+                    ),
+                    ft.Container(
+                         height=container_height,
+                         width=container_width/4,
+                         border=ft.Border(right=ft.BorderSide(1, color="#ACACAC"))
+                    )
+               ]
+          ),
+          height= container_height,
+          border=ft.border.all(0.5, color=ft.colors.BLACK),
+          width= container_width,
           
      )
      return container

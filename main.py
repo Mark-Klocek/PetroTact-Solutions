@@ -13,8 +13,9 @@ def main(page:ft.Page):
     global_variables.app_window = ft.Container(
                     content=ft.Row(
                         controls=[input_container,results_container],
-                        expand=True),
-                    padding=2)   
+                        expand=True,
+                        spacing=0),
+                    padding=0)   
     global_variables.app_window.height = page.height * 0.98
     global_variables.app_window.width = page.width
     page.add(global_variables.app_window)
@@ -32,8 +33,8 @@ def main(page:ft.Page):
         #######################################################################################
         ############################### INPUT CONTAINER #######################################
         #######################################################################################
-        input_container.width = global_variables.app_window.width * 0.3
-        input_container.height = global_variables.app_window.height * 0.98
+        input_container.width = global_variables.app_window.width * 0.30
+        input_container.height = global_variables.app_window.height * 0.99
 
         #############################
         ###### HEADER CONTAINER #####
@@ -168,8 +169,8 @@ def main(page:ft.Page):
         #######################################################################################
         ############################### RESULTS CONTAINER #####################################
         #######################################################################################
-        results_container.width= global_variables.app_window.width * 0.68
-        results_container.height = global_variables.app_window.height * 0.98
+        results_container.width= global_variables.app_window.width * 0.69
+        results_container.height = global_variables.app_window.height 
 
         results_header = results_container.content.controls[0]
         results_header.height = global_variables.app_window.height * 0.06
