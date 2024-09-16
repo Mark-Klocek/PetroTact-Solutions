@@ -8,6 +8,7 @@ selection = '000'
 results_tab_selected = True
 summary_tab_selected = False
 table_array = []
+bgWidth = None
 substrate = {
     0: "Sand-mixed Sediment",
     1: "Coarse Sediment Beach",

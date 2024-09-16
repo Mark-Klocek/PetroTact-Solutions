@@ -157,7 +157,7 @@ def create_data_body(page):
                     width=global_variables.app_window.width * 64,
                     padding=ft.padding.only(top=option_height/2.5),
                     alignment=ft.alignment.bottom_right,
-                    content= create_data_body_background(page)
+                    content= create_data_body_bar_graph(page)
                ),
           ]
     )
@@ -192,6 +192,7 @@ def create_results_columns(page):
                bgcolor=ft.colors.TRANSPARENT,
                height=option_height,
                width=global_variables.app_window.width * 64,
+               
           )
           option_array.append(option_row)
           print(f"{items[0]} has {len(items[1])} tactics \n --------------------------------------------")
@@ -199,13 +200,15 @@ def create_results_columns(page):
                
                
                tactic_row = ft.Container(
-                    content= ft.Text(tactics[0],color=ft.colors.BLACK,font_family="Roboto", size= text_size),
-                    padding= ft.padding.only(left=15),
+                    #content= ft.Text(tactics[0],color=ft.colors.BLACK,font_family="Roboto", size= text_size),
+                    content= create_tactic_row(tactics,text_size),
+                    padding= 0,
                     alignment=ft.alignment.center_left,
                     height=results_graph_height,
-                    width=global_variables.app_window.width * 64,
-                    #border=ft.border.all(1, ft.colors.RED),
+                    width=global_variables.app_window.width * .7,                  
                     bgcolor=bgColor,
+                    #border=ft.border.all(1,color=ft.colors.BLACK)
+                    
                     
 
 
@@ -213,6 +216,29 @@ def create_results_columns(page):
                option_array.append(tactic_row)
           
      return option_array
+def create_tactic_row(tactic, text_size):
+     container_width = global_variables.app_window.width * .7
+     container = ft.Row(
+          controls=[
+               ft.Container(
+                    content= ft.Text(tactic[0],color=ft.colors.BLACK,font_family="Roboto", size= text_size,text_align=ft.TextAlign.CENTER),
+                    alignment=ft.alignment.center,
+                    padding=0,
+                    bgcolor=ft.colors.TRANSPARENT,
+                    width = global_variables.app_window.width * .69 * .187 - 5,
+                    #border=ft.border.all(1, ft.colors.RED)
+               ),
+               ft.Container(
+                    content= ft.Container(),
+                    alignment=ft.alignment.center_left,
+                    #border=ft.border.all(1,ft.colors.BLACK),
+                    width = global_variables.app_window.width * .69 * .8
+               )
+          ],
+          spacing=0,
+          #expand=True
+     )
+     return container
 def create_key_container(page):
     global data_key
     key_height = global_variables.app_window.height * 0.95 * 0.3
@@ -705,42 +731,119 @@ def create_data_matrix(page):
                matrix_array.append(tactic_row)
      
      return matrix_array
-def create_data_body_background(page):
+
+
+def create_data_body_bar_graph(page):
      data_body_height = global_variables.app_window.height * 0.95 * 0.77
      option_height = data_body_height * .04
      parent_container_height = (global_variables.app_window.height) * 0.71
-     container_width = global_variables.app_window.width * .64 * .8
+     container_width = global_variables.app_window.width * .69 * .8
      container_height = parent_container_height - option_height
+     global_variables.bgWidth = container_width
 
+     container = ft.Stack(
+          controls=[
+               ft.Container(
+                         content= ft.Row(
+                              controls=[
+                                   ft.Container(
+                                        height=container_height,
+                                        width=container_width/4,
+                                        border=ft.Border(right=ft.BorderSide(1, color="#ACACAC"))
+                                   ),
+                                   ft.Container(
+                                        height=container_height,
+                                        width=container_width/4,
+                                        border=ft.Border(right=ft.BorderSide(1, color="#ACACAC"))
+                                   ),
+                                   ft.Container(
+                                        height=container_height,
+                                        width=container_width/4,
+                                        border=ft.Border(right=ft.BorderSide(1, color="#ACACAC"))
+                                   ),
+                                   ft.Container(
+                                        height=container_height,
+                                        width=container_width/4,
+                                        border=ft.Border(right=ft.BorderSide(1, color="#ACACAC"))
+                                   )
+                              ]
+                         ),
+                         height= container_height,
+                         border=ft.border.all(0.5, color=ft.colors.BLACK),
+                         width= container_width,
+                         
+                    ),
+               ft.Container(
+                    content = ft.Column(
+                         controls= create_bar_graph_row(page),
+                         spacing=0
+                    ),
+                    height=container_height,
+                    width=container_width,
+                    bgcolor=ft.colors.TRANSPARENT
+               )
+                    
+                    ],
+                    
+     )
+     return container
 
-     container = ft.Container(
-          content= ft.Row(
-               controls=[
-                    ft.Container(
-                         height=container_height,
-                         width=container_width/4,
-                         border=ft.Border(right=ft.BorderSide(1, color="#ACACAC"))
-                    ),
-                    ft.Container(
-                         height=container_height,
-                         width=container_width/4,
-                         border=ft.Border(right=ft.BorderSide(1, color="#ACACAC"))
-                    ),
-                    ft.Container(
-                         height=container_height,
-                         width=container_width/4,
-                         border=ft.Border(right=ft.BorderSide(1, color="#ACACAC"))
-                    ),
-                    ft.Container(
-                         height=container_height,
-                         width=container_width/4,
-                         border=ft.Border(right=ft.BorderSide(1, color="#ACACAC"))
-                    )
-               ]
-          ),
-          height= container_height,
-          border=ft.border.all(0.5, color=ft.colors.BLACK),
-          width= container_width,
-          
+def create_bar_graph_row(page):
+     option_array = []
+     data_body_height = global_variables.app_window.height * 0.95 * 0.75 
+     option_height = data_body_height * .04
+     container_width = global_variables.app_window.width * .69 * .8
+     remaining_height = data_body_height - (option_height * len(global_variables.table_array))   
+     tactic_container_height = (remaining_height - 2)/7
+
+     for items in global_variables.table_array:
+          option_row = ft.Container(
+               padding=0,
+               alignment=ft.alignment.center_left,
+               bgcolor=ft.colors.TRANSPARENT,
+               height=option_height,
+               width=container_width
+          )
+          if items[0] != "Preferred Options":
+               option_array.append(option_row)
+
+          for tactics in items[1]:
+               tactic_row = ft.Container(
+                    content=create_bars_for_bar_graph(page),
+                    padding=0,
+                    alignment=ft.alignment.center_left,
+                    height=tactic_container_height,
+                    width=container_width,
+                    bgcolor=ft.colors.TRANSPARENT,
+                    border=ft.border.all(1,ft.colors.RED)
+                           
+               )
+               option_array.append(tactic_row)
+               print(tactics)
+     return option_array
+
+def create_bars_for_bar_graph(page):
+     
+     data_body_height = global_variables.app_window.height * 0.95 * 0.75 
+     option_height = data_body_height * .04
+     container_width = global_variables.app_window.width * .69 * .8
+     remaining_height = data_body_height - (option_height * len(global_variables.table_array))   
+     tactic_container_height = (remaining_height - 2)/7
+
+     container = ft.Column(
+          controls=[
+               ft.Container(
+                    width=container_width,
+                    height= tactic_container_height * .4,
+                    bgcolor=ft.colors.YELLOW
+               ),
+               ft.Container(
+                    width=container_width,
+                    height= tactic_container_height * 0.4,
+                    bgcolor=ft.colors.YELLOW
+               ),
+               
+          ],
+          alignment=ft.MainAxisAlignment.SPACE_EVENLY
      )
      return container
