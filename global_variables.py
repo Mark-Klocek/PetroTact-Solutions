@@ -9,6 +9,9 @@ results_tab_selected = True
 summary_tab_selected = False
 table_array = []
 bgWidth = None
+bulk_num = 0
+stain_num = 0
+
 substrate = {
     0: "Sand-mixed Sediment",
     1: "Coarse Sediment Beach",
