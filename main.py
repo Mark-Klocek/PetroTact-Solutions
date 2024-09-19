@@ -140,7 +140,7 @@ def main(page:ft.Page):
         # SURFACE OIL CAT.CONTAINER #
         #############################
         surface_oil_container = input_container.content.controls[3]
-        surface_oil_container.height = global_variables.app_window.height * 0.3
+        surface_oil_container.height = global_variables.app_window.height * 0.315
         
         surface_oil_header = surface_oil_container.content.controls[0]
         surface_oil_header.height = surface_oil_container.height * 0.10
