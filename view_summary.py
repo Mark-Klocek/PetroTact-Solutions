@@ -8,6 +8,7 @@ data_header = ft.Container()
 data_body = ft.Container()
 data_key = ft.Container()
 tactic = None
+tactic_container_height = None
 
 summary_container = ft.Container()
 summary_header = ft.Container()
@@ -178,14 +179,14 @@ def create_results_columns(page):
      for items in global_variables.table_array:
           bgColor = None
           if items[0] == "Preferred Options":
-               #bgColor = "#F6F9FB"
-               bgColor = "#E6FEE0"
+               bgColor = "#F6F9FB"
+               #bgColor = "#E6FEE0"
           elif items[0] == "For Small Amounts Only":
-               #bgColor = "#E8EFF3"
-               bgColor = "#FEFDD7"
+               bgColor = "#E8EFF3"
+               #bgColor = "#FEFDD7"
           else:
-               #bgColor = "#DBE6EC"
-               bgColor = "#FECFCF"
+               bgColor = "#DBE6EC"
+               #bgColor = "#FECFCF"
           if items[0] == "For Small Amounts Only":
                items[0] = "Small Amounts Only"
           option_row = ft.Container(
@@ -255,7 +256,279 @@ def create_key_container(page):
     )
     data_key = container
     return container
+def create_data_body_bar_graph(page):
+     data_body_height = global_variables.app_window.height * 0.95 * 0.77
+     option_height = data_body_height * .04
+     parent_container_height = (global_variables.app_window.height) * 0.71
+     container_width = global_variables.app_window.width * .69 * .8
+     container_height = parent_container_height - option_height
+     
 
+     container = ft.Stack(
+          controls=[
+               ft.Container(
+                         content= ft.Row(
+                              controls=[
+                                   ft.Container(
+                                        height=container_height,
+                                        width=container_width/4,
+                                        border=ft.Border(right=ft.BorderSide(1, color="#ACACAC"))
+                                   ),
+                                   ft.Container(
+                                        height=container_height,
+                                        width=container_width/4,
+                                        border=ft.Border(right=ft.BorderSide(1, color="#ACACAC"))
+                                   ),
+                                   ft.Container(
+                                        height=container_height,
+                                        width=container_width/4,
+                                        border=ft.Border(right=ft.BorderSide(1, color="#ACACAC"))
+                                   ),
+                                   ft.Container(
+                                        height=container_height,
+                                        width=container_width/4,
+                                        border=ft.Border(right=ft.BorderSide(1, color="#ACACAC"))
+                                   )
+                              ],
+                              spacing=0
+                         ),
+                         height= container_height,
+                         border=ft.border.all(0.5, color=ft.colors.BLACK),
+                         width= container_width,
+                         
+                    ),
+               ft.Container(
+                    content = ft.Column(
+                         controls= create_bar_graph_row(page),
+                         spacing=0
+                    ),
+                    height=container_height,
+                    width=container_width,
+                    bgcolor=ft.colors.TRANSPARENT
+               )
+                    
+                    ],
+                    
+     )
+     return container
+
+def create_bar_graph_row(page):
+     global tactic_container_height
+     option_array = []
+     data_body_height = global_variables.app_window.height * 0.95 * 0.75 
+     option_height = data_body_height * .04
+     container_width = global_variables.app_window.width * .69 * .8
+     remaining_height = data_body_height - (option_height * len(global_variables.table_array))   
+     tactic_container_height = (remaining_height - 2)/7
+
+     for items in global_variables.table_array:
+          option_row = ft.Container(
+               padding=0,
+               alignment=ft.alignment.center_left,
+               bgcolor=ft.colors.TRANSPARENT,
+               height=option_height,
+               width=container_width
+          )
+          if items[0] != "Preferred Options":
+               option_array.append(option_row)
+
+          for tactics in items[1]:
+               tactic_row = ft.Container(
+                    content=create_bars_for_bar_graph(page, tactics),
+                    padding=1,
+                    alignment=ft.alignment.center_left,
+                    height=tactic_container_height,
+                    width=container_width,
+                    bgcolor=ft.colors.TRANSPARENT,
+                    
+                           
+               )
+               option_array.append(tactic_row)
+               print(tactics)
+     return option_array
+
+def create_bars_for_bar_graph(page, tactics):
+     
+     data_body_height = global_variables.app_window.height * 0.95 * 0.75 
+     option_height = data_body_height * .04
+     container_width = global_variables.app_window.width * .69 * .8
+     remaining_height = data_body_height - (option_height * len(global_variables.table_array))   
+     tactic_container_height = (remaining_height - 2)/7
+     global tactic
+     tactic = tactics[0]
+     if tactics[1] == "--":
+          tactics[1] = 0  
+     else:
+          tactics[1] = float(tactics[1])
+     if tactics[2] == "--":
+          global_variables.bulk_num = tactics[1]
+     else:
+          global_variables.bulk_num = tactics[2]
+     if tactics[3] == "--":
+          tactics[3] = 0
+     else:
+          tactics[3] = float(tactics[3])
+     if tactics[4] == "--":
+          tactics[4] = 0  
+     else:
+          tactics[4] = float(tactics[4])
+     
+     if tactics[5] == "--":
+        global_variables.stain_num = tactics[4]
+     else:
+        global_variables.stain_num = float(tactics[5])
+      
+
+     if tactics[6] == "--":
+          tactics[6] = 0  
+     else:
+           tactics[6] = float(tactics[6]) 
+
+     bulk_width = get_bar_width(global_variables.bulk_num,container_width)
+     stain_width = get_bar_width(global_variables.stain_num,container_width)
+     operational_bulk_waste = global_variables.bulk_num * (tactics[3]/100)
+     operational_stain_waste = global_variables.stain_num * (tactics[6]/100)
+     container = ft.Column(
+          controls=[
+               ft.Row(
+                    controls=[
+                         ft.Container(
+                              width = bulk_width,
+                              height=tactic_container_height * 0.4,
+                              bgcolor=ft.colors.TRANSPARENT,
+                              content=fill_bar(container_width,operational_bulk_waste),
+                              
+                              
+                         ),
+                         ft.Container(
+                              height=tactic_container_height * 0.4,
+                              bgcolor=ft.colors.TRANSPARENT ,
+                              expand=True
+                              
+                         )
+                    ],
+                    spacing=0,
+                    height=tactic_container_height * 0.4,
+                    expand=True
+                   
+                    
+               ),
+               ft.Row(
+                    controls=[
+                         ft.Container(
+                              width = stain_width,
+                              height=tactic_container_height * 0.4,
+                              bgcolor=ft.colors.TRANSPARENT,
+                              content=fill_bar(container_width,operational_stain_waste,is_stain=True),
+                              
+                              
+                              
+                              
+                         ),
+                         ft.Container(
+                              height=tactic_container_height * 0.4,
+                              bgcolor=ft.colors.TRANSPARENT ,
+                              expand=True
+                              
+                         )
+                    ],
+                    height= tactic_container_height * 0.4,
+                    spacing=0,
+                    expand=True
+                    
+               ),
+               
+          ],
+          alignment=ft.MainAxisAlignment.SPACE_EVENLY
+     )
+     return container
+
+def get_bar_width(tactics,container_width): 
+     operational_waste_width = 0
+     if tactics == '--':
+          return 0
+     tactics = float(tactics)
+     if tactics > 0.01:
+        operational_waste_width += container_width * 0.25
+        if tactics > 0.1:
+            operational_waste_width += container_width * 0.25
+            if tactics > 1:
+                operational_waste_width += container_width * 0.25
+                if tactics >= 10:
+                    operational_waste_width += container_width * 0.25
+                else:
+                    return operational_waste_width + ((tactics - 1) / 9) * (container_width * 0.25)  # Scale between 1 and 10
+            else:
+                return operational_waste_width + ((tactics - 0.1) / 0.9) * (container_width * 0.25)  # Scale between 0.1 and 1
+        else:
+            return operational_waste_width + ((tactics - 0.01) / 0.09) * (container_width * 0.25)  # Scale between 0.01 and 0.1
+     else:
+          return operational_waste_width + (tactics / 0.01) * (container_width * 0.25)  # Scale between 0 and 0.01
+     
+def fill_bar(bar_width, tactics,is_stain = False):
+     global tactic_container_height
+     if tactics == "--":
+          return None
+     if is_stain:
+          yellow_width = get_bar_width(tactics, bar_width)
+          container = ft.Row(
+               controls=[
+                    ft.Container(
+                         width=yellow_width,
+                         content= ft.Image(src=r"images\bar graph context\yellow_striped_bar.png", fit=ft.ImageFit.COVER),
+                         border=ft.Border(top=ft.BorderSide(1, ft.colors.BLACK),bottom=ft.BorderSide(1, ft.colors.BLACK)),
+                         height=tactic_container_height * 0.4
+                    ),
+                    ft.Container(
+                         expand=True,
+                         content= ft.Image(src=waste_type_color(is_stain=True), fit=ft.ImageFit.COVER),
+                         border=ft.border.all(1,ft.colors.BLACK),
+                         height=tactic_container_height * 0.4
+                    )
+               ],
+               expand=True,
+               spacing=0
+               
+          )
+          return container
+     else:
+          yellow_width = get_bar_width(tactics, bar_width)
+          container = ft.Row(
+               controls=[
+                    ft.Container(
+                         width=yellow_width,
+                         bgcolor= "#ECD502",
+                         border=ft.Border(top=ft.BorderSide(1, ft.colors.BLACK),bottom=ft.BorderSide(1, ft.colors.BLACK))
+                    ),
+                    ft.Container(
+                         expand=True,
+                         bgcolor=waste_type_color(),
+                         border=ft.border.all(1,ft.colors.BLACK)
+                    )
+               ],
+               expand=True,
+               spacing=0
+               
+          )
+          return container
+
+def waste_type_color(is_stain = False):
+     global tactic
+     if is_stain:
+          if global_variables.substrate[global_variables.substrate_selected_index] == "Snow":
+               return r"images\bar graph context\gray_striped_bar.png"
+          if tactic == "Washing and Recovery":
+               return r"images\bar graph context\blue_striped_bar.png"
+          else:
+               return r"images\bar graph context\red_striped_bar.png"
+     else:
+          if global_variables.substrate[global_variables.substrate_selected_index] == "Snow":
+               return "#8697A1"
+          if tactic == "Washing and Recovery":
+               return "#4162A6"
+          else:
+               return "#A1383F"
+     
 def create_summary_container(page):
      global summary_container
      container = ft.Container(
@@ -736,245 +1009,3 @@ def create_data_matrix(page):
      return matrix_array
 
 
-def create_data_body_bar_graph(page):
-     data_body_height = global_variables.app_window.height * 0.95 * 0.77
-     option_height = data_body_height * .04
-     parent_container_height = (global_variables.app_window.height) * 0.71
-     container_width = global_variables.app_window.width * .69 * .8
-     container_height = parent_container_height - option_height
-     
-
-     container = ft.Stack(
-          controls=[
-               ft.Container(
-                         content= ft.Row(
-                              controls=[
-                                   ft.Container(
-                                        height=container_height,
-                                        width=container_width/4,
-                                        border=ft.Border(right=ft.BorderSide(1, color="#ACACAC"))
-                                   ),
-                                   ft.Container(
-                                        height=container_height,
-                                        width=container_width/4,
-                                        border=ft.Border(right=ft.BorderSide(1, color="#ACACAC"))
-                                   ),
-                                   ft.Container(
-                                        height=container_height,
-                                        width=container_width/4,
-                                        border=ft.Border(right=ft.BorderSide(1, color="#ACACAC"))
-                                   ),
-                                   ft.Container(
-                                        height=container_height,
-                                        width=container_width/4,
-                                        border=ft.Border(right=ft.BorderSide(1, color="#ACACAC"))
-                                   )
-                              ],
-                              spacing=0
-                         ),
-                         height= container_height,
-                         border=ft.border.all(0.5, color=ft.colors.BLACK),
-                         width= container_width,
-                         
-                    ),
-               ft.Container(
-                    content = ft.Column(
-                         controls= create_bar_graph_row(page),
-                         spacing=0
-                    ),
-                    height=container_height,
-                    width=container_width,
-                    bgcolor=ft.colors.TRANSPARENT
-               )
-                    
-                    ],
-                    
-     )
-     return container
-
-def create_bar_graph_row(page):
-     option_array = []
-     data_body_height = global_variables.app_window.height * 0.95 * 0.75 
-     option_height = data_body_height * .04
-     container_width = global_variables.app_window.width * .69 * .8
-     remaining_height = data_body_height - (option_height * len(global_variables.table_array))   
-     tactic_container_height = (remaining_height - 2)/7
-
-     for items in global_variables.table_array:
-          option_row = ft.Container(
-               padding=0,
-               alignment=ft.alignment.center_left,
-               bgcolor=ft.colors.TRANSPARENT,
-               height=option_height,
-               width=container_width
-          )
-          if items[0] != "Preferred Options":
-               option_array.append(option_row)
-
-          for tactics in items[1]:
-               tactic_row = ft.Container(
-                    content=create_bars_for_bar_graph(page, tactics),
-                    padding=1,
-                    alignment=ft.alignment.center_left,
-                    height=tactic_container_height,
-                    width=container_width,
-                    bgcolor=ft.colors.TRANSPARENT,
-                    
-                           
-               )
-               option_array.append(tactic_row)
-               print(tactics)
-     return option_array
-
-def create_bars_for_bar_graph(page, tactics):
-     
-     data_body_height = global_variables.app_window.height * 0.95 * 0.75 
-     option_height = data_body_height * .04
-     container_width = global_variables.app_window.width * .69 * .8
-     remaining_height = data_body_height - (option_height * len(global_variables.table_array))   
-     tactic_container_height = (remaining_height - 2)/7
-     global tactic
-     tactic = tactics[0]
-     if tactics[1] == "--":
-          tactics[1] = 0  
-     else:
-          tactics[1] = float(tactics[1])
-     if tactics[2] == "--":
-          global_variables.bulk_num = tactics[1]
-     else:
-          global_variables.bulk_num = tactics[2]
-     if tactics[3] == "--":
-          tactics[3] = 0
-     else:
-          tactics[3] = float(tactics[3])
-     if tactics[4] == "--":
-          tactics[4] = 0  
-     else:
-          tactics[4] = float(tactics[4])
-     
-     if tactics[5] == "--":
-        global_variables.stain_num = tactics[4]
-     else:
-        global_variables.stain_num = float(tactics[5])
-      
-
-     if tactics[6] == "--":
-          tactics[6] = 0  
-     else:
-           tactics[6] = float(tactics[6]) 
-
-     bulk_width = get_bar_width(global_variables.bulk_num,container_width)
-     stain_width = get_bar_width(global_variables.stain_num,container_width)
-     operational_bulk_waste = global_variables.bulk_num * (tactics[3]/100)
-     operational_stain_waste = global_variables.stain_num * (tactics[6]/100)
-     container = ft.Column(
-          controls=[
-               ft.Row(
-                    controls=[
-                         ft.Container(
-                              width = bulk_width,
-                              height=tactic_container_height * 0.4,
-                              bgcolor=ft.colors.TRANSPARENT,
-                              content=fill_bar(container_width,operational_bulk_waste),
-                              
-                              
-                         ),
-                         ft.Container(
-                              height=tactic_container_height * 0.4,
-                              bgcolor=ft.colors.TRANSPARENT ,
-                              expand=True
-                              
-                         )
-                    ],
-                    spacing=0,
-                    height=tactic_container_height * 0.4,
-                    expand=True
-                   
-                    
-               ),
-               ft.Row(
-                    controls=[
-                         ft.Container(
-                              width = stain_width,
-                              height=tactic_container_height * 0.4,
-                              bgcolor=ft.colors.TRANSPARENT,
-                              content=fill_bar(container_width,operational_stain_waste),
-                              
-                              
-                              
-                              
-                         ),
-                         ft.Container(
-                              height=tactic_container_height * 0.4,
-                              bgcolor=ft.colors.TRANSPARENT ,
-                              expand=True
-                              
-                         )
-                    ],
-                    height= tactic_container_height * 0.4,
-                    spacing=0,
-                    expand=True
-                    
-               ),
-               
-          ],
-          alignment=ft.MainAxisAlignment.SPACE_EVENLY
-     )
-     return container
-
-def get_bar_width(tactics,container_width): 
-     operational_waste_width = 0
-     if tactics == '--':
-          return 0
-     tactics = float(tactics)
-     if tactics > 0.01:
-        operational_waste_width += container_width * 0.25
-        if tactics > 0.1:
-            operational_waste_width += container_width * 0.25
-            if tactics > 1:
-                operational_waste_width += container_width * 0.25
-                if tactics >= 10:
-                    operational_waste_width += container_width * 0.25
-                else:
-                    return operational_waste_width + ((tactics - 1) / 9) * (container_width * 0.25)  # Scale between 1 and 10
-            else:
-                return operational_waste_width + ((tactics - 0.1) / 0.9) * (container_width * 0.25)  # Scale between 0.1 and 1
-        else:
-            return operational_waste_width + ((tactics - 0.01) / 0.09) * (container_width * 0.25)  # Scale between 0.01 and 0.1
-     else:
-          return operational_waste_width + (tactics / 0.01) * (container_width * 0.25)  # Scale between 0 and 0.01
-     
-def fill_bar(bar_width, tactics):
-     if tactics == "--":
-          return None
-     yellow_width = get_bar_width(tactics, bar_width)
-     blue_width = bar_width - yellow_width
-     container = ft.Row(
-          controls=[
-               ft.Container(
-                    width=yellow_width,
-                    bgcolor= "#ECD502",
-                    border=ft.Border(top=ft.BorderSide(1, ft.colors.BLACK),bottom=ft.BorderSide(1, ft.colors.BLACK))
-               ),
-               ft.Container(
-                    expand=True,
-                    bgcolor=waste_type_color(),
-                    border=ft.border.all(1,ft.colors.BLACK)
-               )
-          ],
-          expand=True,
-          spacing=0
-          
-     )
-     return container
-
-def waste_type_color():
-     global tactic
-     
-     if global_variables.substrate[global_variables.substrate_selected_index] == "Snow":
-          return "#8697A1"
-     if tactic == "Washing and Recovery":
-          return "#4162A6"
-     else:
-          return "#A1383F"
-     
