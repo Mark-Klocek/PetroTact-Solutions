@@ -7,6 +7,7 @@ results_container = ft.Container()
 data_header = ft.Container()
 data_body = ft.Container()
 data_key = ft.Container()
+tactic = None
 
 summary_container = ft.Container()
 summary_header = ft.Container()
@@ -185,6 +186,8 @@ def create_results_columns(page):
           else:
                #bgColor = "#DBE6EC"
                bgColor = "#FECFCF"
+          if items[0] == "For Small Amounts Only":
+               items[0] = "Small Amounts Only"
           option_row = ft.Container(
                content= ft.Text(items[0],color=ft.colors.BLACK, weight=ft.FontWeight.BOLD,font_family="Roboto", size= text_size),
                padding=ft.padding.only(left=2),
@@ -830,6 +833,8 @@ def create_bars_for_bar_graph(page, tactics):
      container_width = global_variables.app_window.width * .69 * .8
      remaining_height = data_body_height - (option_height * len(global_variables.table_array))   
      tactic_container_height = (remaining_height - 2)/7
+     global tactic
+     tactic = tactics[0]
      if tactics[1] == "--":
           tactics[1] = 0  
      else:
@@ -870,7 +875,8 @@ def create_bars_for_bar_graph(page, tactics):
                               width = bulk_width,
                               height=tactic_container_height * 0.4,
                               bgcolor=ft.colors.TRANSPARENT,
-                              content=fill_bar(container_width,operational_bulk_waste)
+                              content=fill_bar(container_width,operational_bulk_waste),
+                              
                               
                          ),
                          ft.Container(
@@ -892,7 +898,10 @@ def create_bars_for_bar_graph(page, tactics):
                               width = stain_width,
                               height=tactic_container_height * 0.4,
                               bgcolor=ft.colors.TRANSPARENT,
-                              content=fill_bar(container_width,operational_stain_waste)
+                              content=fill_bar(container_width,operational_stain_waste),
+                              
+                              
+                              
                               
                          ),
                          ft.Container(
@@ -944,11 +953,13 @@ def fill_bar(bar_width, tactics):
           controls=[
                ft.Container(
                     width=yellow_width,
-                    bgcolor= ft.colors.YELLOW
+                    bgcolor= "#ECD502",
+                    border=ft.Border(top=ft.BorderSide(1, ft.colors.BLACK),bottom=ft.BorderSide(1, ft.colors.BLACK))
                ),
                ft.Container(
                     expand=True,
-                    bgcolor=ft.colors.BLUE
+                    bgcolor=waste_type_color(),
+                    border=ft.border.all(1,ft.colors.BLACK)
                )
           ],
           expand=True,
@@ -956,3 +967,14 @@ def fill_bar(bar_width, tactics):
           
      )
      return container
+
+def waste_type_color():
+     global tactic
+     
+     if global_variables.substrate[global_variables.substrate_selected_index] == "Snow":
+          return "#8697A1"
+     if tactic == "Washing and Recovery":
+          return "#4162A6"
+     else:
+          return "#A1383F"
+     
