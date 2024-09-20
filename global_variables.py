@@ -2129,3 +2129,31 @@ def generate_table_array(page):
     page.update()
     
 
+
+
+
+'''ft.TextButton(
+                         on_click=lambda e: print("Button pressed"),
+                         
+                         content=
+                         ft.Row(
+                              controls=[
+                                   ft.Icon(
+                                        ft.icons.SEARCH_SHARP,
+                                        color=ft.colors.BLACK,
+                                        size=text_size
+                                   ),
+                                   ft.Text(
+                                        "View Actual Scale",
+                                        color=ft.colors.BLACK,
+                                        #weight=ft.FontWeight.BOLD,
+                                        font_family="Roboto",
+                                        size=text_size * 0.5
+                                   ),
+                              ],
+                              spacing=0,
+                              
+                         ),
+                         
+                    
+                    ),'''

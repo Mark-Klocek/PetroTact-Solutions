@@ -189,14 +189,14 @@ def create_results_columns(page):
      for items in global_variables.table_array:
           bgColor = None
           if items[0] == "Preferred Options":
-               bgColor = "#F6F9FB"
-               #bgColor = "#E6FEE0"
+               #bgColor = "#F6F9FB"
+               bgColor = "#E6FEE0"
           elif items[0] == "For Small Amounts Only":
-               bgColor = "#E8EFF3"
-               #bgColor = "#FEFDD7"
+               #bgColor = "#E8EFF3"
+               bgColor = "#FEFDD7"
           else:
-               bgColor = "#DBE6EC"
-               #bgColor = "#FECFCF"
+               #bgColor = "#DBE6EC"
+               bgColor = "#FECFCF"
           if items[0] == "For Small Amounts Only":
                items[0] = "Small Amounts Only"
           option_row = ft.Container(
@@ -210,7 +210,6 @@ def create_results_columns(page):
           )
           option_array.append(option_row)
           print(f"{items[0]} has {len(items[1])} tactics \n --------------------------------------------")
-          print(len(items))
           for tactics in items[1]:
                
                
@@ -256,17 +255,200 @@ def create_tactic_row(tactic, text_size):
      return container
 def create_key_container(page):
     global data_key
-    key_height = global_variables.app_window.height * 0.95 * 0.3
+    key_height = global_variables.app_window.height * 0.95 * 0.223
     container = ft.Container(
-        content= ft.Text("Results Key", color=ft.colors.BLACK),
-        expand=True,
+        content= create_key_window_column(page),
+        #expand=True,
         alignment=ft.alignment.center,
         bgcolor=ft.colors.TRANSPARENT,
         border=ft.border.all(1,ft.colors.GREEN),
-        height=key_height
+        height=key_height,
+        width = global_variables.app_window.width * .69,
+        #padding=0
     )
     data_key = container
     return container
+def create_key_window_column(page):
+     data_body_height = global_variables.app_window.height * 0.95 * 0.75
+     option_height = data_body_height * .04 * 2
+     container = ft.Column(
+          controls=[
+               ft.Container(
+                    content = graph_x_axis(page),
+                    #border=ft.border.all(1,ft.colors.RED),
+                    height= option_height,
+                    #padding=0,
+                    width = global_variables.app_window.width * .69
+               ),
+               ft.Container(
+                    expand=True,
+                    #border=ft.border.all(1, ft.colors.AMBER),
+                    #padding=0,
+                    width = global_variables.app_window.width * .69
+               )
+          ],
+          spacing=0
+     )
+     return container
+def graph_x_axis(page):
+     data_body_height = global_variables.app_window.height * 0.95 * 0.75
+     option_height = data_body_height * .04 * 2
+     text_size = option_height * .65
+     
+     container = ft.Row(
+          controls=[
+              ft.Container(
+                    content=
+                    ft.Row(
+                         controls=[
+                              ft.Container(
+                                   content=ft.Icon(
+                                                  ft.icons.SEARCH_SHARP,
+                                                  color=ft.colors.BLACK,
+                                                  size=text_size,
+                                                  
+                                              ),
+                                   #padding=0,
+                                   width = global_variables.app_window.width * .69 * .05,
+                                   border=ft.border.all(1, ft.colors.RED)
+                                   
+                              ),
+                              ft.Container(
+                                   content= ft.Text("View Actual Scale",color=ft.colors.BLACK,font_family="Roboto", size= text_size * 0.5,text_align=ft.TextAlign.CENTER),
+                                   alignment=ft.alignment.center,
+                                   #padding=0,
+                                   bgcolor=ft.colors.TRANSPARENT,
+                                   width = global_variables.app_window.width * .69 *.13,
+                                   border=ft.border.all(1, ft.colors.RED),
+                                   expand=True
+                                   
+                              ),
+                         ],
+                         spacing=0,
+                         
+                    ),
+               on_click=lambda e: print("Row clicked!"),  # Now the whole container is clickable
+               border_radius=ft.border_radius.all(10),
+               bgcolor="#D2E0E8",
+               expand=True,
+               height=option_height,
+               alignment=ft.alignment.center,
+               on_hover=on_view_actual_scale_hover,
+               border=ft.border.all(1, ft.colors.RED)
+               )
+
+,
+               ft.Container(
+                    content=return_x_axis_column(page),
+                    width = global_variables.app_window.width * .69 * .8
+                    #padding=0
+                    
+               )
+          ],
+          expand=True,
+          spacing=0,
+          
+     )
+     return container
+def on_view_actual_scale_hover(e):
+     if e.data == "true":
+          e.control.bgcolor = "#A7BFD2"
+     else:
+          e.control.bgcolor = "#D2E0E8"
+     e.control.update()
+
+def return_x_axis_column(page):
+     data_body_height = global_variables.app_window.height * 0.95 * 0.75
+     option_height = data_body_height * .04
+     container_width = global_variables.app_window.width * .69 * .8
+     num_width = container_width * 0.25 * 0.15
+     label_width = (container_width - (num_width * 5 )) / 4
+     container = ft.Column(
+          controls=[
+               ft.Container(
+                    content=ft.Row(
+                         controls=[
+                              ft.Container(
+                                   border=ft.border.all(1,ft.colors.RED),
+                                   expand=True,
+                                   #padding=0,
+                                   
+                              ),
+                              ft.Container(
+                                   border=ft.border.all(1,ft.colors.RED),
+                                   expand=True,
+                                   #padding=0
+                              ),
+                              ft.Container(
+                                   border=ft.border.all(1,ft.colors.RED),
+                                   expand=True,
+                                   #padding=0,
+                                   
+                              ),
+                              ft.Container(
+                                   border=ft.border.all(1,ft.colors.RED),
+                                   expand=True,
+                                   #padding=0,
+                                   
+                              ),
+                              ft.Container(
+                                   border=ft.border.all(1,ft.colors.RED),
+                                   expand=True,
+                                   #padding=0
+                              ),
+                              ft.Container(
+                                   border=ft.border.all(1,ft.colors.RED),
+                                   expand=True,
+                                   #padding=0
+                                   
+                              ),
+                              ft.Container(
+                                   border=ft.border.all(1,ft.colors.RED),
+                                   expand=True,
+                                   #padding=0
+                              ),
+                              ft.Container(
+                                   border=ft.border.all(1,ft.colors.RED),
+                                   expand=True,
+                                   #padding=0
+                              ),
+                              ft.Container(
+                                   border=ft.border.all(1,ft.colors.RED),
+                                   expand=True,
+                                   #padding=0
+                              )
+                         ],
+                         spacing=0,
+                         
+                         
+                    ),
+                    height=option_height,
+                    width=container_width,
+                    padding=0,
+                    #expand=True
+                    
+                    
+
+               ),
+               ft.Container(
+                    content=ft.Text(
+                         "m³/m of shoreline",
+                         color=ft.colors.BLACK,
+                         font_family="Roboto",
+                         size=option_height*0.7
+                    ),
+                    height=option_height,
+                    expand=True,
+                    #padding=0,
+                    alignment=ft.alignment.top_center,
+                    border=ft.border.all(1,ft.colors.RED)
+
+               )
+          ],
+          spacing=0,
+          
+     )
+     return container
 def create_data_body_bar_graph(page):
      data_body_height = global_variables.app_window.height * 0.95 * 0.75
      option_height = data_body_height * .04
@@ -366,7 +548,7 @@ def create_bar_graph_row(page):
                     width=container_width,
                     bgcolor=ft.colors.TRANSPARENT,                           
                )
-               
+
                option_array.append(tactic_row)
                print(tactics)
           option_counter += 1
