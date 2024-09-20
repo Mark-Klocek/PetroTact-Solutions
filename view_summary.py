@@ -1,5 +1,6 @@
 import flet as ft
 import global_variables
+import info_buttons
 
 header_container = ft.Container()
 data_container = ft.Container()
@@ -310,7 +311,7 @@ def graph_x_axis(page):
                                               ),
                                    #padding=0,
                                    width = global_variables.app_window.width * .69 * .05,
-                                   border=ft.border.all(1, ft.colors.RED)
+                                   #border=ft.border.all(1, ft.colors.RED)
                                    
                               ),
                               ft.Container(
@@ -319,7 +320,7 @@ def graph_x_axis(page):
                                    #padding=0,
                                    bgcolor=ft.colors.TRANSPARENT,
                                    width = global_variables.app_window.width * .69 *.13,
-                                   border=ft.border.all(1, ft.colors.RED),
+                                   #border=ft.border.all(1, ft.colors.RED),
                                    expand=True
                                    
                               ),
@@ -327,14 +328,14 @@ def graph_x_axis(page):
                          spacing=0,
                          
                     ),
-               on_click=lambda e: print("Row clicked!"),  # Now the whole container is clickable
+               on_click=lambda e: info_buttons.actual_scale_graph(page),  # Now the whole container is clickable
                border_radius=ft.border_radius.all(10),
                bgcolor="#D2E0E8",
                expand=True,
                height=option_height,
                alignment=ft.alignment.center,
                on_hover=on_view_actual_scale_hover,
-               border=ft.border.all(1, ft.colors.RED)
+               #border=ft.border.all(1, ft.colors.RED)
                )
 
 ,
@@ -363,58 +364,72 @@ def return_x_axis_column(page):
      container_width = global_variables.app_window.width * .69 * .8
      num_width = container_width * 0.25 * 0.15
      label_width = (container_width - (num_width * 5 )) / 4
+     text_size = option_height * 0.8
      container = ft.Column(
           controls=[
                ft.Container(
                     content=ft.Row(
                          controls=[
                               ft.Container(
-                                   border=ft.border.all(1,ft.colors.RED),
+                                   content=ft.Text("0",color=ft.colors.BLACK,font_family="Roboto", size= text_size),
+                                   #border=ft.border.all(1,ft.colors.RED),
+                                   #expand=True,
+                                   height=option_height,
+                                   padding=0,
+                                   alignment=ft.alignment.top_left
+                                   
+                                   
+                              ),
+                              ft.Container(
+                                   content= ft.Text("Very Low",color=ft.colors.BLACK,font_family="Roboto",weight=ft.FontWeight.BOLD, size= text_size,text_align=ft.TextAlign.CENTER),
+                                   #border=ft.border.all(1,ft.colors.RED),
+                                   expand=True,
+                                   #padding=0
+                              ),
+                              ft.Container(
+                                   content=ft.Text("0.01",color=ft.colors.BLACK,font_family="Roboto", size= text_size),
+                                   #border=ft.border.all(1,ft.colors.RED),
+                                   alignment=ft.alignment.top_right
+                                   #expand=True,
+                                   #padding=0,
+                                   
+                              ),
+                              ft.Container(
+                                   content= ft.Text("Low",color=ft.colors.BLACK,font_family="Roboto",weight=ft.FontWeight.BOLD, size= text_size,text_align=ft.TextAlign.CENTER),
+                                   #border=ft.border.all(1,ft.colors.RED),
                                    expand=True,
                                    #padding=0,
                                    
                               ),
                               ft.Container(
-                                   border=ft.border.all(1,ft.colors.RED),
-                                   expand=True,
+                                   content=ft.Text("0.1",color=ft.colors.BLACK,font_family="Roboto", size= text_size),
+                                   #border=ft.border.all(1,ft.colors.RED),
+                                   #expand=True,
                                    #padding=0
                               ),
                               ft.Container(
-                                   border=ft.border.all(1,ft.colors.RED),
-                                   expand=True,
-                                   #padding=0,
-                                   
-                              ),
-                              ft.Container(
-                                   border=ft.border.all(1,ft.colors.RED),
-                                   expand=True,
-                                   #padding=0,
-                                   
-                              ),
-                              ft.Container(
-                                   border=ft.border.all(1,ft.colors.RED),
-                                   expand=True,
-                                   #padding=0
-                              ),
-                              ft.Container(
-                                   border=ft.border.all(1,ft.colors.RED),
+                                   content= ft.Text("High",color=ft.colors.BLACK,font_family="Roboto",weight=ft.FontWeight.BOLD, size= text_size,text_align=ft.TextAlign.CENTER),
+                                   #border=ft.border.all(1,ft.colors.RED),
                                    expand=True,
                                    #padding=0
                                    
                               ),
                               ft.Container(
-                                   border=ft.border.all(1,ft.colors.RED),
+                                   content=ft.Text("1",color=ft.colors.BLACK,font_family="Roboto", size= text_size),
+                                   #border=ft.border.all(1,ft.colors.RED),
+                                   #expand=True,
+                                   #padding=0
+                              ),
+                              ft.Container(
+                                   content= ft.Text("Very High",color=ft.colors.BLACK,font_family="Roboto",weight=ft.FontWeight.BOLD, size= text_size,text_align=ft.TextAlign.CENTER),
+                                   #border=ft.border.all(1,ft.colors.RED),
                                    expand=True,
                                    #padding=0
                               ),
                               ft.Container(
-                                   border=ft.border.all(1,ft.colors.RED),
-                                   expand=True,
-                                   #padding=0
-                              ),
-                              ft.Container(
-                                   border=ft.border.all(1,ft.colors.RED),
-                                   expand=True,
+                                   content=ft.Text("10",color=ft.colors.BLACK,font_family="Roboto", size= text_size),
+                                   #border=ft.border.all(1,ft.colors.RED),
+                                   #expand=True,
                                    #padding=0
                               )
                          ],
@@ -441,7 +456,7 @@ def return_x_axis_column(page):
                     expand=True,
                     #padding=0,
                     alignment=ft.alignment.top_center,
-                    border=ft.border.all(1,ft.colors.RED)
+                    #border=ft.border.all(1,ft.colors.RED)
 
                )
           ],
