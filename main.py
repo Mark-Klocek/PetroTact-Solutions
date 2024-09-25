@@ -7,29 +7,60 @@ import view_summary
 
 
 def main(page:ft.Page):
+    page.padding=0
     global_variables.app_window = page
     input_container = functions.create_input_container(page)
     results_container=view_summary.create_results_container(page)
+    logo_container = functions.create_logo_container(page)
+    file_view_help = functions.create_file_view_help(page)
     global_variables.app_window = ft.Container(
                     content=ft.Row(
                         controls=[input_container,results_container],
                         expand=True,
                         spacing=0),
-                    padding=0)   
-    global_variables.app_window.height = page.height * 0.98
+                    padding=0,
+                    )   
+    global_variables.app_window.height = page.height * .99
     global_variables.app_window.width = page.width
-    page.add(global_variables.app_window)
+    page.add(
+        ft.Container(
+            content=ft.Stack(
+                controls=[
+                    global_variables.app_window,
+                    logo_container,
+                    file_view_help
+                ]
+            ),
+            expand=True,
+            padding=0,
+            margin=0,
+            #border=ft.border.all(1,ft.colors.YELLOW)
+        )
+    )
    
 
     #page.window.max_width = 1280 
     #page.window.max_height = 720 
 
     def resize(e):
-        global_variables.app_window.height = page.height * 0.98
+        global_variables.app_window.height = page.height * .99
         global_variables.app_window.width = page.width
         def resize_text(container):
             if isinstance(container.content, ft.Text):
                 container.content.size = container.height * 0.6
+
+        #############################
+        ###### LOGO CONTAINER #####
+        #############################
+        logo_container = page.controls[0].content.controls[1]  # The overlay container for logos
+        logo_container.width = page.width * 0.35
+        logo_container.height = page.height * 0.15
+        ##################################
+        ##### FILE/VIEW/HELP CONTAINER ######
+        ##################################
+        file_view_help_container = page.controls[0].content.controls[2]
+        file_view_help_container.width = page.width * 0.3
+        file_view_help_container.height = page.height * .03
         #######################################################################################
         ############################### INPUT CONTAINER #######################################
         #######################################################################################

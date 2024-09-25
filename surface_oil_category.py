@@ -2,7 +2,7 @@ import flet as ft
 import pics_and_desc
 import global_variables
 import view_summary
-
+import info_buttons
 
 
 
@@ -51,7 +51,8 @@ def create_surface_oil_header_column(page):
                 alignment=ft.alignment.center_left,                
                 border_radius=ft.border_radius.only(top_left=10,top_right=10),
                 bgcolor= "#DCDCDC",
-                height= global_variables.app_window.height * 0.3 * 0.15
+                height= global_variables.app_window.height * 0.3 * 0.15,
+                on_click=lambda e: info_buttons.surface_oil_category_info(page),
 
         )
         surface_oil_header_container = container

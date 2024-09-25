@@ -2,6 +2,7 @@ import flet as ft
 import pics_and_desc
 import global_variables
 import view_summary
+import info_buttons
 oil_type_column_b_containers = []
 
 oil_type_container = None
@@ -82,6 +83,7 @@ def create_oil_type_header_container(page):
         padding= ft.padding.only(left=5),
         alignment=ft.alignment.center_left,
         border_radius=ft.border_radius.only(top_left=8,top_right=10),
+        on_click=lambda e: info_buttons.oil_type_info(page),
         
         
     )

@@ -989,7 +989,8 @@ def create_summary_information(page):
                                                     alignment=ft.alignment.center_right,
                                                     bgcolor=ft.colors.TRANSPARENT,
                                                     expand=True,
-                                                    padding=0
+                                                    padding=0,
+                                                    on_click=lambda e: info_buttons.tactic_info(page),
                                                     ),
                                                 ft.Container(
                                                      content= ft.Row(
@@ -1008,7 +1009,8 @@ def create_summary_information(page):
                                                     alignment=ft.alignment.center,
                                                     bgcolor=ft.colors.TRANSPARENT,
                                                     expand=True,
-                                                    padding=0
+                                                    padding=0,
+                                                    on_click=lambda e: info_buttons.endpoints_info(page),
                                                     ),       
                                                 ]
                                       ),
@@ -1040,7 +1042,8 @@ def create_summary_information(page):
                                                     alignment=ft.alignment.center,
                                                     bgcolor=ft.colors.TRANSPARENT,
                                                     expand=True,
-                                                    padding=0
+                                                    padding=0,
+                                                    on_click=lambda e: info_buttons.waste_types_info(page),
                                                     ),
                                                 ft.Container(
                                                      content= ft.Row(
@@ -1059,7 +1062,8 @@ def create_summary_information(page):
                                                     alignment=ft.alignment.center,
                                                     bgcolor=ft.colors.TRANSPARENT,
                                                     expand=True,
-                                                    padding=0
+                                                    padding=0,
+                                                    on_click=lambda e: info_buttons.waste_volume_info(page),
                                                     ),       
                                                 ]
                                       ),

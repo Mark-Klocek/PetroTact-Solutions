@@ -3,6 +3,7 @@ import pics_and_desc
 import surface_oil_category
 import global_variables
 import view_summary
+import info_buttons
 
 
 
@@ -35,9 +36,12 @@ def create_substrate_header_container(page):
                 ft.Icon(
                         name=ft.icons.INFO_OUTLINED,
                         size=global_variables.app_window.height * 0.95 * 0.15 * 0.20 * 0.8,
-                        color=ft.colors.ORANGE
-                    )]
+                        color=ft.colors.ORANGE,
+                        
+                    )],
+                    
         ),
+        on_click=lambda e: info_buttons.substrate_info(page),
         bgcolor="#DCDCDC",
         padding= ft.padding.only(left=10),
         alignment=ft.alignment.center_left,
