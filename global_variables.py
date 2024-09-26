@@ -1,3 +1,4 @@
+import flet as ft
 
 app_window = None
 var = "--"
@@ -11,7 +12,12 @@ table_array = []
 bgWidth = None
 bulk_num = 0
 stain_num = 0
-
+def on_hover_change_color(e):
+    if e.data == "true":  # When hovering
+        e.control.content.color = ft.colors.BLUE
+    else:  # When not hovering
+        e.control.content.color = ft.colors.ORANGE
+    e.control.update()
 substrate = {
     0: "Sand-mixed Sediment",
     1: "Coarse Sediment Beach",

@@ -32,16 +32,27 @@ def create_substrate_header_container(page):
     return ft.Container(
         content=ft.Row(
             controls = [
-                ft.Text("Substrate",color="Black",font_family="Roboto", weight=ft.FontWeight.BOLD),
-                ft.Icon(
+                ft.Container(
+                    content=ft.Text("Substrate",color="Black",font_family="Roboto", weight=ft.FontWeight.BOLD)
+                ),
+                ft.Container(
+                    ft.Icon(
                         name=ft.icons.INFO_OUTLINED,
                         size=global_variables.app_window.height * 0.95 * 0.15 * 0.20 * 0.8,
                         color=ft.colors.ORANGE,
                         
-                    )],
+                        
+                        
+                    ),
+                    on_click=lambda e: info_buttons.substrate_info(page),
+                    on_hover=global_variables.on_hover_change_color
+                ),
+                ft.Container(
+                    expand=True
+                )],
                     
         ),
-        on_click=lambda e: info_buttons.substrate_info(page),
+        
         bgcolor="#DCDCDC",
         padding= ft.padding.only(left=10),
         alignment=ft.alignment.center_left,

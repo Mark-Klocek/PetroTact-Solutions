@@ -359,13 +359,6 @@ def on_view_actual_scale_hover(e):
           e.control.bgcolor = "#D2E0E8"
      e.control.update()
 
-def on_hover_change_color(e):
-    if e.data == "true":  # When hovering
-        e.control.content.color = ft.colors.BLUE
-    else:  # When not hovering
-        e.control.content.color = ft.colors.ORANGE
-    e.control.update()
-
 def create_key_info(page):
      data_body_height = global_variables.app_window.height * 0.95 * 0.75 
      option_height = data_body_height * .052
@@ -401,7 +394,7 @@ def create_key_info(page):
                                              ft.Container(
                                                   content=ft.Icon(name=ft.icons.INFO_OUTLINED,size=global_variables.app_window.height * 0.95 * 0.15 * 0.20 * 0.8,color=ft.colors.ORANGE,),
                                                   on_click=lambda e: info_buttons.waste_types_info(page),
-                                                  on_hover=on_hover_change_color
+                                                  on_hover=global_variables.on_hover_change_color
                                              ),
                                              ft.Container(
                                                   expand=True
@@ -426,7 +419,24 @@ def create_key_info(page):
                                    padding=0,
                                    #border=ft.border.all(1,color=ft.colors.BLACK),
                                    bgcolor=ft.colors.TRANSPARENT,
-                                   content=ft.Text("Endpoints", color=ft.colors.BLACK, weight=ft.FontWeight.BOLD,text_align=ft.TextAlign.CENTER,font_family="Roboto",size=text_size)
+                                   content=ft.Row(
+                                        controls=[
+                                             ft.Container(
+                                                  content=ft.Text("Endpoints", color=ft.colors.BLACK, weight=ft.FontWeight.BOLD,text_align=ft.TextAlign.RIGHT,font_family="Roboto",size=text_size),
+                                                  width=global_variables.app_window.width * 0.1
+                                             ),
+                                             ft.Container(
+                                                  content=ft.Icon(name=ft.icons.INFO_OUTLINED,size=global_variables.app_window.height * 0.95 * 0.15 * 0.20 * 0.8,color=ft.colors.ORANGE,),
+                                                  on_click=lambda e: info_buttons.endpoints_info(page),
+                                                  on_hover=global_variables.on_hover_change_color
+                                             ),
+                                             ft.Container(
+                                                  expand=True
+                                             )
+                                        ],
+                                        spacing=0,
+                                        expand=True
+                                   )
                               ),
                               ft.Container( #key info row 2 container 2 containing endpoints oily water
                                    expand=True,
@@ -1222,16 +1232,22 @@ def create_summary_information(page):
                                                 ft.Container(
                                                      content= ft.Row(
                                                           controls=[
-                                                            ft.Text("Treatment Tactic Details",color=ft.colors.BLACK,weight=ft.FontWeight.BOLD,font_family="Roboto",size=global_variables.app_window.height * 0.95 * 0.15 * 0.20 * 0.7),
+                                                            ft.Container(
+                                                                 content=ft.Text("Treatment Tactic Details",color=ft.colors.BLACK,weight=ft.FontWeight.BOLD,font_family="Roboto",text_align=ft.TextAlign.RIGHT,size=global_variables.app_window.height * 0.95 * 0.15 * 0.20 * 0.7),
+                                                                 width=global_variables.app_window.width * 0.22
+                                                            ),
                                                             
-                                                            ft.Icon(
-                                                               name=ft.icons.INFO_OUTLINED,
-                                                               size=global_variables.app_window.height * 0.95 * 0.15 * 0.20 * 0.8,
-                                                               color=ft.colors.ORANGE
+                                                            ft.Container(
+                                                                 content=ft.Icon(name=ft.icons.INFO_OUTLINED,size=global_variables.app_window.height * 0.95 * 0.15 * 0.20 * 0.8,color=ft.colors.ORANGE,),
+                                                                 on_click=lambda e: info_buttons.tactic_info(page),
+                                                                 on_hover=global_variables.on_hover_change_color
+                                                            ),
+                                                            ft.Container(
+                                                                 expand=True
                                                             )
                                                             
                                                         ],
-                                                        alignment=ft.MainAxisAlignment.CENTER
+                                                        
                                                         
                                                      ),
                                                     alignment=ft.alignment.center_right,
@@ -1243,12 +1259,18 @@ def create_summary_information(page):
                                                 ft.Container(
                                                      content= ft.Row(
                                                           controls=[
-                                                            ft.Text("Endpoints",color=ft.colors.BLACK,weight=ft.FontWeight.BOLD,font_family="Roboto",size=global_variables.app_window.height * 0.95 * 0.15 * 0.20 * 0.7),
-
-                                                               ft.Icon(
-                                                               name=ft.icons.INFO_OUTLINED,
-                                                               size=global_variables.app_window.height * 0.95 * 0.15 * 0.20 * 0.8,
-                                                               color=ft.colors.ORANGE
+                                                            ft.Container(
+                                                                 content=ft.Text("Endpoints",color=ft.colors.BLACK,weight=ft.FontWeight.BOLD,font_family="Roboto",text_align=ft.TextAlign.RIGHT,size=global_variables.app_window.height * 0.95 * 0.15 * 0.20 * 0.7),
+                                                                 width=global_variables.app_window.width * 0.22
+                                                            ),
+                                                            
+                                                            ft.Container(
+                                                                 content=ft.Icon(name=ft.icons.INFO_OUTLINED,size=global_variables.app_window.height * 0.95 * 0.15 * 0.20 * 0.8,color=ft.colors.ORANGE,),
+                                                                 on_click=lambda e: info_buttons.endpoints_info(page),
+                                                                 on_hover=global_variables.on_hover_change_color
+                                                            ),
+                                                            ft.Container(
+                                                                 expand=True
                                                             )
                                                             
                                                         ],
@@ -1275,12 +1297,18 @@ def create_summary_information(page):
                                                 ft.Container(
                                                      content= ft.Row(
                                                           controls=[
-                                                            ft.Text("Waste Types",color=ft.colors.BLACK,weight=ft.FontWeight.BOLD,font_family="Roboto",size=global_variables.app_window.height * 0.95 * 0.15 * 0.20 * 0.7),
+                                                            ft.Container(
+                                                                 content=ft.Text("Waste Types",color=ft.colors.BLACK,weight=ft.FontWeight.BOLD,font_family="Roboto",text_align=ft.TextAlign.RIGHT,size=global_variables.app_window.height * 0.95 * 0.15 * 0.20 * 0.7),
+                                                                 width=global_variables.app_window.width * 0.22
+                                                            ),
                                                             
-                                                            ft.Icon(
-                                                               name=ft.icons.INFO_OUTLINED,
-                                                               size=global_variables.app_window.height * 0.95 * 0.15 * 0.20 * 0.8,
-                                                               color=ft.colors.ORANGE
+                                                            ft.Container(
+                                                                 content=ft.Icon(name=ft.icons.INFO_OUTLINED,size=global_variables.app_window.height * 0.95 * 0.15 * 0.20 * 0.8,color=ft.colors.ORANGE,),
+                                                                 on_click=lambda e: info_buttons.waste_types_info(page),
+                                                                 on_hover=global_variables.on_hover_change_color
+                                                            ),
+                                                            ft.Container(
+                                                                 expand=True
                                                             )
                                                             
                                                             
@@ -1296,15 +1324,20 @@ def create_summary_information(page):
                                                 ft.Container(
                                                      content= ft.Row(
                                                           controls=[
-                                                               ft.Text("Waste Volume",color=ft.colors.BLACK,weight=ft.FontWeight.BOLD,font_family="Roboto",size=global_variables.app_window.height * 0.95 * 0.15 * 0.20 * 0.7),
-
-                                                               ft.Icon(
-                                                               name=ft.icons.INFO_OUTLINED,
-                                                               size=global_variables.app_window.height * 0.95 * 0.15 * 0.20 * 0.8,
-                                                               color=ft.colors.ORANGE
+                                                               ft.Container(
+                                                                 content=ft.Text("Waste Volume",color=ft.colors.BLACK,weight=ft.FontWeight.BOLD,font_family="Roboto",text_align=ft.TextAlign.RIGHT,size=global_variables.app_window.height * 0.95 * 0.15 * 0.20 * 0.7),
+                                                                 width=global_variables.app_window.width * 0.22
+                                                            ),
+                                                            
+                                                            ft.Container(
+                                                                 content=ft.Icon(name=ft.icons.INFO_OUTLINED,size=global_variables.app_window.height * 0.95 * 0.15 * 0.20 * 0.8,color=ft.colors.ORANGE,),
+                                                                 on_click=lambda e: info_buttons.waste_volume_info(page),
+                                                                 on_hover=global_variables.on_hover_change_color
+                                                            ),
+                                                            ft.Container(
+                                                                 expand=True
                                                             )
-                                            
-                                                                ],
+                                                            ],
                                                                 alignment=ft.MainAxisAlignment.CENTER
                                                      ),
                                                     alignment=ft.alignment.center,

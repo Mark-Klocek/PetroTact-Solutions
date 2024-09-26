@@ -39,20 +39,30 @@ def create_surface_oil_header_column(page):
         container = ft.Container(
                 content=ft.Row(
                         controls=[
-                                ft.Text("Surface Oil Category",color="Black",weight=ft.FontWeight.BOLD,font_family="Roboto"),
-                                ft.Icon(
-                                        name=ft.icons.INFO_OUTLINED,
-                                        size=global_variables.app_window.height * 0.95 * 0.15 * 0.20 * 0.8,
-                                        color=ft.colors.ORANGE
-                                        )
-                                ]
-                        ),
+                                ft.Container(
+                                        content=ft.Text("Oil Type",color="Black",font_family="Roboto", weight=ft.FontWeight.BOLD)
+                                        ),
+                                ft.Container(
+                                        content=ft.Icon( 
+                                                name=ft.icons.INFO_OUTLINED,
+                                                size=global_variables.app_window.height * 0.95 * 0.15 * 0.20 * 0.8,
+                                                color=ft.colors.ORANGE,
+                                                ),
+
+                                        on_click=lambda e: info_buttons.surface_oil_category_info(page),
+                                        on_hover=global_variables.on_hover_change_color
+                                ),
+                                ft.Container(
+                                        expand=True
+                                )
+                        ]
+                ),
                 padding=ft.padding.only(left=2),
                 alignment=ft.alignment.center_left,                
                 border_radius=ft.border_radius.only(top_left=10,top_right=10),
                 bgcolor= "#DCDCDC",
                 height= global_variables.app_window.height * 0.3 * 0.15,
-                on_click=lambda e: info_buttons.surface_oil_category_info(page),
+                
 
         )
         surface_oil_header_container = container
