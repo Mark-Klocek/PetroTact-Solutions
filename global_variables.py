@@ -12,6 +12,12 @@ table_array = []
 bgWidth = None
 bulk_num = 0
 stain_num = 0
+def on_container_hover_color_change(e):
+    if e.data == "true":
+        e.control.bgcolor = "#AEC6CF"
+    else:
+        e.control.bgcolor = ft.colors.TRANSPARENT
+    e.control.update()
 def on_hover_change_color(e):
     if e.data == "true":  # When hovering
         e.control.content.color = ft.colors.BLUE

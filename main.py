@@ -92,8 +92,8 @@ def main(page:ft.Page):
         input_substrate_header = input_substrate_container.content.controls[0]
         input_substrate_header.height= input_substrate_container.height * 0.07
         input_substrate_header.width = input_substrate_container.width
-        input_substrate_header.content.controls[0].size = input_substrate_header.height *0.8
-        input_substrate_header.content.controls[1].size = input_substrate_header.height *0.8
+        input_substrate_header.content.controls[0].content.size = input_substrate_header.height *0.8
+        input_substrate_header.content.controls[1].content.size = input_substrate_header.height *0.8
 
             #creating row as 2nd column within substrate container, which will contain a row with inputs row and picture/description row, setting dimensions with regard to parent container
         input_substrate_row = input_substrate_container.content.controls[1]
@@ -147,8 +147,8 @@ def main(page:ft.Page):
         input_oil_type_container_column_a = input_oil_type_container.content.controls[0]
         input_oil_type_container_column_a.height = input_oil_type_container.height * 0.15
         input_oil_type_container_column_a.width = input_oil_type_container.width
-        input_oil_type_container_column_a.content.controls[0].size = input_oil_type_container_column_a.height * 0.8
-        input_oil_type_container_column_a.content.controls[1].size = input_oil_type_container_column_a.height * 0.8
+        input_oil_type_container_column_a.content.controls[0].content.size = input_oil_type_container_column_a.height * 0.8
+        input_oil_type_container_column_a.content.controls[1].content.size = input_oil_type_container_column_a.height * 0.8
         
         input_oil_type_container_column_b = input_oil_type_container.content.controls[1]
         input_oil_type_container_column_b.height = input_oil_type_container.height * 0.55
@@ -175,8 +175,8 @@ def main(page:ft.Page):
         
         surface_oil_header = surface_oil_container.content.controls[0]
         surface_oil_header.height = surface_oil_container.height * 0.10
-        surface_oil_header.content.controls[0].size = surface_oil_header.height * 0.8
-        surface_oil_header.content.controls[1].size = surface_oil_header.height * 0.8
+        surface_oil_header.content.controls[0].content.size = surface_oil_header.height * 0.8
+        surface_oil_header.content.controls[1].content.size = surface_oil_header.height * 0.8
          
 
         surface_oil_column_b = surface_oil_container.content.controls[1]
@@ -193,7 +193,15 @@ def main(page:ft.Page):
 
         surface_oil_column_d = surface_oil_container.content.controls[3] #9
         surface_oil_column_d.height = surface_oil_container.height * 0.10
-        surface_oil_column_d.content.size = surface_oil_column_d.height * 0.6
+        surface_oil_column_d.content.controls[0].content.size = surface_oil_column_d.height * 0.6
+        surface_oil_column_d.content.controls[0].width = global_variables.app_window.width * 0.3 * 0.4
+        surface_oil_column_d.content.controls[1].content.text_style.size = global_variables.app_window.height * 0.3 * 0.4 * 0.28 * 0.5 
+        surface_oil_column_d.content.controls[1].width = global_variables.app_window.width * 0.3 * 0.2
+        surface_oil_column_d.content.controls[1].height = global_variables.app_window.height * 0.3 * 0.10 * 0.95
+        surface_oil_column_d.content.controls[2].width = global_variables.app_window.width * 0.3 * 0.3
+        surface_oil_column_d.content.controls[2].height = global_variables.app_window.height * 0.3 * 0.15 * 0.95
+        surface_oil_column_d.content.controls[2].content.text_style.size = global_variables.app_window.height * 0.3 * 0.4 * 0.28 * 0.55
+
 
         
         

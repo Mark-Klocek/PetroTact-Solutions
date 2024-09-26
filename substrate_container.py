@@ -36,7 +36,7 @@ def create_substrate_header_container(page):
                     content=ft.Text("Substrate",color="Black",font_family="Roboto", weight=ft.FontWeight.BOLD)
                 ),
                 ft.Container(
-                    ft.Icon(
+                    content = ft.Icon(
                         name=ft.icons.INFO_OUTLINED,
                         size=global_variables.app_window.height * 0.95 * 0.15 * 0.20 * 0.8,
                         color=ft.colors.ORANGE,
@@ -101,6 +101,7 @@ def create_substrate_row_a_column_containers(page):
                 expand=True,
                 on_click=substrate_row_a_container_click(i, page),
                 bgcolor=ft.colors.TRANSPARENT,
+                on_hover=global_variables.on_container_hover_color_change
                 
                 
                  

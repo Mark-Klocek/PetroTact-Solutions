@@ -77,7 +77,7 @@ def create_oil_type_header_container(page):
                 ),
                 ft.Container(
                     content=ft.Icon(
-                        
+
                         name=ft.icons.INFO_OUTLINED,
                         size=global_variables.app_window.height * 0.95 * 0.15 * 0.20 * 0.8,
                         color=ft.colors.ORANGE,
@@ -104,11 +104,17 @@ def create_oil_type_column_b_container(page):
     return ft.Stack(
         controls= [
             ft.Row(
-                controls = create_oil_type_column_b_row(page)
+                controls = create_oil_type_column_b_row(page),
+                expand=True,
+                spacing=0
             
             ),
             ft.Row(
-                controls= create_oil_type_column_b_background_row(page)
+                controls= create_oil_type_column_b_background_row(page),
+                expand=True,
+                spacing=0
+                
+                
                 
             )
         ],
@@ -117,14 +123,30 @@ def create_oil_type_column_b_container(page):
     )
 def create_oil_type_column_b_background_row(page):
     background_row = []
+    pad = 0
     global oil
     for i in range(len(pics_and_desc.oil_type_column_b_pictures)):
+        '''if i == 0:
+            pad = ft.padding.only(left=5)
+        if i == 4:
+            pad = ft.padding.only(right=5)'''
+
         background_row.append(
             ft.Container(
-                content=ft.Image(src=pics_and_desc.oil_type_column_b_pictures[i]),
+                content=ft.Container(
+                    content=ft.Image(src=pics_and_desc.oil_type_column_b_pictures[i],fit=ft.ImageFit.FIT_WIDTH),
+                    alignment=ft.alignment.center,
+                    padding=global_variables.app_window.width * .005
+                ),
                 expand=True,
-                padding=5,
-                on_click=oil_type_columb_b_click(page,i)
+                padding=pad,
+                on_click=oil_type_columb_b_click(page,i),
+                alignment=ft.alignment.center,
+                #border=ft.border.all(1,ft.colors.BLACK),
+                width=global_variables.app_window.width * 0.3 / 4
+                
+                
+                
             )
         )
     return background_row
@@ -136,9 +158,11 @@ def create_oil_type_column_b_row(page):
         oil_type_column_b_containers.append(
             ft.Container(
                 bgcolor=ft.colors.TRANSPARENT,
+                padding=0,
                 
                 expand=True,
-                on_click=oil_type_columb_b_click(page,i)
+                on_click=oil_type_columb_b_click(page,i),
+                
             )
         )
     if global_variables.oil_type_selected_index == 0:

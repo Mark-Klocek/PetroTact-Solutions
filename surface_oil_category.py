@@ -40,7 +40,7 @@ def create_surface_oil_header_column(page):
                 content=ft.Row(
                         controls=[
                                 ft.Container(
-                                        content=ft.Text("Oil Type",color="Black",font_family="Roboto", weight=ft.FontWeight.BOLD)
+                                        content=ft.Text("Surface Oil Category",color="Black",font_family="Roboto", weight=ft.FontWeight.BOLD)
                                         ),
                                 ft.Container(
                                         content=ft.Icon( 
@@ -159,16 +159,22 @@ def create_surface_oil_column_d(page):
                                                                 ft.dropdown.Option("Feet")],
                                                         border_radius=ft.border_radius.all(0),
                                                         fill_color=ft.colors.WHITE,
-                                                        content_padding=ft.padding.symmetric(horizontal=5),
+                                                        content_padding=ft.padding.symmetric(horizontal=10),
                                                         bgcolor=ft.colors.WHITE,
                                                         color=ft.colors.BLACK,
                                                         value="Kilometres",
-                                                        alignment=ft.alignment.center,
+                                                        padding=0,
+                                                        #height= global_variables.app_window.height * 0.3 * 0.12 * 0.95,
+                                                        alignment=ft.alignment.top_center,
+                                                        #expand=True,
                                                         width=global_variables.app_window.width * 0.3 * 0.6,
-                                                        hint_style=ft.TextStyle(size=global_variables.app_window.height * 0.3 * 0.4 * 0.28 * 0.7)
+                                                        text_style=ft.TextStyle(size=global_variables.app_window.height * 0.3 * 0.4 * 0.28 * 0.5, font_family="Roboto")
                                                         ),
                                         width= global_variables.app_window.width * 0.3 * 0.3,
-                                        height= global_variables.app_window.height * 0.3 * 0.10 * 0.95
+                                        height= global_variables.app_window.height * 0.3 * 0.12 * 0.95,
+                                        padding=0,
+                                        alignment=ft.alignment.center,
+                                        #expand=True
                                 )
                                         ]
                                                 
