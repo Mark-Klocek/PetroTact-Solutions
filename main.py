@@ -193,12 +193,15 @@ def main(page:ft.Page):
 
         surface_oil_column_d = surface_oil_container.content.controls[3] #9
         surface_oil_column_d.height = surface_oil_container.height * 0.10
+        #oil segment length text
         surface_oil_column_d.content.controls[0].content.size = surface_oil_column_d.height * 0.6
-        surface_oil_column_d.content.controls[0].width = global_variables.app_window.width * 0.3 * 0.4
+        #surface_oil_column_d.content.controls[0].width = global_variables.app_window.width * 0.3 * 0.4
+        #text entry field
         surface_oil_column_d.content.controls[1].content.text_style.size = global_variables.app_window.height * 0.3 * 0.4 * 0.28 * 0.5 
         surface_oil_column_d.content.controls[1].width = global_variables.app_window.width * 0.3 * 0.2
         surface_oil_column_d.content.controls[1].height = global_variables.app_window.height * 0.3 * 0.10 * 0.95
-        surface_oil_column_d.content.controls[2].width = global_variables.app_window.width * 0.3 * 0.3
+        #dropdown menu
+        surface_oil_column_d.content.controls[2].width = global_variables.app_window.width * 0.3 * 0.35
         surface_oil_column_d.content.controls[2].height = global_variables.app_window.height * 0.3 * 0.15 * 0.95
         surface_oil_column_d.content.controls[2].content.text_style.size = global_variables.app_window.height * 0.3 * 0.4 * 0.28 * 0.55
 
@@ -234,7 +237,7 @@ def main(page:ft.Page):
         
         ####testing#########
         
-        
+        print(global_variables.drop_down_selection)
         page.update()
 
     

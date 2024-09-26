@@ -12,6 +12,12 @@ table_array = []
 bgWidth = None
 bulk_num = 0
 stain_num = 0
+
+
+text_field_selection = None
+drop_down_selection = "Kilometres"
+
+
 def on_container_hover_color_change(e):
     if e.data == "true":
         e.control.bgcolor = "#AEC6CF"

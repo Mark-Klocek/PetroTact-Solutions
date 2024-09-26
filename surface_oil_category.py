@@ -129,7 +129,8 @@ def create_surface_oil_column_d(page):
                                                 size=global_variables.app_window.height * 0.3 * 0.1 * 0.65),
                                 bgcolor=ft.colors.TRANSPARENT,
                                 alignment=ft.alignment.center_left,
-                                width=global_variables.app_window.width * 0.3 * 0.4
+                                #width=global_variables.app_window.width * 0.3 * 0.4,
+                                expand=True
                                 ),
                                                 
                                 
@@ -166,9 +167,10 @@ def create_surface_oil_column_d(page):
                                                         padding=0,
                                                         #height= global_variables.app_window.height * 0.3 * 0.12 * 0.95,
                                                         alignment=ft.alignment.top_center,
-                                                        #expand=True,
-                                                        width=global_variables.app_window.width * 0.3 * 0.6,
+                                                        on_change=dropdown_change,
+                                                        width=global_variables.app_window.width * 0.3 * 0.8,
                                                         text_style=ft.TextStyle(size=global_variables.app_window.height * 0.3 * 0.4 * 0.28 * 0.5, font_family="Roboto")
+                                                        
                                                         ),
                                         width= global_variables.app_window.width * 0.3 * 0.3,
                                         height= global_variables.app_window.height * 0.3 * 0.12 * 0.95,
@@ -185,6 +187,9 @@ def create_surface_oil_column_d(page):
                                         
                         
                         )
+def dropdown_change(e):
+        global_variables.drop_down_selection = e.control.value
+        print(global_variables.drop_down_selection)
 def surface_oil_column_b_click(page, i):
         def handle_click(e):
 
