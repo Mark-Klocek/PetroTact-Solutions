@@ -52,7 +52,7 @@ def main(page:ft.Page):
         #############################
         ###### LOGO CONTAINER #####
         #############################
-        logo_container = page.controls[0].content.controls[1]  # The overlay container for logos
+        logo_container = page.controls[0].content.controls[1] 
         logo_container.width = page.width * 0.35
         logo_container.height = page.height * 0.15
         ##################################

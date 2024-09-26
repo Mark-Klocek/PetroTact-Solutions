@@ -262,10 +262,10 @@ def create_key_container(page):
         #expand=True,
         alignment=ft.alignment.center,
         bgcolor=ft.colors.TRANSPARENT,
-        border=ft.border.all(1,ft.colors.GREEN),
+        #border=ft.border.all(1,ft.colors.GREEN),
         height=key_height,
         width = global_variables.app_window.width * .69,
-        #padding=0
+        padding=0
     )
     data_key = container
     return container
@@ -282,9 +282,10 @@ def create_key_window_column(page):
                     width = global_variables.app_window.width * .69
                ),
                ft.Container(
+                    content=create_key_info(page),
                     expand=True,
                     #border=ft.border.all(1, ft.colors.AMBER),
-                    #padding=0,
+                    padding=0,
                     width = global_variables.app_window.width * .69
                )
           ],
@@ -357,7 +358,227 @@ def on_view_actual_scale_hover(e):
      else:
           e.control.bgcolor = "#D2E0E8"
      e.control.update()
+def create_key_info(page):
+     data_body_height = global_variables.app_window.height * 0.95 * 0.75 
+     option_height = data_body_height * .052
+     waste_type_key_bar_width = global_variables.app_window.width * 0.07
+     text_size = option_height * .6
+     container = ft.Container(
+          content= ft.Column(
+               controls=[
+                    ft.Row( #Key info row 1 (containing the word key and waste types with info icon)
+                         controls=[
+                              ft.Container( #Key info row 1 container 1 containing the word Key
+                                   width= global_variables.app_window.width * .69 *.2,
+                                   
+                                   border_radius=ft.border_radius.only(top_left=15,bottom_right=15),
+                                   content=ft.Text("Key", color=ft.colors.BLACK, weight=ft.FontWeight.BOLD,text_align=ft.TextAlign.LEFT,font_family="Roboto",size=text_size),
+                                   bgcolor="#B8B8C7",
+                                   padding=ft.padding.only(left=10),
+                                   #border=ft.border.all(1,color=ft.colors.BLACK),
+                                   height=option_height,
+                              ),
+                              ft.Container( #key info row 1 container 2 containing "Waste Types" + icon
+                                   expand=True,
+                                   height=option_height,
+                                   padding=0,
+                                   #border=ft.border.all(1,color=ft.colors.BLACK),
+                                   bgcolor=ft.colors.TRANSPARENT,
+                                   content=ft.Text("Waste Types", color=ft.colors.BLACK, weight=ft.FontWeight.BOLD,text_align=ft.TextAlign.CENTER,font_family="Roboto",size=text_size)
+                              )
+                         ],
+                         spacing=0,
+                         expand=True,
+                         alignment=ft.MainAxisAlignment.START
+                    ),
+                    ft.Row( #key info row 2 (containing the actual waste types)
+                         controls=[
+                              ft.Container( #key info row 2 container 1 containing endpoints
+                                   expand=True,
+                                   height=option_height,
+                                   padding=0,
+                                   #border=ft.border.all(1,color=ft.colors.BLACK),
+                                   bgcolor=ft.colors.TRANSPARENT,
+                                   content=ft.Text("Endpoints", color=ft.colors.BLACK, weight=ft.FontWeight.BOLD,text_align=ft.TextAlign.CENTER,font_family="Roboto",size=text_size)
+                              ),
+                              ft.Container( #key info row 2 container 2 containing endpoints oily water
+                                   expand=True,
+                                   height=option_height,
+                                   #border=ft.border.all(1,color=ft.colors.BLACK),
+                                   padding=0,
+                                   bgcolor="#E1E1E8",
+                                   content=ft.Text("Oily Water", color=ft.colors.BLACK,text_align=ft.TextAlign.CENTER,font_family="Roboto",size=text_size)
+                              ),
+                              ft.Container( #key info row 2 container 3 containing endpoints Oil/Snow mixture
+                                   expand=True,
+                                   height=option_height,
+                                   #border=ft.border.all(1,color=ft.colors.BLACK),
+                                   padding=0,
+                                   bgcolor=ft.colors.TRANSPARENT,
+                                   content=ft.Text("Oil/Snow Mixture", color=ft.colors.BLACK,text_align=ft.TextAlign.CENTER,font_family="Roboto",size=text_size)
+                              ),
+                              ft.Container( #key info row 2 container 4 containing endpoints Solids
+                                   expand=True,
+                                   height=option_height,
+                                   #border=ft.border.all(1,color=ft.colors.BLACK),
+                                   padding=0,
+                                   bgcolor="#E1E1E8",
+                                   content=ft.Text("Solids", color=ft.colors.BLACK,text_align=ft.TextAlign.CENTER,font_family="Roboto",size=text_size)
+                              ),
+                              ft.Container( #key info row 2 container 5 containing endpoints Operational
+                                   expand=True,
+                                   height=option_height,
+                                   #border=ft.border.all(1,color=ft.colors.BLACK),
+                                   padding=0,
+                                   bgcolor=ft.colors.TRANSPARENT,
+                                   content=ft.Text("Operational", color=ft.colors.BLACK,text_align=ft.TextAlign.CENTER,font_family="Roboto",size=text_size)
+                              )
+                         ],
+                         spacing=0,
+                         expand=True
+                    ),
+                    ft.Row( #key info row 3, containing bulk removal context
+                         controls=[
+                              ft.Container(
+                                   content=ft.Text("Bulk Removal", color=ft.colors.BLACK, text_align=ft.TextAlign.RIGHT,font_family="Roboto",size=text_size * .95),
+                                   expand=True,
+                                   padding=ft.padding.only(right=5),
+                                   #border=ft.border.all(1,color=ft.colors.BLACK),
+                              ),
+                              ft.Container(
+                                   content = ft.Container(
+                                        width=waste_type_key_bar_width,
+                                        height=option_height * 0.75,
+                                        #border=ft.border.all(1,ft.colors.BLACK),
+                                        bgcolor="#4162A6"
+                                   ),
+                                   expand=True,
+                                   padding=0,
+                                   bgcolor="#B8B8C7",
+                                   alignment=ft.alignment.center
+                                   #border=ft.border.all(1,color=ft.colors.BLACK),
+                              ),
+                              ft.Container(
+                                   content = ft.Container(
+                                        width=waste_type_key_bar_width,
+                                        height=option_height * 0.75,
+                                        #border=ft.border.all(1,ft.colors.BLACK),
+                                        bgcolor="#8697A1"
+                                   ),
+                                   expand=True,
+                                   padding=0,
+                                   bgcolor="#DCDCE4",
+                                   alignment=ft.alignment.center
+                                   #border=ft.border.all(1,color=ft.colors.BLACK),
+                              ),
+                              ft.Container(
+                                   content = ft.Container(
+                                        width=waste_type_key_bar_width,
+                                        height=option_height * 0.75,
+                                        #border=ft.border.all(1,ft.colors.BLACK),
+                                        bgcolor="#A1383F"
+                                   ),
+                                   expand=True,
+                                   padding=0,
+                                   bgcolor="#B8B8C7",
+                                   alignment=ft.alignment.center
+                                   #border=ft.border.all(1,color=ft.colors.BLACK),
+                              ),
+                              ft.Container(
+                                   content = ft.Container(
+                                        width=waste_type_key_bar_width,
+                                        height=option_height * 0.75,
+                                        #border=ft.border.all(1,ft.colors.BLACK),
+                                        bgcolor= "#ECD502"
+                                   ),
+                                   expand=True,
+                                   padding=0,
+                                   bgcolor="#DCDCE4",
+                                   alignment=ft.alignment.center
+                                   #border=ft.border.all(1,color=ft.colors.BLACK),
+                              ),
+                         ],
+                         spacing=0,
+                         expand=True
+                    ),
+                    ft.Row( #key info row 4, containing reduce to stain removal context
+                         controls=[
+                              ft.Container(
+                                   content=ft.Text("Reduce to Stain", color=ft.colors.BLACK, text_align=ft.TextAlign.RIGHT,font_family="Roboto",size=text_size * .95),
+                                   expand=True,
+                                   padding=ft.padding.only(right=5),
+                                   #border=ft.border.all(1,color=ft.colors.BLACK),
+                              ),
+                              ft.Container(
+                                   content = ft.Container(
+                                        content=ft.Image(src=r"images\bar graph context\blue_striped_bar.png",fit=ft.ImageFit.COVER),
+                                        width=waste_type_key_bar_width,
+                                        height=option_height * 0.75,
+                                        border=ft.border.all(1,"#4162A6")
+                                   ),
+                                   expand=True,
+                                   padding=0,
+                                   bgcolor="#E1E1E8",
+                                   alignment=ft.alignment.center
+                                   #border=ft.border.all(1,color=ft.colors.BLACK),
+                              ),
+                              ft.Container(
+                                   content = ft.Container(
+                                        content=ft.Image(src=r"images\bar graph context\gray_striped_bar.png",fit=ft.ImageFit.COVER),
+                                        width=waste_type_key_bar_width,
+                                        height=option_height * 0.75,
+                                        border=ft.border.all(1,"#8697A1")
+                                   ),
+                                   expand=True,
+                                   padding=0,
+                                   alignment=ft.alignment.center
+                                   #border=ft.border.all(1,color=ft.colors.BLACK),
+                              ),
+                              ft.Container(
+                                   content = ft.Container(
+                                        content=ft.Image(src=r"images\bar graph context\red_striped_bar.png",fit=ft.ImageFit.COVER),
+                                        width=waste_type_key_bar_width,
+                                        height=option_height * 0.75,
+                                        border=ft.border.all(1,"#A1383F")
+                                   ),
+                                   expand=True,
+                                   padding=0,
+                                   bgcolor="#E1E1E8",
+                                   alignment=ft.alignment.center
+                                   #border=ft.border.all(1,color=ft.colors.BLACK),
+                              ),
+                              ft.Container(
+                                   content = ft.Container(
+                                        content=ft.Image(src=r"images\bar graph context\yellow_striped_bar.png",fit=ft.ImageFit.COVER),
+                                        width=waste_type_key_bar_width,
+                                        height=option_height * 0.75,
+                                        border=ft.border.all(1,"#ECD502")
+                                   ),
+                                   expand=True,
+                                   padding=0,
+                                   alignment=ft.alignment.center
+                                   #border=ft.border.all(1,color=ft.colors.BLACK),
+                              ),
+                         ],
+                         spacing=0,
+                         expand=True
+                    )
+               ],
+               spacing=0,
+               expand=True,
+               
 
+          ),
+          #alignment=ft.alignment.center,
+          border_radius=ft.border_radius.all(15),
+          padding=0,
+          width=global_variables.app_window.width * 0.6,
+          expand=True,
+          bgcolor="#FFFFFF",
+          border=ft.border.all(2, "#ADD8E6")
+
+     )
+     return container
 def return_x_axis_column(page):
      data_body_height = global_variables.app_window.height * 0.95 * 0.75
      option_height = data_body_height * .04
