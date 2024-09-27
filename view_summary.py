@@ -210,7 +210,8 @@ def create_results_columns(page):
                
           )
           option_array.append(option_row)
-          print(f"{items[0]} has {len(items[1])} tactics \n --------------------------------------------")
+          #print(f"{items[0]} has {items[1]} tactics \n --------------------------------------------")
+          
           for tactics in items[1]:
                
                
@@ -229,7 +230,8 @@ def create_results_columns(page):
 
                )            
                option_array.append(tactic_row)
-          
+               #print(tactic)
+     #print(global_variables.table_array)     
      return option_array
 def create_tactic_row(tactic, text_size):
      container_width = global_variables.app_window.width * .7
@@ -823,7 +825,7 @@ def create_bar_graph_row(page):
                )
 
                option_array.append(tactic_row)
-               print(tactics)
+               #print(tactics)
           option_counter += 1
      return option_array
 

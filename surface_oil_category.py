@@ -138,7 +138,10 @@ def create_surface_oil_column_d(page):
                                         content=ft.TextField(
                                                 label="",
                                                 color=ft.colors.BLACK,
+                                                #max_length=10,
+                                                keyboard_type="number",
                                                 content_padding=1,
+                                                on_change=lambda e: textfield_change(e, page),
                                                 border_radius=ft.border_radius.all(0),
                                                 text_style=ft.TextStyle(size=global_variables.app_window.height * 0.3 * 0.4 * 0.28 * 0.5, font_family="Roboto"),
                                         
@@ -167,7 +170,7 @@ def create_surface_oil_column_d(page):
                                                         padding=0,
                                                         #height= global_variables.app_window.height * 0.3 * 0.12 * 0.95,
                                                         alignment=ft.alignment.top_center,
-                                                        on_change=dropdown_change,
+                                                        on_change=lambda e: dropdown_change(e, page),
                                                         width=global_variables.app_window.width * 0.3 * 0.8,
                                                         text_style=ft.TextStyle(size=global_variables.app_window.height * 0.3 * 0.4 * 0.28 * 0.5, font_family="Roboto")
                                                         
@@ -187,9 +190,74 @@ def create_surface_oil_column_d(page):
                                         
                         
                         )
-def dropdown_change(e):
+def textfield_change(e, page):
+        real_value = ""
+        current_value = e.control.value
+
+        if len(current_value)> 7:
+                current_value = current_value[:7]
+
+        for i in current_value:
+                if i.isdigit() or (i == '.' and '.' not in real_value):
+                        real_value += i
+        e.control.value = real_value
+        
+        if real_value:
+                global_variables.text_field_selection = float(real_value)
+                convert_to_meters(e)
+        update_table_array(page)
+        e.control.update()
+        print(global_variables.text_field_selection, global_variables.meter_count)
+
+
+
+
+def dropdown_change(e,page):
         global_variables.drop_down_selection = e.control.value
-        print(global_variables.drop_down_selection)
+        convert_to_meters(e)
+        update_table_array(page)
+        e.control.update
+        print(global_variables.drop_down_selection, global_variables.meter_count)
+
+
+
+def convert_to_meters(e):
+        if global_variables.drop_down_selection == "Kilometres":
+                global_variables.meter_count = round(global_variables.text_field_selection * 1000, 2)
+        if global_variables.drop_down_selection == "Metres":
+                global_variables.meter_count = round(global_variables.text_field_selection * 1, 2)
+        if global_variables.drop_down_selection == "Nautical Miles":
+                global_variables.meter_count = round(global_variables.text_field_selection * 1852, 2)
+        if global_variables.drop_down_selection == "Miles":
+                global_variables.meter_count = round(global_variables.text_field_selection * 1609.34, 2)
+        if global_variables.drop_down_selection == "Yards":
+                global_variables.meter_count = round(global_variables.text_field_selection * 0.9144, 2)
+        if global_variables.drop_down_selection == "Feet":
+                global_variables.meter_count = round(global_variables.text_field_selection * 0.3048, 2)
+
+def update_table_array(page):
+    array = global_variables.table_array
+    if global_variables.meter_count:
+        for category in array:
+            print(f"Category: {category[0]}")
+            print(f"Data: {category[1]}")
+
+            if category[0] != "Not Applicable":  # Only update for applicable categories
+                for i in category[1]:
+                    print(f"Tactic: {i}")  # Print for debugging
+                    # Ensure the list has at least 3 elements to access i[2]
+                    if len(i) > 2 and isinstance(i[1], (float, int)) and i[2] == '--':
+                        i[2] = round(i[1] * global_variables.meter_count, 2)
+                    # Ensure the list has at least 6 elements to access i[5]
+                    if len(i) > 5 and isinstance(i[4], (float, int)) and i[5] == '--':
+                        i[5] = round(i[4] * global_variables.meter_count, 2)
+
+
+
+        global_variables.table_array = array
+        view_summary.summary_body = view_summary.create_summary_body(page)
+        page.update()
+
 def surface_oil_column_b_click(page, i):
         def handle_click(e):
 

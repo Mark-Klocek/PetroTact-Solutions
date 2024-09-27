@@ -14,8 +14,9 @@ bulk_num = 0
 stain_num = 0
 
 
-text_field_selection = None
+text_field_selection = 0
 drop_down_selection = "Kilometres"
+meter_count = None
 
 
 def on_container_hover_color_change(e):
@@ -2146,32 +2147,21 @@ def generate_table_array(page):
     
     page.update()
     
+def update_table_array_with_meter_count(page):
+    global table_array
+    table_array = []
+    if meter_count:  # Only proceed if meter_count is not None
+        for key, values in matrix_dict[selection].items():
+            for tactic, info in values.items():
+                # Assuming info is the list [1, var, 3, 4, var, 6]
+                if len(info) >= 6:
+                    # Update [2] and [5] if valid
+                    if info[1] != "--":  # Check if there's a valid multiplier
+                        info[2] = meter_count * info[1]
+                    if info[4] != "--":  # Similarly, update [5]
+                        info[5] = meter_count * info[4]
+
+        page.update()
 
 
 
-
-'''ft.TextButton(
-                         on_click=lambda e: print("Button pressed"),
-                         
-                         content=
-                         ft.Row(
-                              controls=[
-                                   ft.Icon(
-                                        ft.icons.SEARCH_SHARP,
-                                        color=ft.colors.BLACK,
-                                        size=text_size
-                                   ),
-                                   ft.Text(
-                                        "View Actual Scale",
-                                        color=ft.colors.BLACK,
-                                        #weight=ft.FontWeight.BOLD,
-                                        font_family="Roboto",
-                                        size=text_size * 0.5
-                                   ),
-                              ],
-                              spacing=0,
-                              
-                         ),
-                         
-                    
-                    ),'''
