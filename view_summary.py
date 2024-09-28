@@ -22,6 +22,7 @@ results_graph_height = None
 
 
 def create_results_container(page):
+        
         global results_container
         container = ft.Container(
             content=ft.Column(
@@ -34,10 +35,11 @@ def create_results_container(page):
             
         )
         results_container = container
+        #print(f"{global_variables.updated_array} \n ________________________________________________________ \n {global_variables.table_array}")
         return container
 def on_tab_click(page):
     global header_container
-    
+    global_variables.generate_table_array(page)
     def handle_click(e):
         global data_container
         if global_variables.results_tab_selected == True:
@@ -50,7 +52,7 @@ def on_tab_click(page):
             header_container.content.controls[0].content.controls[1].border= ft.Border(bottom=ft.BorderSide(2, color="#D2E0E8"))
             results_container.content.controls[1] = create_summary_container(page)
             global_variables.results_tab_selected = False
-            global_variables.generate_table_array(page)
+            
         else:
             
             header_container.content.controls[0].content.controls[1].bgcolor = "#A7ADBA"
@@ -64,7 +66,7 @@ def on_tab_click(page):
             
             results_container.content.controls[1] = create_results_content(page) 
             global_variables.results_tab_selected = True
-            global_variables.generate_table_array(page)
+            
 
         
         page.update()
@@ -115,6 +117,7 @@ def create_output_header(page):
                 
             )
         header_container = container
+        #print(f"{global_variables.updated_array} \n ________________________________________________________ \n {global_variables.table_array}")
         return container
 
 def create_results_content(page):
@@ -144,7 +147,7 @@ def create_data_body(page):
     
     data_body_height = global_variables.app_window.height * 0.95 * 0.75
     option_height = data_body_height * .04
-    remaining_height = data_body_height - (option_height * len(global_variables.table_array))
+    #remaining_height = data_body_height - (option_height * len(global_variables.table_array))
     
     container = ft.Stack(
          controls=[
@@ -1038,6 +1041,7 @@ def create_summary_container(page):
           
      )
      summary_container = container
+     page.update()
      return container
 
 def create_summary_header(page):
@@ -1460,11 +1464,14 @@ def create_data_matrix(page):
      text_size= body_height * 0.2 *0.5 * 0.4
      row_width = global_variables.app_window.width * 0.68 / 8 - 2.9
      new_text_size = text_size * 0.80
-     option_height = body_height * 0.2 * 0.5 * 0.5 
+     if global_variables.meter_count == None:
+          iterating_array = global_variables.generate_table_array(page)
+     else:   
+          iterating_array = global_variables.update_table_array_with_meter_count(page)
      row_height = None
      
      
-     for items in global_variables.table_array:
+     for items in iterating_array:
           option_row = ft.Container(
                content= ft.Text(items[0],color="#6F6F9D", weight=ft.FontWeight.BOLD,font_family="Roboto", size= text_size * 0.75,style=ft.TextStyle(italic=True)),
                padding=ft.padding.only(left=2),

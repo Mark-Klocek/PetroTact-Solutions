@@ -1,5 +1,5 @@
 import flet as ft
-
+import copy
 app_window = None
 var = "--"
 substrate_selected_index = 0
@@ -9,6 +9,7 @@ selection = '000'
 results_tab_selected = True
 summary_tab_selected = False
 table_array = []
+updated_array = []
 bgWidth = None
 bulk_num = 0
 stain_num = 0
@@ -16,7 +17,7 @@ stain_num = 0
 
 text_field_selection = 0
 drop_down_selection = "Kilometres"
-meter_count = None
+meter_count = 0
 
 
 def on_container_hover_color_change(e):
@@ -2136,32 +2137,54 @@ matrix_dict = {
 
 def generate_table_array(page):
     global table_array
+    global updated_array
     table_array = []
+    updated_array = []
     for key, values in matrix_dict[selection].items():
         category_list=[]
         for tactic, info in values.items():
             tactic_list = [tactic] + info
             category_list.append(tactic_list)
         if category_list:
-            table_array.append([key,category_list])
+            table_array.append([key,category_list])  
     
     page.update()
-    
+    return table_array
+
 def update_table_array_with_meter_count(page):
+    global updated_array
+    global meter_count
     global table_array
-    table_array = []
-    if meter_count:  # Only proceed if meter_count is not None
-        for key, values in matrix_dict[selection].items():
-            for tactic, info in values.items():
-                # Assuming info is the list [1, var, 3, 4, var, 6]
-                if len(info) >= 6:
-                    # Update [2] and [5] if valid
-                    if info[1] != "--":  # Check if there's a valid multiplier
-                        info[2] = meter_count * info[1]
-                    if info[4] != "--":  # Similarly, update [5]
-                        info[5] = meter_count * info[4]
+    updated_array = []
+    table_copy = copy.deepcopy(table_array)
+    for key, values in table_copy:
+        category_list = []
+        for value in values:
+            tactic = value[0] 
+            info = value[1:]
+            if text_field_selection == 0:
+                info[1] = "--"
+                info[4] = "--"
 
-        page.update()
+            else:
+                if info[0] != "--" and info[3]!= "--":
+                    info[1] = round(info[0] * meter_count,5)
+                    info[4] = round(info[3] * meter_count,5)
 
+            tactic_list = copy.deepcopy([tactic]) + copy.deepcopy(info)
+            category_list.append(tactic_list)
+            #print(f'{info}')
+        
+        if category_list:
+            updated_array.append([key, category_list])
+    print(meter_count)
+    
+    
+    
+        
+            
+
+    page.update()
+    return updated_array
 
 

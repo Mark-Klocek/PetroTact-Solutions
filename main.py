@@ -226,7 +226,8 @@ def main(page:ft.Page):
 
         tab_text_2 = header_tabs.content.controls[1].content 
         tab_text_2.size = results_header.height * 0.4
-
+        if global_variables.meter_count is not None:
+            global_variables.update_table_array_with_meter_count(page)
         global_variables.generate_table_array(page)
         if global_variables.results_tab_selected == False:
             view_summary.results_container.content.controls[1] = view_summary.create_summary_container(page)
@@ -252,7 +253,7 @@ def main(page:ft.Page):
             
             
                 
-
+    
     #print(tactics)    
     page.bgcolor="#69707E"
     page.on_resized = resize

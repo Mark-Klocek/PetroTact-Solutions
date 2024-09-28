@@ -8,6 +8,7 @@ import info_buttons
 
 
 
+
 surface_oil_column_b_containers = []
 global_variables.surface_oil_category_selected_index = 0
 surface_oil_container = None
@@ -170,7 +171,7 @@ def create_surface_oil_column_d(page):
                                                         padding=0,
                                                         #height= global_variables.app_window.height * 0.3 * 0.12 * 0.95,
                                                         alignment=ft.alignment.top_center,
-                                                        on_change=lambda e: dropdown_change(e, page),
+                                                        on_change=dropdown_change(page),
                                                         width=global_variables.app_window.width * 0.3 * 0.8,
                                                         text_style=ft.TextStyle(size=global_variables.app_window.height * 0.3 * 0.4 * 0.28 * 0.5, font_family="Roboto")
                                                         
@@ -191,6 +192,7 @@ def create_surface_oil_column_d(page):
                         
                         )
 def textfield_change(e, page):
+        #global_variables.generate_table_array(page)
         real_value = ""
         current_value = e.control.value
 
@@ -205,20 +207,35 @@ def textfield_change(e, page):
         if real_value:
                 global_variables.text_field_selection = float(real_value)
                 convert_to_meters(e)
-        update_table_array(page)
+        else:
+                global_variables.text_field_selection = 0
+        
+        #global_variables.update_table_array_with_meter_count(page)
+        
+        global_variables.updated_array=global_variables.update_table_array_with_meter_count(page)
+        
+        #print(view_summary.summary_container.content.controls[1].content.controls[1].content.controls[1].controls[1].content)
+        view_summary.summary_container = view_summary.create_summary_body(page)
+        view_summary.results_container.update()
+        print(global_variables.text_field_selection)
         e.control.update()
-        print(global_variables.text_field_selection, global_variables.meter_count)
+        page.update()
 
 
 
 
-def dropdown_change(e,page):
-        global_variables.drop_down_selection = e.control.value
-        convert_to_meters(e)
-        update_table_array(page)
-        e.control.update
-        print(global_variables.drop_down_selection, global_variables.meter_count)
-
+def dropdown_change(page):
+        def handle_change(e):
+                
+                global_variables.drop_down_selection = e.control.value
+                convert_to_meters(e)
+                global_variables.update_table_array_with_meter_count(page)
+                if global_variables.results_tab_selected == False:
+                        view_summary.results_container.content.controls[1] = view_summary.create_summary_container(page)
+                else:
+                        view_summary.results_container.content.controls[1] = view_summary.create_results_content(page)
+                page.update()
+        return handle_change
 
 
 def convert_to_meters(e):
@@ -235,28 +252,6 @@ def convert_to_meters(e):
         if global_variables.drop_down_selection == "Feet":
                 global_variables.meter_count = round(global_variables.text_field_selection * 0.3048, 2)
 
-def update_table_array(page):
-    array = global_variables.table_array
-    if global_variables.meter_count:
-        for category in array:
-            print(f"Category: {category[0]}")
-            print(f"Data: {category[1]}")
-
-            if category[0] != "Not Applicable":  # Only update for applicable categories
-                for i in category[1]:
-                    print(f"Tactic: {i}")  # Print for debugging
-                    # Ensure the list has at least 3 elements to access i[2]
-                    if len(i) > 2 and isinstance(i[1], (float, int)) and i[2] == '--':
-                        i[2] = round(i[1] * global_variables.meter_count, 2)
-                    # Ensure the list has at least 6 elements to access i[5]
-                    if len(i) > 5 and isinstance(i[4], (float, int)) and i[5] == '--':
-                        i[5] = round(i[4] * global_variables.meter_count, 2)
-
-
-
-        global_variables.table_array = array
-        view_summary.summary_body = view_summary.create_summary_body(page)
-        page.update()
 
 def surface_oil_column_b_click(page, i):
         def handle_click(e):
