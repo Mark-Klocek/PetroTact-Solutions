@@ -142,7 +142,7 @@ def create_surface_oil_column_d(page):
                                                 #max_length=10,
                                                 keyboard_type="number",
                                                 content_padding=1,
-                                                on_change=lambda e: textfield_change(e, page),
+                                                on_change=textfield_change(page),
                                                 border_radius=ft.border_radius.all(0),
                                                 text_style=ft.TextStyle(size=global_variables.app_window.height * 0.3 * 0.4 * 0.28 * 0.5, font_family="Roboto"),
                                         
@@ -191,35 +191,37 @@ def create_surface_oil_column_d(page):
                                         
                         
                         )
-def textfield_change(e, page):
-        #global_variables.generate_table_array(page)
-        real_value = ""
-        current_value = e.control.value
+def textfield_change(page):
+        def handle_change(e):
+                real_value = ""
+                current_value = e.control.value
 
-        if len(current_value)> 7:
-                current_value = current_value[:7]
+                if len(current_value)> 7:
+                        current_value = current_value[:7]
 
-        for i in current_value:
-                if i.isdigit() or (i == '.' and '.' not in real_value):
-                        real_value += i
-        e.control.value = real_value
-        
-        if real_value:
-                global_variables.text_field_selection = float(real_value)
-                convert_to_meters(e)
-        else:
-                global_variables.text_field_selection = 0
-        
-        #global_variables.update_table_array_with_meter_count(page)
-        
-        global_variables.updated_array=global_variables.update_table_array_with_meter_count(page)
-        
-        #print(view_summary.summary_container.content.controls[1].content.controls[1].content.controls[1].controls[1].content)
-        view_summary.summary_container = view_summary.create_summary_body(page)
-        view_summary.results_container.update()
-        print(global_variables.text_field_selection)
-        e.control.update()
-        page.update()
+                for i in current_value:
+                        if i.isdigit() or (i == '.' and '.' not in real_value):
+                                real_value += i
+                e.control.value = real_value
+                
+                if real_value:
+                        global_variables.text_field_selection = float(real_value)
+                        convert_to_meters(e)
+                else:
+                        global_variables.text_field_selection = 0
+                
+                #global_variables.update_table_array_with_meter_count(page)
+                
+                global_variables.updated_array=global_variables.update_table_array_with_meter_count(page)
+                
+                #print(view_summary.summary_container.content.controls[1].content.controls[1].content.controls[1].controls[1].content)
+                if global_variables.results_tab_selected == False:
+                        view_summary.results_container.content.controls[1] = view_summary.create_summary_container(page)
+                else:
+                        view_summary.results_container.content.controls[1] = view_summary.create_results_content(page)
+                print(global_variables.text_field_selection)
+                page.update()
+        return handle_change
 
 
 
