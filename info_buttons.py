@@ -197,6 +197,17 @@ def treatment_tactic(page):
     content_window_width = window_width - (window_padding * 2)
     data_body_bgcolor = "#FFFFFF"
     tactic_info_column_bgcolor = "#E1E1E1"
+    tactic_info_container = ft.Container( #tactic info column
+                                    content=ft.Column(
+                                        controls= natural_recovery_info(page),
+                                        spacing=0,
+                                        scroll=ft.ScrollMode.ALWAYS
+                                    ),
+                                    width=content_window_width * 0.75,
+                                    height=content_window_height,
+                                    border=ft.border.all(2,ft.colors.WHITE),
+                                    bgcolor=tactic_info_column_bgcolor
+                                )
     
     def close_dialog(e):
         page.dialog.open = False
@@ -223,7 +234,7 @@ def treatment_tactic(page):
                                     on_click=close_dialog,
                                     alignment=ft.alignment.center,
                                     border_radius=ft.border_radius.all(5),
-                                    on_hover=lambda e: change_bgcolor(e)
+                                    on_hover=lambda e: change_close_container_bgcolor(e)
                                     #border=ft.border.all(1,ft.colors.BLACK)
                                     
                                 )],
@@ -231,7 +242,7 @@ def treatment_tactic(page):
                             spacing=0,
 
                         ),
-                        border=ft.border.all(1,ft.colors.RED),
+                        #border=ft.border.all(1,ft.colors.RED),
                         height=row_height,
                         width=window_width - (window_padding * 2)
                     ),
@@ -239,16 +250,15 @@ def treatment_tactic(page):
                         content = ft.Row(
                             controls=[
                                 ft.Container( #tactic name column
+                                    content=ft.Column(
+                                        controls=content_window_tactic_name_column(page,tactic_info_container),
+                                        spacing=0
+                                    ),
                                     width=content_window_width * 0.25,
                                     height=content_window_height,
-                                    border=ft.border.all(1,ft.colors.RED)
+                                    
                                 ),
-                                ft.Container( #tactic info column
-                                    width=content_window_width * 0.75,
-                                    height=content_window_height,
-                                    border=ft.border.all(1,ft.colors.GREEN),
-                                    bgcolor=tactic_info_column_bgcolor
-                                )
+                                tactic_info_container
                             ],
                             spacing = 0
 
@@ -280,12 +290,415 @@ def treatment_tactic(page):
     page.dialog = dialog
     dialog.open = True
     page.update()
-def change_bgcolor(e):
+def content_window_tactic_name_column(page,tactic_info_container):
+    window_width = global_variables.app_window.width * 0.85
+    window_height = global_variables.app_window.height * 0.9
+    window_padding = window_width*0.01
+    row_height = window_height*0.06
+    content_window_height = window_height *0.9
+    content_window_width = window_width - (window_padding * 2)
+    container_column = []
+    container_column_row_height = content_window_height / 7
+    
+    for i in range(7):
+        container = ft.Container(
+            content=ft.Row(
+                controls=[
+                    ft.Container(
+                        padding=0,
+                        width=content_window_width * .25 / 4,
+                        height=container_column_row_height,
+                        #border=ft.border.all(1,ft.colors.RED),
+                        content= ft.Image(src=global_variables.treatment_tactic_small_pictures[i],fit=ft.ImageFit.CONTAIN)
+                        
+                    ),
+                    ft.Container(
+                        padding=0,
+                        #border=ft.border.all(1,ft.colors.RED),
+                        width=content_window_width * 0.25 * 0.75 - 5,
+                        height=container_column_row_height,
+                        content=generate_content(i,content_window_height),
+                        alignment=ft.alignment.center
+                        
+                    )
+                ],
+                spacing=0
+            ),
+            padding=5,
+            bgcolor=generate_bgcolor(i),
+            #border=ft.border.all(1,ft.colors.RED),
+            width=content_window_width,
+            height=container_column_row_height,
+            on_hover=change_tactic_name_window_bgcolor,
+            on_click=tactic_name_window_click(page,container_column, i,tactic_info_container)
+            
+            )
+        container_column.append(container)
+    return container_column
+def generate_bgcolor(i):
+    if i == global_variables.tactic_selected_variable:
+        return "#E1E1E1"
+    else:
+        return "#FFFFFF"
+def generate_content(i,window_height):
+    if i == global_variables.tactic_selected_variable:
+        return ft.Text(global_variables.treatment_tactic_name[i],color=ft.colors.BLACK,weight=ft.FontWeight.BOLD,font_family="Roboto",size=window_height * 0.03)
+    else:
+        return ft.Text(global_variables.treatment_tactic_name[i],color=ft.colors.BLACK,font_family="Roboto",size=window_height * 0.03)
+def change_tactic_name_window_bgcolor(e):
+    if e.data == "true" and e.control.bgcolor != "#E1E1E1":
+        e.control.bgcolor = "#DCE7ED"
+    else:
+        if e.control.bgcolor == "#E1E1E1":
+            e.control.bgcolor = "#E1E1E1"
+        else:
+            e.control.bgcolor = "#FFFFFF"
+    e.control.update()
+def change_close_container_bgcolor(e):
     if e.data == "true":
         e.control.bgcolor = "blue"
     else:
         e.control.bgcolor = ft.colors.ORANGE
     e.control.update()
+
+def tactic_name_window_click(page,container_column,i,tactic_info_container):
+    def handle_change(e, i=i):
+        previous_index = global_variables.tactic_selected_variable
+        container_column[previous_index].bgcolor = "#FFFFFF"
+        container_column[previous_index].content.controls[1].content.weight = None
+        container_column[previous_index].update()
+
+        container_column[i].bgcolor = "#E1E1E1"
+        container_column[i].content.controls[1].content.weight = ft.FontWeight.BOLD
+        container_column[i].update()
+
+        tactic_info_container.content.controls = tactic_functions_list[i](page)
+        tactic_info_container.update()
+
+        global_variables.tactic_selected_variable = i
+
+        print(global_variables.tactic_selected_variable)
+        page.update()
+        
+    return handle_change
+
+def natural_recovery_info(page):
+    window_width = global_variables.app_window.width * 0.85
+    window_height = global_variables.app_window.height * 0.9
+    window_padding = window_width*0.01
+    content_window_height = window_height *0.9
+    content_window_width = window_width - (window_padding * 2)
+    column_array = []
+    text_size = content_window_height * 0.75 * 0.04
+    container = ft.Container(
+        padding=0,
+        width=content_window_width * 0.75,
+        height=content_window_height * 0.45,
+        alignment=ft.alignment.center,
+        border=ft.border.all(1, ft.colors.RED),
+        content=ft.Image(src=r"images\Treatment Tactic\Treatment Tactic Large\treatment_tactic_large_natural_recovery.png",fit=ft.ImageFit.FIT_HEIGHT)
+    )
+    column_array.append(container)
+    container = ft.Container(
+        #ft.TextSpan("",style=ft.TextStyle(size=text_size,font_family="Roboto",color=ft.colors.BLACK))
+        padding=ft.padding.only(left=window_padding),
+        width=content_window_width * 0.75,
+        #height= content_window_height * 0.75,
+        border=ft.border.all(1,ft.colors.GREEN),
+        content=ft.Text(
+            spans=[
+                ft.TextSpan("Objective", style=ft.TextStyle(weight=ft.FontWeight.BOLD, size=text_size * 1.15, font_family="Roboto",color=ft.colors.BLACK) ),
+                ft.TextSpan("\n"),
+                ft.TextSpan("\n"),
+                ft.TextSpan("Leave stranded oil to natural weathering and oil removal processes and allow the oiled shoreline to recover without intervention.",style=ft.TextStyle(size=text_size,font_family="Roboto",color=ft.colors.BLACK)),
+                ft.TextSpan("\n"),
+                ft.TextSpan("\n"),
+                ft.TextSpan("\n"),
+                ft.TextSpan("Description", style=ft.TextStyle(weight=ft.FontWeight.BOLD, size=text_size * 1.15, font_family="Roboto",color=ft.colors.BLACK) ),
+                ft.TextSpan("\n"),
+                ft.TextSpan("\n"),
+                ft.TextSpan("Evaluation of this option requires: knowledge of the oiling conditions; the coastal processes and physical character of the shoreline, and; the resources at risk, in order to evaluate the likely consequences of allowing the oil to be removed or degraded naturally. In many circumstances, it is appropriate to monitor the location to ensure that the assessment is correct or that the rate of weathering and natural oil removal proceeds as anticipated.",style=ft.TextStyle(size=text_size,font_family="Roboto",color=ft.colors.BLACK)),
+                ft.TextSpan("\n"),
+                ft.TextSpan("\n"),
+                ft.TextSpan("\n"),
+                ft.TextSpan("Applications", style=ft.TextStyle(weight=ft.FontWeight.BOLD, size=text_size * 1.15, font_family="Roboto",color=ft.colors.BLACK) ),
+                ft.TextSpan("\n"),
+                ft.TextSpan("\n"),
+                ft.TextSpan("Natural recovery can be applicable on any spill incident and for any type of coastal environment or shoreline type. Natural recovery is generally more applicable for:",style=ft.TextStyle(size=text_size,font_family="Roboto",color=ft.colors.BLACK)),
+                ft.TextSpan("\n"),
+                ft.TextSpan("\n"),
+                ft.TextSpan("   •  small rather than large amounts of oil",style=ft.TextStyle(size=text_size,font_family="Roboto",color=ft.colors.BLACK)),
+                ft.TextSpan("\n"),
+                ft.TextSpan("\n"),
+                ft.TextSpan("   •  non-persistant rather than persistent oil",style=ft.TextStyle(size=text_size,font_family="Roboto",color=ft.colors.BLACK)),
+                ft.TextSpan("\n"),
+                ft.TextSpan("\n"),
+                ft.TextSpan("   •  exposed shorelines, rather than sheltered, low energy environments",style=ft.TextStyle(size=text_size,font_family="Roboto",color=ft.colors.BLACK)),
+                ft.TextSpan("\n"),
+                ft.TextSpan("\n"),
+                ft.TextSpan("   •  remote or inaccessible areas",style=ft.TextStyle(size=text_size,font_family="Roboto",color=ft.colors.BLACK)),
+                ft.TextSpan("\n"),
+                ft.TextSpan("\n"),
+                ft.TextSpan("Selection of the natural recovery strategy may result from an evaluation which condludes that:",style=ft.TextStyle(size=text_size,font_family="Roboto",color=ft.colors.BLACK)),
+                ft.TextSpan("\n"),
+                ft.TextSpan("\n"),
+                ft.TextSpan("   •  to treat or clean stranded oil may cause more damage than leaving the environment to recover naturally or",style=ft.TextStyle(size=text_size,font_family="Roboto",color=ft.colors.BLACK)),
+                ft.TextSpan("\n"),
+                ft.TextSpan("\n"),
+                ft.TextSpan("   •  response techniques cannot accelerate natural recovery or",style=ft.TextStyle(size=text_size,font_family="Roboto",color=ft.colors.BLACK)),
+                ft.TextSpan("\n"),
+                ft.TextSpan("\n"),
+                ft.TextSpan("   •  safety considerations could place response personnel in danger either from the oil (itself) or from environmental conditions (weather, access, hazards, etc.)",style=ft.TextStyle(size=text_size,font_family="Roboto",color=ft.colors.BLACK)),
+            ]
+        )
+        
+    )
+    column_array.append(container)
+    container = ft.Container(
+        padding=0,
+        width=content_window_width * 0.75,
+        height= content_window_height * 0.15,
+        border=ft.border.all(1, ft.colors.BLUE)
+    )
+    column_array.append(container)
+    container = ft.Container(
+        padding=0,
+        width=content_window_width * 0.75,
+        height= content_window_height * 0.4,
+        border=ft.border.all(1,ft.colors.YELLOW)
+    )
+    column_array.append(container)
+    return column_array
+    
+def washing_and_recovery_info(page):
+    window_width = global_variables.app_window.width * 0.85
+    window_height = global_variables.app_window.height * 0.9
+    window_padding = window_width*0.01
+    content_window_height = window_height *0.9
+    content_window_width = window_width - (window_padding * 2)
+    column_array = []
+    container = ft.Container(
+        padding=0,
+        width=content_window_width * 0.75,
+        height=content_window_height * 0.45,
+        alignment=ft.alignment.center,
+        border=ft.border.all(1, ft.colors.RED),
+        content=ft.Image(src=r"images\Treatment Tactic\Treatment Tactic Large\treatment_tactic_large_washing_and_recovery.png",fit=ft.ImageFit.FIT_HEIGHT)
+    )
+    column_array.append(container)
+    container = ft.Container(
+        padding=0,
+        width=content_window_width * 0.75,
+        height= content_window_height * 0.75,
+        border=ft.border.all(1,ft.colors.GREEN)
+    )
+    column_array.append(container)
+    container = ft.Container(
+        padding=0,
+        width=content_window_width * 0.75,
+        height= content_window_height * 0.15,
+        border=ft.border.all(1, ft.colors.BLUE)
+    )
+    column_array.append(container)
+    container = ft.Container(
+        padding=0,
+        width=content_window_width * 0.75,
+        height= content_window_height * 0.4,
+        border=ft.border.all(1,ft.colors.YELLOW)
+    )
+    column_array.append(container)
+    return column_array
+def manual_removal_info(page):
+    window_width = global_variables.app_window.width * 0.85
+    window_height = global_variables.app_window.height * 0.9
+    window_padding = window_width*0.01
+    content_window_height = window_height *0.9
+    content_window_width = window_width - (window_padding * 2)
+    column_array = []
+    container = ft.Container(
+        padding=0,
+        width=content_window_width * 0.75,
+        height=content_window_height * 0.45,
+        alignment=ft.alignment.center,
+        border=ft.border.all(1, ft.colors.RED),
+        content=ft.Image(src=r"images\Treatment Tactic\Treatment Tactic Large\treatment_tactic_large_manual_removal.png",fit=ft.ImageFit.FIT_HEIGHT)
+    )
+    column_array.append(container)
+    container = ft.Container(
+        padding=0,
+        width=content_window_width * 0.75,
+        height= content_window_height * 0.75,
+        border=ft.border.all(1,ft.colors.GREEN)
+    )
+    column_array.append(container)
+    container = ft.Container(
+        padding=0,
+        width=content_window_width * 0.75,
+        height= content_window_height * 0.15,
+        border=ft.border.all(1, ft.colors.BLUE)
+    )
+    column_array.append(container)
+    container = ft.Container(
+        padding=0,
+        width=content_window_width * 0.75,
+        height= content_window_height * 0.4,
+        border=ft.border.all(1,ft.colors.YELLOW)
+    )
+    column_array.append(container)
+    return column_array
+def mechanical_removal_info(page):
+    window_width = global_variables.app_window.width * 0.85
+    window_height = global_variables.app_window.height * 0.9
+    window_padding = window_width*0.01
+    content_window_height = window_height *0.9
+    content_window_width = window_width - (window_padding * 2)
+    column_array = []
+    container = ft.Container(
+        padding=0,
+        width=content_window_width * 0.75,
+        height=content_window_height * 0.45,
+        alignment=ft.alignment.center,
+        border=ft.border.all(1, ft.colors.RED),
+        content=ft.Image(src=r"images\Treatment Tactic\Treatment Tactic Large\treatment_tactic_large_mechanical_removal.png",fit=ft.ImageFit.FIT_HEIGHT)
+    )
+    column_array.append(container)
+    container = ft.Container(
+        padding=0,
+        width=content_window_width * 0.75,
+        height= content_window_height * 0.75,
+        border=ft.border.all(1,ft.colors.GREEN)
+    )
+    column_array.append(container)
+    container = ft.Container(
+        padding=0,
+        width=content_window_width * 0.75,
+        height= content_window_height * 0.15,
+        border=ft.border.all(1, ft.colors.BLUE)
+    )
+    column_array.append(container)
+    container = ft.Container(
+        padding=0,
+        width=content_window_width * 0.75,
+        height= content_window_height * 0.4,
+        border=ft.border.all(1,ft.colors.YELLOW)
+    )
+    column_array.append(container)
+    return column_array
+def in_situ_sediment_mixing_and_or_relocation_info(page):
+    window_width = global_variables.app_window.width * 0.85
+    window_height = global_variables.app_window.height * 0.9
+    window_padding = window_width*0.01
+    content_window_height = window_height *0.9
+    content_window_width = window_width - (window_padding * 2)
+    column_array = []
+    container = ft.Container(
+        padding=0,
+        width=content_window_width * 0.75,
+        height=content_window_height * 0.45,
+        alignment=ft.alignment.center,
+        border=ft.border.all(1, ft.colors.RED),
+        content=ft.Image(src=r"images\Treatment Tactic\Treatment Tactic Large\treatment_tactic_large_in_situ_sediment_mixing_and_or_relocation.png",fit=ft.ImageFit.FIT_HEIGHT)
+    )
+    column_array.append(container)
+    container = ft.Container(
+        padding=0,
+        width=content_window_width * 0.75,
+        height= content_window_height * 0.75,
+        border=ft.border.all(1,ft.colors.GREEN)
+    )
+    column_array.append(container)
+    container = ft.Container(
+        padding=0,
+        width=content_window_width * 0.75,
+        height= content_window_height * 0.15,
+        border=ft.border.all(1, ft.colors.BLUE)
+    )
+    column_array.append(container)
+    container = ft.Container(
+        padding=0,
+        width=content_window_width * 0.75,
+        height= content_window_height * 0.4,
+        border=ft.border.all(1,ft.colors.YELLOW)
+    )
+    column_array.append(container)
+    return column_array
+def in_situ_burning_info(page):
+    window_width = global_variables.app_window.width * 0.85
+    window_height = global_variables.app_window.height * 0.9
+    window_padding = window_width*0.01
+    content_window_height = window_height *0.9
+    content_window_width = window_width - (window_padding * 2)
+    column_array = []
+    container = ft.Container(
+        padding=0,
+        width=content_window_width * 0.75,
+        height=content_window_height * 0.45,
+        alignment=ft.alignment.center,
+        border=ft.border.all(1, ft.colors.RED),
+        content=ft.Image(src=r"images\Treatment Tactic\Treatment Tactic Large\treatment_tactic_large_in_situ_burning.png",fit=ft.ImageFit.FIT_HEIGHT)
+    )
+    column_array.append(container)
+    container = ft.Container(
+        padding=0,
+        width=content_window_width * 0.75,
+        height= content_window_height * 0.75,
+        border=ft.border.all(1,ft.colors.GREEN)
+    )
+    column_array.append(container)
+    container = ft.Container(
+        padding=0,
+        width=content_window_width * 0.75,
+        height= content_window_height * 0.15,
+        border=ft.border.all(1, ft.colors.BLUE)
+    )
+    column_array.append(container)
+    container = ft.Container(
+        padding=0,
+        width=content_window_width * 0.75,
+        height= content_window_height * 0.4,
+        border=ft.border.all(1,ft.colors.YELLOW)
+    )
+    column_array.append(container)
+    return column_array
+def bioremidiation_info(page):
+    window_width = global_variables.app_window.width * 0.85
+    window_height = global_variables.app_window.height * 0.9
+    window_padding = window_width*0.01
+    content_window_height = window_height *0.9
+    content_window_width = window_width - (window_padding * 2)
+    column_array = []
+    container = ft.Container(
+        padding=0,
+        width=content_window_width * 0.75,
+        height=content_window_height * 0.45,
+        alignment=ft.alignment.center,
+        border=ft.border.all(1, ft.colors.RED),
+        content=ft.Image(src=r"images\Treatment Tactic\Treatment Tactic Large\treatment_tactic_large_bioremidiation.png",fit=ft.ImageFit.FIT_HEIGHT)
+    )
+    column_array.append(container)
+    container = ft.Container(
+        padding=0,
+        width=content_window_width * 0.75,
+        height= content_window_height * 0.75,
+        border=ft.border.all(1,ft.colors.GREEN)
+    )
+    column_array.append(container)
+    container = ft.Container(
+        padding=0,
+        width=content_window_width * 0.75,
+        height= content_window_height * 0.15,
+        border=ft.border.all(1, ft.colors.BLUE)
+    )
+    column_array.append(container)
+    container = ft.Container(
+        padding=0,
+        width=content_window_width * 0.75,
+        height= content_window_height * 0.4,
+        border=ft.border.all(1,ft.colors.YELLOW)
+    )
+    column_array.append(container)
+    return column_array
+tactic_functions_list = [natural_recovery_info,washing_and_recovery_info,manual_removal_info,mechanical_removal_info,in_situ_sediment_mixing_and_or_relocation_info,in_situ_burning_info,bioremidiation_info]
 ###################################
 ######## WASTE VOLUME #############
 ###################################

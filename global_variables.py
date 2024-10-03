@@ -2181,7 +2181,7 @@ def update_table_array_with_meter_count(page):
         
         if category_list:
             updated_array.append([key, category_list])
-    print(meter_count)
+    #print(meter_count)
     
     
     
@@ -2191,4 +2191,25 @@ def update_table_array_with_meter_count(page):
     page.update()
     return updated_array
 
-
+########################
+### TREATMENT TACTIC #####
+########################
+tactic_selected_variable = 0
+treatment_tactic_small_pictures = [
+    r"images\Treatment Tactic\Treatment Tactic Small\treatment_tactic_small_natural_recovery.png",
+    r"images\Treatment Tactic\Treatment Tactic Small\treatment_tactic_small_washing_and_recovery.png",
+    r"images\Treatment Tactic\Treatment Tactic Small\treatment_tactic_small_manual_removal.png",
+    r"images\Treatment Tactic\Treatment Tactic Small\treatment_tactic_small_mechanical_removal.png",
+    r"images\Treatment Tactic\Treatment Tactic Small\treatment_tactic_small_in_situ_sediment_mixing_and_or_relocation.png",
+    r"images\Treatment Tactic\Treatment Tactic Small\treatment_tactic_small_in_situ_burning.png",
+    r"images\Treatment Tactic\Treatment Tactic Small\treatment_tactic_small_bioremediation.png",
+]
+treatment_tactic_name = [
+    "Natural Recovery",
+    "Washing and Recovery",
+    "Manual Removal",
+    "Mechanical Removal",
+    "In-situ Sediment Mixing and/or Relocation",
+    "In-situ Burning",
+    "Bioremediation"
+]
