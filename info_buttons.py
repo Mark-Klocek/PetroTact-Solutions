@@ -223,6 +223,7 @@ def treatment_tactic(page):
                                     on_click=close_dialog,
                                     alignment=ft.alignment.center,
                                     border_radius=ft.border_radius.all(5),
+                                    on_hover=lambda e: change_bgcolor(e)
                                     #border=ft.border.all(1,ft.colors.BLACK)
                                     
                                 )],
@@ -252,7 +253,7 @@ def treatment_tactic(page):
                             spacing = 0
 
                         ),
-                        width=window_width - (window_padding * 2),
+                        width=content_window_width,
                         height=content_window_height,
                         #border=ft.border.all(1,ft.colors.GREEN),
                         bgcolor=data_body_bgcolor
@@ -279,7 +280,12 @@ def treatment_tactic(page):
     page.dialog = dialog
     dialog.open = True
     page.update()
-
+def change_bgcolor(e):
+    if e.data == "true":
+        e.control.bgcolor = "blue"
+    else:
+        e.control.bgcolor = ft.colors.ORANGE
+    e.control.update()
 ###################################
 ######## WASTE VOLUME #############
 ###################################

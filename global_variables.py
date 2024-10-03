@@ -21,11 +21,15 @@ meter_count = 0
 
 
 def on_container_hover_color_change(e):
-    if e.data == "true":
+    if e.data == "true" and e.control.bgcolor != ft.colors.ORANGE:
         e.control.bgcolor = "#AEC6CF"
     else:
-        e.control.bgcolor = ft.colors.TRANSPARENT
+        if e.control.bgcolor == ft.colors.ORANGE:
+            e.control.bgcolor = ft.colors.ORANGE
+        else:
+            e.control.bgcolor = ft.colors.TRANSPARENT
     e.control.update()
+
 def on_hover_change_color(e):
     if e.data == "true":  # When hovering
         e.control.content.color = ft.colors.BLUE
