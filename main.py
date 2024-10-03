@@ -235,7 +235,8 @@ def main(page:ft.Page):
         else:
             view_summary.results_container.content.controls[1] = view_summary.create_results_content(page)
         
-        
+        if page.dialog and page.dialog.open:
+            page.dialog.open = False
         ####testing#########
         
         print(global_variables.drop_down_selection)

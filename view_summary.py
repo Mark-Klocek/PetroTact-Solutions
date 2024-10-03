@@ -1245,7 +1245,7 @@ def create_summary_information(page):
                                                             
                                                             ft.Container(
                                                                  content=ft.Icon(name=ft.icons.INFO_OUTLINED,size=global_variables.app_window.height * 0.95 * 0.15 * 0.20 * 0.8,color=ft.colors.ORANGE,),
-                                                                 on_click=lambda e: info_buttons.tactic_info(page),
+                                                                 on_click=lambda e: info_buttons.treatment_tactic(page),
                                                                  on_hover=global_variables.on_hover_change_color
                                                             ),
                                                             ft.Container(
@@ -1260,7 +1260,7 @@ def create_summary_information(page):
                                                     bgcolor=ft.colors.TRANSPARENT,
                                                     expand=True,
                                                     padding=0,
-                                                    on_click=lambda e: info_buttons.tactic_info(page),
+                                                    #on_click=lambda e: info_buttons.tactic_info(page),
                                                     ),
                                                 ft.Container(
                                                      content= ft.Row(
@@ -1286,7 +1286,7 @@ def create_summary_information(page):
                                                     bgcolor=ft.colors.TRANSPARENT,
                                                     expand=True,
                                                     padding=0,
-                                                    on_click=lambda e: info_buttons.endpoints_info(page),
+                                                    #on_click=lambda e: info_buttons.endpoints_info(page),
                                                     ),       
                                                 ]
                                       ),
@@ -1325,7 +1325,7 @@ def create_summary_information(page):
                                                     bgcolor=ft.colors.TRANSPARENT,
                                                     expand=True,
                                                     padding=0,
-                                                    on_click=lambda e: info_buttons.waste_types_info(page),
+                                                    #on_click=lambda e: info_buttons.waste_types_info(page),
                                                     ),
                                                 ft.Container(
                                                      content= ft.Row(
@@ -1350,7 +1350,7 @@ def create_summary_information(page):
                                                     bgcolor=ft.colors.TRANSPARENT,
                                                     expand=True,
                                                     padding=0,
-                                                    on_click=lambda e: info_buttons.waste_volume_info(page),
+                                                    #on_click=lambda e: info_buttons.waste_volume_info(page),
                                                     ),       
                                                 ]
                                       ),
