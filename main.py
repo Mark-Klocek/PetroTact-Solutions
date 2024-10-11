@@ -8,6 +8,17 @@ import view_summary
 
 def main(page:ft.Page):
     page.padding=0
+    page.theme = ft.Theme(
+        scrollbar_theme=ft.ScrollbarTheme(
+            thumb_color= {
+
+                ft.MaterialState.DEFAULT: ft.colors.ORANGE
+            },
+            thumb_visibility=True
+                
+            
+        )
+    )
     global_variables.app_window = page
     input_container = functions.create_input_container(page)
     results_container=view_summary.create_results_container(page)
