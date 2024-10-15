@@ -403,7 +403,7 @@ def natural_recovery_info(page):#Natural recovery info window for treatment tact
     container = ft.Container( #image container
         padding=0,
         width=content_window_width * 0.75,
-        height=content_window_height * 0.45,
+        height=content_window_height * 0.65,
         alignment=ft.alignment.center,
         #border=ft.border.all(1, ft.colors.RED),
         content=ft.Image(src=r"images\Treatment Tactic\Treatment Tactic Large\treatment_tactic_large_natural_recovery.png",fit=ft.ImageFit.FIT_HEIGHT)
@@ -458,7 +458,7 @@ def natural_recovery_info(page):#Natural recovery info window for treatment tact
                 ft.TextSpan("   •  response techniques cannot accelerate natural recovery or",style=ft.TextStyle(size=text_size,font_family="Roboto",color=ft.colors.BLACK)),
                 #ft.TextSpan("\n"),
                 ft.TextSpan("\n"),
-                ft.TextSpan("   •  safety considerations could place response personnel in danger either from the oil (itself) or from environmental \n       conditions (weather, access, hazards, etc.)",style=ft.TextStyle(size=text_size,font_family="Roboto",color=ft.colors.BLACK)),
+                ft.TextSpan("   •  safety considerations could place response personnel in danger either from the oil (itself) or from environmental conditions (weather, access, hazards, etc.)",style=ft.TextStyle(size=text_size,font_family="Roboto",color=ft.colors.BLACK)),
                 ft.TextSpan("\n"),
                 ft.TextSpan("\n"),
                 ft.TextSpan("Natural recovery should always be considered as the preferred option; particularly for small amounts of oil. The trade-off or net environmental benefit for each segment typically considers:",style=ft.TextStyle(size=text_size,font_family="Roboto",color=ft.colors.BLACK)),
@@ -606,7 +606,7 @@ def washing_and_recovery_info(page):#washing and recovery info window for treatm
     container = ft.Container( #image container
         padding=0,
         width=content_window_width * 0.75,
-        height=content_window_height * 0.45,
+        height=content_window_height * 0.65,
         alignment=ft.alignment.center,
         #border=ft.border.all(1, ft.colors.RED),
         content=ft.Image(src=r"images\Treatment Tactic\Treatment Tactic Large\treatment_tactic_large_washing_and_recovery.png",fit=ft.ImageFit.FIT_HEIGHT)
@@ -629,10 +629,10 @@ def washing_and_recovery_info(page):#washing and recovery info window for treatm
                 ft.TextSpan("Typically, the oil is moved by the water stream from hand-operated or remote-controlled hoses to a down slope location for containment, recovery and collection for disposal. The oil is washed either:",style=ft.TextStyle(size=text_size,font_family="Roboto",color=ft.colors.BLACK)),
                 ft.TextSpan("\n"),
                 ft.TextSpan("\n"),
-                ft.TextSpan("   •  onto the adjacent water where it can be contained by booms and collected by skimmers or recovered with \n       sorbent materials or",style=ft.TextStyle(size=text_size,font_family="Roboto",color=ft.colors.BLACK)),
+                ft.TextSpan("   •  onto the adjacent water where it can be contained by booms and collected by skimmers or recovered with sorbent materials or",style=ft.TextStyle(size=text_size,font_family="Roboto",color=ft.colors.BLACK)),
                 #ft.TextSpan("\n"),
                 ft.TextSpan("\n"),
-                ft.TextSpan("   •  towards a collection area, such as a lined sump or trench, where it can be removed by a vacuum system or \n      skimmer",style=ft.TextStyle(size=text_size,font_family="Roboto",color=ft.colors.BLACK)),
+                ft.TextSpan("   •  towards a collection area, such as a lined sump or trench, where it can be removed by a vacuum system or skimmer",style=ft.TextStyle(size=text_size,font_family="Roboto",color=ft.colors.BLACK)),
                 ft.TextSpan("\n"),
                 ft.TextSpan("\n"),
                 ft.TextSpan("Oil is washed by a v ariety of methods that can include:",style=ft.TextStyle(size=text_size,font_family="Roboto",color=ft.colors.BLACK)),
@@ -1280,7 +1280,6 @@ def washing_and_recovery_info(page):#washing and recovery info window for treatm
     column_array.append(container)
     return column_array
 
-
 def manual_removal_info(page):#Manual remove info window for treatment tactic alert dialogue pop up
 
     #ft.TextSpan("",style=ft.TextStyle(size=text_size,font_family="Roboto",color=ft.colors.BLACK))
@@ -1298,7 +1297,7 @@ def manual_removal_info(page):#Manual remove info window for treatment tactic al
     container = ft.Container( # image container
         padding=0,
         width=content_window_width * 0.75,
-        height=content_window_height * 0.45,
+        height=content_window_height * 0.65,
         alignment=ft.alignment.center,
         #border=ft.border.all(1, ft.colors.RED),
         content=ft.Image(src=r"images\Treatment Tactic\Treatment Tactic Large\treatment_tactic_large_manual_removal.png",fit=ft.ImageFit.FIT_HEIGHT)
@@ -1642,6 +1641,7 @@ def manual_removal_info(page):#Manual remove info window for treatment tactic al
     )
     column_array.append(container)
     return column_array
+
 def mechanical_removal_info(page):#mechanical remove info window for treatment tactic alert dialogue pop up
     #ft.TextSpan("",style=ft.TextStyle(size=text_size,font_family="Roboto",color=ft.colors.BLACK))
     #ft.TextSpan("\n"),
@@ -1658,7 +1658,7 @@ def mechanical_removal_info(page):#mechanical remove info window for treatment t
     container = ft.Container( #image container 1
         padding=0,
         width=content_window_width * 0.75,
-        height=content_window_height * 0.45,
+        height=content_window_height * 0.65,
         alignment=ft.alignment.center,
         #border=ft.border.all(1, ft.colors.RED),
         content=ft.Image(src=r"images\Treatment Tactic\Treatment Tactic Large\treatment_tactic_large_mechanical_removal.png",fit=ft.ImageFit.FIT_HEIGHT)
@@ -1667,7 +1667,7 @@ def mechanical_removal_info(page):#mechanical remove info window for treatment t
     container = ft.Container( #text container 1
         padding=window_padding,
         width=content_window_width * 0.75,
-        border=ft.border.all(1,ft.colors.GREEN),
+        #border=ft.border.all(1,ft.colors.GREEN),
         content=ft.Text(
             spans=[
                 ft.TextSpan("Objective", style=ft.TextStyle(weight=ft.FontWeight.BOLD, size=text_size * 1.15, font_family="Roboto",color=ft.colors.BLACK) ),
@@ -1691,14 +1691,14 @@ def mechanical_removal_info(page):#mechanical remove info window for treatment t
     container = ft.Container( #summary container 1
         padding=0,
         width=content_window_width * 0.75,
-        content=ft.Text("\n Summary of Effenciency Factors for Manual Removal",color="Black",style=ft.TextStyle(italic=True),font_family="Roboto",text_align=ft.TextAlign.CENTER)
+        content=ft.Text("\n Summary of Effenciency Factors for Manual Removal",color="Black",style=ft.TextStyle(italic=True),font_family="Roboto",text_align=ft.TextAlign.CENTER,size=text_size)
     )
     column_array.append(container)
     container = ft.Container( #table container 1
         padding=window_padding,
         width=content_window_width * 0.75 ,
         height= content_window_height * 0.60 + (window_padding * 2),
-        border=ft.border.all(1, ft.colors.BLUE),
+        #border=ft.border.all(1, ft.colors.BLUE),
         content=ft.Column(
             spacing=0,
             controls=[
@@ -1827,7 +1827,169 @@ def mechanical_removal_info(page):#mechanical remove info window for treatment t
                                             width=content_window_width * .75 * .22,
                                             height=content_window_height * .60 / 7,
                                             alignment=ft.alignment.center,
-                                            content=ft.Text("",size=text_size)
+                                            content=ft.Text("minimal labor support",size=text_size,color=ft.colors.BLACK,text_align=ft.TextAlign.CENTER,font_family="Roboto"),
+                                            
+                                        ),
+                                        ft.Container(
+                                            padding=0,
+                                            width=content_window_width * .75 * .22,
+                                            height=content_window_height * .60 / 7,
+                                            alignment=ft.alignment.center,
+                                            content=ft.Text("minimal labor support",size=text_size,color=ft.colors.BLACK,text_align=ft.TextAlign.CENTER,font_family="Roboto"),
+                                            
+                                        ),
+                                        ft.Container(
+                                            padding=0,
+                                            width=content_window_width * .75 * .22,
+                                            height=content_window_height * .60 / 7,
+                                            alignment=ft.alignment.center,
+                                            content=ft.Text("minimal labor support",size=text_size,color=ft.colors.BLACK,text_align=ft.TextAlign.CENTER,font_family="Roboto"),
+                                            
+                                        ),
+                                        ft.Container(
+                                            padding=0,
+                                            width=content_window_width * .75 * .22,
+                                            height=content_window_height * .60 / 7,
+                                            alignment=ft.alignment.center,
+                                            content=ft.Text("minimal labor support",size=text_size,color=ft.colors.BLACK,text_align=ft.TextAlign.CENTER,font_family="Roboto"),
+                                            
+                                        ),
+                                        ft.Container(
+                                            padding=0,
+                                            width=content_window_width * .75 * .22,
+                                            height=content_window_height * .60 / 7,
+                                            alignment=ft.alignment.center,
+                                            content=ft.Text("minimal labor support",size=text_size,color=ft.colors.BLACK,text_align=ft.TextAlign.CENTER,font_family="Roboto"),
+                                            
+                                        ),
+                                        ft.Container(
+                                            padding=0,
+                                            width=content_window_width * .75 * .22,
+                                            height=content_window_height * .60 / 7,
+                                            alignment=ft.alignment.center,
+                                            content=ft.Text("minimal labor support",size=text_size,color=ft.colors.BLACK,text_align=ft.TextAlign.CENTER,font_family="Roboto"),
+                                            
+                                        ),
+                                        
+                                        
+                                    ]
+                                )
+                            ),
+                            ft.Container(
+                                width=content_window_width * .75 *.16,
+                                padding=0,
+                                height=(content_window_height * .60 / 7) * 6,
+                                border=ft.Border(right=ft.BorderSide(1,"#B8B8C7")),
+                                content=ft.Column(
+                                    spacing=0,
+                                    controls=[
+                                        ft.Container(
+                                            padding=0,
+                                            width=content_window_width * .75 * .22,
+                                            height=content_window_height * .60 / 7,
+                                            alignment=ft.alignment.center,
+                                            content=ft.Text("very rapid",size=text_size,color=ft.colors.BLACK,text_align=ft.TextAlign.CENTER,font_family="Roboto"),
+                                            
+                                        ),
+                                        ft.Container(
+                                            padding=0,
+                                            width=content_window_width * .75 * .22,
+                                            height=content_window_height * .60 / 7,
+                                            alignment=ft.alignment.center,
+                                            content=ft.Text("rapid",size=text_size,color=ft.colors.BLACK,text_align=ft.TextAlign.CENTER,font_family="Roboto"),
+                                            
+                                        ),
+                                        ft.Container(
+                                            padding=0,
+                                            width=content_window_width * .75 * .22,
+                                            height=content_window_height * .60 / 7,
+                                            alignment=ft.alignment.center,
+                                            content=ft.Text("very rapid",size=text_size,color=ft.colors.BLACK,text_align=ft.TextAlign.CENTER,font_family="Roboto"),
+                                            
+                                        ),
+                                        ft.Container(
+                                            padding=0,
+                                            width=content_window_width * .75 * .22,
+                                            height=content_window_height * .60 / 7,
+                                            alignment=ft.alignment.center,
+                                            content=ft.Text("rapid",size=text_size,color=ft.colors.BLACK,text_align=ft.TextAlign.CENTER,font_family="Roboto"),
+                                            
+                                        ),
+                                        ft.Container(
+                                            padding=0,
+                                            width=content_window_width * .75 * .22,
+                                            height=content_window_height * .60 / 7,
+                                            alignment=ft.alignment.center,
+                                            content=ft.Text("medium",size=text_size,color=ft.colors.BLACK,text_align=ft.TextAlign.CENTER,font_family="Roboto"),
+                                            
+                                        ),
+                                        ft.Container(
+                                            padding=0,
+                                            width=content_window_width * .75 * .22,
+                                            height=content_window_height * .60 / 7,
+                                            alignment=ft.alignment.center,
+                                            content=ft.Text("medium",size=text_size,color=ft.colors.BLACK,text_align=ft.TextAlign.CENTER,font_family="Roboto"),
+                                            
+                                        ),
+                                        
+                                        
+                                    ]
+                                )
+                            ),
+                            ft.Container(
+                                width=content_window_width * .75 *.17,
+                                padding=0,
+                                height=(content_window_height * .60 / 7) * 6,
+                                border=ft.Border(right=ft.BorderSide(1,"#B8B8C7")),
+                                content=ft.Column(
+                                    spacing=0,
+                                    controls=[
+                                        ft.Container(
+                                            padding=0,
+                                            width=content_window_width * .75 * .22,
+                                            height=content_window_height * .60 / 7,
+                                            alignment=ft.alignment.center,
+                                            content=ft.Text("multiple",size=text_size,color=ft.colors.BLACK,text_align=ft.TextAlign.CENTER,font_family="Roboto"),
+                                            
+                                        ),
+                                        ft.Container(
+                                            padding=0,
+                                            width=content_window_width * .75 * .22,
+                                            height=content_window_height * .60 / 7,
+                                            alignment=ft.alignment.center,
+                                            content=ft.Text("multiple",size=text_size,color=ft.colors.BLACK,text_align=ft.TextAlign.CENTER,font_family="Roboto"),
+                                            
+                                        ),
+                                        ft.Container(
+                                            padding=0,
+                                            width=content_window_width * .75 * .22,
+                                            height=content_window_height * .60 / 7,
+                                            alignment=ft.alignment.center,
+                                            content=ft.Text("single",size=text_size,color=ft.colors.BLACK,text_align=ft.TextAlign.CENTER,font_family="Roboto"),
+                                            
+                                        ),
+                                        ft.Container(
+                                            padding=0,
+                                            width=content_window_width * .75 * .22,
+                                            height=content_window_height * .60 / 7,
+                                            alignment=ft.alignment.center,
+                                            content=ft.Text("single",size=text_size,color=ft.colors.BLACK,text_align=ft.TextAlign.CENTER,font_family="Roboto"),
+                                            
+                                        ),
+                                        ft.Container(
+                                            padding=0,
+                                            width=content_window_width * .75 * .22,
+                                            height=content_window_height * .60 / 7,
+                                            alignment=ft.alignment.center,
+                                            content=ft.Text("single",size=text_size,color=ft.colors.BLACK,text_align=ft.TextAlign.CENTER,font_family="Roboto"),
+                                            
+                                        ),
+                                        ft.Container(
+                                            padding=0,
+                                            width=content_window_width * .75 * .22,
+                                            height=content_window_height * .60 / 7,
+                                            alignment=ft.alignment.center,
+                                            content=ft.Text("single",size=text_size,color=ft.colors.BLACK,text_align=ft.TextAlign.CENTER,font_family="Roboto"),
                                             
                                         )
                                     ]
@@ -1837,18 +1999,59 @@ def mechanical_removal_info(page):#mechanical remove info window for treatment t
                                 width=content_window_width * .75 *.16,
                                 padding=0,
                                 height=(content_window_height * .60 / 7) * 6,
-                                border=ft.Border(right=ft.BorderSide(1,"#B8B8C7"))
-                            ),
-                            ft.Container(
-                                width=content_window_width * .75 *.17,
-                                padding=0,
-                                height=(content_window_height * .60 / 7) * 6,
-                                border=ft.Border(right=ft.BorderSide(1,"#B8B8C7"))
-                            ),
-                            ft.Container(
-                                width=content_window_width * .75 *.16,
-                                padding=0,
-                                height=(content_window_height * .60 / 7) * 6,
+                                content=ft.Column(
+                                    spacing=0,
+                                    controls=[
+                                        ft.Container(
+                                            padding=0,
+                                            width=content_window_width * .75 * .22,
+                                            height=content_window_height * .60 / 7,
+                                            alignment=ft.alignment.center,
+                                            content=ft.Text("moderate",size=text_size,color=ft.colors.BLACK,text_align=ft.TextAlign.CENTER,font_family="Roboto"),
+                                            
+                                        ),
+                                        ft.Container(
+                                            padding=0,
+                                            width=content_window_width * .75 * .22,
+                                            height=content_window_height * .60 / 7,
+                                            alignment=ft.alignment.center,
+                                            content=ft.Text("very high",size=text_size,color=ft.colors.BLACK,text_align=ft.TextAlign.CENTER,font_family="Roboto"),
+                                            
+                                        ),
+                                        ft.Container(
+                                            padding=0,
+                                            width=content_window_width * .75 * .22,
+                                            height=content_window_height * .60 / 7,
+                                            alignment=ft.alignment.center,
+                                            content=ft.Text("moderate",size=text_size,color=ft.colors.BLACK,text_align=ft.TextAlign.CENTER,font_family="Roboto"),
+                                            
+                                        ),
+                                        ft.Container(
+                                            padding=0,
+                                            width=content_window_width * .75 * .22,
+                                            height=content_window_height * .60 / 7,
+                                            alignment=ft.alignment.center,
+                                            content=ft.Text("high",size=text_size,color=ft.colors.BLACK,text_align=ft.TextAlign.CENTER,font_family="Roboto"),
+                                            
+                                        ),
+                                        ft.Container(
+                                            padding=0,
+                                            width=content_window_width * .75 * .22,
+                                            height=content_window_height * .60 / 7,
+                                            alignment=ft.alignment.center,
+                                            content=ft.Text("high",size=text_size,color=ft.colors.BLACK,text_align=ft.TextAlign.CENTER,font_family="Roboto"),
+                                            
+                                        ),
+                                        ft.Container(
+                                            padding=0,
+                                            width=content_window_width * .75 * .22,
+                                            height=content_window_height * .60 / 7,
+                                            alignment=ft.alignment.center,
+                                            content=ft.Text("high",size=text_size,color=ft.colors.BLACK,text_align=ft.TextAlign.CENTER,font_family="Roboto"),
+                                            
+                                        )
+                                    ]
+                                )
                                 
                             )
                         ]
@@ -1858,125 +2061,854 @@ def mechanical_removal_info(page):#mechanical remove info window for treatment t
         )
     )
     column_array.append(container)
-    container = ft.Container(
-        padding=0,
+    container = ft.Container( #text container 2
+        padding=window_padding,
         width=content_window_width * 0.75,
-        height= content_window_height * 0.4,
-        border=ft.border.all(1,ft.colors.YELLOW)
+        #border=ft.border.all(1,ft.colors.YELLOW),
+        content=ft.Text(
+            spans=[
+                ft.TextSpan("Applications", style=ft.TextStyle(weight=ft.FontWeight.BOLD, size=text_size * 1.15, font_family="Roboto",color=ft.colors.BLACK) ),
+                ft.TextSpan("\n"),
+                ft.TextSpan("\n"),
+                ft.TextSpan("Mechanical removal can be used on all but bedrock or solid man-made shoreline types. The various types of commercially available earth-moving equipment have different operational requirements and different applications. The most important variable is the bearing capacity, which controls the ability of a piece of equipment to travel on a shore type without becoming immobilized. Traction for wheeled equipment on soft sediments (low bearing capacity) can be improved by reducing tire pressures. Tracked equipment may be able to operate where wheeled vehicles cannot, but it is not a preferred option as tracks disturb sediments to a much greater degree than tires.",style=ft.TextStyle(size=text_size,font_family="Roboto",color=ft.colors.BLACK)),
+                ft.TextSpan("\n"),
+                ft.TextSpan("\n"),
+                ft.TextSpan("Each type of equipment has a particulare application: ",style=ft.TextStyle(size=text_size,font_family="Roboto",color=ft.colors.BLACK)),
+                ft.TextSpan("\n"),
+                ft.TextSpan("\n"),
+                ft.TextSpan("   •  Scrapers ",style=ft.TextStyle(size=text_size,font_family="Roboto",color=ft.colors.BLACK,weight=ft.FontWeight.BOLD)),
+                ft.TextSpan("and ",style=ft.TextStyle(size=text_size,font_family="Roboto",color=ft.colors.BLACK)),
+                ft.TextSpan("graders ",style=ft.TextStyle(size=text_size,font_family="Roboto",color=ft.colors.BLACK,weight=ft.FontWeight.BOLD)),
+                ft.TextSpan("can operate only on hard and relatively flat surfaces and are capable of moving only a thin cut (~10 cm) of surface material.",style=ft.TextStyle(size=text_size,font_family="Roboto",color=ft.colors.BLACK)),
+                ft.TextSpan("\n"),
+                ft.TextSpan("   •  Loaders, ",style=ft.TextStyle(size=text_size,font_family="Roboto",color=ft.colors.BLACK,weight=ft.FontWeight.BOLD)),
+                ft.TextSpan("bulldozers, ",style=ft.TextStyle(size=text_size,font_family="Roboto",color=ft.colors.BLACK,weight=ft.FontWeight.BOLD)),
+                ft.TextSpan("and ",style=ft.TextStyle(size=text_size,font_family="Roboto",color=ft.colors.BLACK)),
+                ft.TextSpan("backhoes ",style=ft.TextStyle(size=text_size,font_family="Roboto",color=ft.colors.BLACK,weight=ft.FontWeight.BOLD)),
+                ft.TextSpan("can operate in a wider range of conditions and are designed to dig and move large volumes of material.",style=ft.TextStyle(size=text_size,font_family="Roboto",color=ft.colors.BLACK)),
+                ft.TextSpan("\n"),
+                ft.TextSpan("   •  Backhoes, ",style=ft.TextStyle(size=text_size,font_family="Roboto",color=ft.colors.BLACK,weight=ft.FontWeight.BOLD)),
+                ft.TextSpan("draglines, ",style=ft.TextStyle(size=text_size,font_family="Roboto",color=ft.colors.BLACK,weight=ft.FontWeight.BOLD)),
+                ft.TextSpan("and",style=ft.TextStyle(size=text_size,font_family="Roboto",color=ft.colors.BLACK)),
+                ft.TextSpan("clamshells",style=ft.TextStyle(size=text_size,font_family="Roboto",color=ft.colors.BLACK,weight=ft.FontWeight.BOLD)),
+                ft.TextSpan("with an extending arm or crane so that they may be operated from a barge or from a backshore area, and",style=ft.TextStyle(size=text_size,font_family="Roboto",color=ft.colors.BLACK)),
+                ft.TextSpan(" can reach to pick up material.",style=ft.TextStyle(size=text_size,font_family="Roboto",color=ft.colors.BLACK,weight=ft.FontWeight.BOLD)),
+                ft.TextSpan("\n"),
+                ft.TextSpan("   •  Beach cleaning machines",style=ft.TextStyle(size=text_size,font_family="Roboto",color=ft.colors.BLACK,weight=ft.FontWeight.BOLD)),
+                ft.TextSpan(" operate in a number of different ways. Mobile equipment operates on a beach, whereas other equipment operates off-site (adjacent) to a treat oiled sediment so that cleaned material may be replaced on the beach.",style=ft.TextStyle(size=text_size,font_family="Roboto",color=ft.colors.BLACK)),
+                ft.TextSpan("\n"),
+                ft.TextSpan("   •  Vacuum trucks",style=ft.TextStyle(size=text_size,font_family="Roboto",color=ft.colors.BLACK,weight=ft.FontWeight.BOLD)),
+                ft.TextSpan(" remove pooled oil or oil collected in lined sumps.",style=ft.TextStyle(size=text_size,font_family="Roboto",color=ft.colors.BLACK))
+                
+                
+            ]
+        )
     )
     column_array.append(container)
     return column_array
-def in_situ_sediment_mixing_and_or_relocation_info(page):
+
+def in_situ_sediment_mixing_and_or_relocation_info(page): # in situ sediment mixing or relocation for treatment tactic alert dialogue pop up
+
+    #ft.TextSpan("",style=ft.TextStyle(size=text_size,font_family="Roboto",color=ft.colors.BLACK)),
+    #ft.TextSpan("\n"),
+    #ft.TextSpan("Objective", style=ft.TextStyle(weight=ft.FontWeight.BOLD, size=text_size * 1.15, font_family="Roboto",color=ft.colors.BLACK) ),
+    #ft.TextSpan("   •  low-pressure or high pressure cold (ambient) or warm temperature washing",style=ft.TextStyle(size=text_size,font_family="Roboto",color=ft.colors.BLACK)),
     window_width = global_variables.app_window.width * 0.85
     window_height = global_variables.app_window.height * 0.9
     window_padding = window_width*0.01
     content_window_height = window_height *0.9
     content_window_width = window_width - (window_padding * 2)
+    text_size = content_window_height * 0.75 * 0.035
     column_array = []
-    container = ft.Container(
+    container = ft.Container( # image container
         padding=0,
         width=content_window_width * 0.75,
-        height=content_window_height * 0.45,
+        height=content_window_height * 0.65,
         alignment=ft.alignment.center,
-        border=ft.border.all(1, ft.colors.RED),
+        #border=ft.border.all(1, ft.colors.RED),
         content=ft.Image(src=r"images\Treatment Tactic\Treatment Tactic Large\treatment_tactic_large_in_situ_sediment_mixing_and_or_relocation.png",fit=ft.ImageFit.FIT_HEIGHT)
     )
     column_array.append(container)
-    container = ft.Container(
-        padding=0,
+    container = ft.Container(# text container 1
+        padding=window_padding,
         width=content_window_width * 0.75,
-        height= content_window_height * 0.75,
-        border=ft.border.all(1,ft.colors.GREEN)
+        #height= content_window_height * 0.75,
+        #border=ft.border.all(1,ft.colors.GREEN),
+        content=ft.Text(
+            spans=[
+                ft.TextSpan("Objective", style=ft.TextStyle(weight=ft.FontWeight.BOLD, size=text_size * 1.15, font_family="Roboto",color=ft.colors.BLACK) ),
+                ft.TextSpan("\n"),
+                ft.TextSpan("\n"),
+                ft.TextSpan("To break up or increase the exposure of the surface and/or sub-surface oil to both air and water action in order to accelerate natural weathering and the removal processes. Mechanical mixing of oiled sediments can involve agitation either in the absence of water ('dry' mixing) above the water line or underwater ('wet' mixing). In both cases, the intent is to mix or turn-over the sediment in-situ. This differentiates mixing from sediment relocation where sediments are purposely moved from one location to another that has higher levels of physical (wave) energy in order to accelerate natural oil removal processes.",style=ft.TextStyle(size=text_size,font_family="Roboto",color=ft.colors.BLACK)),
+                ft.TextSpan("\n"),
+                ft.TextSpan("\n"),
+                ft.TextSpan("Description", style=ft.TextStyle(weight=ft.FontWeight.BOLD, size=text_size * 1.15, font_family="Roboto",color=ft.colors.BLACK) ),
+                ft.TextSpan("\n"),
+                ft.TextSpan("In-situ sediment treatment can include dry or wet mixing and sediment relocation and for which there is no removal (transfer and disposal) of oiled sediments. These tactics either physically expose oiled sediments and/or change the location of the oiled sediments with respect to wave exposure in order to promote or increase natural weathering and natural water-born removal process. Oil that is released during a rising tide can be contained and recovered, for example with sorbent materials. In some cases, oil released in the water and which resurfaces can be recovered by sorbents or from within a boomed containment area. Some oil is introduced into fine particle suspension in the water column and is left to natural dispersion and biodegradation processes.",style=ft.TextStyle(size=text_size,font_family="Roboto",color=ft.colors.BLACK)),
+                ft.TextSpan("\n"),
+                ft.TextSpan("\n"),
+                ft.TextSpan("Dry mixing can involve tilling or raking, that agitates oiled surface sediments, and digging or ploughing actions that physically turn over or displace surface and subsurface sediments. Manual mixing involves rotary garden tillers or rakes. Heavier machinery includes agricultural equipment, such as disc systems, harrows, ploughs, rakes or tines; or earth-moving equipment, such as rippers (tines), front-end loaders, backhoes, graders, or bulldozers. Agricultural ‘rippers’ or ‘scarifiers’ typically can mix sediments up to a depth of 50cm whereas backhoes could work to significantly greater depths; on the order of a meter or more.",style=ft.TextStyle(size=text_size,font_family="Roboto",color=ft.colors.BLACK)),
+                ft.TextSpan("\n"),
+                ft.TextSpan("\n"),
+                ft.TextSpan("Wet mixing is used in shallow water (typically <1m) either in the intertidal zone during rising or falling tides or at the water line during the tidal low-water slack. The sediments are agitated in-situ to release the oil by physical abrasion. Agricultural equipment, such as: disc systems, harrows, ploughs, rakes or tines or earth-moving equipment, such as rippers (tines), front-end loaders, or backhoes; or high-volume, low-pressure or low-volume high-pressure water jets agitate the underwater sediments within a boomed containment area. Custom-designed machines which combine mechanical mixing with water jets have proved to be very effective.",style=ft.TextStyle(size=text_size,font_family="Roboto",color=ft.colors.BLACK)),
+                ft.TextSpan("\n"),
+                ft.TextSpan("\n"),
+                ft.TextSpan("Sediment relocation differs from mixing as oiled sediments are physically moved from one location to another. The physical movement of oiled sediments causes mixing of those sediments, however the intent is to move the material to areas with higher physical energy levels, for example, from a location above the normal high water level to the upper intertidal zone where sediments can be reworked during each high tide period.",style=ft.TextStyle(size=text_size,font_family="Roboto",color=ft.colors.BLACK)),
+                ft.TextSpan("\n"),
+            ]
+        )
     )
     column_array.append(container)
-    container = ft.Container(
+    container = ft.Container( #summary container 1
         padding=0,
         width=content_window_width * 0.75,
-        height= content_window_height * 0.15,
-        border=ft.border.all(1, ft.colors.BLUE)
+        content=ft.Text("\n Summary of Effenciency Factors for In Situ Sediment Treatment",color="Black",style=ft.TextStyle(italic=True),font_family="Roboto",text_align=ft.TextAlign.CENTER,size=text_size)
     )
     column_array.append(container)
-    container = ft.Container(
-        padding=0,
+    container = ft.Container( #table container 1
+        padding=window_padding,
         width=content_window_width * 0.75,
-        height= content_window_height * 0.4,
-        border=ft.border.all(1,ft.colors.YELLOW)
+        height= content_window_height * 0.35,
+        #border=ft.border.all(1, ft.colors.BLUE),
+        content=ft.Container(
+            padding=0,
+            height=content_window_height * 0.35 - (window_padding * 2),
+            width=content_window_width * 0.75 - (window_padding * 2),
+            #border=ft.border.all(1,ft.colors.RED),
+            border_radius=ft.border_radius.all(15),
+            content=ft.Column(
+                spacing=0,
+                controls=[
+                    ft.Container( #header row
+                        padding=0,
+                        bgcolor="#B8B8C7",
+                        border_radius=ft.border_radius.only(top_left=15,top_right=15),
+                        height=(content_window_height * 0.35 - (window_padding * 2)) / 4,
+                        content=ft.Row(
+                            spacing=0,
+                            controls=[
+                                ft.Container(
+                                    padding=ft.padding.only(left=window_padding),
+                                    width=(content_window_width * 0.75 - (window_padding * 2))* .275,
+                                    height=(content_window_height * 0.35 - (window_padding * 2)) / 4,
+                                    #border=ft.border.all(1,ft.colors.RED),     
+                                    alignment=ft.alignment.center_left,
+                                    content=ft.Text("Technique",color="white",weight=ft.FontWeight.BOLD,font_family="roboto",size=text_size)                            
+                                ),
+                                ft.Container(
+                                    padding=0,
+                                    alignment=ft.alignment.center,
+                                    height=(content_window_height * 0.35 - (window_padding * 2)) / 4,
+                                    width=(content_window_width * 0.75 - (window_padding * 2))* .18,
+                                    #border=ft.border.all(1,ft.colors.RED),  
+                                    content=ft.Text("Resource Requirements",color="white",weight=ft.FontWeight.BOLD,font_family="roboto",text_align=ft.TextAlign.CENTER,size=text_size)
+
+                                ),
+                                ft.Container(
+                                    padding=0,
+                                    alignment=ft.alignment.center,
+                                    height=(content_window_height * 0.35 - (window_padding * 2)) / 4,
+                                    width=(content_window_width * 0.75 - (window_padding * 2))* .18,
+                                    #border=ft.border.all(1,ft.colors.RED),  
+                                    content=ft.Text("Relative Cleanup Rate",color="white",weight=ft.FontWeight.BOLD,font_family="roboto",text_align=ft.TextAlign.CENTER,size=text_size)
+
+                                ),
+                                ft.Container(
+                                    padding=0,
+                                    alignment=ft.alignment.center,
+                                    height=(content_window_height * 0.35 - (window_padding * 2)) / 4,
+                                    width=(content_window_width * 0.75 - (window_padding * 2))* .18,
+                                    #border=ft.border.all(1,ft.colors.RED),  
+                                    content=ft.Text("Single or \n Multiple Step",color="white",weight=ft.FontWeight.BOLD,font_family="roboto",text_align=ft.TextAlign.CENTER,size=text_size)
+
+                                ),
+                                ft.Container(
+                                    padding=0,
+                                    alignment=ft.alignment.center,
+                                    height=(content_window_height * 0.35 - (window_padding * 2)) / 4,
+                                    width=(content_window_width * 0.75 - (window_padding * 2))* .18,
+                                    #border=ft.border.all(1,ft.colors.RED),  
+                                    content=ft.Text("Waste \n Generation",color="white",weight=ft.FontWeight.BOLD,font_family="roboto",text_align=ft.TextAlign.CENTER,size=text_size)
+
+                                ),
+                            ]
+                        )
+
+                    ),
+                    ft.Container( #body container
+                        padding=0,
+                        bgcolor="white",
+                        border_radius=ft.border_radius.only(bottom_left=15,bottom_right=15),
+                        height=(content_window_height * 0.35 - (window_padding * 2)) * .75,
+                        content=ft.Row(
+                            spacing=0,
+                            controls=[
+                                ft.Container(#column 1
+                                    padding=0,
+                                    width=(content_window_width * 0.75 - (window_padding * 2))* .275,
+                                    height=(content_window_height * 0.35 - (window_padding * 2)) * .75,
+                                    border=ft.Border(right=ft.BorderSide(1, "#B8B8C7")),
+                                    content=ft.Column(
+                                        spacing=0,
+                                        controls=[
+                                            ft.Container(
+                                                padding=ft.padding.only(left=window_padding),
+                                                width=(content_window_width * 0.75 - (window_padding * 2))* .275,
+                                                height=(content_window_height * 0.35 - (window_padding * 2)) / 4,
+                                                #border=ft.border.all(1,ft.colors.RED),     
+                                                alignment=ft.alignment.center_left,
+                                                content=ft.Text("Dry Mixing",color=ft.colors.BLACK,weight=ft.FontWeight.BOLD,font_family="roboto",size=text_size)                            
+                                            ),
+                                            ft.Container(
+                                                padding=ft.padding.only(left=window_padding),
+                                                width=(content_window_width * 0.75 - (window_padding * 2))* .275,
+                                                height=(content_window_height * 0.35 - (window_padding * 2)) / 4,
+                                                #border=ft.border.all(1,ft.colors.RED),     
+                                                alignment=ft.alignment.center_left,
+                                                content=ft.Text("Wet Mixing",color=ft.colors.BLACK,weight=ft.FontWeight.BOLD,font_family="roboto",size=text_size)                            
+                                            ),
+                                            ft.Container(
+                                                padding=ft.padding.only(left=window_padding),
+                                                width=(content_window_width * 0.75 - (window_padding * 2))* .275,
+                                                height=(content_window_height * 0.35 - (window_padding * 2)) / 4,
+                                                #border=ft.border.all(1,ft.colors.RED),     
+                                                alignment=ft.alignment.center_left,
+                                                content=ft.Text("Sediment Relocation",color=ft.colors.BLACK,weight=ft.FontWeight.BOLD,font_family="roboto",size=text_size)                            
+                                            ),
+                                        ]
+                                    )
+                                ),
+                                ft.Container(#column 2
+                                    padding=0,
+                                    width=(content_window_width * 0.75 - (window_padding * 2))* .18,
+                                    height=(content_window_height * 0.35 - (window_padding * 2)) * .75,
+                                    border=ft.Border(right=ft.BorderSide(1, "#B8B8C7")),
+                                    content=ft.Column(
+                                        spacing=0,
+                                        controls=[
+                                            ft.Container(
+                                                padding=0,
+                                                alignment=ft.alignment.center,
+                                                height=(content_window_height * 0.35 - (window_padding * 2)) / 4,
+                                                width=(content_window_width * 0.75 - (window_padding * 2))* .18,
+                                                #border=ft.border.all(1,ft.colors.RED),  
+                                                content=ft.Text("minimal labor support",color=ft.colors.BLACK,font_family="roboto",text_align=ft.TextAlign.CENTER,size=text_size)
+
+                                            ),
+                                            ft.Container(
+                                                padding=0,
+                                                alignment=ft.alignment.center,
+                                                height=(content_window_height * 0.35 - (window_padding * 2)) / 4,
+                                                width=(content_window_width * 0.75 - (window_padding * 2))* .18,
+                                                #border=ft.border.all(1,ft.colors.RED),  
+                                                content=ft.Text("minimal labor support",color=ft.colors.BLACK,font_family="roboto",text_align=ft.TextAlign.CENTER,size=text_size)
+
+                                            ),
+                                            ft.Container(
+                                                padding=0,
+                                                alignment=ft.alignment.center,
+                                                height=(content_window_height * 0.35 - (window_padding * 2)) / 4,
+                                                width=(content_window_width * 0.75 - (window_padding * 2))* .18,
+                                                #border=ft.border.all(1,ft.colors.RED),  
+                                                content=ft.Text("minimal labor support",color=ft.colors.BLACK,font_family="roboto",text_align=ft.TextAlign.CENTER,size=text_size)
+
+                                            ),
+
+                                        ]
+                                    )
+                                ),
+                                ft.Container(#column 3
+                                    padding=0,
+                                    width=(content_window_width * 0.75 - (window_padding * 2))* .18,
+                                    height=(content_window_height * 0.35 - (window_padding * 2)) * .75,
+                                    border=ft.Border(right=ft.BorderSide(1, "#B8B8C7")),
+                                    content=ft.Column(
+                                        spacing=0,
+                                        controls=[
+                                            ft.Container(
+                                                padding=0,
+                                                alignment=ft.alignment.center,
+                                                height=(content_window_height * 0.35 - (window_padding * 2)) / 4,
+                                                width=(content_window_width * 0.75 - (window_padding * 2))* .18,
+                                                #border=ft.border.all(1,ft.colors.RED),  
+                                                content=ft.Text("very rapid",color=ft.colors.BLACK,font_family="roboto",text_align=ft.TextAlign.CENTER,size=text_size)
+
+                                            ),
+                                            ft.Container(
+                                                padding=0,
+                                                alignment=ft.alignment.center,
+                                                height=(content_window_height * 0.35 - (window_padding * 2)) / 4,
+                                                width=(content_window_width * 0.75 - (window_padding * 2))* .18,
+                                                #border=ft.border.all(1,ft.colors.RED),  
+                                                content=ft.Text("very rapid",color=ft.colors.BLACK,font_family="roboto",text_align=ft.TextAlign.CENTER,size=text_size)
+
+                                            ),
+                                            ft.Container(
+                                                padding=0,
+                                                alignment=ft.alignment.center,
+                                                height=(content_window_height * 0.35 - (window_padding * 2)) / 4,
+                                                width=(content_window_width * 0.75 - (window_padding * 2))* .18,
+                                                #border=ft.border.all(1,ft.colors.RED),  
+                                                content=ft.Text("very rapid",color=ft.colors.BLACK,font_family="roboto",text_align=ft.TextAlign.CENTER,size=text_size)
+
+                                            ),
+                                        ]
+                                    )
+                                ),
+                                ft.Container(#column 4
+                                    padding=0,
+                                    width=(content_window_width * 0.75 - (window_padding * 2))* .18,
+                                    height=(content_window_height * 0.35 - (window_padding * 2)) * .75,
+                                    border=ft.Border(right=ft.BorderSide(1, "#B8B8C7")),
+                                    content=ft.Column(
+                                        spacing=0,
+                                        controls=[
+                                            ft.Container(
+                                                padding=0,
+                                                alignment=ft.alignment.center,
+                                                height=(content_window_height * 0.35 - (window_padding * 2)) / 4,
+                                                width=(content_window_width * 0.75 - (window_padding * 2))* .18,
+                                                #border=ft.border.all(1,ft.colors.RED),  
+                                                content=ft.Text("single",color=ft.colors.BLACK,font_family="roboto",text_align=ft.TextAlign.CENTER,size=text_size)
+
+                                            ),
+                                            ft.Container(
+                                                padding=0,
+                                                alignment=ft.alignment.center,
+                                                height=(content_window_height * 0.35 - (window_padding * 2)) / 4,
+                                                width=(content_window_width * 0.75 - (window_padding * 2))* .18,
+                                                #border=ft.border.all(1,ft.colors.RED),  
+                                                content=ft.Text("single",color=ft.colors.BLACK,font_family="roboto",text_align=ft.TextAlign.CENTER,size=text_size)
+
+                                            ),
+                                            ft.Container(
+                                                padding=0,
+                                                alignment=ft.alignment.center,
+                                                height=(content_window_height * 0.35 - (window_padding * 2)) / 4,
+                                                width=(content_window_width * 0.75 - (window_padding * 2))* .18,
+                                                #border=ft.border.all(1,ft.colors.RED),  
+                                                content=ft.Text("single",color=ft.colors.BLACK,font_family="roboto",text_align=ft.TextAlign.CENTER,size=text_size)
+
+                                            ),
+                                        ]
+                                    )
+                                ),
+                                ft.Container(#column 5
+                                    padding=0,
+                                    width=(content_window_width * 0.75 - (window_padding * 2))* .18,
+                                    height=(content_window_height * 0.35 - (window_padding * 2)) * .75,
+                                    content=ft.Column(
+                                        spacing=0,
+                                        controls=[
+                                            ft.Container(
+                                                padding=0,
+                                                alignment=ft.alignment.center,
+                                                height=(content_window_height * 0.35 - (window_padding * 2)) / 4,
+                                                width=(content_window_width * 0.75 - (window_padding * 2))* .18,
+                                                #border=ft.border.all(1,ft.colors.RED),  
+                                                content=ft.Text("minimal",color=ft.colors.BLACK,font_family="roboto",text_align=ft.TextAlign.CENTER,size=text_size)
+
+                                            ),
+                                            ft.Container(
+                                                padding=0,
+                                                alignment=ft.alignment.center,
+                                                height=(content_window_height * 0.35 - (window_padding * 2)) / 4,
+                                                width=(content_window_width * 0.75 - (window_padding * 2))* .18,
+                                                #border=ft.border.all(1,ft.colors.RED),  
+                                                content=ft.Text("minimal",color=ft.colors.BLACK,font_family="roboto",text_align=ft.TextAlign.CENTER,size=text_size)
+
+                                            ),
+                                            ft.Container(
+                                                padding=0,
+                                                alignment=ft.alignment.center,
+                                                height=(content_window_height * 0.35 - (window_padding * 2)) / 4,
+                                                width=(content_window_width * 0.75 - (window_padding * 2))* .18,
+                                                #border=ft.border.all(1,ft.colors.RED),  
+                                                content=ft.Text("minimal",color=ft.colors.BLACK,font_family="roboto",text_align=ft.TextAlign.CENTER,size=text_size)
+
+                                            ),
+                                        ]
+                                    )
+                                ),
+                            ]
+                        )
+                    )
+                ]
+            )
+        )
+    )
+    column_array.append(container)
+    container = ft.Container( #text container 2
+        padding=window_padding,
+        width=content_window_width * 0.75,
+        #border=ft.border.all(1,ft.colors.YELLOW),
+        content=ft.Text(
+            spans=[
+                ft.TextSpan("Applications", style=ft.TextStyle(weight=ft.FontWeight.BOLD, size=text_size * 1.15, font_family="Roboto",color=ft.colors.BLACK) ),
+                ft.TextSpan("\n"),
+                ft.TextSpan("\n"),
+                ft.TextSpan("Dry mixing increases the exposure of surface and subsurface oiled sediemnts to air and water, and/or breaks up a surface oil layer to prevent the formation of an asphalt pavement. This technique can be used on sand, mixed sediment, coarse sediment beaches or sand tidal flats and is particularly useful in promoting the evaporation of light oils or product",style=ft.TextStyle(size=text_size,font_family="Roboto",color=ft.colors.BLACK)),
+                ft.TextSpan("\n"),
+                ft.TextSpan("\n"),
+                ft.TextSpan("Wet mixing can be used on sand, mixed-sediment, corase-sediment beaches or tidal flats for light and medium oils that will float to the water surface when agitated.",style=ft.TextStyle(size=text_size,font_family="Roboto",color=ft.colors.BLACK)),
+                ft.TextSpan("\n"),
+                ft.TextSpan("\n"),
+                ft.TextSpan("Sediment relocation has been proven effective on sand, mixed-sediment, and coarse sediment beaches and is particularly useful: ",style=ft.TextStyle(size=text_size,font_family="Roboto",color=ft.colors.BLACK)),
+                ft.TextSpan("\n"),
+                ft.TextSpan("\n"),
+                ft.TextSpan("   •  where oiled sediments are located above the limit of normal wave actions (i.e. if a beach was oiled during a storm surge or a period of higher tide levels)",style=ft.TextStyle(size=text_size,font_family="Roboto",color=ft.colors.BLACK)),
+                ft.TextSpan("\n"),
+                ft.TextSpan("\n"),
+                ft.TextSpan("   •  for 'polishing' of sand or fine mixed sediments where other cleanup or treatment activities have removed most of the bulk or oiled sediment and only light oiling (i.e., stains) remain.",style=ft.TextStyle(size=text_size,font_family="Roboto",color=ft.colors.BLACK)),
+                ft.TextSpan("\n"),
+                ft.TextSpan("\n"),
+                ft.TextSpan("All three in-situ sediment treatment techniques are effective in promoting evaporation and physical abrasion:",style=ft.TextStyle(size=text_size,font_family="Roboto",color=ft.colors.BLACK)),
+                ft.TextSpan("\n"),
+                ft.TextSpan("\n"),
+                ft.TextSpan("   •  in promoting evaporation and physical abrasion,",style=ft.TextStyle(size=text_size,font_family="Roboto",color=ft.colors.BLACK)),
+                ft.TextSpan("\n"),
+                ft.TextSpan("\n"),
+                ft.TextSpan("   •  Where sediment removal is undesirable due to",style=ft.TextStyle(size=text_size,font_family="Roboto",color=ft.colors.BLACK)),
+                ft.TextSpan("\n"),
+                ft.TextSpan("\n"),
+                ft.TextSpan("            •  a lack of natural sediment replenishment",style=ft.TextStyle(size=text_size,font_family="Roboto",color=ft.colors.BLACK)),
+                ft.TextSpan("\n"),
+                ft.TextSpan("\n"),
+                ft.TextSpan("            •  waste transfer and/or disposal issues",style=ft.TextStyle(size=text_size,font_family="Roboto",color=ft.colors.BLACK)),
+                ft.TextSpan("\n"),
+                ft.TextSpan("\n"),
+                ft.TextSpan("            •  lgoistical constraints in remote areas",style=ft.TextStyle(size=text_size,font_family="Roboto",color=ft.colors.BLACK)),
+                ft.TextSpan("\n"),
+                ft.TextSpan("\n"),
+                ft.TextSpan("            •  inaccessibility to a segment location",style=ft.TextStyle(size=text_size,font_family="Roboto",color=ft.colors.BLACK)),
+                ft.TextSpan("\n"),
+                ft.TextSpan("\n"),
+                ft.TextSpan("   •  immediately prior to expected storm events or periods of high wave-energy levels",style=ft.TextStyle(size=text_size,font_family="Roboto",color=ft.colors.BLACK)),
+                ft.TextSpan("\n"),
+                ft.TextSpan("\n"),
+                ft.TextSpan("   •  where a rapid/immediate removal of stranded oil is warranted or required",style=ft.TextStyle(size=text_size,font_family="Roboto",color=ft.colors.BLACK)),
+                ft.TextSpan("\n"),
+                ft.TextSpan("\n"),
+                ft.TextSpan("Dry mixing and sediment relocation may be used in conjuction with manual removal (to pick up patches of oil that are exposed) or bioremidiation. This technique may be appropriate after initial removal of bulk oil by mechanical removal methods.",style=ft.TextStyle(size=text_size,font_family="Roboto",color=ft.colors.BLACK)),
+                
+
+
+            ]
+        )
     )
     column_array.append(container)
     return column_array
+
 def in_situ_burning_info(page):
+    #ft.TextSpan("",style=ft.TextStyle(size=text_size,font_family="Roboto",color=ft.colors.BLACK)),
+    #ft.TextSpan("\n"),
+    #ft.TextSpan("Objective", style=ft.TextStyle(weight=ft.FontWeight.BOLD, size=text_size * 1.15, font_family="Roboto",color=ft.colors.BLACK) ),
+    #ft.TextSpan("   •  low-pressure or high pressure cold (ambient) or warm temperature washing",style=ft.TextStyle(size=text_size,font_family="Roboto",color=ft.colors.BLACK)),
     window_width = global_variables.app_window.width * 0.85
     window_height = global_variables.app_window.height * 0.9
     window_padding = window_width*0.01
     content_window_height = window_height *0.9
     content_window_width = window_width - (window_padding * 2)
+    text_size = content_window_height * 0.75 * 0.035
     column_array = []
-    container = ft.Container(
+    container = ft.Container( #image container
         padding=0,
         width=content_window_width * 0.75,
-        height=content_window_height * 0.45,
+        height=content_window_height * 0.65,
         alignment=ft.alignment.center,
-        border=ft.border.all(1, ft.colors.RED),
+        #border=ft.border.all(1, ft.colors.RED),
         content=ft.Image(src=r"images\Treatment Tactic\Treatment Tactic Large\treatment_tactic_large_in_situ_burning.png",fit=ft.ImageFit.FIT_HEIGHT)
     )
     column_array.append(container)
-    container = ft.Container(
-        padding=0,
+    container = ft.Container( #text container 1
+        padding=window_padding,
         width=content_window_width * 0.75,
-        height= content_window_height * 0.75,
-        border=ft.border.all(1,ft.colors.GREEN)
+        #border=ft.border.all(1,ft.colors.GREEN),
+        content=ft.Text(
+            spans=[
+                ft.TextSpan("Objective", style=ft.TextStyle(weight=ft.FontWeight.BOLD, size=text_size * 1.15, font_family="Roboto",color=ft.colors.BLACK) ),
+                ft.TextSpan("\n"),
+                ft.TextSpan("\n"),
+                ft.TextSpan("To remove or reduce the amount of oil or oily material from the shoreline by burning in place.",style=ft.TextStyle(size=text_size,font_family="Roboto",color=ft.colors.BLACK)),
+                ft.TextSpan("\n"),
+                ft.TextSpan("\n"),
+                ft.TextSpan("Description", style=ft.TextStyle(weight=ft.FontWeight.BOLD, size=text_size * 1.15, font_family="Roboto",color=ft.colors.BLACK) ),
+                ft.TextSpan("\n"),
+                ft.TextSpan("\n"),
+                ft.TextSpan("Oil on a shore will not sustain combustion by itself unless it is pooled or has been concentrated in sumps, trenches, or other types of containers. This technique is used primarily where combustible materials, such as logs or debris have been oiled and can be collected and burned. It can also be used where vegetation, such as that found in a wetland, has been heavily oiled.",style=ft.TextStyle(size=text_size,font_family="Roboto",color=ft.colors.BLACK)),
+                ft.TextSpan("\n"),
+                ft.TextSpan("\n"),
+                ft.TextSpan("Burning efficiency can be improved by using fans to provide wind on burn piles. Torches can burn oil from hard substrates but this is a labour intensive method that uses large amounts of energy to remove small amounts of oil. In most cases, burned oil residues remain and recovery of these heavy or solid oil residues would involve manual removal.",style=ft.TextStyle(size=text_size,font_family="Roboto",color=ft.colors.BLACK)),
+                ft.TextSpan("\n"),
+                ft.TextSpan("\n"),
+                ft.TextSpan("As a general guideline, mixtures of oil and snow that contain up to 70% snow can be burned. Snow with less than 30% oil would likely require a promoter, such as diesel.",style=ft.TextStyle(size=text_size,font_family="Roboto",color=ft.colors.BLACK)),
+                ft.TextSpan("\n"),
+                ft.TextSpan("\n"),
+                ft.TextSpan("Portable incinerators based on a number of different technologies can be used to burn oiled sediments or debris.",style=ft.TextStyle(size=text_size,font_family="Roboto",color=ft.colors.BLACK)),
+
+
+            ]
+        )
     )
     column_array.append(container)
-    container = ft.Container(
+    container = ft.Container( #summary container 1
         padding=0,
         width=content_window_width * 0.75,
-        height= content_window_height * 0.15,
-        border=ft.border.all(1, ft.colors.BLUE)
+        content=ft.Text("\n Summary of Effenciency Factors for In Situ Burning",color="Black",style=ft.TextStyle(italic=True),font_family="Roboto",text_align=ft.TextAlign.CENTER,size=text_size)
     )
     column_array.append(container)
-    container = ft.Container(
-        padding=0,
+    container = ft.Container( # table container 1
+        padding=window_padding,
+        width=(content_window_width * 0.75),
+        height= (content_window_height * 0.20),
+        #border=ft.border.all(1, ft.colors.BLUE)
+        content=ft.Container(
+            padding=0,
+            height= ((content_window_height * 0.25) - (window_padding * 2)),
+            width=(content_window_width * 0.75) - (window_padding * 2),
+            #border=ft.border.all(1,ft.colors.RED),
+            border_radius=ft.border_radius.all(15),
+            content=ft.Column(
+                spacing=0,
+                controls=[
+                    ft.Container(#header row
+                        padding=0,
+                        height= ((content_window_height * 0.25) - (window_padding * 2)) * .35,
+                        width=((content_window_width * 0.75) - (window_padding * 2)),
+                        bgcolor="#B8B8C7",
+                        border_radius=ft.border_radius.only(top_left=15,top_right=15),
+                        content=ft.Row(
+                            spacing=0,
+                            controls=[
+                                ft.Container(
+                                    padding=ft.padding.only(left=window_padding),
+                                    width=((content_window_width * 0.75) - (window_padding * 2)) * .275,
+                                    height= ((content_window_height * 0.25) - (window_padding * 2)) * .35,
+                                    #border=ft.border.all(1,ft.colors.RED),
+                                    content=ft.Text("Technique",color="white",size=text_size,weight=ft.FontWeight.BOLD),
+                                    alignment=ft.alignment.center_left
+                                ),
+                                 ft.Container(
+                                    padding=0,
+                                    width=((content_window_width * 0.75) - (window_padding * 2)) * .18,
+                                    height= ((content_window_height * 0.25) - (window_padding * 2)) * .35,
+                                    #border=ft.border.all(1,ft.colors.RED)
+                                    content=ft.Text("Resource Requirements",size=text_size,color="white",font_family="roboto",weight=ft.FontWeight.BOLD,text_align=ft.TextAlign.CENTER),
+                                    alignment=ft.alignment.center
+                                ),
+                                ft.Container(
+                                    padding=0,
+                                    width=((content_window_width * 0.75) - (window_padding * 2)) * .18,
+                                    height= ((content_window_height * 0.25) - (window_padding * 2)) * .35,
+                                    #border=ft.border.all(1,ft.colors.RED)
+                                    content=ft.Text("Relative Cleanup Rate",size=text_size,color="white",font_family="roboto",weight=ft.FontWeight.BOLD,text_align=ft.TextAlign.CENTER),
+                                    alignment=ft.alignment.center
+                                ),
+                                ft.Container(
+                                    padding=0,
+                                    width=((content_window_width * 0.75) - (window_padding * 2)) * .18,
+                                    height= ((content_window_height * 0.25) - (window_padding * 2)) * .35,
+                                    #border=ft.border.all(1,ft.colors.RED)
+                                    content=ft.Text("Single or Multiple Step",size=text_size,color="white",font_family="roboto",weight=ft.FontWeight.BOLD,text_align=ft.TextAlign.CENTER),
+                                    alignment=ft.alignment.center
+                                ),
+                                ft.Container(
+                                    padding=0,
+                                    width=((content_window_width * 0.75) - (window_padding * 2)) * .18,
+                                    height= ((content_window_height * 0.25) - (window_padding * 2)) * .35,
+                                    #border=ft.border.all(1,ft.colors.RED)
+                                    content=ft.Text("Waste Generation",size=text_size,color="white",font_family="roboto",weight=ft.FontWeight.BOLD,text_align=ft.TextAlign.CENTER),
+                                    alignment=ft.alignment.center
+                                ),
+                                
+                            ]
+                        )
+                        
+                    ),
+                    ft.Container(#body content
+                        padding=0,
+                        height= ((content_window_height * 0.35) - (window_padding * 2)) * .50,
+                        width=(content_window_width * 0.75) - (window_padding * 2),
+                        bgcolor="white",
+                        border_radius=ft.border_radius.only(bottom_left=15,bottom_right=15),
+                        content=ft.Row(
+                            spacing=0,
+                            controls=[
+                                ft.Container(
+                                    padding=ft.padding.only(left=window_padding),
+                                    width=((content_window_width * 0.75) - (window_padding * 2)) * .275,
+                                    height= ((content_window_height * 0.25) - (window_padding * 2)) * .70,
+                                    content=ft.Text("In-Situ Burning",color="black",size=text_size,weight=ft.FontWeight.BOLD),
+                                    alignment=ft.alignment.top_left
+                                ),
+                                ft.Container(
+                                    padding=0,
+                                    width=((content_window_width * 0.75) - (window_padding * 2)) * .18,
+                                    height= ((content_window_height * 0.25) - (window_padding * 2)) * .70,
+                                    #border=ft.border.all(1,ft.colors.RED),
+                                    content=ft.Text("minimal labor support",size=text_size,color="black",font_family="roboto",text_align=ft.TextAlign.CENTER),
+                                    alignment=ft.alignment.top_center,
+                                ),
+                                ft.Container(
+                                    padding=0,
+                                    width=((content_window_width * 0.75) - (window_padding * 2)) * .18,
+                                    height= ((content_window_height * 0.25) - (window_padding * 2)) * .70,
+                                    #border=ft.border.all(1,ft.colors.RED),
+                                    content=ft.Text("very rapid",size=text_size,color="black",font_family="roboto",text_align=ft.TextAlign.CENTER),
+                                    alignment=ft.alignment.top_center,
+                                ),
+                                ft.Container(
+                                    padding=0,
+                                    width=((content_window_width * 0.75) - (window_padding * 2)) * .18,
+                                    height= ((content_window_height * 0.25) - (window_padding * 2)) * .70,
+                                    #border=ft.border.all(1,ft.colors.RED),
+                                    content=ft.Text("single",size=text_size,color="black",font_family="roboto",text_align=ft.TextAlign.CENTER),
+                                    alignment=ft.alignment.top_center,
+                                ),
+                                ft.Container(
+                                    padding=0,
+                                    width=((content_window_width * 0.75) - (window_padding * 2)) * .18,
+                                    height= ((content_window_height * 0.25) - (window_padding * 2)) * .70,
+                                    #border=ft.border.all(1,ft.colors.RED),
+                                    content=ft.Text("minimal",size=text_size,color="black",font_family="roboto",text_align=ft.TextAlign.CENTER),
+                                    alignment=ft.alignment.top_center,
+                                ),
+                                
+                                
+                                
+                                
+                            ]
+                        )
+                    )
+                ]
+            )
+        )
+    )
+    column_array.append(container)
+    container = ft.Container( # text container 2
+        padding=window_padding,
         width=content_window_width * 0.75,
-        height= content_window_height * 0.4,
-        border=ft.border.all(1,ft.colors.YELLOW)
+        #border=ft.border.all(1,ft.colors.YELLOW)
+        content=ft.Text(
+            spans=[
+                ft.TextSpan("Applications", style=ft.TextStyle(weight=ft.FontWeight.BOLD, size=text_size * 1.15, font_family="Roboto",color=ft.colors.BLACK) ),
+                ft.TextSpan("\n"),
+                ft.TextSpan("\n"),
+                ft.TextSpan("This technique is applicable primarily for oiled logs and debris or where oil has been collected in sumps or drums and can be ignited with sustain combustion",style=ft.TextStyle(size=text_size,font_family="Roboto",color=ft.colors.BLACK)),
+                ft.TextSpan("\n"),
+                ft.TextSpan("\n"),
+                ft.TextSpan("Burning has been used effectively for oil spills in salt marshes and on ice or in ice leads.",style=ft.TextStyle(size=text_size,font_family="Roboto",color=ft.colors.BLACK)),
+            ]
+        )
     )
     column_array.append(container)
     return column_array
 def bioremidiation_info(page):
+    #ft.TextSpan("",style=ft.TextStyle(size=text_size,font_family="Roboto",color=ft.colors.BLACK)),
+    #ft.TextSpan("\n"),
+    #ft.TextSpan("Objective", style=ft.TextStyle(weight=ft.FontWeight.BOLD, size=text_size * 1.15, font_family="Roboto",color=ft.colors.BLACK) ),
+    #ft.TextSpan("   •  low-pressure or high pressure cold (ambient) or warm temperature washing",style=ft.TextStyle(size=text_size,font_family="Roboto",color=ft.colors.BLACK)),
     window_width = global_variables.app_window.width * 0.85
     window_height = global_variables.app_window.height * 0.9
     window_padding = window_width*0.01
     content_window_height = window_height *0.9
     content_window_width = window_width - (window_padding * 2)
+    text_size = content_window_height * 0.75 * 0.035
     column_array = []
-    container = ft.Container(
+    container = ft.Container( #image container
         padding=0,
         width=content_window_width * 0.75,
-        height=content_window_height * 0.45,
+        height=content_window_height * 0.65,
         alignment=ft.alignment.center,
-        border=ft.border.all(1, ft.colors.RED),
+        #border=ft.border.all(1, ft.colors.RED),
         content=ft.Image(src=r"images\Treatment Tactic\Treatment Tactic Large\treatment_tactic_large_bioremidiation.png",fit=ft.ImageFit.FIT_HEIGHT)
     )
     column_array.append(container)
-    container = ft.Container(
+    container = ft.Container( #text container 1
+        padding=window_padding,
+        width=content_window_width * 0.75,
+        #border=ft.border.all(1,ft.colors.GREEN)
+        content=ft.Text(
+            spans=[
+                ft.TextSpan("Objective", style=ft.TextStyle(weight=ft.FontWeight.BOLD, size=text_size * 1.15, font_family="Roboto",color=ft.colors.BLACK) ),
+                ft.TextSpan("\n"),
+                ft.TextSpan("\n"),
+                ft.TextSpan("To enhance or increase the rate of biodegradation of oil in the intertidal zone by the addition of oil spill bioremediation agents.",style=ft.TextStyle(size=text_size,font_family="Roboto",color=ft.colors.BLACK)),
+                ft.TextSpan("\n"),
+                ft.TextSpan("\n"),
+                ft.TextSpan("Three classes of oil spill bioremediation tactics have been recognized: Bioenhancement agents contain only non-living materials such as nutrients (fertilizers containing nitrogen and phosphorus) intended to enhance the natural oil-degrading activity of the indigenous microbial population at a spill site; Bioaugmentation agents contain living microbes (and possibly also chemical agents to enhance oil biodegradation) intended to increase or supplement the natural rate of hydrocarbon biodegradation at a spill site. Phytoremediation, which involves the use of plants to accelerate oil degradation.",style=ft.TextStyle(size=text_size,font_family="Roboto",color=ft.colors.BLACK)),
+                ft.TextSpan("\n"),
+                ft.TextSpan("\n"),
+                ft.TextSpan("Historically, bioaugmentation and phytoremediation techniques have had limited use and application to the remediation of oil on shorelines so this description focuses on bioenhancement – the in-situ addition of nutrients to oiled substrates.",style=ft.TextStyle(size=text_size,font_family="Roboto",color=ft.colors.BLACK)),
+                ft.TextSpan("\n"),
+                ft.TextSpan("\n"),
+                ft.TextSpan("Description", style=ft.TextStyle(weight=ft.FontWeight.BOLD, size=text_size * 1.15, font_family="Roboto",color=ft.colors.BLACK) ),
+                ft.TextSpan("\n"),
+                ft.TextSpan("\n"),
+                ft.TextSpan("Naturally occurring micro-organisms (bacteria) use oxygen to convert hydrocarbons into water and carbon dioxide. This process usually occurs at the oil/water interface and is often limited by oxygen and nutrient availability and by the exposed surface area of the oil. If these three factors can be increased then the rate of biodegradation can be accelerated.",style=ft.TextStyle(size=text_size,font_family="Roboto",color=ft.colors.BLACK)),
+                ft.TextSpan("\n"),
+                ft.TextSpan("\n"),
+                ft.TextSpan("If nutrient levels are low, fertilizers can be applied in solid or liquid form and typically are applied in-situ. Slow-release fertilizers, such as pellets, can be broadcast on an oiled substrate using seed spreaders that are commonly used on lawns and, on contact with water, the fertilizer slowly dissolves and releases water-soluble nutrients over time. Oleophilic fertilizers can be sprayed onto a shoreline using a number of commercially available types of equipment, such as paint sprayers or backpack sprayers.",style=ft.TextStyle(size=text_size,font_family="Roboto",color=ft.colors.BLACK)),
+            
+            ]
+        )
+    )
+    column_array.append(container)
+    container = ft.Container( #summary container 1
         padding=0,
         width=content_window_width * 0.75,
-        height= content_window_height * 0.75,
-        border=ft.border.all(1,ft.colors.GREEN)
+        content=ft.Text("\n Summary of Effenciency Factors for Bioremediation",color="Black",style=ft.TextStyle(italic=True),font_family="Roboto",text_align=ft.TextAlign.CENTER,size=text_size)
+    )
+    column_array.append(container)
+    container = ft.Container( # table container 1
+        padding=window_padding,
+        width=(content_window_width * 0.75),
+        height= (content_window_height * 0.20),
+        #border=ft.border.all(1, ft.colors.BLUE)
+        content=ft.Container(
+            padding=0,
+            height= ((content_window_height * 0.25) - (window_padding * 2)),
+            width=(content_window_width * 0.75) - (window_padding * 2),
+            #border=ft.border.all(1,ft.colors.RED),
+            border_radius=ft.border_radius.all(15),
+            content=ft.Column(
+                spacing=0,
+                controls=[
+                    ft.Container(#header row
+                        padding=0,
+                        height= ((content_window_height * 0.25) - (window_padding * 2)) * .35,
+                        width=((content_window_width * 0.75) - (window_padding * 2)),
+                        bgcolor="#B8B8C7",
+                        border_radius=ft.border_radius.only(top_left=15,top_right=15),
+                        content=ft.Row(
+                            spacing=0,
+                            controls=[
+                                ft.Container(
+                                    padding=ft.padding.only(left=window_padding),
+                                    width=((content_window_width * 0.75) - (window_padding * 2)) * .275,
+                                    height= ((content_window_height * 0.25) - (window_padding * 2)) * .35,
+                                    #border=ft.border.all(1,ft.colors.RED),
+                                    content=ft.Text("Technique",color="white",size=text_size,weight=ft.FontWeight.BOLD),
+                                    alignment=ft.alignment.center_left
+                                ),
+                                 ft.Container(
+                                    padding=0,
+                                    width=((content_window_width * 0.75) - (window_padding * 2)) * .18,
+                                    height= ((content_window_height * 0.25) - (window_padding * 2)) * .35,
+                                    #border=ft.border.all(1,ft.colors.RED)
+                                    content=ft.Text("Resource Requirements",size=text_size,color="white",font_family="roboto",weight=ft.FontWeight.BOLD,text_align=ft.TextAlign.CENTER),
+                                    alignment=ft.alignment.center
+                                ),
+                                ft.Container(
+                                    padding=0,
+                                    width=((content_window_width * 0.75) - (window_padding * 2)) * .18,
+                                    height= ((content_window_height * 0.25) - (window_padding * 2)) * .35,
+                                    #border=ft.border.all(1,ft.colors.RED)
+                                    content=ft.Text("Relative Cleanup Rate",size=text_size,color="white",font_family="roboto",weight=ft.FontWeight.BOLD,text_align=ft.TextAlign.CENTER),
+                                    alignment=ft.alignment.center
+                                ),
+                                ft.Container(
+                                    padding=0,
+                                    width=((content_window_width * 0.75) - (window_padding * 2)) * .18,
+                                    height= ((content_window_height * 0.25) - (window_padding * 2)) * .35,
+                                    #border=ft.border.all(1,ft.colors.RED)
+                                    content=ft.Text("Single or Multiple Step",size=text_size,color="white",font_family="roboto",weight=ft.FontWeight.BOLD,text_align=ft.TextAlign.CENTER),
+                                    alignment=ft.alignment.center
+                                ),
+                                ft.Container(
+                                    padding=0,
+                                    width=((content_window_width * 0.75) - (window_padding * 2)) * .18,
+                                    height= ((content_window_height * 0.25) - (window_padding * 2)) * .35,
+                                    #border=ft.border.all(1,ft.colors.RED)
+                                    content=ft.Text("Waste Generation",size=text_size,color="white",font_family="roboto",weight=ft.FontWeight.BOLD,text_align=ft.TextAlign.CENTER),
+                                    alignment=ft.alignment.center
+                                ),
+                                
+                            ]
+                        )
+                        
+                    ),
+                    ft.Container(#body content
+                        padding=0,
+                        height= ((content_window_height * 0.35) - (window_padding * 2)) * .50,
+                        width=(content_window_width * 0.75) - (window_padding * 2),
+                        bgcolor="white",
+                        border_radius=ft.border_radius.only(bottom_left=15,bottom_right=15),
+                        content=ft.Row(
+                            spacing=0,
+                            controls=[
+                                ft.Container(
+                                    padding=ft.padding.only(left=window_padding),
+                                    width=((content_window_width * 0.75) - (window_padding * 2)) * .275,
+                                    height= ((content_window_height * 0.25) - (window_padding * 2)) * .70,
+                                    content=ft.Text("Bioremediation",color="black",size=text_size,weight=ft.FontWeight.BOLD),
+                                    alignment=ft.alignment.top_left
+                                ),
+                                ft.Container(
+                                    padding=0,
+                                    width=((content_window_width * 0.75) - (window_padding * 2)) * .18,
+                                    height= ((content_window_height * 0.25) - (window_padding * 2)) * .70,
+                                    #border=ft.border.all(1,ft.colors.RED),
+                                    content=ft.Text("minimal labor support",size=text_size,color="black",font_family="roboto",text_align=ft.TextAlign.CENTER),
+                                    alignment=ft.alignment.top_center,
+                                ),
+                                ft.Container(
+                                    padding=0,
+                                    width=((content_window_width * 0.75) - (window_padding * 2)) * .18,
+                                    height= ((content_window_height * 0.25) - (window_padding * 2)) * .70,
+                                    #border=ft.border.all(1,ft.colors.RED),
+                                    content=ft.Text("very rapid",size=text_size,color="black",font_family="roboto",text_align=ft.TextAlign.CENTER),
+                                    alignment=ft.alignment.top_center,
+                                ),
+                                ft.Container(
+                                    padding=0,
+                                    width=((content_window_width * 0.75) - (window_padding * 2)) * .18,
+                                    height= ((content_window_height * 0.25) - (window_padding * 2)) * .70,
+                                    #border=ft.border.all(1,ft.colors.RED),
+                                    content=ft.Text("single",size=text_size,color="black",font_family="roboto",text_align=ft.TextAlign.CENTER),
+                                    alignment=ft.alignment.top_center,
+                                ),
+                                ft.Container(
+                                    padding=0,
+                                    width=((content_window_width * 0.75) - (window_padding * 2)) * .18,
+                                    height= ((content_window_height * 0.25) - (window_padding * 2)) * .70,
+                                    #border=ft.border.all(1,ft.colors.RED),
+                                    content=ft.Text("minimal",size=text_size,color="black",font_family="roboto",text_align=ft.TextAlign.CENTER),
+                                    alignment=ft.alignment.top_center,
+                                ),
+                                
+                                
+                                
+                                
+                            ]
+                        )
+                    )
+                ]
+            )
+        )
     )
     column_array.append(container)
     container = ft.Container(
-        padding=0,
+        padding=window_padding,
         width=content_window_width * 0.75,
-        height= content_window_height * 0.15,
-        border=ft.border.all(1, ft.colors.BLUE)
-    )
-    column_array.append(container)
-    container = ft.Container(
-        padding=0,
-        width=content_window_width * 0.75,
-        height= content_window_height * 0.4,
-        border=ft.border.all(1,ft.colors.YELLOW)
+        #border=ft.border.all(1,ft.colors.YELLOW)
+        content=ft.Text(
+            spans=[
+                ft.TextSpan("There is no removal of oiled sediments and the only waste generated is from packing material and PPE.",style=ft.TextStyle(size=text_size,font_family="Roboto",color=ft.colors.BLACK)),
+                ft.TextSpan("\n"),
+                ft.TextSpan("\n"),
+                ft.TextSpan("Off-site treatment of oiled sediments is similar to land farming technology and could involve bioaugmentation and/or phytoremediation as well as nutrient addition.",style=ft.TextStyle(size=text_size,font_family="Roboto",color=ft.colors.BLACK)),
+                ft.TextSpan("\n"),
+                ft.TextSpan("\n"),
+                ft.TextSpan("Applications", style=ft.TextStyle(weight=ft.FontWeight.BOLD, size=text_size * 1.15, font_family="Roboto",color=ft.colors.BLACK) ),
+                ft.TextSpan("\n"),
+                ft.TextSpan("\n"),
+                ft.TextSpan("Bioremediation is an in-situ treatment technique that is applicable where there is light oiling or on residual oil (‘polishing’) after other techniques have been used to remove mobile or bulk oil from the shoreline. Bioremediation is not a short-term solution (days to weeks) and is not a suitable where short term oil removal is required. Applications may be repeated periodically (weeks or months as appropriate) to continue the supply of nutrients.",style=ft.TextStyle(size=text_size,font_family="Roboto",color=ft.colors.BLACK)),
+                ft.TextSpan("\n"),
+                ft.TextSpan("\n"),
+                ft.TextSpan("Fertilizers may be used alone on a shore to degrade residual surface and/or subsurface oil, but the process is more effective if combined with mixing or other methods of breaking the oil into smaller particles. This significantly increases the surface area available to the microorganisms.",style=ft.TextStyle(size=text_size,font_family="Roboto",color=ft.colors.BLACK)),
+            ]
+        )
     )
     column_array.append(container)
     return column_array
