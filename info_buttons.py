@@ -124,29 +124,98 @@ def surface_oil_category_info(page):
     dialog.open = True
     page.update()
 
+
+###################################
+######## ENDPOINT WINDOW #########
+###################################
 def endpoints_info(page):
+     #ft.TextSpan("",style=ft.TextStyle(size=text_size,font_family="Roboto",color=ft.colors.BLACK))
+    #ft.TextSpan("\n"),
+    #ft.TextSpan("Objective", style=ft.TextStyle(weight=ft.FontWeight.BOLD, size=text_size * 1.15, font_family="Roboto",color=ft.colors.BLACK) ),
+    #ft.TextSpan("   •  low-pressure or high pressure cold (ambient) or warm temperature washing",style=ft.TextStyle(size=text_size,font_family="Roboto",color=ft.colors.BLACK)),
+    content_window_height = global_variables.app_window.height * 0.35
+    content_window_width = global_variables.app_window.width * 0.6
+    window_padding = content_window_width*0.005
+    endpoint_bgcolor = "#E1E1E1"
+    text_size = content_window_height * 0.07
     def close_dialog(e):
         page.dialog.open = False
         page.update()
 
     dialog = ft.AlertDialog(
         modal=False,
-        title=ft.Row(
-            controls=[
-                ft.Text("Endpoints Information"),
-                ft.IconButton(ft.icons.CLOSE, on_click=close_dialog)
-            ],
-            alignment=ft.MainAxisAlignment.SPACE_BETWEEN,
-        ),
         content=ft.Container(
-            height=global_variables.app_window.height * 0.25,
-            width=global_variables.app_window.width * 0.6
+            height=content_window_height,
+            width=content_window_width,
+            bgcolor="#D2E0E8",
+            padding=window_padding,
+            border=ft.border.all(1,ft.colors.WHITE),
+            content=ft.Column(
+                spacing=0,
+                controls=[
+                    ft.Container(#title row
+                        padding=0,
+                        height=content_window_height * 0.20,
+                        width=content_window_width,
+                        #border=ft.border.all(1,ft.colors.RED),
+                        content=ft.Row(
+                            spacing=0,
+                            alignment=ft.MainAxisAlignment.SPACE_BETWEEN,
+                            controls=[
+                                ft.Container(
+                                    height=content_window_height * 0.20,
+                                    width=content_window_width * 0.3,
+                                    #border=ft.border.all(1,ft.colors.RED),
+                                    padding=window_padding * 2,
+                                    content=ft.Text("Endpoints",color="Black",font_family="roboto",size=content_window_height * 0.1,weight=ft.FontWeight.BOLD)
+                                ),
+                                ft.Container(
+                                    height=content_window_height * 0.20,
+                                    width=content_window_width * 0.05,
+                                    #border=ft.border.all(1,ft.colors.RED),
+                                    alignment=ft.alignment.top_right,
+                                    content=ft.Container(
+                                        padding=0,
+                                        alignment=ft.alignment.center,
+                                        height=content_window_height * 0.12,
+                                        width=content_window_height * 0.12,
+                                        bgcolor=ft.colors.ORANGE,
+                                        on_hover=lambda e: change_close_container_bgcolor(e),
+                                        border_radius=ft.border_radius.all(5),
+                                        content=ft.Icon(name="close",color="white",size=content_window_height * 0.12),
+                                        border=ft.border.all(1,ft.colors.BLACK),
+                                        on_click=close_dialog
+                                    )
+                                )
+                            ]
+                        )
+                    ),
+                    ft.Container(
+                        padding=window_padding,
+                        expand=True,
+                        width= (content_window_width) - (2 * window_padding),
+                        border=ft.border.all(2,ft.colors.WHITE),
+                        bgcolor="#E1E1E1",
+                        content=ft.Text(
+                            spans=[
+                                ft.TextSpan("Bulk Oil Removal", style=ft.TextStyle(weight=ft.FontWeight.BOLD, size=text_size, font_family="Roboto",color=ft.colors.BLACK) ),
+                                ft.TextSpan("\n"),
+                                ft.TextSpan("Involves the safe removal of the heavy oil concentrations t hat could be remobilized to oil previously unaffected or cleaned shorelines.",style=ft.TextStyle(size=text_size,font_family="Roboto",color=ft.colors.BLACK)),
+                                ft.TextSpan("\n"),
+                                ft.TextSpan("\n"),
+                                ft.TextSpan("Reduced to Stain", style=ft.TextStyle(weight=ft.FontWeight.BOLD, size=text_size, font_family="Roboto",color=ft.colors.BLACK) ),
+                                ft.TextSpan("\n"),
+                                ft.TextSpan("Involves removal of thick oil and oil cover and allowing the oil stain residues to weather naturally.",style=ft.TextStyle(size=text_size,font_family="Roboto",color=ft.colors.BLACK)),
+                            ]
+                        ),
+                        alignment=ft.alignment.center_left
+                    )
+                ]
+            )
         ),
-        actions=[
-            ft.TextButton("Close", on_click=close_dialog),
-        ],
-        actions_alignment=ft.MainAxisAlignment.END,
-        on_dismiss=close_dialog
+        on_dismiss=close_dialog,
+        content_padding=0,
+        bgcolor=ft.colors.TRANSPARENT
         
     )
 
@@ -154,29 +223,108 @@ def endpoints_info(page):
     dialog.open = True
     page.update()
 
+###################################
+######## WASTE TYPES WINDOW #########
+###################################
+
 def waste_types_info(page):
+     #ft.TextSpan("",style=ft.TextStyle(size=text_size,font_family="Roboto",color=ft.colors.BLACK))
+    #ft.TextSpan("\n"),
+    #ft.TextSpan("Objective", style=ft.TextStyle(weight=ft.FontWeight.BOLD, size=text_size * 1.15, font_family="Roboto",color=ft.colors.BLACK) ),
+    #ft.TextSpan("   •  low-pressure or high pressure cold (ambient) or warm temperature washing",style=ft.TextStyle(size=text_size,font_family="Roboto",color=ft.colors.BLACK)),
+    content_window_height = global_variables.app_window.height * 0.5
+    content_window_width = global_variables.app_window.width * 0.65
+    window_padding = content_window_width*0.005
+    endpoint_bgcolor = "#E1E1E1"
+    text_size = content_window_height * 0.04
     def close_dialog(e):
         page.dialog.open = False
         page.update()
 
     dialog = ft.AlertDialog(
         modal=False,
-        title=ft.Row(
-            controls=[
-                ft.Text("Waste Types"),
-                ft.IconButton(ft.icons.CLOSE, on_click=close_dialog)
-            ],
-            alignment=ft.MainAxisAlignment.SPACE_BETWEEN,
-        ),
         content=ft.Container(
-            height=global_variables.app_window.height * 0.4,
-            width=global_variables.app_window.width * 0.6
+            height=content_window_height,
+            width=content_window_width,
+            bgcolor="#D2E0E8",
+            padding=window_padding,
+            border=ft.border.all(1,ft.colors.WHITE),
+            content=ft.Column(
+                spacing=0,
+                controls=[
+                    ft.Container(#title row
+                        padding=0,
+                        height=content_window_height * 0.20,
+                        width=content_window_width,
+                        #border=ft.border.all(1,ft.colors.RED),
+                        content=ft.Row(
+                            spacing=0,
+                            alignment=ft.MainAxisAlignment.SPACE_BETWEEN,
+                            controls=[
+                                ft.Container(
+                                    height=content_window_height * 0.20,
+                                    width=content_window_width * 0.3,
+                                    #border=ft.border.all(1,ft.colors.RED),
+                                    padding=window_padding * 2,
+                                    content=ft.Text("Waste Types",color="Black",font_family="roboto",size=content_window_height * 0.08,weight=ft.FontWeight.BOLD)
+                                ),
+                                ft.Container(
+                                    height=content_window_height * 0.20,
+                                    width=content_window_width * 0.05,
+                                    #border=ft.border.all(1,ft.colors.RED),
+                                    alignment=ft.alignment.top_right,
+                                    content=ft.Container(
+                                        padding=0,
+                                        alignment=ft.alignment.center,
+                                        height=content_window_height * 0.1,
+                                        width=content_window_height * 0.1,
+                                        bgcolor=ft.colors.ORANGE,
+                                        on_hover=lambda e: change_close_container_bgcolor(e),
+                                        border_radius=ft.border_radius.all(5),
+                                        content=ft.Icon(name="close",color="white",size=content_window_height * 0.1),
+                                        border=ft.border.all(1,ft.colors.BLACK),
+                                        on_click=close_dialog
+                                    )
+                                )
+                            ]
+                        )
+                    ),
+                    ft.Container(
+                        padding=window_padding,
+                        expand=True,
+                        width= (content_window_width) - (2 * window_padding),
+                        border=ft.border.all(2,ft.colors.WHITE),
+                        bgcolor="#E1E1E1",
+                        content=ft.Text(
+                            spans=[
+                                ft.TextSpan("Oily Water / Oily liquids", style=ft.TextStyle(weight=ft.FontWeight.BOLD, size=text_size, font_family="Roboto",color=ft.colors.BLACK) ),
+                                ft.TextSpan("\n"),
+                                ft.TextSpan("Predominantly oil generated by skimming activities, which typically separate oil and water.",style=ft.TextStyle(size=text_size,font_family="Roboto",color=ft.colors.BLACK)),
+                                ft.TextSpan("\n"),
+                                ft.TextSpan("\n"),
+                                ft.TextSpan("Oil/Snow Mixture", style=ft.TextStyle(weight=ft.FontWeight.BOLD, size=text_size, font_family="Roboto",color=ft.colors.BLACK) ),
+                                ft.TextSpan("\n"),
+                                ft.TextSpan("Oiled snow prior to separation by melting",style=ft.TextStyle(size=text_size,font_family="Roboto",color=ft.colors.BLACK)),
+                                ft.TextSpan("\n"),
+                                ft.TextSpan("\n"),
+                                ft.TextSpan("Solids", style=ft.TextStyle(weight=ft.FontWeight.BOLD, size=text_size, font_family="Roboto",color=ft.colors.BLACK) ),
+                                ft.TextSpan("\n"),
+                                ft.TextSpan("Oiled sediments or oiled debris.",style=ft.TextStyle(size=text_size,font_family="Roboto",color=ft.colors.BLACK)),
+                                ft.TextSpan("\n"),
+                                ft.TextSpan("\n"),
+                                ft.TextSpan("Operational Waste", style=ft.TextStyle(weight=ft.FontWeight.BOLD, size=text_size, font_family="Roboto",color=ft.colors.BLACK) ),
+                                ft.TextSpan("\n"),
+                                ft.TextSpan("Includes used PPE (Personal Protective Equipment), sorbents and packaging. Does not include food, paper, cardboard, plastics, metal and glass solid waste or non-oily liquid grey water or sewage generated by support activities.",style=ft.TextStyle(size=text_size,font_family="Roboto",color=ft.colors.BLACK)),
+                            ]
+                        ),
+                        alignment=ft.alignment.center_left
+                    )
+                ]
+            )
         ),
-        actions=[
-            ft.TextButton("Close", on_click=close_dialog),
-        ],
-        actions_alignment=ft.MainAxisAlignment.END,
-        on_dismiss=close_dialog
+        on_dismiss=close_dialog,
+        content_padding=0,
+        bgcolor=ft.colors.TRANSPARENT
         
     )
 
@@ -231,16 +379,22 @@ def treatment_tactic(page):
                                     #padding=ft.padding.only(left=window_width * 0.02)
                                 ),
                                 ft.Container(
-                                    content=ft.Text("X",color="White",font_family="Roboto",size=window_height * 0.037),
-                                    bgcolor=ft.colors.ORANGE,
-                                    height=window_width * 0.03,
-                                    width=window_width * 0.03,
-                                    on_click=close_dialog,
-                                    alignment=ft.alignment.center,
-                                    border_radius=ft.border_radius.all(5),
-                                    on_hover=lambda e: change_close_container_bgcolor(e)
-                                    #border=ft.border.all(1,ft.colors.BLACK)
-                                    
+                                    height=row_height,
+                                    width=row_height,
+                                    #border=ft.border.all(1,ft.colors.RED),
+                                    alignment=ft.alignment.top_right,
+                                    content=ft.Container(
+                                        padding=0,
+                                        alignment=ft.alignment.center,
+                                        height=row_height ,
+                                        width=row_height ,
+                                        bgcolor=ft.colors.ORANGE,
+                                        on_hover=lambda e: change_close_container_bgcolor(e),
+                                        border_radius=ft.border_radius.all(5),
+                                        content=ft.Icon(name="close",color="white",size=row_height),
+                                        border=ft.border.all(1,ft.colors.BLACK),
+                                        on_click=close_dialog
+                                    )
                                 )],
                             alignment=ft.MainAxisAlignment.SPACE_BETWEEN,
                             spacing=0,
@@ -2703,6 +2857,7 @@ def in_situ_burning_info(page):
     )
     column_array.append(container)
     return column_array
+
 def bioremidiation_info(page):
     #ft.TextSpan("",style=ft.TextStyle(size=text_size,font_family="Roboto",color=ft.colors.BLACK)),
     #ft.TextSpan("\n"),
