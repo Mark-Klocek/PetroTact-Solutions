@@ -1,7 +1,8 @@
 import flet as ft
 import global_variables
 import time
-
+import view_summary
+click_timer = time.time()
 
 
 def substrate_info(page):
@@ -75,9 +76,12 @@ def oil_type_info(page):
     content_window_height = global_variables.app_window.height * 0.8
     content_window_width = global_variables.app_window.width * 0.8
     window_padding = content_window_width*0.005
+    
     endpoint_bgcolor = "#E1E1E1"
     text_size = content_window_height * 0.03
     body_height = (content_window_height - ((content_window_height * 0.07) + (content_window_height * 0.07 * 0.55 * 2) - (window_padding * 2))) * 0.95
+    img_window_width = (((content_window_width - (window_padding * 2)) / 5) * .97)
+    img_window_height = body_height * 0.6
     def close_dialog(e):
         page.dialog.open = False
         page.update()
@@ -139,14 +143,275 @@ def oil_type_info(page):
                         #border=ft.border.all(1,ft.colors.RED)
                         
                     ),
-                    ft.Container(
+                    ft.Container(#gif body
                         width=content_window_width - (window_padding * 2),
                         height=body_height,
                         border=ft.border.all(window_padding,ft.colors.WHITE),
                         border_radius=ft.border_radius.all(15),
-                        bgcolor="#E1E1E1"
+                        bgcolor="#E1E1E1",
+                        padding=window_padding,
+                        content=ft.Column(
+                            spacing=0,
+                            controls=[
+                                ft.Stack( #gif stack
+                                    height=img_window_height,
+                                    width=content_window_width - (window_padding * 2),
+                                    controls=[
+                                        ft.Container(#bottom stack
+                                            padding=0,
+                                            height=img_window_height,
+                                            width=content_window_width - (window_padding * 2),
+                                            border=ft.border.all(1,ft.colors.RED)
+                                        ),
+                                        ft.Container(#top stack
+                                            padding=0,
+                                            height=img_window_height,
+                                            width=content_window_width - (window_padding * 2),
+                                            #border=ft.border.all(1,ft.colors.RED)
+                                            content=ft.Row(
+                                                spacing=0,
+                                                controls=[
+                                                    ft.Container(
+                                                    padding=0,
+                                                    height=img_window_height,
+                                                    width=img_window_width,
+                                                    border=ft.border.all(1,ft.colors.RED)
+                                                    ),
+                                                    ft.Container(
+                                                    padding=0,
+                                                    height=img_window_height,
+                                                    width=img_window_width,
+                                                    border=ft.border.all(1,ft.colors.RED)
+                                                    ),
+                                                    ft.Container(
+                                                    padding=0,
+                                                    height=img_window_height,
+                                                    width=img_window_width,
+                                                    border=ft.border.all(1,ft.colors.RED)
+                                                    ),
+                                                    ft.Container(
+                                                    padding=0,
+                                                    height=img_window_height,
+                                                    width=img_window_width,
+                                                    border=ft.border.all(1,ft.colors.RED)
+                                                    ),
+                                                    ft.Container(
+                                                    padding=0,
+                                                    height=img_window_height,
+                                                    width=img_window_width,
+                                                    border=ft.border.all(1,ft.colors.RED)
+                                                    ),
+                                                ]
+                                            )
+                                        )
+                                    ]
+                                ),
+                                ft.Container(#container holding the row that contains images and descriptions
+                                    alignment=ft.alignment.center,
+                                    padding=0,
+                                    width=content_window_width - (window_padding * 2),
+                                    height=(body_height * .4) * .9,
+                                    #border=ft.border.all(1,ft.colors.RED),
+                                    content=ft.Row(#image row containing column that has an image of each oil type and description
+                                        spacing=0,
+                                        controls=[
+                                            ft.Column(#column 1
+                                                spacing=0,
+                                                controls=[
+                                                    ft.Container(
+                                                        padding=0,
+                                                        alignment=ft.alignment.center,
+                                                        height=((body_height * .4) * .9)*0.65,
+                                                        width=img_window_width,
+                                                        #border=ft.border.all(1,ft.colors.RED),
+                                                        content=ft.Container(
+                                                            on_hover=lambda e: oil_type_bgcolor(e),
+                                                            on_click=oil_type_doubleclick(page,0),
+                                                            padding=0,
+                                                            border_radius=ft.border_radius.all(5),
+                                                            height=((body_height * .4) * .9)*0.65,
+                                                            width=((body_height * .4) * .9)*0.65,
+                                                            alignment=ft.alignment.center,
+                                                            bgcolor=ft.colors.WHITE,
+                                                            content=ft.Container(
+                                                                padding=0,
+                                                                height=(((body_height * .4) * .9)*0.65) * 0.9,
+                                                                width=(((body_height * .4) * .9)*0.65) * 0.9,
+                                                                content=ft.Image(src=r"images\oil_type_alert_dialogue\oil_type_alert_dialogue_volatile.png",fit=ft.ImageFit.CONTAIN),
+                                                                border_radius=ft.border_radius.all(5)
+                                                                
+                                                            )
+                                                        )
+                                                    ),
+                                                    ft.Container(
+                                                        padding=0,
+                                                        height=((body_height * .4) * .9)*0.35,
+                                                        width=img_window_width,
+                                                        #border=ft.border.all(1,ft.colors.RED),
+                                                        content=ft.Text("Gasoline products — viscosity like water",color="Black",font_family="Roboto",text_align=ft.TextAlign.CENTER,size=text_size * 0.75)
+                                                    )
+                                                ]
+                                            ),
+                                            ft.Column(#column 2
+                                                spacing=0,
+                                                controls=[
+                                                    ft.Container(
+                                                        padding=0,
+                                                        alignment=ft.alignment.center,
+                                                        height=((body_height * .4) * .9)*0.65,
+                                                        width=img_window_width,
+                                                        #border=ft.border.all(1,ft.colors.RED),
+                                                        content=ft.Container(
+                                                            on_hover=lambda e: oil_type_bgcolor(e),
+                                                            on_click=oil_type_doubleclick(page,1),
+                                                            padding=0,
+                                                            border_radius=ft.border_radius.all(5),
+                                                            height=((body_height * .4) * .9)*0.65,
+                                                            width=((body_height * .4) * .9)*0.65,
+                                                            alignment=ft.alignment.center,
+                                                            bgcolor=ft.colors.WHITE,
+                                                            content=ft.Container(
+                                                                padding=0,
+                                                                height=(((body_height * .4) * .9)*0.65) * 0.9,
+                                                                width=(((body_height * .4) * .9)*0.65) * 0.9,
+                                                                content=ft.Image(src=r"images\oil_type_alert_dialogue\oil_type_alert_dialogue_light_oils.png",fit=ft.ImageFit.CONTAIN),
+                                                                border_radius=ft.border_radius.all(5)
+                                                                
+                                                            )
+                                                        )
+                                                    ),
+                                                    ft.Container(
+                                                        padding=0,
+                                                        height=((body_height * .4) * .9)*0.35,
+                                                        width=img_window_width,
+                                                        #border=ft.border.all(1,ft.colors.RED),
+                                                        content=ft.Text("Diesel and light crudes — viscosity like water",color="Black",font_family="Roboto",text_align=ft.TextAlign.CENTER,size=text_size * 0.75)
+                                                    )
+                                                ]
+                                            ),
+                                            ft.Column(#column 3
+                                                spacing=0,
+                                                controls=[
+                                                    ft.Container(
+                                                        padding=0,
+                                                        alignment=ft.alignment.center,
+                                                        height=((body_height * .4) * .9)*0.65,
+                                                        width=img_window_width,
+                                                        #border=ft.border.all(1,ft.colors.RED),
+                                                        content=ft.Container(
+                                                            on_hover=lambda e: oil_type_bgcolor(e),
+                                                            on_click=oil_type_doubleclick(page,2),
+                                                            padding=0,
+                                                            border_radius=ft.border_radius.all(5),
+                                                            height=((body_height * .4) * .9)*0.65,
+                                                            width=((body_height * .4) * .9)*0.65,
+                                                            alignment=ft.alignment.center,
+                                                            bgcolor=ft.colors.WHITE,
+                                                            content=ft.Container(
+                                                                padding=0,
+                                                                height=(((body_height * .4) * .9)*0.65) * 0.9,
+                                                                width=(((body_height * .4) * .9)*0.65) * 0.9,
+                                                                content=ft.Image(src=r"images\oil_type_alert_dialogue\oil_type_alert_dialogue_medium_oils.png",fit=ft.ImageFit.CONTAIN),
+                                                                border_radius=ft.border_radius.all(5)
+                                                                
+                                                            )
+                                                        )
+                                                    ),
+                                                    ft.Container(
+                                                        padding=0,
+                                                        height=((body_height * .4) * .9)*0.35,
+                                                        width=img_window_width,
+                                                        #border=ft.border.all(1,ft.colors.RED),
+                                                        content=ft.Text("Intermediate products and medium crudes",color="Black",font_family="Roboto",text_align=ft.TextAlign.CENTER,size=text_size * 0.75)
+                                                    )
+                                                ]
+                                            ),
+                                            ft.Column(#column 4
+                                                spacing=0,
+                                                controls=[
+                                                    ft.Container(
+                                                        padding=0,
+                                                        alignment=ft.alignment.center,
+                                                        height=((body_height * .4) * .9)*0.65,
+                                                        width=img_window_width,
+                                                        #border=ft.border.all(1,ft.colors.RED),
+                                                        content=ft.Container(
+                                                            on_hover=lambda e: oil_type_bgcolor(e),
+                                                            on_click=oil_type_doubleclick(page,3),
+                                                            padding=0,
+                                                            border_radius=ft.border_radius.all(5),
+                                                            height=((body_height * .4) * .9)*0.65,
+                                                            width=((body_height * .4) * .9)*0.65,
+                                                            alignment=ft.alignment.center,
+                                                            bgcolor=ft.colors.WHITE,
+                                                            content=ft.Container(
+                                                                padding=0,
+                                                                height=(((body_height * .4) * .9)*0.65) * 0.9,
+                                                                width=(((body_height * .4) * .9)*0.65) * 0.9,
+                                                                content=ft.Image(src=r"images\oil_type_alert_dialogue\oil_type_alert_dialogue_heavy_oils.png",fit=ft.ImageFit.CONTAIN),
+                                                                border_radius=ft.border_radius.all(5)
+                                                                
+                                                            )
+                                                        )
+                                                    ),
+                                                    ft.Container(
+                                                        padding=0,
+                                                        height=((body_height * .4) * .9)*0.35,
+                                                        width=img_window_width,
+                                                        #border=ft.border.all(1,ft.colors.RED),
+                                                        content=ft.Text("Residual products and heavy crudes — viscosity like molasses",color="Black",font_family="Roboto",text_align=ft.TextAlign.CENTER,size=text_size * 0.75)
+                                                    )
+                                                ]
+                                            ),
+                                            ft.Column(
+                                                spacing=0,
+                                                controls=[
+                                                    ft.Container(
+                                                        padding=0,
+                                                        alignment=ft.alignment.center,
+                                                        height=((body_height * .4) * .9)*0.65,
+                                                        width=img_window_width,
+                                                        #border=ft.border.all(1,ft.colors.RED),
+                                                        content=ft.Container(
+                                                            on_hover=lambda e: oil_type_bgcolor(e),
+                                                            on_click=oil_type_doubleclick(page,4),
+                                                            padding=0,
+                                                            border_radius=ft.border_radius.all(5),
+                                                            height=((body_height * .4) * .9)*0.65,
+                                                            width=((body_height * .4) * .9)*0.65,
+                                                            alignment=ft.alignment.center,
+                                                            bgcolor=ft.colors.WHITE,
+                                                            content=ft.Container(
+                                                                padding=0,
+                                                                height=(((body_height * .4) * .9)*0.65) * 0.9,
+                                                                width=(((body_height * .4) * .9)*0.65) * 0.9,
+                                                                content=ft.Image(src=r"images\oil_type_alert_dialogue\oil_type_alert_dialogue_solid_oils.png",fit=ft.ImageFit.CONTAIN),
+                                                                border_radius=ft.border_radius.all(5)
+                                                                
+                                                            )
+                                                        )
+                                                    ),
+                                                    ft.Container(
+                                                        padding=0,
+                                                        height=((body_height * .4) * .9)*0.35,
+                                                        width=img_window_width,
+                                                        #border=ft.border.all(1,ft.colors.RED),
+                                                        content=ft.Text("Bitumen, tar, asphalt — does not pour",color="Black",font_family="Roboto",text_align=ft.TextAlign.CENTER,size=text_size * 0.75)
+                                                    )
+                                                ]
+                                            )
+                                            
+                                            
+                                        ]
+                                    )
+                                )
+                            ]
+                        )
+                        
+                        
                     ),
-                    ft.Container(
+                   
+                    ft.Container(#footer
                         padding=ft.padding.only(left=window_padding * 2),
                         alignment=ft.alignment.center_left,
                         content=ft.Text("Double click images to select Oil Type",size=text_size,font_family="roboto",color="black"),
@@ -167,7 +432,40 @@ def oil_type_info(page):
     dialog.open = True
     page.update()
 
+def oil_type_bgcolor(e):
+    if e.data =="true":
+        e.control.bgcolor = "orange"
+    else:
+        e.control.bgcolor = ft.colors.WHITE
+    e.control.update()
+def oil_type_doubleclick(page,index):
+    def handle_click(e):
+        global click_timer
+        new_click = time.time()
+        time_between_clicks = new_click - click_timer
+        oil_type_column_b = global_variables.app_window.content.controls[0].content.controls[2].content.controls[1].controls[0]
+        print(oil_type_column_b.controls)
+        if time_between_clicks < 0.3:
+            
+            oil_type_column_b.controls[global_variables.oil_type_selected_index].bgcolor = ft.colors.TRANSPARENT
+            oil_type_column_b.controls[index].bgcolor = ft.colors.ORANGE
+            global_variables.oil_type_selected_index = index
+            global_variables.selection= str(global_variables.substrate_selected_index)+str(global_variables.oil_type_selected_index)+str(global_variables.surface_oil_category_selected_index)
+            global_variables.generate_table_array(page)
+            
+            if global_variables.results_tab_selected == False:
+                view_summary.results_container.content.controls[1] = view_summary.create_summary_container(page)
+        
+            else:
+                view_summary.results_container.content.controls[1] = view_summary.create_results_content(page)
 
+            
+            click_timer = new_click
+            page.dialog.open = False
+            page.update()
+        else:
+            click_timer = new_click
+    return handle_click
 
 ###################################
 ### SURFACE OIL CATEGORY WINDOW ####
@@ -788,6 +1086,8 @@ def surface_oil_category_info(page):
     page.dialog = dialog
     dialog.open = True
     page.update()
+
+
 
 def surface_oil_click(page):
     last_click_time = 0
