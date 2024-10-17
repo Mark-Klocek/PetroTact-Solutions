@@ -1,5 +1,6 @@
 import flet as ft
 import global_variables
+import time
 
 
 
@@ -63,60 +64,724 @@ def actual_scale_graph(page):
     dialog.open = True
     page.update()
 
-
+###################################
+######## OIL TYPE WINDOW #########
+###################################
 def oil_type_info(page):
+    #ft.TextSpan("",style=ft.TextStyle(size=text_size,font_family="Roboto",color=ft.colors.BLACK))
+    #ft.TextSpan("\n"),
+    #ft.TextSpan("Objective", style=ft.TextStyle(weight=ft.FontWeight.BOLD, size=text_size * 1.15, font_family="Roboto",color=ft.colors.BLACK) ),
+    #ft.TextSpan("   •  low-pressure or high pressure cold (ambient) or warm temperature washing",style=ft.TextStyle(size=text_size,font_family="Roboto",color=ft.colors.BLACK)),
+    content_window_height = global_variables.app_window.height * 0.8
+    content_window_width = global_variables.app_window.width * 0.8
+    window_padding = content_window_width*0.005
+    endpoint_bgcolor = "#E1E1E1"
+    text_size = content_window_height * 0.03
+    body_height = (content_window_height - ((content_window_height * 0.07) + (content_window_height * 0.07 * 0.55 * 2) - (window_padding * 2))) * 0.95
     def close_dialog(e):
         page.dialog.open = False
         page.update()
 
     dialog = ft.AlertDialog(
         modal=False,
-        title=ft.Row(
-            controls=[
-                ft.Text("Oil type Window Information"),
-                ft.IconButton(ft.icons.CLOSE, on_click=close_dialog)
-            ],
-            alignment=ft.MainAxisAlignment.SPACE_BETWEEN,
-        ),
         content=ft.Container(
-            height=global_variables.app_window.height * 0.5,
-            width=global_variables.app_window.width * 0.8
+            height=content_window_height,
+            width=content_window_width,
+            border=ft.border.all(window_padding,ft.colors.WHITE),
+            bgcolor="#D2E0E8",
+            padding=window_padding,
+            content=ft.Column(
+                spacing=0,
+                controls=[
+                    ft.Container(#title 1
+                        padding=0,
+                        height=content_window_height * 0.07,
+                        width=content_window_width,
+                        #border=ft.border.all(1,ft.colors.RED),
+                        content=ft.Row(
+                            spacing=0,
+                            alignment=ft.MainAxisAlignment.SPACE_BETWEEN,
+                            controls=[
+                                ft.Container(
+                                    height=content_window_height * 0.20,
+                                    width=content_window_width * 0.3,
+                                    #border=ft.border.all(1,ft.colors.RED),
+                                    padding=ft.padding.only(left=window_padding * 2),
+                                    content=ft.Text("Oil Types",color="Black",font_family="roboto",size=content_window_height * 0.05,weight=ft.FontWeight.BOLD),
+                                    alignment=ft.alignment.center_left
+                                ),
+                                ft.Container(
+                                    height=content_window_height * 0.20,
+                                    width=content_window_width * 0.05,
+                                    #border=ft.border.all(1,ft.colors.RED),
+                                    alignment=ft.alignment.top_right,
+                                    content=ft.Container(
+                                        padding=0,
+                                        alignment=ft.alignment.center,
+                                        height=content_window_height * 0.07,
+                                        width=content_window_height * 0.07,
+                                        bgcolor=ft.colors.ORANGE,
+                                        on_hover=lambda e: change_close_container_bgcolor(e),
+                                        border_radius=ft.border_radius.all(5),
+                                        content=ft.Icon(name="close",color="white",size=content_window_height * 0.07),
+                                        border=ft.border.all(1,ft.colors.BLACK),
+                                        on_click=close_dialog
+                                    )
+                                )
+                            ]
+                        )
+                    ),
+                    ft.Container(#title 2
+                        padding=ft.padding.only(left=window_padding * 2),
+                        alignment=ft.alignment.center_left,
+                        content=ft.Text("Click jars to pour and refill",size=text_size,font_family="roboto",color="black"),
+                        height=content_window_height * 0.07 * 0.55,
+                        #border=ft.border.all(1,ft.colors.RED)
+                        
+                    ),
+                    ft.Container(
+                        width=content_window_width - (window_padding * 2),
+                        height=body_height,
+                        border=ft.border.all(window_padding,ft.colors.WHITE),
+                        border_radius=ft.border_radius.all(15),
+                        bgcolor="#E1E1E1"
+                    ),
+                    ft.Container(
+                        padding=ft.padding.only(left=window_padding * 2),
+                        alignment=ft.alignment.center_left,
+                        content=ft.Text("Double click images to select Oil Type",size=text_size,font_family="roboto",color="black"),
+                        height=content_window_height * 0.07 * 0.55,
+                        #border=ft.border.all(1,ft.colors.RED)
+                        
+                    )
+
+                ]
+            )
         ),
-        actions=[
-            ft.TextButton("Close", on_click=close_dialog),
-        ],
-        actions_alignment=ft.MainAxisAlignment.END,
-        on_dismiss=close_dialog
+        on_dismiss=close_dialog,
+        bgcolor=ft.colors.TRANSPARENT
         
     )
 
     page.dialog = dialog
     dialog.open = True
     page.update()
+
+
+
+###################################
+### SURFACE OIL CATEGORY WINDOW ####
+###################################
+
 
 def surface_oil_category_info(page):
+    #ft.TextSpan("",style=ft.TextStyle(size=text_size,font_family="Roboto",color=ft.colors.BLACK))
+    #ft.TextSpan("\n"),
+    #ft.TextSpan("Objective", style=ft.TextStyle(weight=ft.FontWeight.BOLD, size=text_size * 1.15, font_family="Roboto",color=ft.colors.BLACK) ),
+    #ft.TextSpan("   •  low-pressure or high pressure cold (ambient) or warm temperature washing",style=ft.TextStyle(size=text_size,font_family="Roboto",color=ft.colors.BLACK)),
+    content_window_height = global_variables.app_window.height * 0.95
+    content_window_width = global_variables.app_window.width * 0.65
+    window_padding = content_window_width*0.005
+    endpoint_bgcolor = "#E1E1E1"
+    text_size = content_window_height * 0.02
     def close_dialog(e):
         page.dialog.open = False
         page.update()
 
     dialog = ft.AlertDialog(
         modal=False,
-        title=ft.Row(
-            controls=[
-                ft.Text("Surface Oil Category Window Information"),
-                ft.IconButton(ft.icons.CLOSE, on_click=close_dialog)
-            ],
-            alignment=ft.MainAxisAlignment.SPACE_BETWEEN,
-        ),
         content=ft.Container(
-            height=global_variables.app_window.height * 0.9,
-            width=global_variables.app_window.width * 0.6
+            height=content_window_height,
+            width=content_window_width,
+            bgcolor="#D2E0E8",
+            padding=window_padding,
+            border=ft.border.all(window_padding,ft.colors.WHITE),
+            content=ft.Column(
+                spacing=0,
+                controls=[
+                    ft.Container(#title row
+                        padding=0,
+                        height=content_window_height * 0.05,
+                        width=content_window_width,
+                        #border=ft.border.all(1,ft.colors.RED),
+                        content=ft.Row(
+                            spacing=0,
+                            alignment=ft.MainAxisAlignment.SPACE_BETWEEN,
+                            controls=[
+                                ft.Container(
+                                    height=content_window_height * 0.20,
+                                    width=content_window_width * 0.3,
+                                    #border=ft.border.all(1,ft.colors.RED),
+                                    padding=ft.padding.only(left=window_padding * 2),
+                                    content=ft.Text("Waste Types",color="Black",font_family="roboto",size=content_window_height * 0.03,weight=ft.FontWeight.BOLD),
+                                    alignment=ft.alignment.center_left
+                                ),
+                                ft.Container(
+                                    height=content_window_height * 0.20,
+                                    width=content_window_width * 0.05,
+                                    #border=ft.border.all(1,ft.colors.RED),
+                                    alignment=ft.alignment.top_right,
+                                    content=ft.Container(
+                                        padding=0,
+                                        alignment=ft.alignment.center,
+                                        height=content_window_height * 0.05,
+                                        width=content_window_height * 0.05,
+                                        bgcolor=ft.colors.ORANGE,
+                                        on_hover=lambda e: change_close_container_bgcolor(e),
+                                        border_radius=ft.border_radius.all(5),
+                                        content=ft.Icon(name="close",color="white",size=content_window_height * 0.05),
+                                        border=ft.border.all(1,ft.colors.BLACK),
+                                        on_click=close_dialog
+                                    )
+                                )
+                            ]
+                        )
+                    ),
+                    ft.Container(# body info container
+                        bgcolor="#E1E1E1",
+                        padding=window_padding,
+                        height=(content_window_height * 0.875),
+                        border=ft.border.all(window_padding,ft.colors.WHITE),
+                        width=content_window_width - (window_padding * 2),
+                        content=ft.Column(
+                                    spacing=0,
+                                    controls=[
+                                        ft.Container(#text container 1
+                                    padding=0,
+                                    content=ft.Row(
+                                        spacing=0,
+                                        controls= [
+                                            ft.Container(
+                                                padding=window_padding,
+                                                width=content_window_width* 0.2,
+                                                #border=ft.border.all(1,ft.colors.RED),
+                                                alignment=ft.alignment.center_right,
+                                                content=ft.Text(
+                                                    spans=[
+                                                        ft.TextSpan("Surface Oil Category:",style=ft.TextStyle(size=text_size,font_family="Roboto",color=ft.colors.BLACK,weight=ft.FontWeight.BOLD,)),
+                                                        ft.TextSpan("\n"),
+                                                        ft.TextSpan("\n"),
+                                                        ft.TextSpan("Very Light",style=ft.TextStyle(size=text_size,font_family="Roboto",color=ft.colors.BLACK,weight=ft.FontWeight.BOLD)),
+                                                        ft.TextSpan("\n"),
+                                                        ft.TextSpan("\n"),
+                                                        ft.TextSpan("Light",style=ft.TextStyle(size=text_size,font_family="Roboto",color=ft.colors.BLACK,weight=ft.FontWeight.BOLD)),
+                                                        ft.TextSpan("\n"),
+                                                        ft.TextSpan("\n"),
+                                                        ft.TextSpan("Moderate",style=ft.TextStyle(size=text_size,font_family="Roboto",color=ft.colors.BLACK,weight=ft.FontWeight.BOLD)),
+                                                        ft.TextSpan("\n"),
+                                                        ft.TextSpan("\n"),
+                                                        ft.TextSpan("Heavy",style=ft.TextStyle(size=text_size,font_family="Roboto",color=ft.colors.BLACK,weight=ft.FontWeight.BOLD)),
+                                                    ],
+                                                    text_align=ft.TextAlign.RIGHT
+                                                )
+                                            ),
+                                            ft.Container(
+                                                padding=window_padding,
+                                                #border=ft.border.all(1,ft.colors.RED),
+                                                alignment=ft.alignment.center_left,
+                                                content=ft.Text(
+                                                    spans=[
+                                                        ft.TextSpan("\n"),
+                                                        ft.TextSpan("\n"),
+                                                        ft.TextSpan("   Less than .5m wide and generally less than 10% distribution",style=ft.TextStyle(size=text_size,font_family="Roboto",color=ft.colors.BLACK)),
+                                                        ft.TextSpan("\n"),
+                                                        ft.TextSpan("\n"),
+                                                        ft.TextSpan("   Less than 3m wide and generally less t han 10% distribution",style=ft.TextStyle(size=text_size,font_family="Roboto",color=ft.colors.BLACK)),
+                                                        ft.TextSpan("\n"),
+                                                        ft.TextSpan("\n"),
+                                                        ft.TextSpan("   Between 0.5m and 3m wide and generally 10% to 50% distribution",style=ft.TextStyle(size=text_size,font_family="Roboto",color=ft.colors.BLACK)),
+                                                        ft.TextSpan("\n"),
+                                                        ft.TextSpan("\n"),
+                                                        ft.TextSpan("   Greater than 3m wide and greater than 50% distribution",style=ft.TextStyle(size=text_size,font_family="Roboto",color=ft.colors.BLACK)),
+                                                    ],
+                                                    text_align=ft.TextAlign.LEFT
+                                                )
+                                            )
+                                        ]
+                                    )
+                                    
+                                    
+                                ),
+                                        ft.Container(#text container 2
+                                            padding=window_padding,
+                                            content=ft.Text("Oil Thickness:",size=text_size,font_family="Roboto",color=ft.colors.BLACK,text_align=ft.TextAlign.LEFT,weight=ft.FontWeight.BOLD)
+                                        ),
+                                        ft.Container(#text container 3
+                                            padding=0,
+                                            content=ft.Row(
+                                                spacing=0,
+                                                controls=[
+                                                    ft.Container(
+                                                        padding=window_padding,
+                                                        width=content_window_width* 0.2,
+                                                        content=ft.Text(
+                                                            spans=[
+                                                                ft.TextSpan("\n"),
+                                                                ft.TextSpan("Pooled or Thick Oil",style=ft.TextStyle(size=text_size,font_family="Roboto",color=ft.colors.BLACK,weight=ft.FontWeight.BOLD)),
+                                                                ft.TextSpan("\n"),
+                                                                ft.TextSpan("\n"),
+                                                                ft.TextSpan("Cover",style=ft.TextStyle(size=text_size,font_family="Roboto",color=ft.colors.BLACK,weight=ft.FontWeight.BOLD)),
+                                                                ft.TextSpan("\n"),
+                                                                ft.TextSpan("\n"),
+                                                                ft.TextSpan("Coat",style=ft.TextStyle(size=text_size,font_family="Roboto",color=ft.colors.BLACK,weight=ft.FontWeight.BOLD)),
+                                                                ft.TextSpan("\n"),
+                                                                ft.TextSpan("\n"),
+                                                                ft.TextSpan("Stain",style=ft.TextStyle(size=text_size,font_family="Roboto",color=ft.colors.BLACK,weight=ft.FontWeight.BOLD)),
+                                                                ft.TextSpan("\n"),
+                                                                ft.TextSpan("\n"),
+                                                                ft.TextSpan("Film",style=ft.TextStyle(size=text_size,font_family="Roboto",color=ft.colors.BLACK,weight=ft.FontWeight.BOLD)),
+                                                                
+                                                            ],
+                                                            text_align=ft.TextAlign.RIGHT
+                                                        ),
+                                                        alignment=ft.alignment.center_right
+                                                    ),
+                                                    ft.Container(
+                                                        padding=window_padding,
+                                                        alignment=ft.alignment.center_left,
+                                                        content=ft.Text(
+                                                            spans=[
+                                                                ft.TextSpan("\n"),
+                                                                ft.TextSpan("   Generally consists of fresh oil or mousse accumulations greater than 1cm thick",style=ft.TextStyle(size=text_size,font_family="Roboto",color=ft.colors.BLACK)),
+                                                                ft.TextSpan("\n"),
+                                                                ft.TextSpan("\n"),
+                                                                ft.TextSpan("   Between 0.1 and 1cm",style=ft.TextStyle(size=text_size,font_family="Roboto",color=ft.colors.BLACK)),
+                                                                ft.TextSpan("\n"),
+                                                                ft.TextSpan("\n"),
+                                                                ft.TextSpan("   Between 0.01 and 0.1cm t hick; can be scratched off with fingernail on course sediments / bedrock",style=ft.TextStyle(size=text_size,font_family="Roboto",color=ft.colors.BLACK)),
+                                                                ft.TextSpan("\n"),
+                                                                ft.TextSpan("\n"),
+                                                                ft.TextSpan("   Less than 0.01cm; cannot be scratched off easily on coarse sediments / bedrock",style=ft.TextStyle(size=text_size,font_family="Roboto",color=ft.colors.BLACK)),
+                                                                ft.TextSpan("\n"),
+                                                                ft.TextSpan("\n"),
+                                                                ft.TextSpan("   Transparent or translucent film or sheen",style=ft.TextStyle(size=text_size,font_family="Roboto",color=ft.colors.BLACK)),
+                                                            
+                                                            ],
+                                                            text_align=ft.TextAlign.LEFT
+                                                        )
+                                                    )
+                                                ]
+                                            )
+                                        ),
+                                        ft.Container(#text container 4
+                                            padding=window_padding,
+                                            content=ft.Text("Oil Distribution:",size=text_size,font_family="Roboto",color=ft.colors.BLACK,text_align=ft.TextAlign.LEFT,weight=ft.FontWeight.BOLD)
+                                        ),
+                                        ft.Container(#table  container
+                                            padding=window_padding,
+                                            #border=ft.border.all(1,ft.colors.GREEN),
+                                            height=content_window_height * 0.4,
+                                            width=content_window_width,
+                                            alignment=ft.alignment.center_left,
+                                            content=ft.Container(
+                                                padding=0,
+                                                height=(content_window_height * 0.4) - (window_padding * 2),
+                                                width=content_window_width * 0.95 - (window_padding * 2),
+                                                #border=ft.border.all(1,ft.colors.GREEN),
+                                                border_radius=ft.border_radius.all(15),
+                                                content=ft.Column(
+                                                    spacing=0,
+                                                    controls=[
+                                                        ft.Container(#header 
+                                                            height=((content_window_height * 0.4) - (window_padding * 2)) / 7 * 2,
+                                                            bgcolor="#B8B8C7",
+                                                            width=content_window_width * 0.95 - (window_padding * 2),
+                                                            padding=0,
+                                                            content=ft.Column(
+                                                                spacing=0,
+                                                                controls=[
+                                                                    ft.Container(
+                                                                        padding=0,
+                                                                        alignment=ft.alignment.center,
+                                                                        #border=ft.border.all(1,ft.colors.RED),
+                                                                        height=((content_window_height * 0.4) - (window_padding * 2)) / 7 * 2 * .4,
+                                                                        content=ft.Row(
+                                                                            spacing=0,
+                                                                            controls=[
+                                                                                ft.Container(
+                                                                                    padding=0,
+                                                                                    width=(content_window_width * 0.95 - (window_padding * 2)) * .30,
+                                                                                    #border=ft.border.all(1,ft.colors.RED),
+                                                                                    height=((content_window_height * 0.4) - (window_padding * 2)) / 7 * 2 * .4,
+                                                                                    alignment=ft.alignment.center
+                                                                                ),
+                                                                                ft.Container(
+                                                                                    padding=0,
+                                                                                    width=(content_window_width * 0.95 - (window_padding * 2)) * .70,
+                                                                                    #border=ft.border.all(1,ft.colors.RED),
+                                                                                    height=((content_window_height * 0.4) - (window_padding * 2)) / 7 * 2 * .4,
+                                                                                    content=ft.Text("Width of Oil Area",weight=ft.FontWeight.BOLD, size=text_size * 1.15, font_family="Roboto",color=ft.colors.WHITE,text_align=ft.TextAlign.CENTER),
+                                                                                )
+                                                                            ]
+                                                                        )
+                                                                    ),
+                                                                    ft.Container(
+                                                                        padding=0,
+                                                                        alignment=ft.alignment.center,
+                                                                        #border=ft.border.all(1,ft.colors.RED),
+                                                                        height=((content_window_height * 0.4) - (window_padding * 2)) / 7 * 2 * .6,
+                                                                        content=ft.Row(
+                                                                            spacing=0,
+                                                                            controls=[
+                                                                                ft.Container(
+                                                                                    padding=0,
+                                                                                    width=(content_window_width * 0.95 - (window_padding * 2)) * .30,
+                                                                                    #border=ft.border.all(1,ft.colors.RED),
+                                                                                    height=((content_window_height * 0.4) - (window_padding * 2)) / 7 * 2 * .6,
+                                                                                ),
+                                                                                ft.Container(
+                                                                                    padding=0,
+                                                                                    width=(content_window_width * 0.95 - (window_padding * 2)) * .70,
+                                                                                    #border=ft.border.all(1,ft.colors.RED),
+                                                                                    height=((content_window_height * 0.4) - (window_padding * 2)) / 7 * 2 * .6,
+                                                                                    content=ft.Row(
+                                                                                        spacing=0,
+                                                                                        controls=[
+                                                                                            ft.Container(
+                                                                                                padding=0,
+                                                                                                width=((content_window_width * 0.95 - (window_padding * 2)) * .70) / 4,
+                                                                                                #border=ft.border.all(1,ft.colors.RED),
+                                                                                                height=((content_window_height * 0.4) - (window_padding * 2)) / 7 * 2 * .6,
+                                                                                                content=ft.Text("Wide \n >6m",weight=ft.FontWeight.BOLD, size=text_size * 1.15, font_family="Roboto",color=ft.colors.WHITE,text_align=ft.TextAlign.CENTER),
+                                                                                                alignment=ft.alignment.center
+                                                                                            ),
+                                                                                            ft.Container(
+                                                                                                padding=0,
+                                                                                                width=((content_window_width * 0.95 - (window_padding * 2)) * .70) / 4,
+                                                                                                #border=ft.border.all(1,ft.colors.RED),
+                                                                                                height=((content_window_height * 0.4) - (window_padding * 2)) / 7 * 2 * .6,
+                                                                                                content=ft.Text("Medium \n >3-6m",weight=ft.FontWeight.BOLD, size=text_size * 1.15, font_family="Roboto",color=ft.colors.WHITE,text_align=ft.TextAlign.CENTER),
+                                                                                                alignment=ft.alignment.center
+                                                                                            ),
+                                                                                            ft.Container(
+                                                                                                padding=0,
+                                                                                                width=((content_window_width * 0.95 - (window_padding * 2)) * .70) / 4,
+                                                                                                #border=ft.border.all(1,ft.colors.RED),
+                                                                                                height=((content_window_height * 0.4) - (window_padding * 2)) / 7 * 2 * .6,
+                                                                                                content=ft.Text("Narrow \n 0.5 - 3m",weight=ft.FontWeight.BOLD, size=text_size * 1.15, font_family="Roboto",color=ft.colors.WHITE,text_align=ft.TextAlign.CENTER),
+                                                                                                alignment=ft.alignment.center
+                                                                                            ),
+                                                                                            ft.Container(
+                                                                                                padding=0,
+                                                                                                width=((content_window_width * 0.95 - (window_padding * 2)) * .70) / 4,
+                                                                                                #border=ft.border.all(1,ft.colors.RED),
+                                                                                                height=((content_window_height * 0.4) - (window_padding * 2)) / 7 * 2 * .6,
+                                                                                                content=ft.Text("Very Narrow \n < 0.5m",weight=ft.FontWeight.BOLD, size=text_size * 1.15, font_family="Roboto",color=ft.colors.WHITE,text_align=ft.TextAlign.CENTER),
+                                                                                                alignment=ft.alignment.center
+                                                                                            ),
+                                                                                            
+                                                                                            
+                                                                                        ]
+                                                                                    )
+                                                                                ),
+
+                                                                            ]
+                                                                        )
+                                                                    )
+                                                                ]
+                                                            )
+
+                                                        ),
+                                                        ft.Container(#body
+                                                            height=((content_window_height * 0.4) - (window_padding * 2)) / 7 * 5,
+                                                            bgcolor="white",
+                                                            width=content_window_width * 0.95 - (window_padding * 2),
+                                                            padding=0,
+                                                            content=ft.Row(
+                                                                spacing=0,
+                                                                controls=[
+                                                                    ft.Container(#Column 1
+                                                                        padding=0,
+                                                                        border=ft.Border(right=ft.BorderSide(1,"#B8B8C7")),
+                                                                        height=((content_window_height * 0.4) - (window_padding * 2)) / 7 * 5,
+                                                                        width=(content_window_width * 0.95 - (window_padding * 2)) * .30,
+                                                                        content=ft.Column(
+                                                                            spacing=0,
+                                                                            controls=[
+                                                                                ft.Container(
+                                                                                    padding=ft.padding.only(left=window_padding * 5),
+                                                                                    width=(content_window_width * 0.95 - (window_padding * 2)) * .30,
+                                                                                    height=((content_window_height * 0.4) - (window_padding * 2)) / 7,
+                                                                                    alignment=ft.alignment.center_left,
+                                                                                    content=ft.Text("Continuous 91-100%",weight=ft.FontWeight.BOLD, size=text_size * 1.15, font_family="Roboto",color=ft.colors.BLACK),
+                                                                                    
+
+                                                                                ),
+                                                                                ft.Container(
+                                                                                    padding=ft.padding.only(left=window_padding * 5),
+                                                                                    width=(content_window_width * 0.95 - (window_padding * 2)) * .30,
+                                                                                    height=((content_window_height * 0.4) - (window_padding * 2)) / 7,
+                                                                                    alignment=ft.alignment.center_left,
+                                                                                    content=ft.Text("Broken 51-90%",weight=ft.FontWeight.BOLD, size=text_size * 1.15, font_family="Roboto",color=ft.colors.BLACK),
+                                                                                    
+
+                                                                                ),
+                                                                                ft.Container(
+                                                                                    padding=ft.padding.only(left=window_padding * 5),
+                                                                                    width=(content_window_width * 0.95 - (window_padding * 2)) * .30,
+                                                                                    height=((content_window_height * 0.4) - (window_padding * 2)) / 7,
+                                                                                    alignment=ft.alignment.center_left,
+                                                                                    content=ft.Text("Patchy 11-50%",weight=ft.FontWeight.BOLD, size=text_size * 1.15, font_family="Roboto",color=ft.colors.BLACK),
+                                                                                    
+
+                                                                                ),
+                                                                                ft.Container(
+                                                                                    padding=ft.padding.only(left=window_padding * 5),
+                                                                                    width=(content_window_width * 0.95 - (window_padding * 2)) * .30,
+                                                                                    height=((content_window_height * 0.4) - (window_padding * 2)) / 7,
+                                                                                    alignment=ft.alignment.center_left,
+                                                                                    content=ft.Text("Sporadic 1-10%",weight=ft.FontWeight.BOLD, size=text_size * 1.15, font_family="Roboto",color=ft.colors.BLACK),
+                                                                                    
+
+                                                                                ),
+                                                                                ft.Container(
+                                                                                    padding=ft.padding.only(left=window_padding * 5),
+                                                                                    width=(content_window_width * 0.95 - (window_padding * 2)) * .30,
+                                                                                    height=((content_window_height * 0.4) - (window_padding * 2)) / 7,
+                                                                                    alignment=ft.alignment.center_left,
+                                                                                    content=ft.Text("Trace <1%",weight=ft.FontWeight.BOLD, size=text_size * 1.15, font_family="Roboto",color=ft.colors.BLACK),
+                                                                                    
+
+                                                                                ),
+                                                                            ]
+                                                                        )
+                                                                        
+                                                                    ),
+                                                                    ft.Container(#Column 2
+                                                                        padding=0,
+                                                                        border=ft.Border(right=ft.BorderSide(1,"#B8B8C7")),
+                                                                        height=((content_window_height * 0.4) - (window_padding * 2)) / 7 * 5,
+                                                                        width=(content_window_width * 0.95 - (window_padding * 2)) * .70 / 4,
+                                                                        content=ft.Column(
+                                                                            spacing=0,
+                                                                            controls=[
+                                                                                ft.Container(
+                                                                                    padding=ft.padding.only(left=window_padding * 2),
+                                                                                    alignment=ft.alignment.center_left,
+                                                                                    width=(content_window_width * 0.95 - (window_padding * 2)) * .70 / 4,
+                                                                                    height=((content_window_height * 0.4) - (window_padding * 2)) / 7,
+                                                                                    #border=ft.border.all(1,ft.colors.RED),
+                                                                                    content=ft.Text("Heavy",size=text_size* 1.15,font_family="Roboto",color=ft.colors.BLACK)
+                                                                                ),
+                                                                                ft.Container(
+                                                                                    padding=ft.padding.only(left=window_padding * 2),
+                                                                                    alignment=ft.alignment.center_left,
+                                                                                    width=(content_window_width * 0.95 - (window_padding * 2)) * .70 / 4,
+                                                                                    height=((content_window_height * 0.4) - (window_padding * 2)) / 7,
+                                                                                    #border=ft.border.all(1,ft.colors.RED),
+                                                                                    content=ft.Text("Heavy",size=text_size* 1.15,font_family="Roboto",color=ft.colors.BLACK)
+                                                                                ),
+                                                                                ft.Container(
+                                                                                    padding=ft.padding.only(left=window_padding * 2),
+                                                                                    alignment=ft.alignment.center_left,
+                                                                                    width=(content_window_width * 0.95 - (window_padding * 2)) * .70 / 4,
+                                                                                    height=((content_window_height * 0.4) - (window_padding * 2)) / 7,
+                                                                                    #border=ft.border.all(1,ft.colors.RED),
+                                                                                    content=ft.Text("Moderate",size=text_size* 1.15,font_family="Roboto",color=ft.colors.BLACK)
+                                                                                ),
+                                                                                ft.Container(
+                                                                                    padding=ft.padding.only(left=window_padding * 2),
+                                                                                    alignment=ft.alignment.center_left,
+                                                                                    width=(content_window_width * 0.95 - (window_padding * 2)) * .70 / 4,
+                                                                                    height=((content_window_height * 0.4) - (window_padding * 2)) / 7,
+                                                                                    #border=ft.border.all(1,ft.colors.RED),
+                                                                                    content=ft.Text("Light",size=text_size* 1.15,font_family="Roboto",color=ft.colors.BLACK)
+                                                                                ),
+                                                                                ft.Container(
+                                                                                    padding=ft.padding.only(left=window_padding * 2),
+                                                                                    alignment=ft.alignment.center_left,
+                                                                                    width=(content_window_width * 0.95 - (window_padding * 2)) * .70 / 4,
+                                                                                    height=((content_window_height * 0.4) - (window_padding * 2)) / 7,
+                                                                                    #border=ft.border.all(1,ft.colors.RED),
+                                                                                    content=ft.Text("Very Light",size=text_size* 1.15,font_family="Roboto",color=ft.colors.BLACK)
+                                                                                ),
+                                                                                
+                                                                            ]
+                                                                        )
+                                                                        
+                                                                    ),
+                                                                    ft.Container(#Column 3
+                                                                        padding=0,
+                                                                        border=ft.Border(right=ft.BorderSide(1,"#B8B8C7")),
+                                                                        height=((content_window_height * 0.4) - (window_padding * 2)) / 7 * 5,
+                                                                        width=(content_window_width * 0.95 - (window_padding * 2)) * .70 / 4,
+                                                                        content=ft.Column(
+                                                                            spacing=0,
+                                                                            controls=[
+                                                                                ft.Container(
+                                                                                    padding=ft.padding.only(left=window_padding * 2),
+                                                                                    alignment=ft.alignment.center_left,
+                                                                                    width=(content_window_width * 0.95 - (window_padding * 2)) * .70 / 4,
+                                                                                    height=((content_window_height * 0.4) - (window_padding * 2)) / 7,
+                                                                                    #border=ft.border.all(1,ft.colors.RED),
+                                                                                    content=ft.Text("Heavy",size=text_size* 1.15,font_family="Roboto",color=ft.colors.BLACK)
+                                                                                ),
+                                                                                ft.Container(
+                                                                                    padding=ft.padding.only(left=window_padding * 2),
+                                                                                    alignment=ft.alignment.center_left,
+                                                                                    width=(content_window_width * 0.95 - (window_padding * 2)) * .70 / 4,
+                                                                                    height=((content_window_height * 0.4) - (window_padding * 2)) / 7,
+                                                                                    #border=ft.border.all(1,ft.colors.RED),
+                                                                                    content=ft.Text("Heavy",size=text_size* 1.15,font_family="Roboto",color=ft.colors.BLACK)
+                                                                                ),
+                                                                                ft.Container(
+                                                                                    padding=ft.padding.only(left=window_padding * 2),
+                                                                                    alignment=ft.alignment.center_left,
+                                                                                    width=(content_window_width * 0.95 - (window_padding * 2)) * .70 / 4,
+                                                                                    height=((content_window_height * 0.4) - (window_padding * 2)) / 7,
+                                                                                    #border=ft.border.all(1,ft.colors.RED),
+                                                                                    content=ft.Text("Moderate",size=text_size* 1.15,font_family="Roboto",color=ft.colors.BLACK)
+                                                                                ),
+                                                                                ft.Container(
+                                                                                    padding=ft.padding.only(left=window_padding * 2),
+                                                                                    alignment=ft.alignment.center_left,
+                                                                                    width=(content_window_width * 0.95 - (window_padding * 2)) * .70 / 4,
+                                                                                    height=((content_window_height * 0.4) - (window_padding * 2)) / 7,
+                                                                                    #border=ft.border.all(1,ft.colors.RED),
+                                                                                    content=ft.Text("Light",size=text_size* 1.15,font_family="Roboto",color=ft.colors.BLACK)
+                                                                                ),
+                                                                                ft.Container(
+                                                                                    padding=ft.padding.only(left=window_padding * 2),
+                                                                                    alignment=ft.alignment.center_left,
+                                                                                    width=(content_window_width * 0.95 - (window_padding * 2)) * .70 / 4,
+                                                                                    height=((content_window_height * 0.4) - (window_padding * 2)) / 7,
+                                                                                    #border=ft.border.all(1,ft.colors.RED),
+                                                                                    content=ft.Text("Very Light",size=text_size* 1.15,font_family="Roboto",color=ft.colors.BLACK)
+                                                                                ),
+                                                                            ]
+                                                                        )
+                                                                        
+                                                                    ),
+                                                                    ft.Container(#Column 4
+                                                                        padding=0,
+                                                                        border=ft.Border(right=ft.BorderSide(1,"#B8B8C7")),
+                                                                        height=((content_window_height * 0.4) - (window_padding * 2)) / 7 * 5,
+                                                                        width=(content_window_width * 0.95 - (window_padding * 2)) * .70 / 4,
+                                                                        content=ft.Column(
+                                                                            spacing=0,
+                                                                            controls=[
+                                                                                ft.Container(
+                                                                                    padding=ft.padding.only(left=window_padding * 2),
+                                                                                    alignment=ft.alignment.center_left,
+                                                                                    width=(content_window_width * 0.95 - (window_padding * 2)) * .70 / 4,
+                                                                                    height=((content_window_height * 0.4) - (window_padding * 2)) / 7,
+                                                                                    #border=ft.border.all(1,ft.colors.RED),
+                                                                                    content=ft.Text("Moderate",size=text_size* 1.15,font_family="Roboto",color=ft.colors.BLACK)
+                                                                                ),
+                                                                                ft.Container(
+                                                                                    padding=ft.padding.only(left=window_padding * 2),
+                                                                                    alignment=ft.alignment.center_left,
+                                                                                    width=(content_window_width * 0.95 - (window_padding * 2)) * .70 / 4,
+                                                                                    height=((content_window_height * 0.4) - (window_padding * 2)) / 7,
+                                                                                    #border=ft.border.all(1,ft.colors.RED),
+                                                                                    content=ft.Text("Moderate",size=text_size* 1.15,font_family="Roboto",color=ft.colors.BLACK)
+                                                                                ),
+                                                                                ft.Container(
+                                                                                    padding=ft.padding.only(left=window_padding * 2),
+                                                                                    alignment=ft.alignment.center_left,
+                                                                                    width=(content_window_width * 0.95 - (window_padding * 2)) * .70 / 4,
+                                                                                    height=((content_window_height * 0.4) - (window_padding * 2)) / 7,
+                                                                                    #border=ft.border.all(1,ft.colors.RED),
+                                                                                    content=ft.Text("Light",size=text_size* 1.15,font_family="Roboto",color=ft.colors.BLACK)
+                                                                                ),
+                                                                                ft.Container(
+                                                                                    padding=ft.padding.only(left=window_padding * 2),
+                                                                                    alignment=ft.alignment.center_left,
+                                                                                    width=(content_window_width * 0.95 - (window_padding * 2)) * .70 / 4,
+                                                                                    height=((content_window_height * 0.4) - (window_padding * 2)) / 7,
+                                                                                    #border=ft.border.all(1,ft.colors.RED),
+                                                                                    content=ft.Text("Very Light",size=text_size* 1.15,font_family="Roboto",color=ft.colors.BLACK)
+                                                                                ),
+                                                                                ft.Container(
+                                                                                    padding=ft.padding.only(left=window_padding * 2),
+                                                                                    alignment=ft.alignment.center_left,
+                                                                                    width=(content_window_width * 0.95 - (window_padding * 2)) * .70 / 4,
+                                                                                    height=((content_window_height * 0.4) - (window_padding * 2)) / 7,
+                                                                                    #border=ft.border.all(1,ft.colors.RED),
+                                                                                    content=ft.Text("Very Light",size=text_size* 1.15,font_family="Roboto",color=ft.colors.BLACK)
+                                                                                ),
+                                                                            ]
+                                                                        )
+                                                                        
+                                                                    ),
+                                                                    ft.Container(#Column 5
+                                                                        padding=0,
+                                                                        height=((content_window_height * 0.4) - (window_padding * 2)) / 7 * 5,
+                                                                        width=(content_window_width * 0.95 - (window_padding * 2)) * .70 / 4,
+                                                                        content=ft.Column(
+                                                                            spacing=0,
+                                                                            controls=[
+                                                                                ft.Container(
+                                                                                    padding=ft.padding.only(left=window_padding * 2),
+                                                                                    alignment=ft.alignment.center_left,
+                                                                                    width=(content_window_width * 0.95 - (window_padding * 2)) * .70 / 4,
+                                                                                    height=((content_window_height * 0.4) - (window_padding * 2)) / 7,
+                                                                                    #border=ft.border.all(1,ft.colors.RED),
+                                                                                    content=ft.Text("Light",size=text_size* 1.15,font_family="Roboto",color=ft.colors.BLACK)
+                                                                                ),
+                                                                                ft.Container(
+                                                                                    padding=ft.padding.only(left=window_padding * 2),
+                                                                                    alignment=ft.alignment.center_left,
+                                                                                    width=(content_window_width * 0.95 - (window_padding * 2)) * .70 / 4,
+                                                                                    height=((content_window_height * 0.4) - (window_padding * 2)) / 7,
+                                                                                    #border=ft.border.all(1,ft.colors.RED),
+                                                                                    content=ft.Text("Light",size=text_size* 1.15,font_family="Roboto",color=ft.colors.BLACK)
+                                                                                ),
+                                                                                ft.Container(
+                                                                                    padding=ft.padding.only(left=window_padding * 2),
+                                                                                    alignment=ft.alignment.center_left,
+                                                                                    width=(content_window_width * 0.95 - (window_padding * 2)) * .70 / 4,
+                                                                                    height=((content_window_height * 0.4) - (window_padding * 2)) / 7,
+                                                                                    #border=ft.border.all(1,ft.colors.RED),
+                                                                                    content=ft.Text("Very Light",size=text_size* 1.15,font_family="Roboto",color=ft.colors.BLACK)
+                                                                                ),
+                                                                                ft.Container(
+                                                                                    padding=ft.padding.only(left=window_padding * 2),
+                                                                                    alignment=ft.alignment.center_left,
+                                                                                    width=(content_window_width * 0.95 - (window_padding * 2)) * .70 / 4,
+                                                                                    height=((content_window_height * 0.4) - (window_padding * 2)) / 7,
+                                                                                    #border=ft.border.all(1,ft.colors.RED),
+                                                                                    content=ft.Text("Very Light",size=text_size* 1.15,font_family="Roboto",color=ft.colors.BLACK)
+                                                                                ),
+                                                                                ft.Container(
+                                                                                    padding=ft.padding.only(left=window_padding * 2),
+                                                                                    alignment=ft.alignment.center_left,
+                                                                                    width=(content_window_width * 0.95 - (window_padding * 2)) * .70 / 4,
+                                                                                    height=((content_window_height * 0.4) - (window_padding * 2)) / 7,
+                                                                                    #border=ft.border.all(1,ft.colors.RED),
+                                                                                    content=ft.Text("Very Light",size=text_size* 1.15,font_family="Roboto",color=ft.colors.BLACK)
+                                                                                ),
+                                                                            ]
+                                                                        )
+                                                                        
+                                                                    )
+                                                                ]
+                                                            )
+                                                        )
+                                                    ]
+                                                )
+                                            )
+
+                                        ),
+                                        ft.Container(# footer container
+                                            padding=0,
+                                            content=ft.Text("Terminology based on Owens and Sergy 2002 and MCA 2007",style=ft.TextStyle(size=text_size,font_family="Roboto",color=ft.colors.BLACK)),
+                                            alignment=ft.alignment.center_left
+                                        )
+                                    ],
+                                    scroll=ft.ScrollMode.ALWAYS
+                                )
+                    )
+                    
+                    
+                ],
+                
+            ),
+            
         ),
-        actions=[
-            ft.TextButton("Close", on_click=close_dialog),
-        ],
-        actions_alignment=ft.MainAxisAlignment.END,
-        on_dismiss=close_dialog
+        on_dismiss=close_dialog,
+        content_padding=0,
+        bgcolor=ft.colors.TRANSPARENT
         
     )
 
@@ -124,7 +789,10 @@ def surface_oil_category_info(page):
     dialog.open = True
     page.update()
 
-
+def surface_oil_click(page):
+    last_click_time = 0
+    def handle_click(e):
+        pass
 ###################################
 ######## ENDPOINT WINDOW #########
 ###################################
@@ -228,7 +896,7 @@ def endpoints_info(page):
 ###################################
 
 def waste_types_info(page):
-     #ft.TextSpan("",style=ft.TextStyle(size=text_size,font_family="Roboto",color=ft.colors.BLACK))
+    #ft.TextSpan("",style=ft.TextStyle(size=text_size,font_family="Roboto",color=ft.colors.BLACK))
     #ft.TextSpan("\n"),
     #ft.TextSpan("Objective", style=ft.TextStyle(weight=ft.FontWeight.BOLD, size=text_size * 1.15, font_family="Roboto",color=ft.colors.BLACK) ),
     #ft.TextSpan("   •  low-pressure or high pressure cold (ambient) or warm temperature washing",style=ft.TextStyle(size=text_size,font_family="Roboto",color=ft.colors.BLACK)),
@@ -331,6 +999,7 @@ def waste_types_info(page):
     page.dialog = dialog
     dialog.open = True
     page.update()
+
 
 
 ###################################
@@ -3072,28 +3741,103 @@ tactic_functions_list = [natural_recovery_info,washing_and_recovery_info,manual_
 ######## WASTE VOLUME #############
 ###################################
 def waste_volume_info(page):
+      #ft.TextSpan("",style=ft.TextStyle(size=text_size,font_family="Roboto",color=ft.colors.BLACK))
+    #ft.TextSpan("\n"),
+    #ft.TextSpan("Objective", style=ft.TextStyle(weight=ft.FontWeight.BOLD, size=text_size * 1.15, font_family="Roboto",color=ft.colors.BLACK) ),
+    #ft.TextSpan("   •  low-pressure or high pressure cold (ambient) or warm temperature washing",style=ft.TextStyle(size=text_size,font_family="Roboto",color=ft.colors.BLACK)),
+    content_window_height = global_variables.app_window.height * 0.4
+    content_window_width = global_variables.app_window.width * 0.65
+    window_padding = content_window_width*0.005
+    endpoint_bgcolor = "#E1E1E1"
+    text_size = content_window_height * 0.05
     def close_dialog(e):
         page.dialog.open = False
         page.update()
 
     dialog = ft.AlertDialog(
         modal=False,
-        title=ft.Row(
-            controls=[
-                ft.Text("Waste Volume Information"),
-                ft.IconButton(ft.icons.CLOSE, on_click=close_dialog)
-            ],
-            alignment=ft.MainAxisAlignment.SPACE_BETWEEN,
-        ),
         content=ft.Container(
-            height=global_variables.app_window.height * 0.2,
-            width=global_variables.app_window.width * 0.6
+            height=content_window_height,
+            width=content_window_width,
+            bgcolor="#D2E0E8",
+            padding=window_padding,
+            border=ft.border.all(1,ft.colors.WHITE),
+            content=ft.Column(
+                spacing=0,
+                controls=[
+                    ft.Container(#title row
+                        padding=0,
+                        height=content_window_height * 0.20,
+                        width=content_window_width,
+                        #border=ft.border.all(1,ft.colors.RED),
+                        content=ft.Row(
+                            spacing=0,
+                            alignment=ft.MainAxisAlignment.SPACE_BETWEEN,
+                            controls=[
+                                ft.Container(
+                                    height=content_window_height * 0.20,
+                                    #width=content_window_width * 0.3,
+                                    #border=ft.border.all(1,ft.colors.RED),
+                                    padding=window_padding * 2,
+                                    content=ft.Text("Waste Volume",color="Black",font_family="roboto",size=content_window_height * 0.08,weight=ft.FontWeight.BOLD)
+                                ),
+                                ft.Container(
+                                    height=content_window_height * 0.20,
+                                    width=content_window_width * 0.05,
+                                    #border=ft.border.all(1,ft.colors.RED),
+                                    alignment=ft.alignment.top_right,
+                                    content=ft.Container(
+                                        padding=0,
+                                        alignment=ft.alignment.center,
+                                        height=content_window_height * 0.1,
+                                        width=content_window_height * 0.1,
+                                        bgcolor=ft.colors.ORANGE,
+                                        on_hover=lambda e: change_close_container_bgcolor(e),
+                                        border_radius=ft.border_radius.all(5),
+                                        content=ft.Icon(name="close",color="white",size=content_window_height * 0.1),
+                                        border=ft.border.all(1,ft.colors.BLACK),
+                                        on_click=close_dialog
+                                    )
+                                )
+                            ]
+                        )
+                    ),
+                    ft.Container(
+                        padding=window_padding,
+                        expand=True,
+                        width= (content_window_width) - (2 * window_padding),
+                        border=ft.border.all(2,ft.colors.WHITE),
+                        bgcolor="#E1E1E1",
+                        alignment=ft.alignment.center_left,
+                        content=ft.Text(
+                            spans=[
+                                ft.TextSpan("The results of the volume calculations are expressed as cubic meter per meter length of shoreline (m³/m). The width of the oiled area is factored into the calculations as part of the 'Degree of Oiling' input. The output volumes can be grouped into four subsections:",style=ft.TextStyle(size=text_size,font_family="Roboto",color=ft.colors.BLACK)),
+                                ft.TextSpan("\n"),
+                                ft.TextSpan("\n"),
+                                ft.TextSpan("   •  Very High        ",style=ft.TextStyle(size=text_size,font_family="Roboto",color=ft.colors.BLACK,weight=ft.FontWeight.BOLD)),
+                                ft.TextSpan("Greater than 1m³/m",style=ft.TextStyle(size=text_size,font_family="Roboto",color=ft.colors.BLACK)),
+                                ft.TextSpan("\n"),
+                                ft.TextSpan("   •  High                 ",style=ft.TextStyle(size=text_size,font_family="Roboto",color=ft.colors.BLACK,weight=ft.FontWeight.BOLD)),
+                                ft.TextSpan("0/1 to 0.99 m³/m",style=ft.TextStyle(size=text_size,font_family="Roboto",color=ft.colors.BLACK)),
+                                ft.TextSpan("\n"),
+                                ft.TextSpan("   •  Low                  ",style=ft.TextStyle(size=text_size,font_family="Roboto",color=ft.colors.BLACK,weight=ft.FontWeight.BOLD)),
+                                ft.TextSpan("0.01 to 0.099 m³/m",style=ft.TextStyle(size=text_size,font_family="Roboto",color=ft.colors.BLACK)),
+                                ft.TextSpan("\n"),
+                                ft.TextSpan("   •  Very Low         ",style=ft.TextStyle(size=text_size,font_family="Roboto",color=ft.colors.BLACK,weight=ft.FontWeight.BOLD)),
+                                ft.TextSpan("Less than 0.01 m³/m",style=ft.TextStyle(size=text_size,font_family="Roboto",color=ft.colors.BLACK)),
+                                ft.TextSpan("\n"),
+                                ft.TextSpan("\n"),
+                                ft.TextSpan("In Actual Scale each subsection on the x axis is of equal size and the output is shown in proportion. In Compressed Scale the subsections are not in proportion and are not to scale.",style=ft.TextStyle(size=text_size,font_family="Roboto",color=ft.colors.BLACK))
+
+                            ]
+                        )
+                    )
+                ]
+            )
         ),
-        actions=[
-            ft.TextButton("Close", on_click=close_dialog),
-        ],
-        actions_alignment=ft.MainAxisAlignment.END,
-        on_dismiss=close_dialog
+        on_dismiss=close_dialog,
+        content_padding=0,
+        bgcolor=ft.colors.TRANSPARENT
         
     )
 
