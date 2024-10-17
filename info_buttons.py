@@ -444,7 +444,7 @@ def oil_type_doubleclick(page,index):
         new_click = time.time()
         time_between_clicks = new_click - click_timer
         oil_type_column_b = global_variables.app_window.content.controls[0].content.controls[2].content.controls[1].controls[0]
-        print(oil_type_column_b.controls)
+        
         if time_between_clicks < 0.3:
             
             oil_type_column_b.controls[global_variables.oil_type_selected_index].bgcolor = ft.colors.TRANSPARENT
