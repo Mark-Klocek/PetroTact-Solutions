@@ -13,7 +13,7 @@ updated_array = []
 bgWidth = None
 bulk_num = 0
 stain_num = 0
-
+substrate_selected_variable = 0
 
 text_field_selection = 0
 drop_down_selection = "Kilometres"

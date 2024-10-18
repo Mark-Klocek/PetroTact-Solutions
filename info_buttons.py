@@ -3,8 +3,12 @@ import global_variables
 import time
 import view_summary
 import pics_and_desc
+import surface_oil_category
 click_timer = time.time()
 
+###################################
+######## SUBSTRATE INFO #########
+###################################
 
 def substrate_info(page):
     window_width = global_variables.app_window.width * 0.85
@@ -17,7 +21,7 @@ def substrate_info(page):
     tactic_info_column_bgcolor = "#E1E1E1"
     substrate_info_container = ft.Container( #tactic info column
                                     content=ft.Column(
-                                        controls= natural_recovery_info(page),
+                                        controls= sand_mixed_sediment(page),
                                         spacing=5,
                                         scroll=ft.ScrollMode.ALWAYS,
                                         
@@ -83,7 +87,7 @@ def substrate_info(page):
                         padding=0,
                         width=window_width - (window_padding * 2),
                         height=content_window_height,
-                        border=ft.border.all(1,ft.colors.RED),
+                        #border=ft.border.all(1,ft.colors.RED),
                         content=ft.Row(
                             spacing=0,
                             controls=[
@@ -91,8 +95,13 @@ def substrate_info(page):
                                     padding=0,
                                     width=content_window_width * 0.25,
                                     height=content_window_height,
-                                    border=ft.border.all(1,ft.colors.RED)
-                                )
+                                    #border=ft.border.all(1,ft.colors.RED),
+                                    content=ft.Column(
+                                        spacing=0,
+                                        controls=create_substrate_name_column(page,substrate_info_container)
+                                    )
+                                ),
+                                substrate_info_container
                             ]
                         )
 
@@ -112,6 +121,264 @@ def substrate_info(page):
     page.dialog = dialog
     dialog.open = True
     page.update()
+
+def create_substrate_name_column(page,substrate_info_container):
+    window_width = global_variables.app_window.width * 0.85
+    window_height = global_variables.app_window.height * 0.9
+    window_padding = window_width*0.01
+    row_height = window_height*0.06
+    content_window_height = window_height *0.9
+    content_window_width = window_width - (window_padding * 2)
+    container_column_row_height = content_window_height / 7
+    wm_border = None
+    container_column = []
+    for i in range(7):
+        if i == 0:
+            wm_border = ft.Border(top=ft.BorderSide(2,ft.colors.WHITE))
+        if i == 6:
+            wm_border = ft.Border(bottom=ft.BorderSide(2,ft.colors.WHITE))
+        container = ft.Container(
+            padding=5,
+            width=content_window_width * .25,
+            height=container_column_row_height,
+            bgcolor=generate_substrate_bg_color(i),
+            on_hover= lambda e: change_tactic_name_window_bgcolor(e),
+            on_click = substrate_on_click(page,container_column,i,substrate_info_container),
+            border=wm_border,
+            content=ft.Row(
+                spacing=0,
+                controls=[
+                    ft.Container(
+                        padding=0,
+                        width=content_window_width * .25 * .25 - 5,
+                        #border=ft.border.all(1,ft.colors.RED),
+                        height=container_column_row_height,
+                        content=ft.Image(src=pics_and_desc.substrate_row_a_pictures[i],fit=ft.ImageFit.CONTAIN)
+                    ),
+                    ft.Container(
+                        padding=0,
+                        width = content_window_width * .25 *.75 - 5,
+                        height=container_column_row_height,
+                        #border=ft.border.all(1,ft.colors.RED),
+                        alignment=ft.alignment.center,
+                        content=generate_substrate_content(i,content_window_height)
+                    )
+                ]
+            )
+        )
+        container_column.append(container)
+    return container_column
+
+def generate_substrate_content(i, window_height):
+    if i == global_variables.substrate_selected_variable:
+        return ft.Text(pics_and_desc.substrate_row_a_description[i],color=ft.colors.BLACK,weight=ft.FontWeight.BOLD,font_family="roboto",size=window_height * 0.03,text_align=ft.TextAlign.CENTER)
+    else:
+        return ft.Text(pics_and_desc.substrate_row_a_description[i],color=ft.colors.BLACK,font_family="roboto",size=window_height * 0.03,text_align=ft.TextAlign.CENTER)
+def generate_substrate_bg_color(i):
+    if i == global_variables.substrate_selected_variable:
+        return "#E1E1E1"
+    else:
+        return "#FFFFFF"
+def substrate_on_click(page,container_column,i,substrate_info_container):
+    def handle_click(e,i=i):
+        global click_timer
+        new_click = time.time()
+        time_between_clicks = new_click - click_timer
+        if time_between_clicks < .3:
+            previous_index = global_variables.substrate_selected_variable
+            container_column[previous_index].bgcolor = "#FFFFFF"
+            container_column[previous_index].content.controls[1].content.weight = None
+            container_column[previous_index].update()
+
+            container_column[i].bgcolor = "#E1E1E1"
+            container_column[i].content.controls[1].content.weight = ft.FontWeight.BOLD
+            container_column[i].update()
+
+            substrate_info_container.content.controls = substrate_functions_list[i](page)
+            
+
+            substrate_previous_window = global_variables.app_window.content.controls[0].content.controls[1].content.controls[1].content.controls[0].content.controls[global_variables.substrate_selected_index]
+            substrate_previous_window.bgcolor = ft.colors.TRANSPARENT
+            substrate_previous_window.content.bgcolor = ft.colors.TRANSPARENT
+            substrate_previous_window.content.update()
+            substrate_new_window = global_variables.app_window.content.controls[0].content.controls[1].content.controls[1].content.controls[0].content.controls[i]
+            substrate_new_window.bgcolor = ft.colors.ORANGE
+            substrate_new_window.content.bgcolor = ft.colors.ORANGE
+            substrate_new_window.update()
+            print(substrate_previous_window)
+            
+            substrate_row_b =global_variables.app_window.content.controls[0].content.controls[1].content.controls[1].content.controls[1]
+            
+            global_variables.substrate_selected_index = i
+            global_variables.substrate_selected_variable = i
+            global_variables.selection= str(global_variables.substrate_selected_index)+str(global_variables.oil_type_selected_index)+str(global_variables.surface_oil_category_selected_index)
+            global_variables.generate_table_array(page)
+                
+            if global_variables.results_tab_selected == False:
+                view_summary.results_container.content.controls[1] = view_summary.create_summary_container(page)
+        
+            else:
+                view_summary.results_container.content.controls[1] = view_summary.create_results_content(page)
+            
+            stack = surface_oil_category.surface_oil_container.content.controls[1]
+            stack.controls[1].content = ft.Image(src=pics_and_desc.surface_oil_category_pictures[i], fit=ft.ImageFit.FILL)
+                                                        
+            page.dialog.open=False
+            page.update()
+        else:
+            click_timer = new_click
+            previous_index = global_variables.substrate_selected_variable
+            container_column[previous_index].bgcolor = "#FFFFFF"
+            container_column[previous_index].content.controls[1].content.weight = None
+            container_column[previous_index].update()
+
+            container_column[i].bgcolor = "#E1E1E1"
+            container_column[i].content.controls[1].content.weight = ft.FontWeight.BOLD
+            container_column[i].update()
+
+            substrate_info_container.content.controls = substrate_functions_list[i](page)
+            global_variables.substrate_selected_variable = i
+            page.update()
+
+    return handle_click
+def sand_mixed_sediment(page):
+    #ft.TextSpan("",style=ft.TextStyle(size=text_size,font_family="Roboto",color=ft.colors.BLACK))
+    #ft.TextSpan("\n"),
+    #ft.TextSpan("Objective", style=ft.TextStyle(weight=ft.FontWeight.BOLD, size=text_size * 1.15, font_family="Roboto",color=ft.colors.BLACK) ),
+    #ft.TextSpan("   •  low-pressure or high pressure cold (ambient) or warm temperature washing",style=ft.TextStyle(size=text_size,font_family="Roboto",color=ft.colors.BLACK)),
+    window_width = global_variables.app_window.width * 0.85
+    window_height = global_variables.app_window.height * 0.9
+    window_padding = window_width*0.01
+    content_window_height = window_height *0.9
+    content_window_width = window_width - (window_padding * 2)
+    column_array = []
+    text_size = content_window_height * 0.75 * 0.035
+    container = ft.Container( #image container
+        padding=0,
+        width=content_window_width * 0.75,
+        height=content_window_height * 0.65,
+        alignment=ft.alignment.center,
+        border=ft.border.all(1, ft.colors.RED),
+        content=ft.Image(pics_and_desc.substrate_row_b_pictures[0],fit=ft.ImageFit.FIT_HEIGHT)
+    )
+    column_array.append(container)
+    return column_array
+
+
+def coarse_sediment_beach(page):
+    window_width = global_variables.app_window.width * 0.85
+    window_height = global_variables.app_window.height * 0.9
+    window_padding = window_width*0.01
+    content_window_height = window_height *0.9
+    content_window_width = window_width - (window_padding * 2)
+    column_array = []
+    text_size = content_window_height * 0.75 * 0.035
+    container = ft.Container( #image container
+        padding=0,
+        width=content_window_width * 0.75,
+        height=content_window_height * 0.65,
+        alignment=ft.alignment.center,
+        border=ft.border.all(1, ft.colors.RED),
+        content=ft.Image(pics_and_desc.substrate_row_b_pictures[1],fit=ft.ImageFit.FIT_HEIGHT)
+    )
+    column_array.append(container)
+    return column_array
+def cobble_boulder(page):
+    window_width = global_variables.app_window.width * 0.85
+    window_height = global_variables.app_window.height * 0.9
+    window_padding = window_width*0.01
+    content_window_height = window_height *0.9
+    content_window_width = window_width - (window_padding * 2)
+    column_array = []
+    text_size = content_window_height * 0.75 * 0.035
+    container = ft.Container( #image container
+        padding=0,
+        width=content_window_width * 0.75,
+        height=content_window_height * 0.65,
+        alignment=ft.alignment.center,
+        border=ft.border.all(1, ft.colors.RED),
+        content=ft.Image(pics_and_desc.substrate_row_b_pictures[2],fit=ft.ImageFit.FIT_HEIGHT)
+    )
+    column_array.append(container)
+    return column_array
+def bedrock_or_solid_includes_ice(page):
+    window_width = global_variables.app_window.width * 0.85
+    window_height = global_variables.app_window.height * 0.9
+    window_padding = window_width*0.01
+    content_window_height = window_height *0.9
+    content_window_width = window_width - (window_padding * 2)
+    column_array = []
+    text_size = content_window_height * 0.75 * 0.035
+    container = ft.Container( #image container
+        padding=0,
+        width=content_window_width * 0.75,
+        height=content_window_height * 0.65,
+        alignment=ft.alignment.center,
+        border=ft.border.all(1, ft.colors.RED),
+        content=ft.Image(pics_and_desc.substrate_row_b_pictures[3],fit=ft.ImageFit.FIT_HEIGHT)
+    )
+    column_array.append(container)
+    return column_array
+def wetland_vegetation(page):
+    window_width = global_variables.app_window.width * 0.85
+    window_height = global_variables.app_window.height * 0.9
+    window_padding = window_width*0.01
+    content_window_height = window_height *0.9
+    content_window_width = window_width - (window_padding * 2)
+    column_array = []
+    text_size = content_window_height * 0.75 * 0.035
+    container = ft.Container( #image container
+        padding=0,
+        width=content_window_width * 0.75,
+        height=content_window_height * 0.65,
+        alignment=ft.alignment.center,
+        border=ft.border.all(1, ft.colors.RED),
+        content=ft.Image(pics_and_desc.substrate_row_b_pictures[4],fit=ft.ImageFit.FIT_HEIGHT)
+    )
+    column_array.append(container)
+    return column_array
+def oiled_debris(page):
+    window_width = global_variables.app_window.width * 0.85
+    window_height = global_variables.app_window.height * 0.9
+    window_padding = window_width*0.01
+    content_window_height = window_height *0.9
+    content_window_width = window_width - (window_padding * 2)
+    column_array = []
+    text_size = content_window_height * 0.75 * 0.035
+    container = ft.Container( #image container
+        padding=0,
+        width=content_window_width * 0.75,
+        height=content_window_height * 0.65,
+        alignment=ft.alignment.center,
+        border=ft.border.all(1, ft.colors.RED),
+        content=ft.Image(pics_and_desc.substrate_row_b_pictures[5],fit=ft.ImageFit.FIT_HEIGHT)
+    )
+    column_array.append(container)
+    return column_array
+def snow(page):
+    window_width = global_variables.app_window.width * 0.85
+    window_height = global_variables.app_window.height * 0.9
+    window_padding = window_width*0.01
+    content_window_height = window_height *0.9
+    content_window_width = window_width - (window_padding * 2)
+    column_array = []
+    text_size = content_window_height * 0.75 * 0.035
+    container = ft.Container( #image container
+        padding=0,
+        width=content_window_width * 0.75,
+        height=content_window_height * 0.65,
+        alignment=ft.alignment.center,
+        border=ft.border.all(1, ft.colors.RED),
+        content=ft.Image(pics_and_desc.substrate_row_b_pictures[6],fit=ft.ImageFit.FIT_HEIGHT)
+    )
+    column_array.append(container)
+    return column_array
+substrate_functions_list = [sand_mixed_sediment,coarse_sediment_beach,cobble_boulder,bedrock_or_solid_includes_ice,wetland_vegetation,oiled_debris,snow]
+###################################
+######## ACTUAL SCALE GRAPH #########
+###################################
+
+
 
 def actual_scale_graph(page):
     def close_dialog(e):

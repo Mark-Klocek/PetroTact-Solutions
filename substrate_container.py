@@ -94,13 +94,19 @@ def create_substrate_row_a_column(page):
 def create_substrate_row_a_column_containers(page):
     global substrate_row_a_containers
     substrate_row_a_containers = []
-    for i in range(len(pics_and_desc.substrate_row_a_description)):           
+    bg_color = None
+    
+    for i in range(len(pics_and_desc.substrate_row_a_description)):   
+        if i == global_variables.substrate_selected_index:
+            bg_color = ft.colors.ORANGE
+        else:
+            bg_color = ft.colors.TRANSPARENT        
         substrate_row_a_containers.append(
             ft.Container(
                 content= create_substrate_row_a_column_container_content(page,i),                   
                 expand=True,
                 on_click=substrate_row_a_container_click(i, page),
-                bgcolor=ft.colors.TRANSPARENT,
+                bgcolor=bg_color,
                 on_hover=global_variables.on_container_hover_color_change
                 
                 
@@ -108,9 +114,9 @@ def create_substrate_row_a_column_containers(page):
             )
         )
 
-    if global_variables.substrate_selected_index == 0:
+    '''if global_variables.substrate_selected_index == 0:
         substrate_row_a_containers[0].bgcolor = ft.colors.ORANGE
-        substrate_row_a_containers[0].content = create_substrate_row_a_column_container_content(page,0)
+        substrate_row_a_containers[0].content = create_substrate_row_a_column_container_content(page,0)'''
             
     return substrate_row_a_containers
 
