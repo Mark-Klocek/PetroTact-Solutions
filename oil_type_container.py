@@ -133,12 +133,12 @@ def create_oil_type_column_b_background_row(page):
                 padding=0,
                 #border=ft.border.all(1,ft.colors.RED),
                 expand=True,
-                on_click=oil_type_columb_b_click(page,i),
+                #on_click=oil_type_columb_b_click(page,i),
                 
             )
         )
     if global_variables.oil_type_selected_index == 0:
-        oil_type_column_b_containers[0].border=ft.Border(bottom=ft.BorderSide(2,ft.colors.ORANGE))
+        #oil_type_column_b_containers[0].border=ft.Border(bottom=ft.BorderSide(2,ft.colors.ORANGE))
         oil_type_column_b_containers[0].bgcolor = ft.colors.ORANGE
     
     return oil_type_column_b_containers
@@ -164,8 +164,9 @@ def create_oil_type_column_b_row(page):
                 padding=pad,
                 on_click=oil_type_columb_b_click(page,i),
                 alignment=ft.alignment.center,
-                #border=ft.border.all(1,ft.colors.BLACK),
-                width=global_variables.app_window.width * 0.3 / 4
+                #border=ft.border.all(1,ft.colors.RED),
+                on_hover= lambda e, i=i: oil_type_column_b_hover(e, i)
+                #width=global_variables.app_window.width * 0.3
                 
                 
                 
@@ -173,6 +174,17 @@ def create_oil_type_column_b_row(page):
         )
     return background_row
 
+def oil_type_column_b_hover(e, i):
+    global oil_type_column_b_containers
+    if e.data == "true" and oil_type_column_b_containers[i].bgcolor != ft.colors.ORANGE:
+        oil_type_column_b_containers[i].bgcolor = "#AEC6CF"
+    else:
+        if oil_type_column_b_containers[i].bgcolor == ft.colors.ORANGE:
+            oil_type_column_b_containers[i].bgcolor = ft.colors.ORANGE
+        else:
+            oil_type_column_b_containers[i].bgcolor = ft.colors.TRANSPARENT
+    oil_type_column_b_containers[i].update()
+    e.control.update()
 
 def create_oil_type_column_c_container(page):
          return ft.Container(

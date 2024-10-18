@@ -123,7 +123,8 @@ def create_surface_oil_column_b_rows(page):
                                 bgcolor=ft.colors.TRANSPARENT,
                                 #border=ft.border.all(1,ft.colors.RED),
                                 expand=True,
-                                on_click=surface_oil_column_b_click(page,i)
+                                on_click=surface_oil_column_b_click(page,i),
+                                on_hover = lambda e, i=i: on_column_b_hover(e,i)
                         )
                 )
         if global_variables.surface_oil_category_selected_index ==0:
@@ -131,6 +132,21 @@ def create_surface_oil_column_b_rows(page):
                 #surface_oil_column_b_containers[0].bgcolor = ft.colors.ORANGE
         return surface_oil_column_b_containers             
         
+def on_column_b_hover(e,i):
+        global surface_oil_column_b_background_row
+        global surface_oil_column_b_containers
+        if e.data == "true" and surface_oil_column_b_background_row[i].bgcolor != ft.colors.ORANGE:
+                surface_oil_column_b_background_row[i].bgcolor = "#AEC6CF"
+                
+        else:
+                if surface_oil_column_b_background_row[i].bgcolor == ft.colors.ORANGE:
+                        surface_oil_column_b_background_row[i].bgcolor = ft.colors.ORANGE
+                else:
+                        surface_oil_column_b_background_row[i].bgcolor = ft.colors.TRANSPARENT
+                    
+        surface_oil_column_b_background_row[i].update()
+        e.control.update()
+
 
 def create_surface_oil_column_c(page):
         global column_c_container
