@@ -2,6 +2,7 @@ import flet as ft
 import global_variables
 import time
 import view_summary
+import pics_and_desc
 click_timer = time.time()
 
 
@@ -444,11 +445,14 @@ def oil_type_doubleclick(page,index):
         new_click = time.time()
         time_between_clicks = new_click - click_timer
         oil_type_column_b = global_variables.app_window.content.controls[0].content.controls[2].content.controls[1].controls[0]
-        
+        oil_type_column_c = global_variables.app_window.content.controls[0].content.controls[2].content.controls[2]
+        oil_type_column_d = global_variables.app_window.content.controls[0].content.controls[2].content.controls[3]
         if time_between_clicks < 0.3:
             
             oil_type_column_b.controls[global_variables.oil_type_selected_index].bgcolor = ft.colors.TRANSPARENT
             oil_type_column_b.controls[index].bgcolor = ft.colors.ORANGE
+            oil_type_column_c.content = ft.Text(pics_and_desc.oil_type_column_c_description[index],weight=ft.FontWeight.BOLD,color="Black",font_family="Roboto",size=global_variables.app_window.height * 0.2 * 0.15 * 0.7)
+            oil_type_column_d.content = ft.Text(pics_and_desc.oil_type_column_d_description[index],color="Black",font_family="Roboto",size=global_variables.app_window.height * 0.2 * 0.14 * 0.7)
             global_variables.oil_type_selected_index = index
             global_variables.selection= str(global_variables.substrate_selected_index)+str(global_variables.oil_type_selected_index)+str(global_variables.surface_oil_category_selected_index)
             global_variables.generate_table_array(page)
