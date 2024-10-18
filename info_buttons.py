@@ -7,28 +7,105 @@ click_timer = time.time()
 
 
 def substrate_info(page):
+    window_width = global_variables.app_window.width * 0.85
+    window_height = global_variables.app_window.height * 0.9
+    window_padding = window_width*0.01
+    row_height = window_height*0.06
+    content_window_height = window_height *0.9
+    content_window_width = window_width - (window_padding * 2)
+    data_body_bgcolor = "#FFFFFF"
+    tactic_info_column_bgcolor = "#E1E1E1"
+    substrate_info_container = ft.Container( #tactic info column
+                                    content=ft.Column(
+                                        controls= natural_recovery_info(page),
+                                        spacing=5,
+                                        scroll=ft.ScrollMode.ALWAYS,
+                                        
+                                    ),
+                                    width=content_window_width * 0.75,
+                                    height=content_window_height,
+                                    border=ft.Border(top=ft.BorderSide(2,ft.colors.WHITE),right=ft.BorderSide(2,ft.colors.WHITE), bottom=ft.BorderSide(2,ft.colors.WHITE)),
+                                    bgcolor=tactic_info_column_bgcolor,
+                                    
+                                    
+                                )
+    
     def close_dialog(e):
         page.dialog.open = False
         page.update()
 
     dialog = ft.AlertDialog(
-        modal=False,
-        title=ft.Row(
-            controls=[
-                ft.Text("Substrate Window Information"),
-                ft.IconButton(ft.icons.CLOSE, on_click=close_dialog)
-            ],
-            alignment=ft.MainAxisAlignment.SPACE_BETWEEN,
-        ),
+        
         content=ft.Container(
-            height=global_variables.app_window.height * 0.9,
-            width=global_variables.app_window.width * 0.8
+            height=window_height,
+            width=window_width,
+            padding=window_padding,
+            border=ft.border.all(window_padding * .5,ft.colors.WHITE),
+            bgcolor="#D2E0E8",
+            content=ft.Column(
+                spacing=0,
+                controls=[
+                    ft.Container( #title row
+                        content=ft.Row(
+                            controls=[
+                                ft.Container(
+                                    content=ft.Text("Substrate",color="Black",weight=ft.FontWeight.BOLD,font_family="Roboto",size=window_height * 0.05),
+                                    #padding=ft.padding.only(left=window_width * 0.02)
+                                ),
+                                ft.Container(
+                                    height=row_height,
+                                    width=row_height,
+                                    #border=ft.border.all(1,ft.colors.RED),
+                                    alignment=ft.alignment.top_right,
+                                    content=ft.Container(
+                                        padding=0,
+                                        alignment=ft.alignment.center,
+                                        height=row_height ,
+                                        width=row_height ,
+                                        bgcolor=ft.colors.ORANGE,
+                                        on_hover=lambda e: change_close_container_bgcolor(e),
+                                        border_radius=ft.border_radius.all(5),
+                                        content=ft.Icon(name="close",color="white",size=row_height),
+                                        border=ft.border.all(1,ft.colors.BLACK),
+                                        on_click=close_dialog
+                                    )
+                                )],
+                            alignment=ft.MainAxisAlignment.SPACE_BETWEEN,
+                            spacing=0,
+
+                        ),
+                        #border=ft.border.all(1,ft.colors.RED),
+                        height=row_height,
+                        width=window_width - (window_padding * 2),
+                        padding=0
+                    ),
+                    ft.Container(
+                        padding=0,
+                        width=window_width - (window_padding * 2),
+                        height=content_window_height,
+                        border=ft.border.all(1,ft.colors.RED),
+                        content=ft.Row(
+                            spacing=0,
+                            controls=[
+                                ft.Container(
+                                    padding=0,
+                                    width=content_window_width * 0.25,
+                                    height=content_window_height,
+                                    border=ft.border.all(1,ft.colors.RED)
+                                )
+                            ]
+                        )
+
+
+                    )
+                ]
+            )
         ),
-        actions=[
-            ft.TextButton("Close", on_click=close_dialog),
-        ],
+        
         actions_alignment=ft.MainAxisAlignment.END,
-        on_dismiss=close_dialog
+        on_dismiss=close_dialog,
+        content_padding=0,
+        bgcolor=ft.colors.TRANSPARENT
         
     )
 
@@ -1319,20 +1396,36 @@ def treatment_tactic(page):
     content_window_width = window_width - (window_padding * 2)
     data_body_bgcolor = "#FFFFFF"
     tactic_info_column_bgcolor = "#E1E1E1"
-    tactic_info_container = ft.Container( #tactic info column
-                                    content=ft.Column(
-                                        controls= natural_recovery_info(page),
-                                        spacing=5,
-                                        scroll=ft.ScrollMode.ALWAYS,
+    if global_variables.tactic_selected_variable == 0:
+        tactic_info_container = ft.Container( #tactic info column
+                                        content=ft.Column(
+                                            controls= natural_recovery_info(page),
+                                            spacing=5,
+                                            scroll=ft.ScrollMode.ALWAYS,
+                                            
+                                        ),
+                                        width=content_window_width * 0.75,
+                                        height=content_window_height,
+                                        border=ft.Border(top=ft.BorderSide(2,ft.colors.WHITE),right=ft.BorderSide(2,ft.colors.WHITE), bottom=ft.BorderSide(2,ft.colors.WHITE)),
+                                        bgcolor=tactic_info_column_bgcolor,
                                         
-                                    ),
-                                    width=content_window_width * 0.75,
-                                    height=content_window_height,
-                                    border=ft.Border(top=ft.BorderSide(2,ft.colors.WHITE),right=ft.BorderSide(2,ft.colors.WHITE), bottom=ft.BorderSide(2,ft.colors.WHITE)),
-                                    bgcolor=tactic_info_column_bgcolor,
-                                    
-                                    
-                                )
+                                        
+                                    )
+    else:
+        tactic_info_container = ft.Container( #tactic info column
+                                        content=ft.Column(
+                                            controls= tactic_functions_list[global_variables.tactic_selected_variable](page),
+                                            spacing=5,
+                                            scroll=ft.ScrollMode.ALWAYS,
+                                            
+                                        ),
+                                        width=content_window_width * 0.75,
+                                        height=content_window_height,
+                                        border=ft.Border(top=ft.BorderSide(2,ft.colors.WHITE),right=ft.BorderSide(2,ft.colors.WHITE), bottom=ft.BorderSide(2,ft.colors.WHITE)),
+                                        bgcolor=tactic_info_column_bgcolor,
+                                        
+                                        
+                                    )
     
     def close_dialog(e):
         page.dialog.open = False
