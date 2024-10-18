@@ -13,6 +13,7 @@ surface_oil_column_b_containers = []
 global_variables.surface_oil_category_selected_index = 0
 surface_oil_container = None
 column_c_container = ft.Container()
+surface_oil_column_b_background_row = []
 
 
 def create_SurfaceOilCategory_section(page):
@@ -24,7 +25,7 @@ def create_SurfaceOilCategory_section(page):
                               create_surface_oil_column_b(page),
                               create_surface_oil_column_c(page),
                               create_surface_oil_column_d(page)],
-                    spacing=-1),
+                    spacing=0),
             bgcolor=ft.colors.WHITE,
             padding=0,
             border_radius=ft.border_radius.only(top_left=10,top_right=10),
@@ -72,19 +73,47 @@ def create_surface_oil_header_column(page):
 def create_surface_oil_column_b(page):
         return ft.Stack(
                 controls = [
-                                ft.Container(
-                                        content= ft.Image(src=pics_and_desc.surface_oil_category_pictures[0], fit=ft.ImageFit.FIT_WIDTH),
-                                        padding=5,
-                                        bgcolor=ft.colors.WHITE,
-                                        border=ft.Border(right=ft.BorderSide(0.5,ft.colors.TRANSPARENT)),
-                                        alignment=ft.alignment.center),
-                                ft.Row(
-                                        controls= create_surface_oil_column_b_rows(page)
-                                )],
-                                expand=True
+                        ft.Row(
+                                spacing=0,
+                                controls= surface_oil_column_b_background_row(page)
+                                
+                        ),
+                        ft.Container(
+                                content= ft.Image(src=pics_and_desc.surface_oil_category_pictures[0], fit=ft.ImageFit.COVER),
+                                padding=global_variables.app_window.width * .3 * .01,
+                                bgcolor=ft.colors.TRANSPARENT,
+                                #border=ft.Border(right=ft.BorderSide(0.5,ft.colors.TRANSPARENT)),
+                                #border = None,
+                                #border=ft.border.all(1,ft.colors.RED),
+                                alignment=ft.alignment.center,
+                                height=global_variables.app_window.height * 0.315 * 0.4,
+                                width=global_variables.app_window.width * 0.3
+                                
+                        ),
+                                
+                        ft.Row(
+                                controls= create_surface_oil_column_b_rows(page),
+                                spacing=0
+                        )
+                ],
+                        
+                #expand=True
                                 
                 )
-                
+
+def surface_oil_column_b_background_row(page):
+        global surface_oil_column_b_background_row
+        surface_oil_column_b_background_row = []
+        for i in range(4):
+                container = ft.Container(
+                        padding=0,
+                        expand=True,
+                        #border=ft.border.all(1,ft.colors.RED)
+                )
+                surface_oil_column_b_background_row.append(container)
+        if global_variables.surface_oil_category_selected_index == 0:
+                surface_oil_column_b_background_row[0].bgcolor = ft.colors.ORANGE
+        return surface_oil_column_b_background_row
 def create_surface_oil_column_b_rows(page):
         global surface_oil_column_b_containers
         surface_oil_column_b_containers = []
@@ -92,13 +121,14 @@ def create_surface_oil_column_b_rows(page):
                 surface_oil_column_b_containers.append(
                         ft.Container(
                                 bgcolor=ft.colors.TRANSPARENT,
-                                border=ft.border.all(1,ft.colors.TRANSPARENT),
+                                #border=ft.border.all(1,ft.colors.RED),
                                 expand=True,
                                 on_click=surface_oil_column_b_click(page,i)
                         )
                 )
         if global_variables.surface_oil_category_selected_index ==0:
-                surface_oil_column_b_containers[0].border=ft.border.all(5,ft.colors.ORANGE) 
+                surface_oil_column_b_containers[0].border = ft.Border(left=ft.BorderSide(global_variables.app_window.width * .3 * .01,ft.colors.ORANGE),right=ft.BorderSide(global_variables.app_window.width * .3 * .01,ft.colors.ORANGE)) 
+                #surface_oil_column_b_containers[0].bgcolor = ft.colors.ORANGE
         return surface_oil_column_b_containers             
         
 
@@ -257,14 +287,16 @@ def convert_to_meters(e):
 
 def surface_oil_column_b_click(page, i):
         def handle_click(e):
-
                 global surface_oil_column_b_containers
+                global surface_oil_column_b_background_row
                 global surface_oil_container
                 global column_c_container
                 if global_variables.surface_oil_category_selected_index is not None and global_variables.surface_oil_category_selected_index != i:
-                        surface_oil_column_b_containers[global_variables.surface_oil_category_selected_index].border = ft.border.all(1, ft.colors.TRANSPARENT)
+                        surface_oil_column_b_background_row[global_variables.surface_oil_category_selected_index].bgcolor = ft.colors.WHITE
+                        surface_oil_column_b_containers[global_variables.surface_oil_category_selected_index].border = None
                 column_c_container.on_click =surface_oil_column_c_click(page)
-                surface_oil_column_b_containers[i].border=ft.border.all(5,ft.colors.ORANGE)
+                surface_oil_column_b_background_row[i].bgcolor=ft.colors.ORANGE
+                surface_oil_column_b_containers[i].border = ft.Border(left=ft.BorderSide(global_variables.app_window.width * .3 * .01,ft.colors.ORANGE),right=ft.BorderSide(global_variables.app_window.width * .3 * .01,ft.colors.ORANGE))
 
                 global_variables.surface_oil_category_selected_index = i
                 global_variables.selection= str(global_variables.substrate_selected_index)+str(global_variables.oil_type_selected_index)+str(global_variables.surface_oil_category_selected_index)
@@ -396,9 +428,12 @@ def so_dropdown_change(page):
                 column_selection = global_variables.so_columnd_dict[dd_selection]
 
                 if global_variables.surface_oil_category_selected_index is not None and global_variables.surface_oil_category_selected_index != column_selection:
-                                surface_oil_column_b_containers[global_variables.surface_oil_category_selected_index].border = ft.border.all(1, ft.colors.TRANSPARENT)
-                
-                surface_oil_column_b_containers[column_selection].border=ft.border.all(5,ft.colors.ORANGE)
+                                surface_oil_column_b_background_row[global_variables.surface_oil_category_selected_index].bgcolor = ft.colors.WHITE
+                                surface_oil_column_b_containers[global_variables.surface_oil_category_selected_index].border = None
+
+
+                surface_oil_column_b_containers[column_selection].border = ft.Border(left=ft.BorderSide(global_variables.app_window.width * .3 * .01,ft.colors.ORANGE),right=ft.BorderSide(global_variables.app_window.width * .3 * .01,ft.colors.ORANGE))                
+                surface_oil_column_b_background_row[column_selection].bgcolor=ft.colors.ORANGE
                 global_variables.surface_oil_category_selected_index = column_selection
                 global_variables.selection= str(global_variables.substrate_selected_index)+str(global_variables.oil_type_selected_index)+str(global_variables.surface_oil_category_selected_index)
                 global_variables.generate_table_array(page)

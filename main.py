@@ -223,7 +223,13 @@ def main(page:ft.Page):
 
         surface_oil_column_b = surface_oil_container.content.controls[1]
         surface_oil_column_b.height = surface_oil_container.height * 0.4
-          
+        surface_oil_column_b.width = global_variables.app_window.width * 0.3
+        surface_oil_column_b.controls[0].width = global_variables.app_window.width * 0.3
+        surface_oil_column_b.controls[0].height=global_variables.app_window.height * 0.315 * 0.4
+        surface_oil_column_b.controls[1].width = global_variables.app_window.width * 0.3
+        surface_oil_column_b.controls[1].height=global_variables.app_window.height * 0.315 * 0.4
+        surface_oil_column_b.controls[1].padding =global_variables.app_window.width * .3 * .01
+        surface_oil_column_b.controls[2].controls[global_variables.surface_oil_category_selected_index].border = ft.Border(left=ft.BorderSide(global_variables.app_window.width * .3 * .01,ft.colors.ORANGE),right=ft.BorderSide(global_variables.app_window.width * .3 * .01,ft.colors.ORANGE))
 
         surface_oil_column_c = surface_oil_container.content.controls[2] #20
         surface_oil_column_c.content = ft.Text(pics_and_desc.surface_oil_category_description[global_variables.surface_oil_category_selected_index],
