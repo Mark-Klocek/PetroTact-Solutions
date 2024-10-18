@@ -147,6 +147,37 @@ def main(page:ft.Page):
             input_substrate_row_b_column_b.content.size = input_substrate_row_b.height * 0.25 * 0.2 -1
             input_substrate_row_b_column_b.update()
         #print(input_substrate_row_b_column_b.content)
+            
+        substrate_container.substrate_row_b_container.content = ft.Container(
+            content = ft.Column(
+                controls=[
+                    ft.Container(
+                        content= ft.Image(src=pics_and_desc.substrate_row_b_pictures[global_variables.substrate_selected_index], fit=ft.ImageFit.COVER),
+                        expand=True,
+                        padding=5),
+                        
+                    ft.Container(
+                        content = ft.Text(pics_and_desc.substrate_row_b_description[global_variables.substrate_selected_index], 
+                                          color="Black",
+                                          size= global_variables.app_window.height * 0.4 * 0.93 * 0.25 * 0.2 -1),
+                        alignment = ft.alignment.center,
+                        padding=1)],
+                spacing=0,                               
+                    ),
+            padding=0,
+            border=ft.Border(left=ft.BorderSide(5,ft.colors.ORANGE))
+        )
+        substrate_container.substrate_row_a_containers[global_variables.substrate_selected_index].content = ft.Container(
+                content= substrate_container.create_substrate_row_a_column_container_content(page,global_variables.substrate_selected_index),                   
+                expand=True,
+                padding=0,
+                bgcolor=ft.colors.ORANGE,
+                
+                
+            )
+        
+        stack = substrate_container.surface_oil_category.surface_oil_container.content.controls[1]
+        stack.controls[0].content = ft.Image(src=pics_and_desc.surface_oil_category_pictures[global_variables.substrate_selected_index], fit=ft.ImageFit.FILL)
         
 
         #############################
