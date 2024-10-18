@@ -205,9 +205,13 @@ def substrate_on_click(page,container_column,i,substrate_info_container):
             substrate_new_window.bgcolor = ft.colors.ORANGE
             substrate_new_window.content.bgcolor = ft.colors.ORANGE
             substrate_new_window.update()
-            print(substrate_previous_window)
             
-            substrate_row_b =global_variables.app_window.content.controls[0].content.controls[1].content.controls[1].content.controls[1]
+            
+            row_b_image =global_variables.app_window.content.controls[0].content.controls[1].content.controls[1].content.controls[1].content.content.controls[0].content
+            row_b_image.src = pics_and_desc.substrate_row_b_pictures[i]
+            row_b_text = global_variables.app_window.content.controls[0].content.controls[1].content.controls[1].content.controls[1].content.content.controls[1].content
+            row_b_text.value = pics_and_desc.substrate_row_b_description[i]
+            print(row_b_text)
             
             global_variables.substrate_selected_index = i
             global_variables.substrate_selected_variable = i
