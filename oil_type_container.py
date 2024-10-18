@@ -86,11 +86,11 @@ def create_oil_type_header_container(page):
                         
                     ),
                     on_click=lambda e: info_buttons.oil_type_info(page),
-                    on_hover=global_variables.on_hover_change_color
-                ),
-                ft.Container(
-                    expand=True
-                )]
+                    on_hover=global_variables.on_hover_change_color,
+                    padding=ft.padding.only(right=global_variables.app_window.width * 0.3 * .01)
+                )
+                ],
+                alignment=ft.MainAxisAlignment.SPACE_BETWEEN
             ),
         bgcolor="#DCDCDC",
         padding= ft.padding.only(left=5),

@@ -55,13 +55,13 @@ class functions:
 ##################################
     def create_file_view_help(page):
         container = ft.Container(
-            content=ft.Text("File/View/Help bar",color="WHITE",size=15,font_family="Roboto"),
-            height=page.height * .03,
+            content=ft.Text("File/View/Help bar",color="Black",size=15,font_family="Roboto"),
+            height=page.height * .025,
             width=page.width * 0.3,
             padding=0,
             top=0,
             left=0,
-            bgcolor=ft.colors.with_opacity(1, "#000000"),
+            bgcolor=ft.colors.WHITE,
             alignment=ft.alignment.center
         )
         return container
@@ -75,8 +75,10 @@ class functions:
             content=ft.Text("Inputs", size=20,color="Black",weight=ft.FontWeight.BOLD, font_family="Roboto"),
             bgcolor=ft.colors.TRANSPARENT,
             padding=0,
+            #padding=ft.padding.only(top=global_variables.app_window.height * 0.01,left=global_variables.app_window.height * 0.01),
             alignment=ft.alignment.bottom_center,
-            border_radius=ft.border_radius.only(top_left=10,top_right=10)           
+            border_radius=ft.border_radius.only(top_left=10,top_right=10),
+            #border=ft.border.all(1,ft.colors.RED)           
         )
 
 #######################################################################################

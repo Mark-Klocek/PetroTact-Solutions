@@ -52,12 +52,12 @@ def create_surface_oil_header_column(page):
                                                 ),
 
                                         on_click=lambda e: info_buttons.surface_oil_category_info(page),
-                                        on_hover=global_variables.on_hover_change_color
+                                        on_hover=global_variables.on_hover_change_color,
+                                        padding=ft.padding.only(right=global_variables.app_window.width * 0.3 * .01)
                                 ),
-                                ft.Container(
-                                        expand=True
-                                )
-                        ]
+                                
+                        ],
+                        alignment=ft.MainAxisAlignment.SPACE_BETWEEN
                 ),
                 padding=ft.padding.only(left=2),
                 alignment=ft.alignment.center_left,                

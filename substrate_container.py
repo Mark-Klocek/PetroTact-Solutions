@@ -38,18 +38,18 @@ def create_substrate_header_container(page):
                 ft.Container(
                     content = ft.Icon(
                         name=ft.icons.INFO_OUTLINED,
-                        size=global_variables.app_window.height * 0.95 * 0.15 * 0.20 * 0.8,
+                        size=global_variables.app_window.height * 0.95 * 0.15 * 0.20 * 0.9,
                         color=ft.colors.ORANGE,
                         
                         
                         
                     ),
                     on_click=lambda e: info_buttons.substrate_info(page),
-                    on_hover=global_variables.on_hover_change_color
+                    on_hover=global_variables.on_hover_change_color,
+                    padding=ft.padding.only(right=global_variables.app_window.width * 0.3 * .01)
                 ),
-                ft.Container(
-                    expand=True
-                )],
+                ],
+                alignment=ft.MainAxisAlignment.SPACE_BETWEEN
                     
         ),
         
