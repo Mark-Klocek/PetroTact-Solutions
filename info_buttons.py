@@ -53,9 +53,17 @@ def substrate_info(page):
                         content=ft.Row(
                             controls=[
                                 ft.Container(
-                                    content=ft.Text("Substrate",color="Black",weight=ft.FontWeight.BOLD,font_family="Roboto",size=window_height * 0.05),
+                                    content=ft.Text(
+                                        spans=[
+                                            ft.TextSpan("Substrate",style=ft.TextStyle(weight=ft.FontWeight.BOLD, size=window_height * 0.05, font_family="Roboto",color=ft.colors.BLACK)),
+                                            ft.TextSpan("   Double click to select Substrate.",style=ft.TextStyle(size=window_height * .02,font_family="Roboto",color=ft.colors.BLACK)),
+                                            
+                                            
+                                        ]
+                                    ),
                                     #padding=ft.padding.only(left=window_width * 0.02)
                                 ),
+                                
                                 ft.Container(
                                     height=row_height,
                                     width=row_height,
