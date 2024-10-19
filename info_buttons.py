@@ -5,6 +5,7 @@ import view_summary
 import pics_and_desc
 import surface_oil_category
 click_timer = time.time()
+import asyncio
 
 ###################################
 ######## SUBSTRATE INFO #########
@@ -433,12 +434,88 @@ def oil_type_info(page):
     content_window_height = global_variables.app_window.height * 0.8
     content_window_width = global_variables.app_window.width * 0.8
     window_padding = content_window_width*0.005
-    
     endpoint_bgcolor = "#E1E1E1"
     text_size = content_window_height * 0.03
     body_height = (content_window_height - ((content_window_height * 0.07) + (content_window_height * 0.07 * 0.55 * 2) - (window_padding * 2))) * 0.95
     img_window_width = (((content_window_width - (window_padding * 2)) / 5) * .97)
     img_window_height = body_height * 0.6
+    stack_width = content_window_width - (window_padding * 2)
+    gif_stack = ft.Container(#bottom stack
+                    padding=0,
+                    height=img_window_height,
+                    width=stack_width,
+                    #border=ft.border.all(1,ft.colors.RED),
+                    content=ft.Stack(
+                        height=img_window_height,
+                        width=stack_width,
+                        controls=[
+                            ft.Container(
+                                padding=0,
+                                alignment=ft.alignment.center_left,
+                                height=img_window_height,
+                                width=stack_width,
+                                content=ft.Container(
+                                    padding=0,
+                                    width=stack_width / 5 * 2,
+                                    bgcolor=ft.colors.RED,
+                                    
+                                )
+                            ),
+                            ft.Container(
+                                padding=ft.padding.only(left=stack_width / 5 - (window_padding * .97)),
+                                alignment=ft.alignment.center_left,
+                                height=img_window_height,
+                                width=stack_width - window_padding,
+                                bgcolor = ft.colors.TRANSPARENT,
+                                content=ft.Container(
+                                    padding=0,
+                                    width=stack_width / 5 * 2,
+                                    bgcolor=ft.colors.GREEN,
+                                    border=ft.border.all(1,ft.colors.RED)
+                                )
+                            ),
+                            ft.Container(
+                                padding=ft.padding.only(left=stack_width / 5 * 2 - ((window_padding) * 2)),
+                                alignment=ft.alignment.center_left,
+                                height=img_window_height,
+                                width=stack_width,
+                                bgcolor = ft.colors.TRANSPARENT,
+                                content=ft.Container(
+                                    padding=0,
+                                    width=stack_width / 5 * 2,
+                                    bgcolor=ft.colors.BLUE
+                                )
+                            ),
+                            ft.Container(
+                                padding=ft.padding.only(left=stack_width / 5 * 3 - ((window_padding *1.10) * 3)),
+                                alignment=ft.alignment.center_left,
+                                height=img_window_height,
+                                width=stack_width,
+                                bgcolor = ft.colors.TRANSPARENT,
+                                content=ft.Container(
+                                    padding=0,
+                                    width=stack_width / 5 * 2,
+                                    bgcolor=ft.colors.YELLOW,
+                                    border=ft.border.all(1,ft.colors.RED)
+                                )
+                            ),
+                            ft.Container(
+                                padding=ft.padding.only(left=stack_width / 5 * 4 - ((window_padding * 1.10) * 4)),
+                                alignment=ft.alignment.center_left,
+                                height=img_window_height,
+                                width=stack_width,
+                                bgcolor = ft.colors.TRANSPARENT,
+                                content=ft.Container(
+                                    padding=0,
+                                    width=stack_width / 5,
+                                    bgcolor=ft.colors.WHITE
+                                )
+                            )
+                        ]
+                    )
+                )
+                                
+                
     def close_dialog(e):
         page.dialog.open = False
         page.update()
@@ -512,18 +589,13 @@ def oil_type_info(page):
                             controls=[
                                 ft.Stack( #gif stack
                                     height=img_window_height,
-                                    width=content_window_width - (window_padding * 2),
+                                    width=stack_width,
                                     controls=[
-                                        ft.Container(#bottom stack
-                                            padding=0,
-                                            height=img_window_height,
-                                            width=content_window_width - (window_padding * 2),
-                                            border=ft.border.all(1,ft.colors.RED)
-                                        ),
+                                        gif_stack,
                                         ft.Container(#top stack
                                             padding=0,
                                             height=img_window_height,
-                                            width=content_window_width - (window_padding * 2),
+                                            width=stack_width,
                                             #border=ft.border.all(1,ft.colors.RED)
                                             content=ft.Row(
                                                 spacing=0,
@@ -532,37 +604,42 @@ def oil_type_info(page):
                                                     padding=0,
                                                     height=img_window_height,
                                                     width=img_window_width,
-                                                    border=ft.border.all(1,ft.colors.RED)
+                                                    #border=ft.border.all(1,ft.colors.RED),
+                                                    on_click=oil_type_on_click(page,gif_stack,0,ft.colors.RED,ft.colors.GREEN,1)
                                                     ),
                                                     ft.Container(
                                                     padding=0,
                                                     height=img_window_height,
                                                     width=img_window_width,
-                                                    border=ft.border.all(1,ft.colors.RED)
+                                                    #border=ft.border.all(1,ft.colors.RED),
+                                                    on_click=oil_type_on_click(page,gif_stack,1,ft.colors.GREEN,ft.colors.BLUE,2)
                                                     ),
                                                     ft.Container(
                                                     padding=0,
                                                     height=img_window_height,
                                                     width=img_window_width,
-                                                    border=ft.border.all(1,ft.colors.RED)
+                                                    #border=ft.border.all(1,ft.colors.RED)
+                                                    on_click=oil_type_on_click(page,gif_stack,2,ft.colors.BLUE,ft.colors.YELLOW,3)
                                                     ),
                                                     ft.Container(
                                                     padding=0,
                                                     height=img_window_height,
                                                     width=img_window_width,
-                                                    border=ft.border.all(1,ft.colors.RED)
+                                                    #border=ft.border.all(1,ft.colors.RED),
+                                                    on_click=oil_type_on_click(page,gif_stack,3,ft.colors.YELLOW,ft.colors.WHITE,4)
                                                     ),
                                                     ft.Container(
                                                     padding=0,
                                                     height=img_window_height,
                                                     width=img_window_width,
-                                                    border=ft.border.all(1,ft.colors.RED)
+                                                    #border=ft.border.all(1,ft.colors.RED)
+                                                    on_click=oil_type_on_click(page,gif_stack,4,ft.colors.WHITE)
                                                     ),
                                                 ]
                                             )
                                         )
                                     ]
-                                ),
+                ),
                                 ft.Container(#container holding the row that contains images and descriptions
                                     alignment=ft.alignment.center,
                                     padding=0,
@@ -826,7 +903,28 @@ def oil_type_doubleclick(page,index):
         else:
             click_timer = new_click
     return handle_click
+def oil_type_on_click(page,gif_stack,current_index,current_color,next_color = None,next_index = None):
+    def handle_click(e,current_index=current_index,current_color = current_color,next_color = next_color,next_index = next_index):
+        if next_index:
+            #setting currently clicked on container bg color to what its supposed to be 
+            gif_stack.content.controls[current_index].content.bgcolor = current_color
+            gif_stack.content.controls[current_index].content.update()
 
+            #setting next container after currently selected container to transparent, allowing you to see the entirety of the currently selected container
+            
+            gif_stack.content.controls[next_index].content.bgcolor = ft.colors.TRANSPARENT
+            gif_stack.content.controls[next_index].content.update()
+
+            time.sleep(5)
+            
+            gif_stack.content.controls[next_index].content.bgcolor = next_color
+            gif_stack.content.controls[next_index].content.update()
+
+            print(gif_stack.content.controls[next_index].content)
+        if current_color == ft.colors.WHITE:
+            gif_stack.content.controls[current_index].content.bgcolor = current_color
+            gif_stack.content.controls[current_index].content.update()
+    return handle_click
 ###################################
 ### SURFACE OIL CATEGORY WINDOW ####
 ###################################
