@@ -458,6 +458,7 @@ def oil_type_info(page):
                                     padding=0,
                                     width=stack_width / 5 * 2,
                                     bgcolor=ft.colors.RED,
+                                    height=img_window_height,
                                     
                                 )
                             ),
@@ -470,6 +471,7 @@ def oil_type_info(page):
                                 content=ft.Container(
                                     padding=0,
                                     width=stack_width / 5 * 2,
+                                    height=img_window_height,
                                     bgcolor=ft.colors.GREEN,
                                     border=ft.border.all(1,ft.colors.RED)
                                 )
@@ -483,6 +485,7 @@ def oil_type_info(page):
                                 content=ft.Container(
                                     padding=0,
                                     width=stack_width / 5 * 2,
+                                    height=img_window_height,
                                     bgcolor=ft.colors.BLUE
                                 )
                             ),
@@ -496,6 +499,7 @@ def oil_type_info(page):
                                     padding=0,
                                     width=stack_width / 5 * 2,
                                     bgcolor=ft.colors.YELLOW,
+                                    height=img_window_height,
                                     border=ft.border.all(1,ft.colors.RED)
                                 )
                             ),
@@ -508,6 +512,7 @@ def oil_type_info(page):
                                 content=ft.Container(
                                     padding=0,
                                     width=stack_width / 5,
+                                    height=img_window_height,
                                     bgcolor=ft.colors.WHITE
                                 )
                             )
@@ -920,7 +925,7 @@ def oil_type_on_click(page,gif_stack,current_index,current_color,next_color = No
             gif_stack.content.controls[next_index].content.bgcolor = next_color
             gif_stack.content.controls[next_index].content.update()
 
-            print(gif_stack.content.controls[next_index].content)
+            
         if current_color == ft.colors.WHITE:
             gif_stack.content.controls[current_index].content.bgcolor = current_color
             gif_stack.content.controls[current_index].content.update()

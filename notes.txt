@@ -17,3 +17,10 @@ summary container 9/11
 all informational pages by EOM
 project completed by 10/15
 web hosting completed by 11/25
+
+height / width = 1.3385545322688912
+
+left = 536
+top = 407
+width = 575
+height = 430
