@@ -24,3 +24,38 @@ left = 536
 top = 407
 width = 575
 height = 430
+
+if next_index:
+            if current_index == 0:
+                gif_stack.content.controls[current_index].content.content = ft.Image(src=r"images\oil_type_gifs\oil_type_gif_volatile_oils.gif",fit=ft.ImageFit.FILL)
+                gif_stack.content.controls[current_index].content.update()
+                gif_stack.content.controls[next_index].content.bgcolor = ft.colors.TRANSPARENT
+                gif_stack.content.controls[next_index].content.content = None
+                gif_stack.content.controls[next_index].content.update()
+                time.sleep(3.96)
+                gif_stack.content.controls[current_index].content.content = ft.Image(src=r"images\oil_type_gif_images\volatile_oil_img.gif",fit=ft.ImageFit.FIT_HEIGHT)
+                #gif_stack.content.controls[current_index].content.bgcolor = ft.colors.RED
+                gif_stack.content.controls[current_index].content.update()
+                #gif_stack.content.controls[next_index].content.bgcolor = next_color
+                gif_stack.content.controls[next_index].content.content = ft.Image(src=r"images\oil_type_gif_images\light_oil_img.gif",fit=ft.ImageFit.FIT_HEIGHT)
+                gif_stack.content.controls[next_index].content.update()
+                print(gif_stack)
+            else:
+                #setting currently clicked on container bg color to what its supposed to be 
+                gif_stack.content.controls[current_index].content.bgcolor = current_color
+                gif_stack.content.controls[current_index].content.update()
+
+                #setting next container after currently selected container to transparent, allowing you to see the entirety of the currently selected container
+                
+                gif_stack.content.controls[next_index].content.bgcolor = ft.colors.TRANSPARENT
+                gif_stack.content.controls[next_index].content.update()
+
+                time.sleep(5)
+                
+                gif_stack.content.controls[next_index].content.bgcolor = next_color
+                gif_stack.content.controls[next_index].content.update()
+
+            
+        if current_color == ft.colors.WHITE:
+            gif_stack.content.controls[current_index].content.bgcolor = current_color
+            gif_stack.content.controls[current_index].content.update()

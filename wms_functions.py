@@ -32,7 +32,16 @@ class functions:
             
 
         )
-
+    def preload_videos(page):
+        container = ft.Stack(
+            width=400,
+            height=150,
+            controls=[
+                ft.Video(playlist=ft.VideoMedia(r"images\upd_oil_type_gif\volatile_oil_gif.mp4"),autoplay=True,muted=True,fit=ft.ImageFit.FIT_WIDTH,fill_color=ft.colors.TRANSPARENT,visible=True),
+                ft.Video(playlist=ft.VideoMedia(r"images\upd_oil_type_gif\oil_gif_bg.mp4"),autoplay=True,muted=True,fit=ft.ImageFit.FIT_WIDTH,fill_color=ft.colors.TRANSPARENT,visible=False)
+            ]
+        )
+        return container
 #############################
 ##### LOGO CONTAINER ######
 #############################

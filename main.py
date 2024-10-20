@@ -24,6 +24,7 @@ def main(page:ft.Page):
     results_container=view_summary.create_results_container(page)
     logo_container = functions.create_logo_container(page)
     file_view_help = functions.create_file_view_help(page)
+    preloaded_videos = functions.preload_videos(page)
     global_variables.app_window = ft.Container(
                     content=ft.Row(
                         controls=[input_container,results_container],
@@ -40,6 +41,7 @@ def main(page:ft.Page):
                     global_variables.app_window,
                     logo_container,
                     file_view_help
+                    
                 ]
             ),
             expand=True,

@@ -5,8 +5,8 @@ import view_summary
 import pics_and_desc
 import surface_oil_category
 click_timer = time.time()
-import asyncio
-
+is_running = False
+previous_selection = 4
 ###################################
 ######## SUBSTRATE INFO #########
 ###################################
@@ -440,87 +440,69 @@ def oil_type_info(page):
     img_window_width = (((content_window_width - (window_padding * 2)) / 5) * .97)
     img_window_height = body_height * 0.6
     stack_width = content_window_width - (window_padding * 2)
-    gif_stack = ft.Container(#bottom stack
-                    padding=0,
-                    height=img_window_height,
-                    width=stack_width,
-                    #border=ft.border.all(1,ft.colors.RED),
-                    content=ft.Stack(
+    wally = True
+    if wally == True:
+        gif_stack = ft.Container(#bottom stack
+                        padding=0,
                         height=img_window_height,
                         width=stack_width,
-                        controls=[
-                            ft.Container(
-                                padding=0,
-                                alignment=ft.alignment.center_left,
-                                height=img_window_height,
-                                width=stack_width,
-                                content=ft.Container(
+                        #border=ft.border.all(1,ft.colors.RED),
+                        content=ft.Stack(
+                            height=img_window_height,
+                            width=stack_width,
+                            controls=[
+                                ft.Container(
                                     padding=0,
-                                    width=stack_width / 5 * 2,
-                                    bgcolor=ft.colors.RED,
+                                    alignment=ft.alignment.center_left,
                                     height=img_window_height,
-                                    
-                                )
-                            ),
-                            ft.Container(
-                                padding=ft.padding.only(left=stack_width / 5 - (window_padding * .97)),
-                                alignment=ft.alignment.center_left,
-                                height=img_window_height,
-                                width=stack_width - window_padding,
-                                bgcolor = ft.colors.TRANSPARENT,
-                                content=ft.Container(
+                                    width=stack_width,
+                                    content=ft.Video(playlist=ft.VideoMedia(r"images\upd_oil_type_gif\volatile_oil_gif.mp4"),autoplay=False,muted=True,fit=ft.ImageFit.FIT_WIDTH,fill_color=ft.colors.TRANSPARENT,visible=True)
+                                ),
+                                ft.Container(
+                                    #padding=ft.padding.only(left=stack_width / 5 - (window_padding * .97)),
                                     padding=0,
-                                    width=stack_width / 5 * 2,
+                                    alignment=ft.alignment.center_left,
                                     height=img_window_height,
-                                    bgcolor=ft.colors.GREEN,
-                                    border=ft.border.all(1,ft.colors.RED)
-                                )
-                            ),
-                            ft.Container(
-                                padding=ft.padding.only(left=stack_width / 5 * 2 - ((window_padding) * 2)),
-                                alignment=ft.alignment.center_left,
-                                height=img_window_height,
-                                width=stack_width,
-                                bgcolor = ft.colors.TRANSPARENT,
-                                content=ft.Container(
-                                    padding=0,
-                                    width=stack_width / 5 * 2,
+                                    width=stack_width - window_padding,
+                                    bgcolor = ft.colors.TRANSPARENT,
+                                    content=ft.Video(playlist=ft.VideoMedia(r"images\upd_oil_type_gif\light_oil_gif.mp4"),autoplay=False,muted=True,fit=ft.ImageFit.FIT_WIDTH,fill_color=ft.colors.TRANSPARENT,visible=True)
+                                ),
+                                ft.Container(
+                                    #padding=ft.padding.only(left=stack_width / 5 * 2 - ((window_padding) * 2)),
+                                    alignment=ft.alignment.center_left,
                                     height=img_window_height,
-                                    bgcolor=ft.colors.BLUE
-                                )
-                            ),
-                            ft.Container(
-                                padding=ft.padding.only(left=stack_width / 5 * 3 - ((window_padding *1.10) * 3)),
-                                alignment=ft.alignment.center_left,
-                                height=img_window_height,
-                                width=stack_width,
-                                bgcolor = ft.colors.TRANSPARENT,
-                                content=ft.Container(
-                                    padding=0,
-                                    width=stack_width / 5 * 2,
-                                    bgcolor=ft.colors.YELLOW,
+                                    width=stack_width,
+                                    bgcolor = ft.colors.TRANSPARENT,
+                                    content=ft.Video(playlist=ft.VideoMedia(r"images\upd_oil_type_gif\medium_oils_gif.mp4"),autoplay=False,muted=True,fit=ft.ImageFit.FIT_WIDTH,fill_color=ft.colors.TRANSPARENT,visible=True)
+                                ),
+                                ft.Container(
+                                    #padding=ft.padding.only(left=stack_width / 5 * 3 - ((window_padding *1.10) * 3)),
+                                    alignment=ft.alignment.center_left,
                                     height=img_window_height,
-                                    border=ft.border.all(1,ft.colors.RED)
-                                )
-                            ),
-                            ft.Container(
-                                padding=ft.padding.only(left=stack_width / 5 * 4 - ((window_padding * 1.10) * 4)),
-                                alignment=ft.alignment.center_left,
-                                height=img_window_height,
-                                width=stack_width,
-                                bgcolor = ft.colors.TRANSPARENT,
-                                content=ft.Container(
-                                    padding=0,
-                                    width=stack_width / 5,
+                                    width=stack_width,
+                                    bgcolor = ft.colors.TRANSPARENT,
+                                    content=ft.Video(playlist=ft.VideoMedia(r"images\upd_oil_type_gif\heavy_oils_gif.mp4"),autoplay=False,muted=True,fit=ft.ImageFit.FIT_WIDTH,fill_color=ft.colors.TRANSPARENT,visible=True)
+                                ),
+                                ft.Container(
+                                    #padding=ft.padding.only(left=stack_width / 5 * 4 - ((window_padding * 1.10) * 4)),
+                                    alignment=ft.alignment.center_left,
                                     height=img_window_height,
-                                    bgcolor=ft.colors.WHITE
+                                    width=stack_width,
+                                    bgcolor = ft.colors.TRANSPARENT,
+                                    content=ft.Video(playlist=ft.VideoMedia(r"images\upd_oil_type_gif\solid_oils_gif.mp4"),autoplay=False,muted=True,fit=ft.ImageFit.FIT_WIDTH,fill_color=ft.colors.TRANSPARENT,visible=True)
                                 )
-                            )
-                        ]
+                            ]
+                        )
                     )
-                )
-                                
-                
+                                    
+    else:
+        gif_stack = ft.Container(
+            padding=0,
+            height=img_window_height,
+            width=stack_width,
+            #border=ft.border.all(1,ft.colors.RED),
+            content=ft.Video(playlist=ft.VideoMedia(r"images\upd_oil_type_gif\oil_gif_bg.mp4"),autoplay=True,muted=True,fit=ft.ImageFit.FIT_WIDTH,fill_color=ft.colors.TRANSPARENT)
+        )           
     def close_dialog(e):
         page.dialog.open = False
         page.update()
@@ -528,6 +510,7 @@ def oil_type_info(page):
     dialog = ft.AlertDialog(
         modal=False,
         content=ft.Container(
+            
             height=content_window_height,
             width=content_window_width,
             border=ft.border.all(window_padding,ft.colors.WHITE),
@@ -610,35 +593,35 @@ def oil_type_info(page):
                                                     height=img_window_height,
                                                     width=img_window_width,
                                                     #border=ft.border.all(1,ft.colors.RED),
-                                                    on_click=oil_type_on_click(page,gif_stack,0,ft.colors.RED,ft.colors.GREEN,1)
+                                                    on_click=oil_type_on_click(page,gif_stack,0)
                                                     ),
                                                     ft.Container(
                                                     padding=0,
                                                     height=img_window_height,
                                                     width=img_window_width,
                                                     #border=ft.border.all(1,ft.colors.RED),
-                                                    on_click=oil_type_on_click(page,gif_stack,1,ft.colors.GREEN,ft.colors.BLUE,2)
+                                                    on_click=oil_type_on_click(page,gif_stack,1)
                                                     ),
                                                     ft.Container(
                                                     padding=0,
                                                     height=img_window_height,
                                                     width=img_window_width,
                                                     #border=ft.border.all(1,ft.colors.RED)
-                                                    on_click=oil_type_on_click(page,gif_stack,2,ft.colors.BLUE,ft.colors.YELLOW,3)
+                                                    on_click=oil_type_on_click(page,gif_stack,2)
                                                     ),
                                                     ft.Container(
                                                     padding=0,
                                                     height=img_window_height,
                                                     width=img_window_width,
                                                     #border=ft.border.all(1,ft.colors.RED),
-                                                    on_click=oil_type_on_click(page,gif_stack,3,ft.colors.YELLOW,ft.colors.WHITE,4)
+                                                    on_click=oil_type_on_click(page,gif_stack,3)
                                                     ),
                                                     ft.Container(
                                                     padding=0,
                                                     height=img_window_height,
                                                     width=img_window_width,
                                                     #border=ft.border.all(1,ft.colors.RED)
-                                                    on_click=oil_type_on_click(page,gif_stack,4,ft.colors.WHITE)
+                                                    on_click=oil_type_on_click(page,gif_stack,4)
                                                     ),
                                                 ]
                                             )
@@ -908,27 +891,56 @@ def oil_type_doubleclick(page,index):
         else:
             click_timer = new_click
     return handle_click
-def oil_type_on_click(page,gif_stack,current_index,current_color,next_color = None,next_index = None):
-    def handle_click(e,current_index=current_index,current_color = current_color,next_color = next_color,next_index = next_index):
-        if next_index:
-            #setting currently clicked on container bg color to what its supposed to be 
-            gif_stack.content.controls[current_index].content.bgcolor = current_color
-            gif_stack.content.controls[current_index].content.update()
-
-            #setting next container after currently selected container to transparent, allowing you to see the entirety of the currently selected container
+def oil_type_on_click(page,gif_stack,current_index):
+    def handle_click(e,current_index=current_index):
+        if current_index == 0:
+            gif_stack.content.controls[0].content.visible =True
+            gif_stack.content.controls[0].content.update()
+            gif_stack.content.controls[1].content.visible =False
+            gif_stack.content.controls[1].content.update()
+            gif_stack.content.controls[2].content.visible =False
+            gif_stack.content.controls[2].content.update()
+            gif_stack.content.controls[3].content.visible =False
+            gif_stack.content.controls[3].content.update()
+            gif_stack.content.controls[4].content.visible =False
+            gif_stack.content.controls[4].content.update()
             
-            gif_stack.content.controls[next_index].content.bgcolor = ft.colors.TRANSPARENT
-            gif_stack.content.controls[next_index].content.update()
-
-            time.sleep(5)
-            
-            gif_stack.content.controls[next_index].content.bgcolor = next_color
-            gif_stack.content.controls[next_index].content.update()
-
-            
-        if current_color == ft.colors.WHITE:
-            gif_stack.content.controls[current_index].content.bgcolor = current_color
-            gif_stack.content.controls[current_index].content.update()
+            gif_stack.content.controls[0].content.play()
+        if current_index == 1:
+            gif_stack.content.controls[1].content.visible =True
+            gif_stack.content.controls[1].content.update()
+            gif_stack.content.controls[2].content.visible =False
+            gif_stack.content.controls[2].content.update()
+            gif_stack.content.controls[3].content.visible =False
+            gif_stack.content.controls[3].content.update()
+            gif_stack.content.controls[4].content.visible =False
+            gif_stack.content.controls[4].content.update()
+            #gif_stack.content.controls.content.update()
+            gif_stack.content.controls[1].content.play()
+        if current_index == 2:
+            gif_stack.content.controls[2].content.visible =True
+            gif_stack.content.controls[2].content.update()
+            gif_stack.content.controls[3].content.visible =False
+            gif_stack.content.controls[3].content.update()
+            gif_stack.content.controls[4].content.visible =False
+            gif_stack.content.controls[4].content.update()
+            #gif_stack.content.controls.update()
+            gif_stack.content.controls[2].content.play()
+        if current_index == 3:
+            gif_stack.content.controls[3].content.visible =True
+            gif_stack.content.controls[3].content.update()
+            gif_stack.content.controls[4].content.visible =False
+            gif_stack.content.controls[4].content.update()
+            #gif_stack.content.controls.update()
+            gif_stack.content.controls[3].content.play()
+        if current_index == 4:
+            gif_stack.content.controls[4].content.visible =True
+            gif_stack.content.controls[4].content.update()
+            #gif_stack.content.controls.update()
+            gif_stack.content.controls[4].content.play()
+        
+        #print(gif_stack.content.controls[current_index].content)
+                
     return handle_click
 ###################################
 ### SURFACE OIL CATEGORY WINDOW ####
