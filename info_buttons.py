@@ -20,20 +20,40 @@ def substrate_info(page):
     content_window_width = window_width - (window_padding * 2)
     data_body_bgcolor = "#FFFFFF"
     tactic_info_column_bgcolor = "#E1E1E1"
-    substrate_info_container = ft.Container( #tactic info column
-                                    content=ft.Column(
-                                        controls= sand_mixed_sediment(page),
-                                        spacing=5,
-                                        scroll=ft.ScrollMode.ALWAYS,
+    if global_variables.substrate_selected_variable == 0:
+        substrate_info_container = ft.Container( #tactic info column
+                                        content=ft.Column(
+                                            controls= sand_mixed_sediment(page),
+                                            spacing=5,
+                                            scroll=ft.ScrollMode.ALWAYS,
+                                            
+                                        ),
+                                        width=content_window_width * 0.75,
+                                        height=content_window_height,
+                                        border=ft.Border(top=ft.BorderSide(2,ft.colors.WHITE),right=ft.BorderSide(2,ft.colors.WHITE), bottom=ft.BorderSide(2,ft.colors.WHITE)),
+                                        bgcolor=tactic_info_column_bgcolor,
+                                        padding=ft.padding.only(right=window_padding)
                                         
-                                    ),
-                                    width=content_window_width * 0.75,
-                                    height=content_window_height,
-                                    border=ft.Border(top=ft.BorderSide(2,ft.colors.WHITE),right=ft.BorderSide(2,ft.colors.WHITE), bottom=ft.BorderSide(2,ft.colors.WHITE)),
-                                    bgcolor=tactic_info_column_bgcolor,
-                                    
-                                    
-                                )
+                                        
+                                        
+                                    )
+    else:
+         substrate_info_container = ft.Container( #tactic info column
+                                        content=ft.Column(
+                                            controls= substrate_functions_list[global_variables.substrate_selected_variable](page),
+                                            spacing=5,
+                                            scroll=ft.ScrollMode.ALWAYS,
+                                            
+                                        ),
+                                        width=content_window_width * 0.75,
+                                        height=content_window_height,
+                                        border=ft.Border(top=ft.BorderSide(2,ft.colors.WHITE),right=ft.BorderSide(2,ft.colors.WHITE), bottom=ft.BorderSide(2,ft.colors.WHITE)),
+                                        bgcolor=tactic_info_column_bgcolor,
+                                        padding=ft.padding.only(right=window_padding)
+                                        
+                                        
+                                        
+                                    )
     
     def close_dialog(e):
         page.dialog.open = False
@@ -116,7 +136,8 @@ def substrate_info(page):
 
 
                     )
-                ]
+                ],
+                
             )
         ),
         
@@ -255,9 +276,14 @@ def substrate_on_click(page,container_column,i,substrate_info_container):
 
     return handle_click
 def sand_mixed_sediment(page):
+    #ft.TextSpan("Objective", style=ft.TextStyle(weight=ft.FontWeight.BOLD, size=text_size * 1.15, font_family="Roboto",color=ft.colors.BLACK) ),
+    #ft.TextSpan("\n"),
+    #ft.TextSpan("\n"),
     #ft.TextSpan("",style=ft.TextStyle(size=text_size,font_family="Roboto",color=ft.colors.BLACK))
     #ft.TextSpan("\n"),
-    #ft.TextSpan("Objective", style=ft.TextStyle(weight=ft.FontWeight.BOLD, size=text_size * 1.15, font_family="Roboto",color=ft.colors.BLACK) ),
+    #ft.TextSpan("\n"),
+    
+    
     #ft.TextSpan("   •  low-pressure or high pressure cold (ambient) or warm temperature washing",style=ft.TextStyle(size=text_size,font_family="Roboto",color=ft.colors.BLACK)),
     window_width = global_variables.app_window.width * 0.85
     window_height = global_variables.app_window.height * 0.9
@@ -271,14 +297,60 @@ def sand_mixed_sediment(page):
         width=content_window_width * 0.75,
         height=content_window_height * 0.65,
         alignment=ft.alignment.center,
-        border=ft.border.all(1, ft.colors.RED),
+        #border=ft.border.all(1, ft.colors.RED),
         content=ft.Image(pics_and_desc.substrate_row_b_pictures[0],fit=ft.ImageFit.FIT_HEIGHT)
     )
     column_array.append(container)
+    container = ft.Container(
+        padding=window_padding,
+        width=content_window_width * 0.75,
+        content=ft.Text(
+            spans=[
+                ft.TextSpan("Definition", style=ft.TextStyle(weight=ft.FontWeight.BOLD, size=text_size * 1.15, font_family="Roboto",color=ft.colors.BLACK) ),
+                ft.TextSpan("\n"),
+                ft.TextSpan("\n"),
+                ft.TextSpan("A beach composed of sand or a combination of sand, granules, pebbles and cobbles.",style=ft.TextStyle(size=text_size,font_family="Roboto",color=ft.colors.BLACK)),
+                ft.TextSpan("\n"),
+                ft.TextSpan("\n"),
+                ft.TextSpan("Where coarser sediments (granules, pebbles and/or cobbles) are present, the spaces between these larger particles are in-filled with sand: this feature distinguishes a sand or mixed sediment beach from a coarse sediment beach.",style=ft.TextStyle(size=text_size,font_family="Roboto",color=ft.colors.BLACK)),
+                ft.TextSpan("\n"),
+                ft.TextSpan("\n"),
+                ft.TextSpan("In some cases, there is veneer layer of the coarser cobble or pebble on the surface without the in-fill sand.",style=ft.TextStyle(size=text_size,font_family="Roboto",color=ft.colors.BLACK)),
+                ft.TextSpan("\n"),
+                ft.TextSpan("\n"),
+                ft.TextSpan("Character", style=ft.TextStyle(weight=ft.FontWeight.BOLD, size=text_size * 1.15, font_family="Roboto",color=ft.colors.BLACK) ),
+                ft.TextSpan("\n"),
+                ft.TextSpan("\n"),
+                ft.TextSpan("Sand and mixed sediment beaches are typically very dynamic with a mobile, unstable surface layer.",style=ft.TextStyle(size=text_size,font_family="Roboto",color=ft.colors.BLACK)),
+                ft.TextSpan("\n"),
+                ft.TextSpan("\n"),
+                ft.TextSpan("Even relatively little wave action (e.g. wave heights of 10 - 30 cm) can easily change the surface level on a sandy beach by as much as 10 cm in one tidal cycle.",style=ft.TextStyle(size=text_size,font_family="Roboto",color=ft.colors.BLACK)),
+                ft.TextSpan("\n"),
+                ft.TextSpan("\n"),
+                ft.TextSpan("Large waves, as would be expected during storms, can lower or raise a beach surface by as much as 1.0 m in a few hours. These processes can result in erosion, mixing, or burial of stranded oil.",style=ft.TextStyle(size=text_size,font_family="Roboto",color=ft.colors.BLACK)),
+                ft.TextSpan("\n"),
+                ft.TextSpan("\n"),
+                ft.TextSpan("Permeable for some medium and all light oils.",style=ft.TextStyle(size=text_size,font_family="Roboto",color=ft.colors.BLACK)),
+                ft.TextSpan("\n"),
+                ft.TextSpan("\n"),
+                ft.TextSpan("Pore spaces are small, which restricts oil penetration so that medium and heavy oils are unlikely to penetrate more than 25 cm.",style=ft.TextStyle(size=text_size,font_family="Roboto",color=ft.colors.BLACK)),
+
+            ]
+
+            )
+    )
+    column_array.append(container)
     return column_array
-
-
 def coarse_sediment_beach(page):
+    #ft.TextSpan("Objective", style=ft.TextStyle(weight=ft.FontWeight.BOLD, size=text_size * 1.15, font_family="Roboto",color=ft.colors.BLACK) ),
+    #ft.TextSpan("\n"),
+    #ft.TextSpan("\n"),
+    #ft.TextSpan("",style=ft.TextStyle(size=text_size,font_family="Roboto",color=ft.colors.BLACK)),
+    #ft.TextSpan("\n"),
+    #ft.TextSpan("\n"),
+    
+    
+    #ft.TextSpan("   •  low-pressure or high pressure cold (ambient) or warm temperature washing",style=ft.TextStyle(size=text_size,font_family="Roboto",color=ft.colors.BLACK)),
     window_width = global_variables.app_window.width * 0.85
     window_height = global_variables.app_window.height * 0.9
     window_padding = window_width*0.01
@@ -291,12 +363,64 @@ def coarse_sediment_beach(page):
         width=content_window_width * 0.75,
         height=content_window_height * 0.65,
         alignment=ft.alignment.center,
-        border=ft.border.all(1, ft.colors.RED),
+        #border=ft.border.all(1, ft.colors.RED),
         content=ft.Image(pics_and_desc.substrate_row_b_pictures[1],fit=ft.ImageFit.FIT_HEIGHT)
+    )
+    column_array.append(container)
+    container = ft.Container(
+        padding=window_padding,
+        width=content_window_width * .75,
+        content=ft.Text(
+            spans=[
+                ft.TextSpan("Definition", style=ft.TextStyle(weight=ft.FontWeight.BOLD, size=text_size * 1.15, font_family="Roboto",color=ft.colors.BLACK) ),
+                ft.TextSpan("\n"),
+                ft.TextSpan("\n"),
+                ft.TextSpan("A beach where the clearly dominant material is pebbles and/or cobbles. Pebbles have a grain-size diameter of 4 - 64 mm; cobbles are in the 64 - 256 mm range. ",style=ft.TextStyle(size=text_size,font_family="Roboto",color=ft.colors.BLACK)),
+                ft.TextSpan("\n"),
+                ft.TextSpan("\n"),
+                ft.TextSpan("The interstitial spaces are relatively open and not in-filled with finer material. Some sand may be present, e.g. ≤10%. Granules (diameter 2 - 4 mm) are usually included in the pebble category.",style=ft.TextStyle(size=text_size,font_family="Roboto",color=ft.colors.BLACK)),
+                ft.TextSpan("\n"),
+                ft.TextSpan("\n"),
+                ft.TextSpan("For comparison, 4 mm is about the width of a pencil, 64 mm is approximately the size of a tennis ball, and 256 mm is a little larger than a soccer ball (225 mm) or a basketball (240 mm).",style=ft.TextStyle(size=text_size,font_family="Roboto",color=ft.colors.BLACK)),
+                ft.TextSpan("\n"),
+                ft.TextSpan("\n"),
+                ft.TextSpan("Character", style=ft.TextStyle(weight=ft.FontWeight.BOLD, size=text_size * 1.15, font_family="Roboto",color=ft.colors.BLACK) ),
+                ft.TextSpan("\n"),
+                ft.TextSpan("\n"),
+                ft.TextSpan("Pebble-cobble beaches are very permeable and have a dynamic, mobile, unstable surface layer.",style=ft.TextStyle(size=text_size,font_family="Roboto",color=ft.colors.BLACK)),
+                ft.TextSpan("\n"),
+                ft.TextSpan("\n"),
+                ft.TextSpan("The interstitial or pore spaces between the individual pebbles or cobbles are open.",style=ft.TextStyle(size=text_size,font_family="Roboto",color=ft.colors.BLACK)),
+                ft.TextSpan("\n"),
+                ft.TextSpan("\n"),
+                ft.TextSpan("The supply of coarse sediment usually is very low. Sediment that is removed may be replaced only at a very slow rate (decades) or not at all.",style=ft.TextStyle(size=text_size,font_family="Roboto",color=ft.colors.BLACK)),
+                ft.TextSpan("\n"),
+                ft.TextSpan("\n"),
+                ft.TextSpan("Coarse sediment beaches are permeable to all but semi-solid oils so that subsurface oiling would be expected.",style=ft.TextStyle(size=text_size,font_family="Roboto",color=ft.colors.BLACK)),
+                ft.TextSpan("\n"),
+                ft.TextSpan("\n"),
+                ft.TextSpan("Depth of oil penetration is a function of the oil type (viscosity) and the sediment size. The larger the particle size, the easier it is for oil to penetrate. However, retention is also relatively low, so the oil can be flushed naturally from these coarse sediments.",style=ft.TextStyle(size=text_size,font_family="Roboto",color=ft.colors.BLACK)),
+                ft.TextSpan("\n"),
+                ft.TextSpan("\n"),
+                ft.TextSpan("Oil-in-sediment amounts (by weight or by volume) are usually very low, often less than 1% unless the oil is pooled or very thick.",style=ft.TextStyle(size=text_size,font_family="Roboto",color=ft.colors.BLACK)),
+                ft.TextSpan("\n"),
+                ft.TextSpan("\n"),
+                ft.TextSpan("Light or non-sticky oils may be easily flushed out of the surface or subsurface sediments by tidal pumping.",style=ft.TextStyle(size=text_size,font_family="Roboto",color=ft.colors.BLACK)),
+                ft.TextSpan("\n"),
+                ft.TextSpan("\n"),
+                ft.TextSpan("Usually, only the surface layer of sediments is reworked by normal wave action. Oil that penetrates below the surface may not be physically reworked except during infrequent, high-energy storms or runoff events.",style=ft.TextStyle(size=text_size,font_family="Roboto",color=ft.colors.BLACK)),
+            ]
+        )
     )
     column_array.append(container)
     return column_array
 def cobble_boulder(page):
+    #ft.TextSpan("Objective", style=ft.TextStyle(weight=ft.FontWeight.BOLD, size=text_size * 1.15, font_family="Roboto",color=ft.colors.BLACK) ),
+    #ft.TextSpan("\n"),
+    #ft.TextSpan("\n"),
+    #ft.TextSpan("",style=ft.TextStyle(size=text_size,font_family="Roboto",color=ft.colors.BLACK)),
+    #ft.TextSpan("\n"),
+    #ft.TextSpan("\n"),
     window_width = global_variables.app_window.width * 0.85
     window_height = global_variables.app_window.height * 0.9
     window_padding = window_width*0.01
@@ -309,8 +433,54 @@ def cobble_boulder(page):
         width=content_window_width * 0.75,
         height=content_window_height * 0.65,
         alignment=ft.alignment.center,
-        border=ft.border.all(1, ft.colors.RED),
+        #border=ft.border.all(1, ft.colors.RED),
         content=ft.Image(pics_and_desc.substrate_row_b_pictures[2],fit=ft.ImageFit.FIT_HEIGHT)
+    )
+    column_array.append(container)
+    container = ft.Container(
+        padding=window_padding,
+        width=content_window_width * 0.75,
+        content=ft.Text(
+            spans=[
+                ft.TextSpan("Definition", style=ft.TextStyle(weight=ft.FontWeight.BOLD, size=text_size * 1.15, font_family="Roboto",color=ft.colors.BLACK) ),
+                ft.TextSpan("\n"),
+                ft.TextSpan("\n"),
+                ft.TextSpan("A beach where the clearly dominant material is cobbles and/or boulders. Cobbles are in the 64 - 256 mm range and boulders are greater than 256 mm.",style=ft.TextStyle(size=text_size,font_family="Roboto",color=ft.colors.BLACK)),
+                ft.TextSpan("\n"),
+                ft.TextSpan("\n"),
+                ft.TextSpan("The interstitial spaces are relatively open and not in-filled with finer material. Some sand may be present e.g. ≤10%. Granules (diameter 2 - 4 mm) usually are included in the pebble category.",style=ft.TextStyle(size=text_size,font_family="Roboto",color=ft.colors.BLACK)),
+                ft.TextSpan("\n"),
+                ft.TextSpan("\n"),
+                ft.TextSpan("For comparison, 4 mm is about the width of a pencil, 64 mm is approximately the size of a tennis ball, and 256 mm is a little larger than a soccer ball (225 mm) or a basketball (240 mm).",style=ft.TextStyle(size=text_size,font_family="Roboto",color=ft.colors.BLACK)),
+                ft.TextSpan("\n"),
+                ft.TextSpan("\n"),
+                ft.TextSpan("Character", style=ft.TextStyle(weight=ft.FontWeight.BOLD, size=text_size * 1.15, font_family="Roboto",color=ft.colors.BLACK) ),
+                ft.TextSpan("\n"),
+                ft.TextSpan("\n"),
+                ft.TextSpan("Cobbles/boulder beaches are very permeable and the interstitial or pore spaces between the individual cobbles or boulders are open.",style=ft.TextStyle(size=text_size,font_family="Roboto",color=ft.colors.BLACK)),
+                ft.TextSpan("\n"),
+                ft.TextSpan("\n"),
+                ft.TextSpan("Sediment supply to this type of beach is usually very slow. Sediment that is removed may be replaced only at a very slow rate (decades) or not at all.",style=ft.TextStyle(size=text_size,font_family="Roboto",color=ft.colors.BLACK)),
+                ft.TextSpan("\n"),
+                ft.TextSpan("\n"),
+                ft.TextSpan("Cobbles/boulder beaches are permeable to all but the semi-solid oils so subsurface oiling is expected.",style=ft.TextStyle(size=text_size,font_family="Roboto",color=ft.colors.BLACK)),
+                ft.TextSpan("\n"),
+                ft.TextSpan("\n"),
+                ft.TextSpan("Depth of oil penetration is a function of the oil type (viscosity) and the sediment size. The larger the particle size, the easier it is for oil to penetrate. However, retention is also relatively low so that the oil can be flushed naturally from these coarse sediments.",style=ft.TextStyle(size=text_size,font_family="Roboto",color=ft.colors.BLACK)),
+                ft.TextSpan("\n"),
+                ft.TextSpan("\n"),
+                ft.TextSpan("Oil-in-sediment amounts (by weight or by volume) are usually very low, often less than 1% unless the oil is pooled or very thick.",style=ft.TextStyle(size=text_size,font_family="Roboto",color=ft.colors.BLACK)),
+                ft.TextSpan("\n"),
+                ft.TextSpan("\n"),
+                ft.TextSpan("Oil residence time or persistence is primarily a function of the oil type, depth of penetration, retention factors, and wave-energy levels on the beach.",style=ft.TextStyle(size=text_size,font_family="Roboto",color=ft.colors.BLACK)),
+                ft.TextSpan("\n"),
+                ft.TextSpan("\n"),
+                ft.TextSpan("Light or non-sticky oils may be easily flushed out of the surface or subsurface sediments by tidal pumping.",style=ft.TextStyle(size=text_size,font_family="Roboto",color=ft.colors.BLACK)),
+                ft.TextSpan("\n"),
+                ft.TextSpan("\n"),
+                ft.TextSpan("Usually, only the surface layer of sediment is reworked by normal wave action. Oil that penetrates below the surface may not be physically reworked except during infrequent, high-energy storms or run-off events.",style=ft.TextStyle(size=text_size,font_family="Roboto",color=ft.colors.BLACK)),
+            ]
+        )
     )
     column_array.append(container)
     return column_array
@@ -327,8 +497,39 @@ def bedrock_or_solid_includes_ice(page):
         width=content_window_width * 0.75,
         height=content_window_height * 0.65,
         alignment=ft.alignment.center,
-        border=ft.border.all(1, ft.colors.RED),
+        #border=ft.border.all(1, ft.colors.RED),
         content=ft.Image(pics_and_desc.substrate_row_b_pictures[3],fit=ft.ImageFit.FIT_HEIGHT)
+    )
+    column_array.append(container)
+    container = ft.Container(
+        padding=window_padding,
+        width=content_window_width * 0.75,
+        content=ft.Text(
+            spans=[
+                ft.TextSpan("Definition", style=ft.TextStyle(weight=ft.FontWeight.BOLD, size=text_size * 1.15, font_family="Roboto",color=ft.colors.BLACK) ),
+                ft.TextSpan("\n"),
+                ft.TextSpan("\n"),
+                ft.TextSpan("Bedrock shorelines are impermeable outcrops of consolidated native rock.",style=ft.TextStyle(size=text_size,font_family="Roboto",color=ft.colors.BLACK)),
+                ft.TextSpan("\n"),
+                ft.TextSpan("\n"),
+                ft.TextSpan("Ice shorelines occur where glaciers or ice shelves reach the coast, where permafrost is exposed or where solid seasonal ice forms on the shore.",style=ft.TextStyle(size=text_size,font_family="Roboto",color=ft.colors.BLACK)),
+                ft.TextSpan("\n"),
+                ft.TextSpan("\n"),
+                ft.TextSpan("Character", style=ft.TextStyle(weight=ft.FontWeight.BOLD, size=text_size * 1.15, font_family="Roboto",color=ft.colors.BLACK) ),
+                ft.TextSpan("\n"),
+                ft.TextSpan("\n"),
+                ft.TextSpan("Resistant bedrock outcrops, such as granites, are stable whereas non-resistant bedrock types, such as sandstone or chalk, are easily abraded by wave and ice action; the surface may erode at the rates in the order of several cm/year.",style=ft.TextStyle(size=text_size,font_family="Roboto",color=ft.colors.BLACK)),
+                ft.TextSpan("\n"),
+                ft.TextSpan("\n"),
+                ft.TextSpan("A stable surface on which a zonation of plants and animals in the intertidal zone is common. Biological communities usually are more prolific in the subtidal or lower intertidal zones. On coasts where ice is common, there are few attached intertidal organisms or plants due to the reduced growing season and ice abrasion. This is particularly true on exposed bedrock shorelines with steep slopes. The biological community usually is scraped off the bedrock each year so that plants and animals only survive in cracks and crevices where they are protected from scouring. ",style=ft.TextStyle(size=text_size,font_family="Roboto",color=ft.colors.BLACK)),
+                ft.TextSpan("\n"),
+                ft.TextSpan("\n"),
+                ft.TextSpan("Bedrock is impermeable so that stranded oil remains on the surface of the outcrop.",style=ft.TextStyle(size=text_size,font_family="Roboto",color=ft.colors.BLACK)),
+                ft.TextSpan("\n"),
+                ft.TextSpan("\n"),
+                ft.TextSpan("The presence of an ice foot or a frozen ice layer prevents oil from making contact with the shoreline substrate.",style=ft.TextStyle(size=text_size,font_family="Roboto",color=ft.colors.BLACK)),
+            ]
+        )
     )
     column_array.append(container)
     return column_array
@@ -345,8 +546,52 @@ def wetland_vegetation(page):
         width=content_window_width * 0.75,
         height=content_window_height * 0.65,
         alignment=ft.alignment.center,
-        border=ft.border.all(1, ft.colors.RED),
+        #border=ft.border.all(1, ft.colors.RED),
         content=ft.Image(pics_and_desc.substrate_row_b_pictures[4],fit=ft.ImageFit.FIT_HEIGHT)
+    )
+    column_array.append(container)
+    container = ft.Container(
+        padding=window_padding,
+        width=content_window_width * 0.75,
+        content=ft.Text(
+            spans=[
+                ft.TextSpan("Definition", style=ft.TextStyle(weight=ft.FontWeight.BOLD, size=text_size * 1.15, font_family="Roboto",color=ft.colors.BLACK) ),
+                ft.TextSpan("\n"),
+                ft.TextSpan("\n"),
+                ft.TextSpan("A coastal zone that is covered at least once a month by salt or brackish water at high tide and which supports significant (>15% cover) non-vascular salt-tolerant plants (e.g. grasses, rushes, reeds, sedges).",style=ft.TextStyle(size=text_size,font_family="Roboto",color=ft.colors.BLACK)),
+                ft.TextSpan("\n"),
+                ft.TextSpan("\n"),
+                ft.TextSpan("The primary type of marine wetland is a salt marsh, and the following material focuses on this variation. Other marine wetlands include mangroves (found in tropical locations) and supratidal meadows.",style=ft.TextStyle(size=text_size,font_family="Roboto",color=ft.colors.BLACK)),
+                ft.TextSpan("\n"),
+                ft.TextSpan("\n"),
+                ft.TextSpan("Character", style=ft.TextStyle(weight=ft.FontWeight.BOLD, size=text_size * 1.15, font_family="Roboto",color=ft.colors.BLACK) ),
+                ft.TextSpan("\n"),
+                ft.TextSpan("\n"),
+                ft.TextSpan("Saltwater marshes are common in sheltered wave-energy environments, such as estuaries, lagoons, deltas, or behind barrier beaches. Marshes usually:",style=ft.TextStyle(size=text_size,font_family="Roboto",color=ft.colors.BLACK)),
+                ft.TextSpan("\n"),
+                ft.TextSpan("\n"),
+                ft.TextSpan("   •  develop above the high-tide level and are only flooded during spring high-tides or wind-driven surges",style=ft.TextStyle(size=text_size,font_family="Roboto",color=ft.colors.BLACK)),
+                ft.TextSpan("\n"),
+                ft.TextSpan("   •  support a stable surface-vegetation cover and root system, the leafy portion of which dies-back during winter months",style=ft.TextStyle(size=text_size,font_family="Roboto",color=ft.colors.BLACK)),
+                ft.TextSpan("\n"),
+                ft.TextSpan("   •  are characterized by a surface accumulation of organic matter deposited in water, although inorganic sediments dominate the substratum",style=ft.TextStyle(size=text_size,font_family="Roboto",color=ft.colors.BLACK)),
+                ft.TextSpan("\n"),
+                ft.TextSpan("\n"),
+                ft.TextSpan("Oil can impact the fringe of a wetland during neap high-tides or normal water levels, or can be deposited on higher interior meadow areas during periods of spring tides or higher water levels. Fringe oiling may be washed by subsequent tides and weathered more rapidly, depending on energy levels. Oil on the meadow area, which experiences little or no current and wave action, would weather slowly.",style=ft.TextStyle(size=text_size,font_family="Roboto",color=ft.colors.BLACK)),
+                ft.TextSpan("\n"),
+                ft.TextSpan("\n"),
+                ft.TextSpan("Most oil types readily adhere to, and are retained on the stems and leaves of vegetation; the width (i.e. height) of an oiling coating band would vary depending on the tidal stages. Oil may or may not adhere to the sediments.",style=ft.TextStyle(size=text_size,font_family="Roboto",color=ft.colors.BLACK)),
+                ft.TextSpan("\n"),
+                ft.TextSpan("\n"),
+                ft.TextSpan("Light oils can penetrate into marsh sediments or fill animal burrows and cracks.",style=ft.TextStyle(size=text_size,font_family="Roboto",color=ft.colors.BLACK)),
+                ft.TextSpan("\n"),
+                ft.TextSpan("\n"),
+                ft.TextSpan("Medium to heavy oils tend to pool on the sediments, frequently creating a tenacious tarry surface cover as they weather. Due to the low wave energy level, the oil may persist for very long periods. The fine mud substrate prevents penetration.",style=ft.TextStyle(size=text_size,font_family="Roboto",color=ft.colors.BLACK)),
+                ft.TextSpan("\n"),
+                ft.TextSpan("\n"),
+                ft.TextSpan("Natural recovery rates vary depending on the oil type, total area affected, oil thickness, plant type, growth rates, and season during which the oil occurred. Recovery may take as little as a few years following light oiling but can take decades in extreme circumstances (extensive, thick deposits of viscous oil).",style=ft.TextStyle(size=text_size,font_family="Roboto",color=ft.colors.BLACK)),
+            ]
+        )
     )
     column_array.append(container)
     return column_array
@@ -363,8 +608,36 @@ def oiled_debris(page):
         width=content_window_width * 0.75,
         height=content_window_height * 0.65,
         alignment=ft.alignment.center,
-        border=ft.border.all(1, ft.colors.RED),
+        #border=ft.border.all(1, ft.colors.RED),
         content=ft.Image(pics_and_desc.substrate_row_b_pictures[5],fit=ft.ImageFit.FIT_HEIGHT)
+    )
+    column_array.append(container)
+    container = ft.Container(
+        padding=window_padding,
+        width=content_window_width * 0.75,
+        content=ft.Text(
+            spans=[
+                ft.TextSpan("Definition", style=ft.TextStyle(weight=ft.FontWeight.BOLD, size=text_size * 1.15, font_family="Roboto",color=ft.colors.BLACK) ),
+                ft.TextSpan("\n"),
+                ft.TextSpan("\n"),
+                ft.TextSpan("Scattered organic or inorganic materials that have washed up onto the shore. These materials are not part of the normal shore zone substrate such as: sediments, attached animals (e.g. mussels or barnacles), live sea grasses or marsh plants.",style=ft.TextStyle(size=text_size,font_family="Roboto",color=ft.colors.BLACK)),
+                ft.TextSpan("\n"),
+                ft.TextSpan("\n"),
+                ft.TextSpan("Character", style=ft.TextStyle(weight=ft.FontWeight.BOLD, size=text_size * 1.15, font_family="Roboto",color=ft.colors.BLACK) ),
+                ft.TextSpan("\n"),
+                ft.TextSpan("\n"),
+                ft.TextSpan("Organic debris can range in size and character from small twigs or leaf material to shells, seaweed mats, branches, and logs.",style=ft.TextStyle(size=text_size,font_family="Roboto",color=ft.colors.BLACK)),
+                ft.TextSpan("\n"),
+                ft.TextSpan("\n"),
+                ft.TextSpan("Debris can include inorganic or synthetic materials, such as plastic bottles, cans, metal, rubber, styrofoam, or trash.",style=ft.TextStyle(size=text_size,font_family="Roboto",color=ft.colors.BLACK)),
+                ft.TextSpan("\n"),
+                ft.TextSpan("\n"),
+                ft.TextSpan("Debris is typically deposited in the same zone (upper intertidal) where floating oil strands on shorelines so that mixing of oil and debris is likely.",style=ft.TextStyle(size=text_size,font_family="Roboto",color=ft.colors.BLACK)),
+                ft.TextSpan("\n"),
+                ft.TextSpan("\n"),
+                ft.TextSpan("Large accumulations of shells or logs can dominate the shore zone character and in effect become the substrate type. In these cases the behavior of stranded oil is similar to the size range of the naturally occurring equivalent material.",style=ft.TextStyle(size=text_size,font_family="Roboto",color=ft.colors.BLACK)),
+            ]
+        )
     )
     column_array.append(container)
     return column_array
@@ -381,8 +654,63 @@ def snow(page):
         width=content_window_width * 0.75,
         height=content_window_height * 0.65,
         alignment=ft.alignment.center,
-        border=ft.border.all(1, ft.colors.RED),
+        #border=ft.border.all(1, ft.colors.RED),
         content=ft.Image(pics_and_desc.substrate_row_b_pictures[6],fit=ft.ImageFit.FIT_HEIGHT)
+    )
+    column_array.append(container)
+    container = ft.Container(
+        padding=window_padding,
+        width=content_window_width * 0.75,
+        content=ft.Text(
+            spans=[
+                ft.TextSpan("Definition", style=ft.TextStyle(weight=ft.FontWeight.BOLD, size=text_size * 1.15, font_family="Roboto",color=ft.colors.BLACK) ),
+                ft.TextSpan("\n"),
+                ft.TextSpan("\n"),
+                ft.TextSpan(" A shoreline composed of seasonal snow that covers the underlying substrate.",style=ft.TextStyle(size=text_size,font_family="Roboto",color=ft.colors.BLACK)),
+                ft.TextSpan("\n"),
+                ft.TextSpan("\n"),
+                ft.TextSpan("Character", style=ft.TextStyle(weight=ft.FontWeight.BOLD, size=text_size * 1.15, font_family="Roboto",color=ft.colors.BLACK) ),
+                ft.TextSpan("\n"),
+                ft.TextSpan("\n"),
+                ft.TextSpan("The character of the snow surface can be highly variable, ranging from:",style=ft.TextStyle(size=text_size,font_family="Roboto",color=ft.colors.BLACK)),
+                ft.TextSpan("\n"),
+                ft.TextSpan("   •  Fresh powder with a soft surface or drifting snow",style=ft.TextStyle(size=text_size,font_family="Roboto",color=ft.colors.BLACK)),
+                ft.TextSpan("\n"),
+                ft.TextSpan("   •  A loose granular surface that results after powder or packed powder thaws, then refreezes and recrystallizes, or from an accumulation of sleet",style=ft.TextStyle(size=text_size,font_family="Roboto",color=ft.colors.BLACK)),
+                ft.TextSpan("\n"),
+                ft.TextSpan("   •  A hard dry crusty surface",style=ft.TextStyle(size=text_size,font_family="Roboto",color=ft.colors.BLACK)),
+                ft.TextSpan("\n"),
+                ft.TextSpan("   •  Wet slush",style=ft.TextStyle(size=text_size,font_family="Roboto",color=ft.colors.BLACK)),
+                ft.TextSpan("\n"),
+                ft.TextSpan("\n"),
+                ft.TextSpan("Snow can accumulate with a simple vertical variation in density and porosity. Typically, this steady accumulation is interrupted by the effects of freeze-thaw cycles and wind. As air temperatures oscillate around the freezing point, ice layers are generated as snow melts during daylight warm-temperatures and freezes at night when temperatures drop below zero. If this freeze-thaw cycle is accompanied by precipitation, a range of features can form that may include alternate layers of snow and ice.",style=ft.TextStyle(size=text_size,font_family="Roboto",color=ft.colors.BLACK)),
+                ft.TextSpan("\n"),
+                ft.TextSpan("\n"),
+                ft.TextSpan("Snow accumulates on another substrate so that, in practice, response planning considers both the snow layer and the underlying substrate of the shoreline.",style=ft.TextStyle(size=text_size,font_family="Roboto",color=ft.colors.BLACK)),
+                ft.TextSpan("\n"),
+                ft.TextSpan("\n"),
+                ft.TextSpan("The behavior of oil on a snow-covered shore depends on:",style=ft.TextStyle(size=text_size,font_family="Roboto",color=ft.colors.BLACK)),
+                ft.TextSpan("\n"),
+                ft.TextSpan("   •  the type of snow (fresh, compacted, or contains ice layers)",style=ft.TextStyle(size=text_size,font_family="Roboto",color=ft.colors.BLACK)),
+                ft.TextSpan("\n"),
+                ft.TextSpan("   •  the air temperatures",style=ft.TextStyle(size=text_size,font_family="Roboto",color=ft.colors.BLACK)),
+                ft.TextSpan("\n"),
+                ft.TextSpan("   •  the surface character of the shore (flat or sloping)",style=ft.TextStyle(size=text_size,font_family="Roboto",color=ft.colors.BLACK)),
+                ft.TextSpan("\n"),
+                ft.TextSpan("\n"),
+                ft.TextSpan("Snow falling onto oil tends to accumulate on the oil surface.",style=ft.TextStyle(size=text_size,font_family="Roboto",color=ft.colors.BLACK)),
+                ft.TextSpan("\n"),
+                ft.TextSpan("\n"),
+                ft.TextSpan("Snow is a good, natural oil sorbent. The oil content may be very low (< 1%) in the case of light oils or if the oil has spread over a wide area.",style=ft.TextStyle(size=text_size,font_family="Roboto",color=ft.colors.BLACK)),
+                ft.TextSpan("\n"),
+                ft.TextSpan("\n"),
+                ft.TextSpan("Oil-snow proportions depend on the oil type and the snow character; the oil content being highest for medium oil rather than for light products.",style=ft.TextStyle(size=text_size,font_family="Roboto",color=ft.colors.BLACK)),
+                ft.TextSpan("\n"),
+                ft.TextSpan("\n"),
+                ft.TextSpan("Oil content is lowest on firm compacted snow surfaces in below-freezing temperatures and highest for fresh snow conditions.",style=ft.TextStyle(size=text_size,font_family="Roboto",color=ft.colors.BLACK)),
+                
+            ]
+        )
     )
     column_array.append(container)
     return column_array
