@@ -4,6 +4,8 @@ import time
 import view_summary
 import pics_and_desc
 import surface_oil_category
+import webbrowser
+playing_video = True
 click_timer = time.time()
 is_running = False
 previous_selection = 4
@@ -718,34 +720,342 @@ def snow(page):
     return column_array
 substrate_functions_list = [sand_mixed_sediment,coarse_sediment_beach,cobble_boulder,bedrock_or_solid_includes_ice,wetland_vegetation,oiled_debris,snow]
 ###################################
-######## ACTUAL SCALE GRAPH #########
+######## ABOUT US #########
 ###################################
-
-
-
-def actual_scale_graph(page):
+def about_us(page):
+ #ft.TextSpan("",style=ft.TextStyle(size=text_size,font_family="Roboto",color=ft.colors.BLACK))
+    #ft.TextSpan("\n"),
+    #ft.TextSpan("Objective", style=ft.TextStyle(weight=ft.FontWeight.BOLD, size=text_size * 1.15, font_family="Roboto",color=ft.colors.BLACK) ),
+    #ft.TextSpan("   •  low-pressure or high pressure cold (ambient) or warm temperature washing",style=ft.TextStyle(size=text_size,font_family="Roboto",color=ft.colors.BLACK)),
+    content_window_height = global_variables.app_window.height * 0.6
+    content_window_width = global_variables.app_window.width * .8
+    window_padding = content_window_width*0.005
+    endpoint_bgcolor = "#E1E1E1"
+    text_size = content_window_height * 0.07
     def close_dialog(e):
         page.dialog.open = False
         page.update()
 
     dialog = ft.AlertDialog(
         modal=False,
-        title=ft.Row(
-            controls=[
-                ft.Text("Actual Graph Size"),
-                ft.IconButton(ft.icons.CLOSE, on_click=close_dialog)
-            ],
-            alignment=ft.MainAxisAlignment.SPACE_BETWEEN,
-        ),
         content=ft.Container(
-            height=global_variables.app_window.height * 0.9,
-            width=global_variables.app_window.width * 0.9
+            height=content_window_height,
+            width=content_window_width,
+            bgcolor="white",
+            padding=window_padding,
+            border_radius=ft.border_radius.all(15),
+            content=ft.Column(
+                spacing=0,
+                controls=[
+                    ft.Container(
+                        padding=0,
+                        height=(content_window_height - (window_padding * 2))* 0.7,
+                        width=(content_window_width - (window_padding * 2)),
+                       
+                        #border=ft.border.all(1,ft.colors.RED),
+                        content=ft.Image(src=r"images\startup_vid\about_pic.png"),
+                        
+                    ),
+                    ft.Container(
+                        padding=0,
+                        height=(content_window_height - (window_padding * 2))* 0.3,
+                        width=(content_window_width - (window_padding * 2)),
+                       
+                        border=ft.border.all(1,ft.colors.RED),
+                        content=ft.Row(
+                            spacing=0,
+                            controls=[
+                                ft.Container(
+                                    padding=0,
+                                    height=(content_window_height - (window_padding * 2))* 0.3,
+                                    width=(content_window_width - window_padding * 2) / 5,
+                                    content=ft.Image(src=r"images\startup_vid\arctic_council.png"),
+                                    on_click= lambda e: webbrowser.open("https://arctic-council.org/")
+                                ),
+                                ft.Container(
+                                    padding=0,
+                                    height=(content_window_height - (window_padding * 2))* 0.3,
+                                    width=(content_window_width - window_padding * 2) / 5,
+                                    content=ft.Image(src=r"images\startup_vid\join_secretary.png"),
+                                    on_click=lambda e: webbrowser.open("https://www.jointsecretariat.ca/")
+                                    
+                                ),
+                                ft.Container(
+                                    padding=0,
+                                    height=(content_window_height - (window_padding * 2))* 0.3,
+                                    width=(content_window_width - window_padding * 2) / 5,
+                                    content=ft.Image(src=r"images\startup_vid\polaris.png"),
+                                    on_click=lambda e: webbrowser.open("https://www.polarisappliedsciences.com/cms/")
+                                ),
+                                ft.Container(
+                                    padding=0,
+                                    height=(content_window_height - (window_padding * 2))* 0.3,
+                                    width=(content_window_width - window_padding * 2) / 5,
+                                    content=ft.Image(src=r"images\startup_vid\oil_spill_training_company.png")
+                                ),
+                                ft.Container(
+                                    padding=0,
+                                    height=((content_window_height - (window_padding * 2))* 0.3) * 0.3,
+                                    width=(content_window_width - window_padding * 2) / 5,
+                                    #content=None
+                                    on_click=lambda e: close_dialog(e),
+                                    border=ft.border.all(1,ft.colors.RED),
+                                    bgcolor=ft.colors.ORANGE,
+                                    content=ft.Text("Close",color=ft.colors.BLACK,font_family="Roboto",size=calc_button_text_size(((content_window_width - window_padding * 2) / 5) * 1.5,(((content_window_height - (window_padding * 2))* 0.3) * 0.3)),weight=ft.FontWeight.BOLD),
+                                    alignment=ft.alignment.center,
+                                    on_hover=lambda e: start_hover(e),
+                                    border_radius=ft.border_radius.all(15)
+                                    
+                                    
+                                )
+                            ]
+                        )
+                        
+                    ),
+                ]
+            )
+
         ),
-        actions=[
-            ft.TextButton("Close", on_click=close_dialog),
-        ],
-        actions_alignment=ft.MainAxisAlignment.END,
-        on_dismiss=close_dialog
+        on_dismiss=close_dialog,
+        content_padding=0,
+        bgcolor=ft.colors.TRANSPARENT
+        
+    )
+
+    page.dialog = dialog
+    dialog.open = True
+    page.update()
+
+
+
+
+
+
+
+
+
+###################################
+######## intro video #########
+###################################
+def replay_button_hover(e):
+    if e.data == "true":
+        e.control.bgcolor = ft.colors.ORANGE
+    else:
+        e.control.bgcolor = ft.colors.TRANSPARENT
+
+    e.control.update()
+
+def on_replay_click(page,video_container):
+    def handle_click(e):
+        if playing_video:
+            video_container.content.stop()
+            video_container.content.play()
+        else:
+            video_container.content.play
+    return handle_click
+def start_hover(e):
+    if e.data == "true":
+        e.control.bgcolor = ft.colors.BLUE
+    else:
+        e.control.bgcolor = ft.colors.ORANGE
+
+    e.control.update()
+    
+def calc_text_size(page_width,page_height):
+    base_multiplier = 0.045
+    return min(page_height,page_width) * base_multiplier
+
+def calc_button_text_size(page_width,page_height):
+    return (page_width / page_height) * 2.5
+def view_pdf_hover_button(e):
+    if e.data == "true":
+        e.control.bgcolor = "#1E3A8A"
+    else:
+        e.control.bgcolor = ft.colors.LIGHT_BLUE
+
+    e.control.update() 
+def intro_window(page):
+    #ft.TextSpan("",style=ft.TextStyle(size=text_size,font_family="Roboto",color=ft.colors.BLACK))
+    #ft.TextSpan("\n"),
+    #ft.TextSpan("Objective", style=ft.TextStyle(weight=ft.FontWeight.BOLD, size=text_size * 1.15, font_family="Roboto",color=ft.colors.BLACK) ),
+    #ft.TextSpan("   •  low-pressure or high pressure cold (ambient) or warm temperature washing",style=ft.TextStyle(size=text_size,font_family="Roboto",color=ft.colors.BLACK)),
+    content_window_height = global_variables.app_window.height * 0.9
+    content_window_width = global_variables.app_window.width * 0.9
+    window_padding = content_window_width*0.005
+    endpoint_bgcolor = "#E1E1E1"
+    text_size = content_window_height * 0.04 * 0.7
+    video_container = ft.Container(#where video will be
+                            padding=0,
+                            width=content_window_width * 0.65 - (window_padding * 2),
+                            height=content_window_height * 0.7 * .95,
+                            #border=ft.border.all(1,ft.colors.RED),
+                            alignment=ft.alignment.center_right,
+                            content = ft.Video(playlist=ft.VideoMedia(r"images\startup_vid\startup_vid.mp4"),autoplay=True,muted=True,fit=ft.ImageFit.FIT_HEIGHT,fill_color=ft.colors.TRANSPARENT,visible=True,show_controls=False)
+
+
+
+                        )
+    def close_dialog(e):
+        page.dialog.open = False
+        page.update()
+
+    dialog = ft.AlertDialog(
+        modal=False,
+        content=ft.Container(
+            height=content_window_height,
+            width=content_window_width,
+            bgcolor=ft.colors.WHITE,
+            padding=window_padding,
+            border=ft.border.all(1,ft.colors.WHITE),
+            content=ft.Column(
+                
+                spacing=0,
+                controls=[
+                    ft.Container(#space container
+                        padding=0,
+                        height=content_window_height * 0.20 * .5 * .8 * 0.8 * .5,
+                        width=content_window_width,
+                        #border=ft.border.all(1,ft.colors.RED),
+                        
+                    ),
+                    ft.Container(#video + text row
+                        padding=0,
+                        height=content_window_height * 0.7,
+                        width=content_window_width,
+                        #border=ft.border.all(1,ft.colors.RED),
+                        content=ft.Row(
+                            spacing=0,
+                            scroll=ft.ScrollMode.AUTO,
+                            controls=[
+                                ft.Container(
+                                    padding=ft.padding.only(left=window_padding),
+                                    width=content_window_width * 0.65 - (window_padding * 2),
+                                    height=content_window_height * 0.7,
+                                    #border=ft.border.all(1,ft.colors.RED),
+                                    content=ft.Column(
+                                        spacing=0,
+                                        controls=[
+                                            ft.Container(#replay button
+                                                padding=0,
+                                                width=content_window_width * 0.65 - (window_padding * 2),
+                                                height=content_window_height * 0.7 * .05,
+                                                #border=ft.border.all(1,ft.colors.RED),
+                                                alignment=ft.alignment.center,
+                                                content=ft.Container(
+                                                    padding=ft.padding.only(right=window_padding * 2,left=window_padding * 2),
+                                                    content=ft.Text("Replay Video",color=ft.colors.BLACK,font_family="roboto",size=content_window_height * 0.7 * .05*.7,weight=ft.FontWeight.BOLD),
+                                                    bgcolor=ft.colors.TRANSPARENT,
+                                                    border_radius=ft.border_radius.all(15),
+                                                    on_hover= lambda e: replay_button_hover(e),
+                                                    on_click=on_replay_click(page,video_container)
+
+                                                )
+
+
+                                            ),
+                                            video_container
+                                            
+
+                                        ]
+                                    )
+                                ),
+                                ft.Container(
+                                    padding=0,
+                                    width=content_window_width * 0.35 - (window_padding),
+                                    height=content_window_height * 0.7,
+                                    content=ft.Text(
+                                        spans=[
+                                            ft.TextSpan("The ",style=ft.TextStyle(color=ft.colors.BLACK,size=calc_text_size((content_window_width * 0.35 - (window_padding)),(content_window_height * 0.7)),font_family="roboto",)),
+                                            ft.TextSpan("Waste Management Calculator",style=ft.TextStyle(color=ft.colors.BLACK,font_family="roboto",weight=ft.FontWeight.BOLD,size=calc_text_size((content_window_width * 0.35 - (window_padding)),(content_window_height * 0.7)))),
+                                            ft.TextSpan(" is an interactive, graphic-oriented computer tool for use by non-technical (or technical) managers, decision makers, and planners. This tool can be used to evaluate response options in light of the types and approximate volumes of wastes that potentially would be generated by different response techniques and using different treatment endpoint standards. The tool was developed jointly between Polaris Applied Sciences, Inc. and The Oil Spill Training Company Ltd for the Emergency Prevention, Preparedness and Response (EPPR) Working Group of the Arctic Council under the direction of the Joint Secretariat (Inuvialuit Settlement Region) with support from the Governments of Canada, Norway and the United States.",style=ft.TextStyle(color=ft.colors.BLACK,font_family="roboto",size=calc_text_size((content_window_width * 0.35 - (window_padding)),(content_window_height * 0.7)))),
+                                        ]
+                                    ),
+                                    #expand=True
+                                    
+                                )
+                            ]
+                        )
+                        
+                    ),
+                    ft.Container(
+                        height=content_window_height * 0.25,
+                        width=(content_window_width - (window_padding)),
+                        padding=0,
+                        #border=ft.border.all(1,ft.colors.RED),
+                        content=ft.Row(
+                            spacing=0,
+                            controls=[
+                                ft.Container(
+                                    #border=ft.border.all(1,ft.colors.RED),
+                                    height=content_window_height * 0.25,
+                                    width=content_window_width * 0.22,
+                                    content=ft.Image(src=r"images\startup_vid\arctic_council.png",fit=ft.ImageFit.CONTAIN),
+                                    on_click=lambda e: webbrowser.open("https://arctic-council.org/")
+                                ),
+                                ft.Container(
+                                    height=content_window_height * 0.25,
+                                    #border=ft.border.all(1,ft.colors.RED),
+                                    width=content_window_width * 0.22,
+                                    content=ft.Image(src=r"images\startup_vid\join_secretary.png",fit=ft.ImageFit.CONTAIN),
+                                    on_click=lambda e: webbrowser.open("https://www.jointsecretariat.ca/")
+                                    
+                                ),
+                                ft.Container(
+                                    height=content_window_height * 0.25,
+                                    #border=ft.border.all(1,ft.colors.RED),
+                                    width=content_window_width * 0.12,
+                                    content=ft.Image(src=r"images\startup_vid\polaris.png",fit=ft.ImageFit.CONTAIN),
+                                    on_click = lambda e: webbrowser.open("https://www.polarisappliedsciences.com/cms/")
+                                ),
+                                ft.Container(
+                                    height=content_window_height * 0.25,
+                                    #border=ft.border.all(1,ft.colors.RED),
+                                    width=content_window_width * 0.15,
+                                    content=ft.Image(src=r"images\startup_vid\oil_spill_training_company.png",fit=ft.ImageFit.CONTAIN)
+                                ),
+                                ft.Container(
+                                    padding=ft.padding.only(top=window_padding * 4),
+                                    height=content_window_height * 0.25,
+                                    #border=ft.border.all(1,ft.colors.RED),
+                                    width=content_window_width * 0.27,
+                                    content=ft.Column(
+                                        spacing=ft.MainAxisAlignment.SPACE_AROUND,
+                                        controls=[
+                                            ft.Container(
+                                                padding=0,
+                                                alignment=ft.alignment.center,
+                                                width=content_window_width * 0.27,
+                                                #border=ft.border.all(2,ft.colors.ORANGE),
+                                                height=content_window_height * 0.06,
+                                                bgcolor=ft.colors.ORANGE,
+                                                content=ft.Text("Start >>",size=content_window_height * 0.06 * 0.7,font_family="Roboto",color=ft.colors.BLACK),
+                                                on_hover=lambda e: start_hover(e),
+                                                on_click= lambda e:close_dialog(e)
+                                            ),
+                                            ft.Container(
+                                                padding=0,
+                                                alignment=ft.alignment.center,
+                                                width=(content_window_width * 0.27),
+                                                #border=ft.border.all(1,ft.colors.RED),
+                                                height=(content_window_height * 0.07),
+                                                on_click= lambda e: webbrowser.open(r"images\startup_vid\wmc user guide.pdf"),
+                                                content=ft.Text("View the User's Guide (.pdf)",color=ft.colors.BLACK,size=calc_button_text_size((content_window_width * 0.27),(content_window_height * 0.07)),font_family="Roboto"),
+                                                bgcolor=ft.colors.LIGHT_BLUE,
+                                                on_hover= lambda e: view_pdf_hover_button(e)
+                                            ),
+                                        ]
+                                    )
+                                ),
+                            ]
+                        )
+                    )
+                    
+                ]
+            )
+        ),
+        on_dismiss=close_dialog,
+        content_padding=0,
+        bgcolor=ft.colors.WHITE
         
     )
 

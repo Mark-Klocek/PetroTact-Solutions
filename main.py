@@ -308,7 +308,7 @@ def main(page:ft.Page):
             
     page.on_resized = resize    
     resize(None)        
-    info_buttons.actual_scale_graph(page)
+    info_buttons.intro_window(page)
     page.update()
     #print(tactics)    
     page.bgcolor="#69707E"

@@ -5,6 +5,7 @@ import surface_oil_category
 import global_variables
 import view_summary
 import info_buttons
+import webbrowser
 
 class functions:
 
@@ -171,7 +172,8 @@ class functions:
                                 on_hover=functions.on_container_hover_color_change,
                                 bgcolor="#1D2024",
                                 border=ft.border.only(bottom=ft.BorderSide(1,ft.colors.WHITE)),
-                                expand=True
+                                expand=True,
+                                on_click= lambda e: info_buttons.intro_window(page)
                                 
                             ),
                             ft.Container(
@@ -253,6 +255,7 @@ class functions:
                                 bgcolor="#1D2024",
                                 expand=True,
                                 border=ft.border.only(bottom=ft.BorderSide(1,ft.colors.WHITE)),
+                                on_click= lambda e : webbrowser.open("images\startup_vid\wmc user guide.pdf")
                                 
                             ),
                             ft.Container(
@@ -262,6 +265,7 @@ class functions:
                                 on_hover=functions.on_container_hover_color_change,
                                 bgcolor="#1D2024",
                                 expand=True,
+                                on_click= lambda e: info_buttons.about_us(page)
                                 
                             ),
                                 
