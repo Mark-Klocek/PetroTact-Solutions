@@ -12,6 +12,7 @@ previous_selection = 4
 ###################################
 
 def substrate_info(page):
+    print("substrate_info called")
     window_width = global_variables.app_window.width * 0.85
     window_height = global_variables.app_window.height * 0.9
     window_padding = window_width*0.01
@@ -150,6 +151,7 @@ def substrate_info(page):
 
     page.dialog = dialog
     dialog.open = True
+    print("dialog opened")
     page.update()
 
 def create_substrate_name_column(page,substrate_info_container):

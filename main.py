@@ -4,7 +4,7 @@ import substrate_container
 import global_variables
 import pics_and_desc
 import view_summary
-
+import info_buttons
 
 def main(page:ft.Page):
     page.padding=0
@@ -39,7 +39,7 @@ def main(page:ft.Page):
                 controls=[
                     global_variables.app_window,
                     logo_container,
-                    file_view_help
+                    file_view_help,
                     
                 ]
             ),
@@ -54,6 +54,7 @@ def main(page:ft.Page):
     #page.window.max_width = 1280 
     #page.window.max_height = 720 
 
+    
     def resize(e):
         global_variables.app_window.height = page.height * .99
         global_variables.app_window.width = page.width
@@ -297,18 +298,23 @@ def main(page:ft.Page):
     
 
              
-         
-             
+    
+
+    
+    
         
            
             
             
-                
-    
+    page.on_resized = resize    
+    resize(None)        
+    info_buttons.actual_scale_graph(page)
+    page.update()
     #print(tactics)    
     page.bgcolor="#69707E"
-    page.on_resized = resize
-    resize(None)
+    
+    
+    
    
     
     
