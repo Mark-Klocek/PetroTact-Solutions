@@ -202,12 +202,14 @@ def create_surface_oil_column_d(page):
                                         
                                 ft.Container(
                                         content= ft.Dropdown(
-                                                        options=[ft.dropdown.Option("Kilometres"),
+                                                        options=[
+                                                                ft.dropdown.Option("Kilometres"),
                                                                 ft.dropdown.Option("Metres"),
                                                                 ft.dropdown.Option("Nautical Miles"),
                                                                 ft.dropdown.Option("Miles"),
                                                                 ft.dropdown.Option("Yards"),
-                                                                ft.dropdown.Option("Feet")],
+                                                                ft.dropdown.Option("Feet")
+                                                        ],
                                                         border_radius=ft.border_radius.all(0),
                                                         fill_color=ft.colors.WHITE,
                                                         content_padding=ft.padding.symmetric(horizontal=10),

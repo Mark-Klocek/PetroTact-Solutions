@@ -24,7 +24,6 @@ def main(page:ft.Page):
     results_container=view_summary.create_results_container(page)
     logo_container = functions.create_logo_container(page)
     file_view_help = functions.create_file_view_help(page)
-    preloaded_videos = functions.preload_videos(page)
     global_variables.app_window = ft.Container(
                     content=ft.Row(
                         controls=[input_container,results_container],
@@ -66,14 +65,15 @@ def main(page:ft.Page):
         ###### LOGO CONTAINER #####
         #############################
         logo_container = page.controls[0].content.controls[1] 
-        logo_container.width = page.width * 0.35
+        logo_container.width = page.width * 0.1
         logo_container.height = page.height * 0.15
         ##################################
         ##### FILE/VIEW/HELP CONTAINER ######
         ##################################
-        file_view_help_container = page.controls[0].content.controls[2]
-        file_view_help_container.width = page.width * 0.3
-        file_view_help_container.height = page.height * .03
+        '''file_view_help_container = page.controls[0].content.controls[2]
+        #file_view_help_container.width = page.width * 0.15
+        file_view_help_container.height = page.height * .03'''
+        page.controls[0].content.controls[2] = functions.create_file_view_help(page)
         #######################################################################################
         ############################### INPUT CONTAINER #######################################
         #######################################################################################

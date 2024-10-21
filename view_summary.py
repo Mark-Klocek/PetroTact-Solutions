@@ -48,7 +48,7 @@ def on_tab_click(page):
             header_container.content.controls[0].content.controls[0].border = ft.Border(bottom=ft.BorderSide(2, ft.colors.TRANSPARENT))
             
             header_container.content.controls[0].content.controls[1].bgcolor = "#D2E0E8"
-            header_container.content.controls[0].content.controls[1].on_click = False
+            header_container.content.controls[0].content.controls[1].on_click = None
             header_container.content.controls[0].content.controls[1].border= ft.Border(bottom=ft.BorderSide(2, color="#D2E0E8"))
             results_container.content.controls[1] = create_summary_container(page)
             global_variables.results_tab_selected = False
@@ -60,7 +60,7 @@ def on_tab_click(page):
             header_container.content.controls[0].content.controls[1].border = ft.Border(bottom=ft.BorderSide(2, ft.colors.TRANSPARENT))
 
             header_container.content.controls[0].content.controls[0].bgcolor = "#D2E0E8"
-            header_container.content.controls[0].content.controls[0].on_click = False
+            header_container.content.controls[0].content.controls[0].on_click = None
             header_container.content.controls[0].content.controls[0].border= ft.Border(bottom=ft.BorderSide(2, color="#D2E0E8"))
 
             

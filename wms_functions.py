@@ -4,6 +4,7 @@ import oil_type_container
 import surface_oil_category
 import global_variables
 import view_summary
+import info_buttons
 
 class functions:
 
@@ -47,9 +48,9 @@ class functions:
 #############################
     def create_logo_container(page):
         container = ft.Container(
-            content=ft.Text("LOGO HERE", color="WHITE",font_family="Roboto",size=24),
+            content=ft.Text("LOGO HERE", color="WHITE",font_family="Roboto",size=24,text_align=ft.TextAlign.CENTER),
             height= page.height * 0.15,
-            width= page.width * 0.35,
+            width= page.width * 0.1,
             padding=0,
             top=0,
             right=0,
@@ -62,19 +63,253 @@ class functions:
 ##################################
 ##### FILE/VIEW/HELP CONTAINER ######
 ##################################
+    def menu_click(e):
+        print(e.content)
+    def handle_submenu_hover(e):
+        print(e.control.content.controls)
     def create_file_view_help(page):
         container = ft.Container(
-            content=ft.Text("File/View/Help bar",color="Black",size=15,font_family="Roboto"),
-            height=page.height * .025,
-            width=page.width * 0.3,
             padding=0,
-            top=0,
-            left=0,
-            bgcolor=ft.colors.WHITE,
-            alignment=ft.alignment.center
-        )
-        return container
+            on_hover=functions.handle_submenu_hover,
+            height=page.height * .03,
+            width=page.width * 0.3,
+            #border=ft.border.all(1,ft.colors.RED),
+            alignment=ft.alignment.center_left,
+            content=ft.MenuBar(
+                #expand=True,
+                style=ft.MenuStyle(
+                    alignment=ft.alignment.center,
+                    bgcolor="#1D2024",
+                    mouse_cursor={
+                        ft.ControlState.HOVERED: ft.MouseCursor.WAIT,
+                        ft.ControlState.DEFAULT: ft.MouseCursor.ZOOM_OUT,
+                        
+                        
+                    },
+                    padding=0,
+                    
+                ),
+                controls=[
+                    ft.SubmenuButton(
+                        content=ft.Text("File",size=page.height * .03 * 0.6,font_family="roboto",color="White"),
+                        #on_open=handle_submenu_open,
+                        #on_close=handle_submenu_close,
+                        #on_hover=functions.handle_submenu_hover,
+                        controls=[
+                            ft.Container(
+                               padding=ft.padding.only(left=page.width * .01,right=page.width * 0.01),
+                               alignment=ft.alignment.center_left,
+                               content=ft.Text("Print",size=page.height * .03 * 0.6,font_family="roboto",color="White"),
+                               on_hover=functions.on_container_hover_color_change,
+                               expand=True,
+                               bgcolor="#1D2024",
+                               border=ft.border.only(bottom=ft.BorderSide(1,ft.colors.WHITE))
+                               
 
+                            ),
+                            ft.Container(
+                                padding=ft.padding.only(left=page.width * .01,right=page.width * 0.01),
+                                alignment=ft.alignment.center_left,
+                                content=ft.Text("Exit",size=page.height * .03 * 0.6,font_family="roboto",color="White"),
+                                on_hover=functions.on_container_hover_color_change,
+                                expand=True,
+                                bgcolor="#1D2024",
+                                on_click=lambda e: page.window_close()
+                            ),
+                           
+                        ],
+                        style=ft.MenuStyle(
+                            bgcolor="#1D2024",
+                            
+                            
+                            
+                        )
+                    ),
+                    ft.SubmenuButton(
+                        content=ft.Text("View",size=page.height * .03 * 0.6,font_family="roboto",color="White"),
+                        #on_open=handle_submenu_open,
+                        #on_close=handle_submenu_close,
+                        #on_hover=functions.handle_submenu_hover,
+                        controls=[
+                           ft.Container(
+                                padding=ft.padding.only(left=page.width * .01,right=page.width * 0.01),
+                                alignment=ft.alignment.center,
+                                content=ft.Text("View Results",size=page.height * .03 * 0.6,font_family="roboto",color="White"),
+                                on_hover=functions.on_container_hover_color_change,
+                                #height=page.height * .03,
+                                #width=page.width * 0.1,
+                                bgcolor="#1D2024",
+                                border=ft.border.only(bottom=ft.BorderSide(1,ft.colors.WHITE)),
+                                on_click=functions.go_to_results(page),
+                                expand=True
+                                
+                            ),
+                            ft.Container(
+                                padding=ft.padding.only(left=page.width * .01,right=page.width * 0.01),
+                                #padding=0,                          
+                                alignment=ft.alignment.center,
+                                content=ft.Text("View Summary",size=page.height * .03 * 0.6,font_family="roboto",color="White"),
+                                on_hover=functions.on_container_hover_color_change,
+                                #height=page.height * .03,
+                                #width=page.width * 0.1,
+                                bgcolor="#1D2024",
+                                on_click=functions.go_to_summary(page),
+                                expand=True
+                            ),  
+                        ],
+                    ),
+                    ft.SubmenuButton(
+                        content=ft.Text("Help",size=page.height * .03 * 0.6,font_family="roboto",color="White"),
+                        #on_open=handle_submenu_open,
+                        #on_close=handle_submenu_close,
+                        #on_hover=functions.handle_submenu_hover,
+                        controls=[
+                           ft.Container(
+                                padding=ft.padding.only(left=page.width * .01,right=page.width * 0.01),
+                                alignment=ft.alignment.center,
+                                content=ft.Text("Intro",size=page.height * .03 * 0.6,font_family="roboto",color="White"),
+                                on_hover=functions.on_container_hover_color_change,
+                                bgcolor="#1D2024",
+                                border=ft.border.only(bottom=ft.BorderSide(1,ft.colors.WHITE)),
+                                expand=True
+                                
+                            ),
+                            ft.Container(
+                                padding=ft.padding.only(left=page.width * .01,right=page.width * 0.01),
+                                alignment=ft.alignment.center,
+                                content=ft.Text("Substrate",size=page.height * .03 * 0.6,font_family="roboto",color="White"),
+                                on_hover=functions.on_container_hover_color_change,
+                                bgcolor="#1D2024",
+                                expand=True,
+                                on_click=lambda e:info_buttons.substrate_info(page)
+                                
+                            ),
+                             ft.Container(
+                                padding=ft.padding.only(left=page.width * .01,right=page.width * 0.01),
+                                alignment=ft.alignment.center,
+                                content=ft.Text("Oil Type",size=page.height * .03 * 0.6,font_family="roboto",color="White"),
+                                on_hover=functions.on_container_hover_color_change,
+                                bgcolor="#1D2024",
+                                expand=True,
+                                on_click=lambda e:info_buttons.oil_type_info(page)
+                                
+                            ),
+                             ft.Container(
+                                padding=ft.padding.only(left=page.width * .01,right=page.width * 0.01),
+                                alignment=ft.alignment.center,
+                                content=ft.Text("Surface Oil Category",size=page.height * .03 * 0.6,font_family="roboto",color="White"),
+                                on_hover=functions.on_container_hover_color_change,
+                                bgcolor="#1D2024",
+                                expand=True,
+                                on_click=lambda e:info_buttons.surface_oil_category_info(page)
+                                
+                            ),
+                             ft.Container(
+                                padding=ft.padding.only(left=page.width * .01,right=page.width * 0.01),
+                                alignment=ft.alignment.center,
+                                content=ft.Text("Treatment Tactics",size=page.height * .03 * 0.6,font_family="roboto",color="White"),
+                                on_hover=functions.on_container_hover_color_change,
+                                bgcolor="#1D2024",
+                                expand=True,
+                                on_click=lambda e:info_buttons.treatment_tactic(page)
+                                
+                            ),
+                             ft.Container(
+                                padding=ft.padding.only(left=page.width * .01,right=page.width * 0.01),
+                                alignment=ft.alignment.center,
+                                content=ft.Text("Endpoints",size=page.height * .03 * 0.6,font_family="roboto",color="White"),
+                                on_hover=functions.on_container_hover_color_change,
+                                bgcolor="#1D2024",
+                                expand=True,
+                                on_click=lambda e:info_buttons.endpoints_info(page)
+                                
+                            ),
+                             ft.Container(
+                                padding=ft.padding.only(left=page.width * .01,right=page.width * 0.01),
+                                alignment=ft.alignment.center,
+                                content=ft.Text("Waste Volumes",size=page.height * .03 * 0.6,font_family="roboto",color="White"),
+                                on_hover=functions.on_container_hover_color_change,
+                                bgcolor="#1D2024",
+                                expand=True,
+                                on_click=lambda e:info_buttons.waste_volume_info(page)
+                                
+                            ),
+                             ft.Container(
+                                padding=ft.padding.only(left=page.width * .01,right=page.width * 0.01),
+                                alignment=ft.alignment.center,
+                                content=ft.Text("Waste Types",size=page.height * .03 * 0.6,font_family="roboto",color="White"),
+                                on_hover=functions.on_container_hover_color_change,
+                                bgcolor="#1D2024",
+                                expand=True,
+                                border=ft.border.only(bottom=ft.BorderSide(1,ft.colors.WHITE)),
+                                on_click=lambda e:info_buttons.waste_types_info(page)
+                                
+                            ),
+                            ft.Container(
+                                padding=ft.padding.only(left=page.width * .01,right=page.width * 0.01),
+                                alignment=ft.alignment.center,
+                                content=ft.Text("User Guide",size=page.height * .03 * 0.6,font_family="roboto",color="White"),
+                                on_hover=functions.on_container_hover_color_change,
+                                bgcolor="#1D2024",
+                                expand=True,
+                                border=ft.border.only(bottom=ft.BorderSide(1,ft.colors.WHITE)),
+                                
+                            ),
+                            ft.Container(
+                                padding=ft.padding.only(left=page.width * .01,right=page.width * 0.01),
+                                alignment=ft.alignment.center,
+                                content=ft.Text("About",size=page.height * .03 * 0.6,font_family="roboto",color="White"),
+                                on_hover=functions.on_container_hover_color_change,
+                                bgcolor="#1D2024",
+                                expand=True,
+                                
+                            ),
+                                
+                                
+                           
+                        ],
+                    ),
+                ],
+            )
+                )
+
+        return container
+    def go_to_summary(page):
+        def handle_click(e):
+            global_variables.generate_table_array(page)
+            view_summary.header_container.content.controls[0].content.controls[0].bgcolor = "#A7ADBA"
+            view_summary.header_container.content.controls[0].content.controls[0].on_click = view_summary.on_tab_click(page)
+            view_summary.header_container.content.controls[0].content.controls[0].border = ft.Border(bottom=ft.BorderSide(2, ft.colors.TRANSPARENT))
+            view_summary.header_container.content.controls[0].content.controls[1].bgcolor = "#D2E0E8"
+            view_summary.header_container.content.controls[0].content.controls[1].on_click = None
+            view_summary.header_container.content.controls[0].content.controls[1].border= ft.Border(bottom=ft.BorderSide(2, color="#D2E0E8"))
+            view_summary.results_container.content.controls[1] = view_summary.create_summary_container(page)
+            global_variables.results_tab_selected = False
+            page.update()
+        return handle_click
+    
+    def go_to_results(page):
+        def handle_click(e):
+            view_summary.header_container.content.controls[0].content.controls[1].bgcolor = "#A7ADBA"
+            view_summary.header_container.content.controls[0].content.controls[1].on_click = view_summary.on_tab_click(page)
+            view_summary.header_container.content.controls[0].content.controls[1].border = ft.Border(bottom=ft.BorderSide(2, ft.colors.TRANSPARENT))
+
+            view_summary.header_container.content.controls[0].content.controls[0].bgcolor = "#D2E0E8"
+            view_summary.header_container.content.controls[0].content.controls[0].on_click = None
+            view_summary.header_container.content.controls[0].content.controls[0].border= ft.Border(bottom=ft.BorderSide(2, color="#D2E0E8"))
+
+            
+            view_summary.results_container.content.controls[1] = view_summary.create_results_content(page) 
+            global_variables.results_tab_selected = True
+            page.update()
+        return handle_click
+    
+    def on_container_hover_color_change(e):
+        if e.data == "true" and e.control.bgcolor != ft.colors.ORANGE:
+            e.control.bgcolor = ft.colors.BLUE
+        else:
+            e.control.bgcolor = "#1D2024"
+        e.control.update()
 #############################
 ##### HEADER CONTAINER ######
 #############################
