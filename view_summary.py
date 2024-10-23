@@ -916,25 +916,9 @@ def create_bars_for_bar_graph(page, tactics,array_place,items):
                     
                ),
                ft.Row(
-                    controls=[
-                         ft.Container(
-                              width = stain_width,
-                              height=tactic_container_height * 0.4,
-                              bgcolor=ft.colors.TRANSPARENT,
-                              content=fill_bar(container_width,operational_stain_waste,is_stain=True),
-                              
-                              
-                              
-                              
-                         ),
-                         ft.Container(
-                              
-                              
-                              expand=True,
-                              content=ft.Text("testing",color=ft.colors.BLACK),
-                              width=bulk_width / 2
-                         ),
-                    ],
+                    controls=
+                        bar_label_function_2(page,tactics,stain_width,container_width,operational_stain_waste,items[0])
+                    ,
                     height= tactic_container_height * 0.4,
                     spacing=0,
                     expand=True,
@@ -948,17 +932,14 @@ def create_bars_for_bar_graph(page, tactics,array_place,items):
      )
      return container
 def bar_label_function(page,tactics,bulk_width,container_width,operational_bulk_waste,items):
-     array_list = []
-     #print(global_variables.updated_array)
-     
-     #print(items)
-     
+     array_list = []     
      new_list = {}
+
      for objects in global_variables.updated_array:     
-          #print(objects)    
+             
           for i in objects[1]:
                new_list[i[0]] = i[1:]
-     #print(new_list)
+     
      if items == "N":
           display_number = ""
      else:
@@ -967,7 +948,7 @@ def bar_label_function(page,tactics,bulk_width,container_width,operational_bulk_
           else:
                display_number = new_list[tactic][1]
     
-     print(items)
+     
           
                
              
@@ -985,13 +966,91 @@ def bar_label_function(page,tactics,bulk_width,container_width,operational_bulk_
                               content=not_applicable_container_checker(tactic_container_height,display_number,items)    
                          )
           array_list.append(container)
-     #print(new_list)
-     return array_list
-def not_applicable_container_checker(tactic_container_height, display_number,items):
+          return array_list
+     else:
+          container = ft.Stack(
+               controls=[
+                    ft.Container(
+                         width=bulk_width,
+                         height=tactic_container_height * 0.4,
+                         bgcolor=ft.colors.TRANSPARENT,
+                         content=fill_bar(container_width,operational_bulk_waste)
+                    ),
+                    ft.Container(
+                         content=not_applicable_container_checker(tactic_container_height,display_number,items,stack=True)
+                    )
+               ],
+               alignment=ft.alignment.center_right
+          )
+          return [container]
+     
+def bar_label_function_2(page,tactics,stain_width,container_width,operational_stain_waste,items):
+     array_list = []
+     
+     
+     new_list = {}
+     for objects in global_variables.updated_array:     
+          #print(objects)    
+          for i in objects[1]:
+               new_list[i[0]] = i[1:]
+     print(new_list[tactic])
+     if items == "N":
+          display_number = ""
+     else:
+          if new_list[tactic][4] == '--':
+               display_number = tactics[4]
+                    
+          else:
+               display_number = new_list[tactic][4]
+    
+     
+          
+     if stain_width < container_width * 0.5:
+          container = ft.Container(
+                              width = stain_width,
+                              height=tactic_container_height * 0.4,
+                              bgcolor=ft.colors.TRANSPARENT,
+                              content=fill_bar(container_width,operational_stain_waste,is_stain=True),
+                              
+                              
+                         )
+          array_list.append(container)
+          container = ft.Container(
+                              content=not_applicable_container_checker(tactic_container_height,display_number,items)    
+                         )
+          array_list.append(container)
+     
+          return array_list  
+     else:
+          container = ft.Stack(
+               controls=[
+                    ft.Container(
+                         width = stain_width,
+                         height=tactic_container_height * 0.4,
+                         bgcolor=ft.colors.TRANSPARENT,
+                         content=fill_bar(container_width,operational_stain_waste,is_stain=True),
+                    ),
+                    ft.Container(
+                         content=not_applicable_container_checker(tactic_container_height,display_number,items,stack=True)
+                    )
+               ],
+               alignment=ft.alignment.center_right
+          )        
+          return [container]   
+def get_unit_measurement():
+     if global_variables.text_field_selection == 0:
+          return "m³/m"
+     else:
+          return "m³"
+def not_applicable_container_checker(tactic_container_height, display_number,items,stack=False):
+     true_bg_color = ft.colors.with_opacity(0.4,ft.colors.GREY),
+     if stack:
+          true_bg_color = ft.colors.with_opacity(0.7,ft.colors.WHITE)
+     unit = get_unit_measurement()
      if items != "N":
           container = ft.Container(
-               bgcolor=ft.colors.with_opacity(0.3,ft.colors.BLACK),
-               content=ft.Text(f"{display_number}",color=ft.colors.BLACK,font_family="Roboto",text_align=ft.TextAlign.CENTER,size=tactic_container_height * 0.2),
+               bgcolor=true_bg_color,
+               content=ft.Text(f"{display_number} {unit}",color=ft.colors.BLACK,font_family="Roboto",text_align=ft.TextAlign.CENTER,size=tactic_container_height * 0.2),
                expand=True,
                padding=ft.padding.only(left=5,right=5),
                height=tactic_container_height * 0.4 * 0.7,
