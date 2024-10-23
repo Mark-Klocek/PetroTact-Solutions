@@ -949,19 +949,28 @@ def create_bars_for_bar_graph(page, tactics,array_place,items):
      return container
 def bar_label_function(page,tactics,bulk_width,container_width,operational_bulk_waste,items):
      array_list = []
-     
+     #print(global_variables.updated_array)
      
      #print(items)
+     
      new_list = {}
-     if items != "N":
-          display_number = tactics[1]
-     else:
+     for objects in global_variables.updated_array:     
+          #print(objects)    
+          for i in objects[1]:
+               new_list[i[0]] = i[1:]
+     #print(new_list)
+     if items == "N":
           display_number = ""
-     for things in global_variables.updated_array:          
-          for tings in things[1]:
-               #print(tactics)
-               new_list[f'{tings[0]}'] = tactics[1:]
-     print(f"{tactics[0]} : {new_list[tactics[0]]}")         
+     else:
+          if new_list[tactic][1] == '--':
+               display_number = tactics[1]
+          else:
+               display_number = new_list[tactic][1]
+    
+     print(items)
+          
+               
+             
      if bulk_width < container_width * 0.5:
           container = ft.Container(
                               width = bulk_width,
@@ -976,6 +985,7 @@ def bar_label_function(page,tactics,bulk_width,container_width,operational_bulk_
                               content=not_applicable_container_checker(tactic_container_height,display_number,items)    
                          )
           array_list.append(container)
+     #print(new_list)
      return array_list
 def not_applicable_container_checker(tactic_container_height, display_number,items):
      if items != "N":
