@@ -267,7 +267,7 @@ def textfield_change(page):
                         view_summary.results_container.content.controls[1] = view_summary.create_summary_container(page)
                 else:
                         view_summary.results_container.content.controls[1] = view_summary.create_results_content(page)
-                print(global_variables.text_field_selection)
+                print(global_variables.updated_array)
                 page.update()
         return handle_change
 

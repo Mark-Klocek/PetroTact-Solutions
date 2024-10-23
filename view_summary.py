@@ -28,7 +28,8 @@ def create_results_container(page):
             content=ft.Column(
                 controls=[create_output_header(page),
                           create_results_content(page)],
-                spacing=0
+                spacing=0,
+                
             ),
             padding=3,
             
@@ -129,7 +130,8 @@ def create_results_content(page):
                create_data_body(page),
                create_key_container(page)
             ],
-            spacing=0
+            spacing=0,
+            #scroll=ft.ScrollMode.ALWAYS
             
             
         ),
@@ -166,7 +168,8 @@ def create_data_body(page):
                     alignment=ft.alignment.bottom_right,
                     content= create_data_body_bar_graph(page)
                ),
-          ]
+          ],
+          
     )
     data_body = container
     return container
@@ -180,6 +183,14 @@ def determine_bar_graph_height(option_height):
           return ((global_variables.app_window.height - 1 ) * 0.71) + option_height * 5
      else:
           return container_height
+     
+
+
+def actual_size_graph(page):
+     global results_container
+     print(results_container.content)
+
+
 def create_results_columns(page):
      option_array = []
      data_body_height = global_variables.app_window.height * 0.95 * 0.75 
@@ -334,7 +345,7 @@ def graph_x_axis(page):
                          spacing=0,
                          
                     ),
-               on_click=lambda e: info_buttons.actual_scale_graph(page),  # Now the whole container is clickable
+               on_click=lambda e: actual_size_graph(page),  # Now the whole container is clickable
                border_radius=ft.border_radius.all(10),
                bgcolor="#D2E0E8",
                expand=True,
@@ -761,11 +772,12 @@ def create_data_body_bar_graph(page):
                                         border=ft.Border(right=ft.BorderSide(1, color="#ACACAC"))
                                    )
                               ],
-                              spacing=0
+                              spacing=0,
                          ),
                          height= container_height,
                          border=ft.border.all(0.5, color=ft.colors.BLACK),
                          width= container_width,
+
                          
                     ),
                ft.Container(
@@ -773,6 +785,8 @@ def create_data_body_bar_graph(page):
                          controls= create_bar_graph_row(page),
                          spacing=0,
                          expand=True,
+                         scroll=ft.ScrollMode.AUTO
+                         
                          
                          
                          
@@ -795,6 +809,9 @@ def create_data_body_bar_graph(page):
      return container
 
 def create_bar_graph_row(page):
+     global_variables.updated_array = global_variables.update_table_array_with_meter_count(page)
+     #print(global_variables.updated_array)
+     correct_array = global_variables.table_array
      global tactic_container_height
      option_array = []
      data_body_height = global_variables.app_window.height * 0.95 * 0.75 
@@ -803,8 +820,12 @@ def create_bar_graph_row(page):
      remaining_height = data_body_height - (option_height * len(global_variables.table_array))   
      tactic_container_height = (remaining_height - 2)/7
      option_counter = 0
-     for items in global_variables.table_array:
-     
+     array_place = 0
+     #print()
+     #print(correct_array)
+     for items in correct_array:
+          #print(global_variables.updated_array[items])
+          
           option_row = ft.Container(
                padding=0,
                alignment=ft.alignment.center_left,
@@ -819,7 +840,7 @@ def create_bar_graph_row(page):
 
           for tactics in items[1]:
                tactic_row = ft.Container(
-                    content=create_bars_for_bar_graph(page, tactics),
+                    content=create_bars_for_bar_graph(page, tactics,array_place,items[0]),
                     padding=1,
                     alignment=ft.alignment.center_left,
                     height=tactic_container_height,
@@ -828,11 +849,15 @@ def create_bar_graph_row(page):
                )
 
                option_array.append(tactic_row)
-               #print(tactics)
+               #print(array_place)
+               array_place += 1
+               
+          
           option_counter += 1
+          
      return option_array
 
-def create_bars_for_bar_graph(page, tactics):
+def create_bars_for_bar_graph(page, tactics,array_place,items):
      
      data_body_height = global_variables.app_window.height * 0.95 * 0.75 
      option_height = data_body_height * .04
@@ -876,25 +901,15 @@ def create_bars_for_bar_graph(page, tactics):
      container = ft.Column(
           controls=[
                ft.Row(
-                    controls=[
-                         ft.Container(
-                              width = bulk_width,
-                              height=tactic_container_height * 0.4,
-                              bgcolor=ft.colors.TRANSPARENT,
-                              content=fill_bar(container_width,operational_bulk_waste),
-                              
-                              
-                         ),
-                         ft.Container(
-                              height=tactic_container_height * 0.4,
-                              bgcolor=ft.colors.TRANSPARENT ,
-                              expand=True
-                              
-                         )
-                    ],
+                    controls=
+                         bar_label_function(page,tactics,bulk_width,container_width,operational_bulk_waste,items[0]),
+                         
+                         
+                    
                     spacing=0,
                     height=tactic_container_height * 0.4,
-                    expand=True
+                    expand=True,
+                    scroll=ft.ScrollMode.ALWAYS
                    
                     
                ),
@@ -911,23 +926,62 @@ def create_bars_for_bar_graph(page, tactics):
                               
                          ),
                          ft.Container(
-                              height=tactic_container_height * 0.4,
-                              bgcolor=ft.colors.TRANSPARENT ,
-                              expand=True
                               
-                         )
+                              
+                              expand=True,
+                              content=ft.Text("testing",color=ft.colors.BLACK),
+                              width=bulk_width / 2
+                         ),
                     ],
                     height= tactic_container_height * 0.4,
                     spacing=0,
-                    expand=True
+                    expand=True,
+                    
                     
                ),
                
           ],
-          alignment=ft.MainAxisAlignment.SPACE_EVENLY
+          alignment=ft.MainAxisAlignment.SPACE_EVENLY,
+          
      )
      return container
-
+def bar_label_function(page,tactics,bulk_width,container_width,operational_bulk_waste,items):
+     array_list = []
+     display_number = tactics[1]
+     new_array = global_variables.update_table_array_with_meter_count(page)
+     #print(items)
+     new_list = {}
+     for things in global_variables.updated_array:
+          print(items[0])
+          
+          for tings in things[1]:
+               #print(tactics)
+               new_list[f'{tings[0]}'] = tactics[1:]
+              
+     if bulk_width < container_width * 0.5:
+          container = ft.Container(
+                              width = bulk_width,
+                              height=tactic_container_height * 0.4,
+                              bgcolor=ft.colors.TRANSPARENT,
+                              content=fill_bar(container_width,operational_bulk_waste),
+                              
+                              
+                         )
+          array_list.append(container)
+          container = ft.Container(
+                              
+                              
+                              expand=True,
+                              content=ft.Container(
+                                   bgcolor=ft.colors.WHITE,
+                                   content=ft.Text(f"{display_number}",color=ft.colors.BLACK),
+                                   padding=0
+                              ),
+                              
+                         )
+          array_list.append(container)
+     return array_list
+          
 def get_bar_width(tactics,container_width): 
      operational_waste_width = 0
      if tactics == '--':
@@ -1215,6 +1269,8 @@ def create_summary_body(page):
      summary_body = container
      page.update()
      return container
+
+
 
 def create_summary_information(page):
      global summary_information
