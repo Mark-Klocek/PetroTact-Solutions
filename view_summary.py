@@ -832,6 +832,7 @@ def create_bar_graph_row(page):
                bgcolor=ft.colors.TRANSPARENT,
                height=option_height,
                width=container_width,
+               
           )
 
           if option_counter != 0:
@@ -845,7 +846,8 @@ def create_bar_graph_row(page):
                     alignment=ft.alignment.center_left,
                     height=tactic_container_height,
                     width=container_width,
-                    bgcolor=ft.colors.TRANSPARENT,                           
+                    bgcolor=ft.colors.TRANSPARENT,  
+                    border=ft.border.all(1,ft.colors.TRANSPARENT)                         
                )
 
                option_array.append(tactic_row)
@@ -909,7 +911,7 @@ def create_bars_for_bar_graph(page, tactics,array_place,items):
                     spacing=0,
                     height=tactic_container_height * 0.4,
                     expand=True,
-                    scroll=ft.ScrollMode.ALWAYS
+                    
                    
                     
                ),
@@ -947,17 +949,19 @@ def create_bars_for_bar_graph(page, tactics,array_place,items):
      return container
 def bar_label_function(page,tactics,bulk_width,container_width,operational_bulk_waste,items):
      array_list = []
-     display_number = tactics[1]
-     new_array = global_variables.update_table_array_with_meter_count(page)
+     
+     
      #print(items)
      new_list = {}
-     for things in global_variables.updated_array:
-          print(items[0])
-          
+     if items != "N":
+          display_number = tactics[1]
+     else:
+          display_number = ""
+     for things in global_variables.updated_array:          
           for tings in things[1]:
                #print(tactics)
                new_list[f'{tings[0]}'] = tactics[1:]
-              
+     print(f"{tactics[0]} : {new_list[tactics[0]]}")         
      if bulk_width < container_width * 0.5:
           container = ft.Container(
                               width = bulk_width,
@@ -969,19 +973,23 @@ def bar_label_function(page,tactics,bulk_width,container_width,operational_bulk_
                          )
           array_list.append(container)
           container = ft.Container(
-                              
-                              
-                              expand=True,
-                              content=ft.Container(
-                                   bgcolor=ft.colors.WHITE,
-                                   content=ft.Text(f"{display_number}",color=ft.colors.BLACK),
-                                   padding=0
-                              ),
-                              
+                              content=not_applicable_container_checker(tactic_container_height,display_number,items)    
                          )
           array_list.append(container)
      return array_list
-          
+def not_applicable_container_checker(tactic_container_height, display_number,items):
+     if items != "N":
+          container = ft.Container(
+               bgcolor=ft.colors.with_opacity(0.3,ft.colors.BLACK),
+               content=ft.Text(f"{display_number}",color=ft.colors.BLACK,font_family="Roboto",text_align=ft.TextAlign.CENTER,size=tactic_container_height * 0.2),
+               expand=True,
+               padding=ft.padding.only(left=5,right=5),
+               height=tactic_container_height * 0.4 * 0.7,
+               alignment=ft.alignment.center
+          )
+          return container
+     else:
+          return ft.Container()
 def get_bar_width(tactics,container_width): 
      operational_waste_width = 0
      if tactics == '--':

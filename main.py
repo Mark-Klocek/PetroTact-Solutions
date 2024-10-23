@@ -310,7 +310,7 @@ def main(page:ft.Page):
 
     
     page.on_resized = resize    
-    #resize(None)        
+    resize(None)        
     info_buttons.intro_window(page)
     page.update()
     #print(tactics)    
