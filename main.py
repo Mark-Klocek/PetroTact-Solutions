@@ -14,7 +14,8 @@ def main(page:ft.Page):
 
                 ft.MaterialState.DEFAULT: ft.colors.ORANGE
             },
-            thumb_visibility=True
+            thumb_visibility=True,
+            thickness= 10
                 
             
         )
@@ -290,7 +291,7 @@ def main(page:ft.Page):
             page.dialog.open = False
         ####testing#########
         
-        print(global_variables.drop_down_selection)
+        #print(global_variables.drop_down_selection)
         page.update()
 
     

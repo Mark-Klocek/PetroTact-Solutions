@@ -14,7 +14,7 @@ bgWidth = None
 bulk_num = 0
 stain_num = 0
 substrate_selected_variable = 0
-
+max_number = 0
 substrate_info_selected_index = 0
 
 text_field_selection = 0
@@ -2161,11 +2161,15 @@ def update_table_array_with_meter_count(page):
     global updated_array
     global meter_count
     global table_array
+    global max_number
+    max_number = 0
     updated_array = []
     table_copy = copy.deepcopy(table_array)
     for key, values in table_copy:
         category_list = []
         for value in values:
+            if value[4] != "--" and value[4] > max_number:
+                max_number = value[4]
             tactic = value[0] 
             info = value[1:]
             if text_field_selection == 0:
@@ -2191,6 +2195,7 @@ def update_table_array_with_meter_count(page):
             
 
     page.update()
+    #print("0000000000000000000000000000000000000000000000000000")
     return updated_array
 
 ########################
