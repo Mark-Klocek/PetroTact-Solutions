@@ -220,7 +220,7 @@ def actual_scale_graph(page):
                                         
                                    ),
                                    ft.Container(
-                                        padding=ft.padding.only(right=5,top=data_window_height * .04),
+                                        padding=ft.padding.only(right=5),
                                         height=data_window_height * 0.84,
                                         width=data_window_width * 0.8,
                                         #border=ft.border.all(1,ft.colors.RED),
@@ -231,12 +231,12 @@ def actual_scale_graph(page):
                                                        padding=0,
                                                        height=data_window_height * 0.81,
                                                        width=data_window_width * 0.8,
-                                                       #border=ft.border.all(1,ft.colors.RED),
+                                                       border=ft.border.all(1,ft.colors.RED),
                                                        content=ft.Row(
                                                             spacing=0,
                                                             controls=[
                                                                  ft.Container(
-                                                                      padding=ft.padding.only(bottom=10),
+                                                                      padding=0,
                                                                       height=data_window_height * 0.81,
                                                                       #width=data_window_width * 5,
                                                                       content=ft.Stack(
@@ -276,11 +276,11 @@ def actual_scale_graph(page):
                          )
                     ),
                     ft.Container( # key container
-                         padding = ft.padding.only(left=5,right=5,bottom=2,top=2),
-                         height=data_window_height * 0.17,
-                         width=data_window_width,
-                         #border=ft.border.all(1,ft.colors.RED),
-                         content=create_key_info(page)
+                        padding = ft.padding.only(left=5,right=5,bottom=2,top=2),
+                        height=data_window_height * 0.17,
+                        width=data_window_width,
+                        border=ft.border.all(1,ft.colors.RED),
+                        content=create_key_info(page)
                     )
                ]
           )
