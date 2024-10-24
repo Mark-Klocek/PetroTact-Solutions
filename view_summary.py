@@ -201,7 +201,7 @@ def actual_scale_graph(page):
                spacing=0,
                controls=[
                     ft.Container(
-                         padding=ft.padding.only(top=5),
+                         padding=0,
                          height=data_window_height * 0.84,
                          width=data_window_width,
                          #border=ft.border.all(1,ft.colors.RED),
@@ -209,14 +209,18 @@ def actual_scale_graph(page):
                               spacing=0,
                               controls=[
                                    ft.Container(#tactic container
-                                        padding=0,
-                                        height=data_window_height * 0.83,
+                                        padding=ft.padding.only(left=5),
+                                        height=data_window_height * 0.84,
                                         width=data_window_width * 0.18,
-                                        #border=ft.border.all(1,ft.colors.RED)
+                                        #border=ft.border.all(1,ft.colors.RED),
+                                        content=ft.Column(
+                                             spacing=0,
+                                             controls=actual_graph_tactic_column(page,data_window_width,data_window_height)
+                                        )
                                         
                                    ),
                                    ft.Container(
-                                        padding=ft.padding.only(right=5),
+                                        padding=ft.padding.only(right=5,top=data_window_height * .04),
                                         height=data_window_height * 0.84,
                                         width=data_window_width * 0.8,
                                         #border=ft.border.all(1,ft.colors.RED),
@@ -362,6 +366,88 @@ def actual_scale_background(page,data_window_width,data_window_height):
           container_array.append(container)
      
      return container_array
+def actual_graph_tactic_column(page,data_window_width,data_window_height):
+     height = 0
+     bgColor = None
+     tactic_array = []
+     for items in global_variables.updated_array:
+          height = data_window_height * .04
+          if items[0] == "Preferred Options":
+               #bgColor = "#F6F9FB"
+               bgColor = "#E6FEE0"
+          elif items[0] == "Small Amounts Only":
+               #bgColor = "#E8EFF3"
+               bgColor = "#FEFDD7"
+          else:
+               #bgColor = "#DBE6EC"
+               bgColor = "#FECFCF"
+          print(items[0])
+          container = ft.Container(
+               #border=ft.border.all(1,ft.colors.RED),
+               padding=ft.padding.only(left=5),
+               alignment=ft.alignment.center_left,
+               width=data_window_width * 0.2,
+               height=height,
+               bgcolor=ft.colors.TRANSPARENT,
+               content=ft.Text(items[0],color="black",font_family="Roboto",text_align=ft.TextAlign.CENTER,size=height * 0.55,weight=ft.FontWeight.BOLD)
+          )
+          tactic_array.append(container)
+          
+          for tactics in items[1]:
+               container = ft.Container(
+                    padding=0,
+                    alignment=ft.alignment.center,
+                    bgcolor=bgColor,
+                    width=data_window_width * 0.2,
+                    expand=True,
+                    content=ft.Text(tactics[0],color=ft.colors.BLACK,text_align=ft.TextAlign.CENTER,font_family="Roboto",size= height * 0.55)
+               )
+               tactic_array.append(container)
+          #print(items[0])
+     container = ft.Container(
+          padding=0,
+          width=data_window_width * 0.2,
+          height=data_window_height * 0.05,
+          border_radius=ft.border_radius.all(10),
+          on_hover=on_view_actual_scale_hover,
+          alignment=ft.alignment.center,
+          on_click=compressed_scale_click(page),
+          content=ft.Row(
+                         controls=[
+                              ft.Container(
+                                   content=ft.Icon(
+                                                  ft.icons.SEARCH_SHARP,
+                                                  color=ft.colors.BLACK,
+                                                  size=height,
+                                                  
+                                              ),
+                                   #padding=0,
+                                   width = global_variables.app_window.width * .69 * .05,
+                                   #border=ft.border.all(1, ft.colors.RED)
+                                   
+                              ),
+                              ft.Container(
+                                   content= ft.Text("View Compressed Scale",color=ft.colors.BLACK,font_family="Roboto", size= height * 0.5,text_align=ft.TextAlign.CENTER),
+                                   alignment=ft.alignment.center,
+                                   #padding=0,
+                                   bgcolor=ft.colors.TRANSPARENT,
+                                   width = global_variables.app_window.width * .69 *.13,
+                                   #border=ft.border.all(1, ft.colors.RED),
+                                   expand=True
+                                   
+                              ),
+                         ],
+                         spacing=0,
+                         
+                    ),
+     )
+     tactic_array.append(container)
+     return tactic_array
+def compressed_scale_click(page):
+     def handle_click(e):
+          results_container.content.controls[1] = create_results_content(page)
+          page.update()
+     return handle_click
 def create_results_columns(page):
      option_array = []
      data_body_height = global_variables.app_window.height * 0.95 * 0.75 
