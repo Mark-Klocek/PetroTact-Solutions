@@ -847,7 +847,7 @@ def create_bar_graph_row(page):
                     height=tactic_container_height,
                     width=container_width,
                     bgcolor=ft.colors.TRANSPARENT,  
-                    border=ft.border.all(1,ft.colors.TRANSPARENT)                         
+                    #border=ft.border.all(1,ft.colors.RED)                         
                )
 
                option_array.append(tactic_row)
@@ -902,19 +902,26 @@ def create_bars_for_bar_graph(page, tactics,array_place,items):
      operational_stain_waste = global_variables.stain_num * (tactics[6]/100)
      container = ft.Column(
           controls=[
-               ft.Row(
-                    controls=
-                         bar_label_function(page,tactics,bulk_width,container_width,operational_bulk_waste,items[0]),
-                         
-                         
-                    
-                    spacing=0,
-                    height=tactic_container_height * 0.4,
-                    expand=True,
+               ft.Container(
+                    padding=0,
+                    width=container_width,
+                    content=ft.Row(
+                              controls=
+                                   bar_label_function(page,tactics,bulk_width,container_width,operational_bulk_waste,items[0]),
+                                   
+                                   
+                              
+                              spacing=0,
+                              height=tactic_container_height * 0.4,
+                              #expand=True,
+                              ),
+                    #border=ft.border.all(1,ft.colors.RED)
+
+               ),
                     
                    
                     
-               ),
+               
                ft.Row(
                     controls=
                         bar_label_function_2(page,tactics,stain_width,container_width,operational_stain_waste,items[0])
@@ -963,7 +970,9 @@ def bar_label_function(page,tactics,bulk_width,container_width,operational_bulk_
                          )
           array_list.append(container)
           container = ft.Container(
-                              content=not_applicable_container_checker(tactic_container_height,display_number,items)    
+                              padding=0,
+                              content=not_applicable_container_checker(tactic_container_height,display_number,items),
+                              bgcolor=ft.colors.with_opacity(0.5,ft.colors.GREY)   
                          )
           array_list.append(container)
           return array_list
@@ -1016,7 +1025,9 @@ def bar_label_function_2(page,tactics,stain_width,container_width,operational_st
                          )
           array_list.append(container)
           container = ft.Container(
-                              content=not_applicable_container_checker(tactic_container_height,display_number,items)    
+                              content=not_applicable_container_checker(tactic_container_height,display_number,items),
+                              padding=0,
+                              bgcolor=ft.colors.with_opacity(0.5,ft.colors.GREY)    
                          )
           array_list.append(container)
      
