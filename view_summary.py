@@ -231,7 +231,7 @@ def actual_scale_graph(page):
                                                        padding=0,
                                                        height=data_window_height * 0.81,
                                                        width=data_window_width * 0.8,
-                                                       border=ft.border.all(1,ft.colors.RED),
+                                                       #border=ft.border.all(1,ft.colors.RED),
                                                        content=ft.Row(
                                                             spacing=0,
                                                             controls=[
@@ -241,6 +241,16 @@ def actual_scale_graph(page):
                                                                       #width=data_window_width * 5,
                                                                       content=ft.Stack(
                                                                            controls=[
+                                                                                ft.Container(
+                                                                                     padding=ft.padding.only(bottom=data_window_height * .04),
+                                                                                     bgcolor=ft.colors.TRANSPARENT,
+                                                                                     height=data_window_height * 0.80,
+                                                                                     #width=data_window_width * 5,
+                                                                                     content=ft.Column(
+                                                                                          spacing=0,
+                                                                                          controls=actual_scale_bar_graph_containers(page,data_window_width,data_window_height)
+                                                                                     )
+                                                                                ),
                                                                                 ft.Container(
                                                                                      padding=0,
                                                                                      bgcolor=ft.colors.TRANSPARENT,
@@ -279,7 +289,7 @@ def actual_scale_graph(page):
                         padding = ft.padding.only(left=5,right=5,bottom=2,top=2),
                         height=data_window_height * 0.17,
                         width=data_window_width,
-                        border=ft.border.all(1,ft.colors.RED),
+                        #border=ft.border.all(1,ft.colors.RED),
                         content=create_key_info(page)
                     )
                ]
@@ -333,7 +343,7 @@ def actual_scale_background(page,data_window_width,data_window_height):
                     #border=ft.border.all(1,ft.colors.RED),
                     width=column_width * .99,
                     height=data_window_height * 0.03,
-                    content=ft.Text(round(counter,2),color="black")
+                    content=ft.Text(round(counter,2),color="black",size=data_window_height * .04 * 0.55)
                     )
                ]
           )
@@ -357,7 +367,7 @@ def actual_scale_background(page,data_window_width,data_window_height):
                     #border=ft.border.all(1,ft.colors.RED),
                     width=column_width * .99,
                     height=data_window_height * 0.03,
-                    content=ft.Text(round(index,3),color="black")
+                    content=ft.Text(round(index,3),color="black",font_family="Roboto",size=data_window_height * .04 * 0.55)
                     )
                ]
           )
@@ -407,7 +417,7 @@ def actual_graph_tactic_column(page,data_window_width,data_window_height):
      container = ft.Container(
           padding=0,
           width=data_window_width * 0.2,
-          height=data_window_height * 0.05,
+          height=data_window_height * 0.075,
           border_radius=ft.border_radius.all(10),
           on_hover=on_view_actual_scale_hover,
           alignment=ft.alignment.center,
@@ -443,6 +453,54 @@ def actual_graph_tactic_column(page,data_window_width,data_window_height):
      )
      tactic_array.append(container)
      return tactic_array
+def actual_scale_bar_graph_containers(page,data_window_width,data_window_height):
+     index = 0.125
+     counter = 0.01
+     column_width = data_window_width * 0.15
+     max_number = round(global_variables.max_number,2)
+     container_array = []
+     maximum_window_width = column_width
+     while counter < global_variables.max_number and counter < 0.1:
+          maximum_window_width += column_width
+          counter += 0.01
+     while counter < max_number:
+          maximum_window_width += column_width
+          index += .025
+          counter += 0.025
+     for items in global_variables.updated_array:
+          height = data_window_height * .04
+          if items[0] == "Preferred Options":
+               #bgColor = "#F6F9FB"
+               bgColor = "#E6FEE0"
+          elif items[0] == "Small Amounts Only":
+               #bgColor = "#E8EFF3"
+               bgColor = "#FEFDD7"
+          else:
+               #bgColor = "#DBE6EC"
+               bgColor = "#FECFCF"
+          container = ft.Container(
+               border=ft.border.all(1,ft.colors.RED),
+               padding=0,
+               alignment=ft.alignment.center_left,
+               width=maximum_window_width,
+               height=height,
+               bgcolor=ft.colors.TRANSPARENT,
+               content=ft.Text(items[0],color="black",font_family="Roboto",text_align=ft.TextAlign.CENTER,size=height * 0.55,weight=ft.FontWeight.BOLD)
+          )
+          container_array.append(container)
+          for tactics in items[1]:
+               container = ft.Container(
+                    border=ft.border.all(1,ft.colors.RED),
+                    padding=0,
+                    alignment=ft.alignment.center,
+                    bgcolor=bgColor,
+                    width=maximum_window_width,
+                    expand=True,
+                    #content=ft.Text(tactics[0],color=ft.colors.BLACK,text_align=ft.TextAlign.CENTER,font_family="Roboto",size= height * 0.55)
+               )
+               container_array.append(container)
+     return container_array
+          
 def compressed_scale_click(page):
      def handle_click(e):
           results_container.content.controls[1] = create_results_content(page)

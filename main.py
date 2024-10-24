@@ -5,6 +5,7 @@ import global_variables
 import pics_and_desc
 import view_summary
 import info_buttons
+import platform
 
 def main(page:ft.Page):
     page.padding=0
@@ -321,6 +322,6 @@ def main(page:ft.Page):
     
    
     
-    
+print(platform.system())    
     
 ft.app(main)
