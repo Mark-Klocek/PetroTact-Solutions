@@ -16,7 +16,7 @@ stain_num = 0
 substrate_selected_variable = 0
 max_number = 0
 substrate_info_selected_index = 0
-
+actual_graph_selected = False
 text_field_selection = 0
 drop_down_selection = "Kilometres"
 meter_count = 0

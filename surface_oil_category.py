@@ -323,9 +323,13 @@ def surface_oil_column_b_click(page, i):
 
                 #setting output container
                 if global_variables.results_tab_selected == False:
-                        view_summary.results_container.content.controls[1] = view_summary.create_summary_container(page)        
+                        view_summary.results_container.content.controls[1] = view_summary.create_summary_container(page)
+        
                 else:
-                        view_summary.results_container.content.controls[1] = view_summary.create_results_content(page)
+                        if global_variables.actual_graph_selected == False:
+                                view_summary.results_container.content.controls[1] = view_summary.create_results_content(page)
+                        else:
+                                view_summary.results_container.content.controls[1] = view_summary.actual_scale_graph(page)
 
 
                 surface_oil_container.content.controls[2].content= ft.Text(pics_and_desc.surface_oil_category_description[i],
@@ -459,10 +463,13 @@ def so_dropdown_change(page):
 
                 #setting output container 
                 if global_variables.results_tab_selected == False:
-                        view_summary.results_container.content.controls[1] = view_summary.create_summary_container(page)        
+                        view_summary.results_container.content.controls[1] = view_summary.create_summary_container(page)
+                
                 else:
-                        view_summary.results_container.content.controls[1] = view_summary.create_results_content(page)
-
+                        if global_variables.actual_graph_selected == False:
+                                view_summary.results_container.content.controls[1] = view_summary.create_results_content(page)
+                        else:
+                                view_summary.results_container.content.controls[1] = view_summary.actual_scale_graph(page)
                 page.update()
         return handle_change
           

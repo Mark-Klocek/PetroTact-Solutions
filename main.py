@@ -286,7 +286,10 @@ def main(page:ft.Page):
             view_summary.results_container.content.controls[1] = view_summary.create_summary_container(page)
         
         else:
-            view_summary.results_container.content.controls[1] = view_summary.create_results_content(page)
+            if global_variables.actual_graph_selected == False:
+                view_summary.results_container.content.controls[1] = view_summary.create_results_content(page)
+            else:
+                view_summary.results_container.content.controls[1] = view_summary.actual_scale_graph(page)
         
         if page.dialog and page.dialog.open:
             page.dialog.open = False

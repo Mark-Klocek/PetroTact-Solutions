@@ -49,13 +49,13 @@ class functions:
 #############################
     def create_logo_container(page):
         container = ft.Container(
-            content=ft.Text("LOGO HERE", color="WHITE",font_family="Roboto",size=24,text_align=ft.TextAlign.CENTER),
+            #content=ft.Text("LOGO HERE", color="WHITE",font_family="Roboto",size=24,text_align=ft.TextAlign.CENTER),
             height= page.height * 0.15,
             width= page.width * 0.1,
             padding=0,
             top=0,
             right=0,
-            bgcolor=ft.colors.with_opacity(0.5,ft.colors.BLACK),
+            bgcolor=ft.colors.with_opacity(0,ft.colors.BLACK),
             
             alignment=ft.alignment.center
         )
@@ -303,7 +303,10 @@ class functions:
             view_summary.header_container.content.controls[0].content.controls[0].border= ft.Border(bottom=ft.BorderSide(2, color="#D2E0E8"))
 
             
-            view_summary.results_container.content.controls[1] = view_summary.create_results_content(page) 
+            if global_variables.actual_graph_selected == False:
+                    view_summary.results_container.content.controls[1] = view_summary.create_results_content(page)
+            else:
+                    view_summary.results_container.content.controls[1] = view_summary.actual_scale_graph(page) 
             global_variables.results_tab_selected = True
             page.update()
         return handle_click

@@ -64,8 +64,10 @@ def on_tab_click(page):
             header_container.content.controls[0].content.controls[0].on_click = None
             header_container.content.controls[0].content.controls[0].border= ft.Border(bottom=ft.BorderSide(2, color="#D2E0E8"))
 
-            
-            results_container.content.controls[1] = create_results_content(page) 
+            if global_variables.actual_graph_selected == False:
+               results_container.content.controls[1] = create_results_content(page) 
+            else:
+                 results_container.content.controls[1] = actual_scale_graph(page)
             global_variables.results_tab_selected = True
             
 
@@ -123,6 +125,7 @@ def create_output_header(page):
 
 def create_results_content(page):
     #print(global_variables.max_number)
+    global_variables.actual_graph_selected = False
     global data_container
     global_variables.generate_table_array(page)
     container=  ft.Container(
@@ -190,12 +193,14 @@ def determine_bar_graph_height(option_height):
 def actual_scale_graph(page):
      data_window_width = global_variables.app_window.width * 0.7
      data_window_height = global_variables.app_window.height * 0.93
+     global_variables.actual_graph_selected = True
      global results_container
      container = ft.Container(
           padding=0,
           #border=ft.border.all(1,ft.colors.RED),
           width=data_window_width,
           height=data_window_height,
+          alignment=ft.alignment.center,
           bgcolor="#D2E0E8",
           content=ft.Column(
                spacing=0,
@@ -296,8 +301,10 @@ def actual_scale_graph(page):
           )
 
      )
+     
      results_container.content.controls[1] = container
      page.update()
+     return container
 
 def actual_scale_background(page,data_window_width,data_window_height):
      index = 0.125
@@ -377,11 +384,15 @@ def actual_scale_background(page,data_window_width,data_window_height):
      
      return container_array
 def actual_graph_tactic_column(page,data_window_width,data_window_height):
+     global_variables.update_table_array_with_meter_count(page)
      height = 0
      bgColor = None
      tactic_array = []
      for items in global_variables.updated_array:
+          print(f"Processing {items[0]}...")
           height = data_window_height * .04
+          if items[0] == "For Small Amounts Only":
+               items[0] = "Small Amounts Only"
           if items[0] == "Preferred Options":
                #bgColor = "#F6F9FB"
                bgColor = "#E6FEE0"
@@ -391,7 +402,7 @@ def actual_graph_tactic_column(page,data_window_width,data_window_height):
           else:
                #bgColor = "#DBE6EC"
                bgColor = "#FECFCF"
-          print(items[0])
+          #print(items[0])
           container = ft.Container(
                #border=ft.border.all(1,ft.colors.RED),
                padding=ft.padding.only(left=5),
@@ -402,7 +413,7 @@ def actual_graph_tactic_column(page,data_window_width,data_window_height):
                content=ft.Text(items[0],color="black",font_family="Roboto",text_align=ft.TextAlign.CENTER,size=height * 0.55,weight=ft.FontWeight.BOLD)
           )
           tactic_array.append(container)
-          
+          print("Appending tactic containers...")
           for tactics in items[1]:
                container = ft.Container(
                     padding=0,
@@ -451,9 +462,12 @@ def actual_graph_tactic_column(page,data_window_width,data_window_height):
                          
                     ),
      )
+     print("Appending button at the end...")
      tactic_array.append(container)
+     print(f"Tactic array length: {len(tactic_array)}")     
      return tactic_array
 def actual_scale_bar_graph_containers(page,data_window_width,data_window_height):
+     global results_container
      index = 0.125
      counter = 0.01
      column_width = data_window_width * 0.15
@@ -479,28 +493,49 @@ def actual_scale_bar_graph_containers(page,data_window_width,data_window_height)
                #bgColor = "#DBE6EC"
                bgColor = "#FECFCF"
           container = ft.Container(
-               border=ft.border.all(1,ft.colors.RED),
+               #border=ft.border.all(1,ft.colors.RED),
                padding=0,
                alignment=ft.alignment.center_left,
                width=maximum_window_width,
                height=height,
                bgcolor=ft.colors.TRANSPARENT,
-               content=ft.Text(items[0],color="black",font_family="Roboto",text_align=ft.TextAlign.CENTER,size=height * 0.55,weight=ft.FontWeight.BOLD)
+               #content=ft.Text(items[0],color="black",font_family="Roboto",text_align=ft.TextAlign.CENTER,size=height * 0.55,weight=ft.FontWeight.BOLD)
           )
+          
           container_array.append(container)
           for tactics in items[1]:
                container = ft.Container(
-                    border=ft.border.all(1,ft.colors.RED),
+                    #border=ft.border.all(1,ft.colors.RED),
                     padding=0,
                     alignment=ft.alignment.center,
                     bgcolor=bgColor,
                     width=maximum_window_width,
                     expand=True,
-                    #content=ft.Text(tactics[0],color=ft.colors.BLACK,text_align=ft.TextAlign.CENTER,font_family="Roboto",size= height * 0.55)
+                    content=ft.Column(
+                         spacing=0,
+                         alignment=ft.MainAxisAlignment.SPACE_EVENLY,
+                         controls=[
+                              ft.Container(
+                                   padding=0,
+                                   height=height * 0.8,
+                                   width=maximum_window_width,
+                                   bgcolor=ft.colors.BLACK
+                              ),
+                              ft.Container(
+                                   padding=0,
+                                   height=height * 0.8,
+                                   width=maximum_window_width,
+                                   #expand=True,
+                                   bgcolor=ft.colors.BLACK
+                              )
+                         ]
+                    )
                )
+               #print(results_container.content.controls[1].content)
                container_array.append(container)
      return container_array
-          
+def generate_actual_bar_graph_bars(page):
+     pass
 def compressed_scale_click(page):
      def handle_click(e):
           results_container.content.controls[1] = create_results_content(page)
@@ -682,6 +717,8 @@ def graph_x_axis(page):
           spacing=0,
           
      )
+     #print(actual_graph_tactic_column(page, global_variables.app_window.width * 0.7, global_variables.app_window.height * 0.98))
+
      return container
 def on_view_actual_scale_hover(e):
      if e.data == "true":
