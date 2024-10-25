@@ -256,7 +256,10 @@ def substrate_on_click(page,container_column,i,substrate_info_container):
                 view_summary.results_container.content.controls[1] = view_summary.create_summary_container(page)
         
             else:
-                view_summary.results_container.content.controls[1] = view_summary.create_results_content(page)
+                if global_variables.actual_graph_selected == False:
+                        view_summary.results_container.content.controls[1] = view_summary.create_results_content(page)
+                else:
+                        view_summary.results_container.content.controls[1] = view_summary.actual_scale_graph(page)
             
             stack = surface_oil_category.surface_oil_container.content.controls[1]
             stack.controls[1].content = ft.Image(src=pics_and_desc.surface_oil_category_pictures[i], fit=ft.ImageFit.FILL)
@@ -1522,7 +1525,10 @@ def oil_type_doubleclick(page,index):
                 view_summary.results_container.content.controls[1] = view_summary.create_summary_container(page)
         
             else:
-                view_summary.results_container.content.controls[1] = view_summary.create_results_content(page)
+                if global_variables.actual_graph_selected == False:
+                        view_summary.results_container.content.controls[1] = view_summary.create_results_content(page)
+                else:
+                        view_summary.results_container.content.controls[1] = view_summary.actual_scale_graph(page)
 
             
             click_timer = new_click

@@ -389,7 +389,6 @@ def actual_graph_tactic_column(page,data_window_width,data_window_height):
      bgColor = None
      tactic_array = []
      for items in global_variables.updated_array:
-          print(f"Processing {items[0]}...")
           height = data_window_height * .04
           if items[0] == "For Small Amounts Only":
                items[0] = "Small Amounts Only"
@@ -413,7 +412,6 @@ def actual_graph_tactic_column(page,data_window_width,data_window_height):
                content=ft.Text(items[0],color="black",font_family="Roboto",text_align=ft.TextAlign.CENTER,size=height * 0.55,weight=ft.FontWeight.BOLD)
           )
           tactic_array.append(container)
-          print("Appending tactic containers...")
           for tactics in items[1]:
                container = ft.Container(
                     padding=0,
@@ -462,9 +460,7 @@ def actual_graph_tactic_column(page,data_window_width,data_window_height):
                          
                     ),
      )
-     print("Appending button at the end...")
-     tactic_array.append(container)
-     print(f"Tactic array length: {len(tactic_array)}")     
+     tactic_array.append(container)    
      return tactic_array
 def actual_scale_bar_graph_containers(page,data_window_width,data_window_height):
      global results_container
