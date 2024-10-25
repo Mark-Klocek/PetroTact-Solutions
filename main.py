@@ -312,8 +312,8 @@ def main(page:ft.Page):
     
     
     
-
     
+    page.title = "Waste Management Calculator"
     page.on_resized = resize    
     resize(None)        
     info_buttons.intro_window(page)

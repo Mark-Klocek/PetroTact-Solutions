@@ -6,7 +6,9 @@ import global_variables
 import view_summary
 import info_buttons
 import webbrowser
-
+import pyautogui
+import pygetwindow as gw
+import time
 class functions:
 
 #Dividing applications into two halves - Input side (30% of horizontal surface coverage) and Results side (70% of horizontal surface coverage)
@@ -100,11 +102,12 @@ class functions:
                             ft.Container(
                                padding=ft.padding.only(left=page.width * .01,right=page.width * 0.01),
                                alignment=ft.alignment.center_left,
-                               content=ft.Text("Print",size=page.height * .03 * 0.6,font_family="roboto",color="White"),
+                               content=ft.Text("Save",size=page.height * .03 * 0.6,font_family="roboto",color="White"),
                                on_hover=functions.on_container_hover_color_change,
                                expand=True,
                                bgcolor="#1D2024",
-                               border=ft.border.only(bottom=ft.BorderSide(1,ft.colors.WHITE))
+                               border=ft.border.only(bottom=ft.BorderSide(1,ft.colors.WHITE)),
+                               on_click=lambda e: functions.save_window(e)
                                
 
                             ),
@@ -278,6 +281,22 @@ class functions:
                 )
 
         return container
+    def save_window(e):
+    # Get the window by title (replace 'App Title' with your app's title)
+        window = gw.getWindowsWithTitle('Waste Management Calculator')[0]
+        file_name = f"screenshot_{int(time.time())}.png"
+
+        # Get window position and size
+        window_left = window.left
+        window_top = window.top
+        window_width = window.width
+        window_height = window.height
+
+        # Take a screenshot of just the app window
+        screenshot = pyautogui.screenshot(region=(window_left, window_top, window_width, window_height))
+        
+        # Save the screenshot
+        screenshot.save(f"images\screen_shots\{file_name}")
     def go_to_summary(page):
         def handle_click(e):
             global_variables.generate_table_array(page)
