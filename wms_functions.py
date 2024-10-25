@@ -9,6 +9,8 @@ import webbrowser
 import pyautogui
 import pygetwindow as gw
 import time
+from PIL import Image
+import os
 class functions:
 
 #Dividing applications into two halves - Input side (30% of horizontal surface coverage) and Results side (70% of horizontal surface coverage)
@@ -288,7 +290,8 @@ class functions:
         time.sleep(0.5)   
     
         window = gw.getWindowsWithTitle('Waste Management Calculator')[0]
-        file_name = f"screenshot_{int(time.time())}.png"
+        file_name_png = f"screenshot_{int(time.time())}.png"  # Save as PNG first
+        file_name_pdf = f"screenshot_{int(time.time())}.pdf"  # Save as PDF afterward
 
         # Get window position and size
         window_left = window.left
@@ -299,8 +302,12 @@ class functions:
         # Take a screenshot of just the app window
         screenshot = pyautogui.screenshot(region=(window_left, window_top, window_width, window_height))
         
+        
         # Save the screenshot
-        screenshot.save(f"images\screen_shots\{file_name}")
+        screenshot.save(f"images\screen_shots\{file_name_png}")
+        image = Image.open(f"images/screen_shots/{file_name_png}")
+        image.convert('RGB').save(f"images/screen_shots/{file_name_pdf}", "PDF")
+        os.remove(f"images\screen_shots\{file_name_png}")
         page.controls[0].content.controls[2].visible = True
         page.update()
     def go_to_summary(page):
