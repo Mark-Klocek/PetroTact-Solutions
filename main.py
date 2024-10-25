@@ -312,7 +312,7 @@ def main(page:ft.Page):
     
     
     
-    
+    print()
     page.title = "Waste Management Calculator"
     page.on_resized = resize    
     resize(None)        

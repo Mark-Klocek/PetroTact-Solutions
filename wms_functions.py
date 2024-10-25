@@ -107,7 +107,7 @@ class functions:
                                expand=True,
                                bgcolor="#1D2024",
                                border=ft.border.only(bottom=ft.BorderSide(1,ft.colors.WHITE)),
-                               on_click=lambda e: functions.save_window(e)
+                               on_click=lambda e: functions.save_window(e,page)
                                
 
                             ),
@@ -281,8 +281,12 @@ class functions:
                 )
 
         return container
-    def save_window(e):
-    # Get the window by title (replace 'App Title' with your app's title)
+    def save_window(e,page):
+    # Get the window by title (replace 'App Title' with your app's title)    
+        page.controls[0].content.controls[2].visible = False
+        page.update()
+        time.sleep(0.5)   
+    
         window = gw.getWindowsWithTitle('Waste Management Calculator')[0]
         file_name = f"screenshot_{int(time.time())}.png"
 
@@ -297,6 +301,8 @@ class functions:
         
         # Save the screenshot
         screenshot.save(f"images\screen_shots\{file_name}")
+        page.controls[0].content.controls[2].visible = True
+        page.update()
     def go_to_summary(page):
         def handle_click(e):
             global_variables.generate_table_array(page)
