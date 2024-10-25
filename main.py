@@ -325,6 +325,6 @@ def main(page:ft.Page):
     
    
     
-print(platform.system())    
+#print(platform.system())    
     
 ft.app(main)

@@ -265,8 +265,12 @@ def textfield_change(page):
                 #print(view_summary.summary_container.content.controls[1].content.controls[1].content.controls[1].controls[1].content)
                 if global_variables.results_tab_selected == False:
                         view_summary.results_container.content.controls[1] = view_summary.create_summary_container(page)
+        
                 else:
-                        view_summary.results_container.content.controls[1] = view_summary.create_results_content(page)
+                        if global_variables.actual_graph_selected == False:
+                                view_summary.results_container.content.controls[1] = view_summary.create_results_content(page)
+                        else:
+                                view_summary.results_container.content.controls[1] = view_summary.actual_scale_graph(page)
                 #print(global_variables.updated_array)
                 page.update()
         return handle_change
@@ -282,8 +286,12 @@ def dropdown_change(page):
                 global_variables.update_table_array_with_meter_count(page)
                 if global_variables.results_tab_selected == False:
                         view_summary.results_container.content.controls[1] = view_summary.create_summary_container(page)
+        
                 else:
-                        view_summary.results_container.content.controls[1] = view_summary.create_results_content(page)
+                        if global_variables.actual_graph_selected == False:
+                                view_summary.results_container.content.controls[1] = view_summary.create_results_content(page)
+                        else:
+                                view_summary.results_container.content.controls[1] = view_summary.actual_scale_graph(page)
                 page.update()
         return handle_change
 
@@ -471,6 +479,7 @@ def so_dropdown_change(page):
                         else:
                                 view_summary.results_container.content.controls[1] = view_summary.actual_scale_graph(page)
                 page.update()
+                print(global_variables.actual_graph_selected)
         return handle_change
           
         

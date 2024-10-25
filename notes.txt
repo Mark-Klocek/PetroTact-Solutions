@@ -59,3 +59,13 @@ if next_index:
         if current_color == ft.colors.WHITE:
             gif_stack.content.controls[current_index].content.bgcolor = current_color
             gif_stack.content.controls[current_index].content.update()
+
+
+while bar_width_value > index and index <= 0.1:
+                         width += column_width
+                         index += .01
+                    if bar_width_value > index:
+                         while bar_width_value > index and index <= global_variables.max_number:
+                              width += column_width
+                              index += .025
+                         width += (global_variables.max_number - bar_width_value) / .025 * column_width

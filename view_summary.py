@@ -309,7 +309,7 @@ def actual_scale_graph(page):
 def actual_scale_background(page,data_window_width,data_window_height):
      index = 0.125
      counter = 0.01
-     column_width = data_window_width * 0.15
+     column_width = data_window_width * 0.25
      container_array = []
      max_number = round(global_variables.max_number,2)
      container = ft.Column(
@@ -327,7 +327,8 @@ def actual_scale_background(page,data_window_width,data_window_height):
                     bgcolor=ft.colors.TRANSPARENT,
                     #border=ft.border.all(1,ft.colors.RED),
                     width=column_width,
-                    height=data_window_height * 0.03
+                    height=data_window_height * 0.03,
+                    content=ft.Text("0.001",color="black",size=data_window_height * .04 * 0.55)
                )
           ]
      )
@@ -381,6 +382,7 @@ def actual_scale_background(page,data_window_width,data_window_height):
           index += .025
           counter += 0.025
           container_array.append(container)
+     #print(len(container_array))
      
      return container_array
 def actual_graph_tactic_column(page,data_window_width,data_window_height):
@@ -426,7 +428,7 @@ def actual_graph_tactic_column(page,data_window_width,data_window_height):
      container = ft.Container(
           padding=0,
           width=data_window_width * 0.2,
-          height=data_window_height * 0.075,
+          height=data_window_height * 0.0825,
           border_radius=ft.border_radius.all(10),
           on_hover=on_view_actual_scale_hover,
           alignment=ft.alignment.center,
@@ -466,7 +468,7 @@ def actual_scale_bar_graph_containers(page,data_window_width,data_window_height)
      global results_container
      index = 0.125
      counter = 0.01
-     column_width = data_window_width * 0.15
+     column_width = data_window_width * 0.25
      max_number = round(global_variables.max_number,2)
      container_array = []
      maximum_window_width = column_width
@@ -515,28 +517,229 @@ def actual_scale_bar_graph_containers(page,data_window_width,data_window_height)
                                    padding=0,
                                    height=height * 0.8,
                                    width=maximum_window_width,
-                                   bgcolor=ft.colors.BLACK
-                              ),
-                              ft.Container(
+                                   bgcolor=ft.colors.TRANSPARENT,
+                                   alignment=ft.alignment.center_left,
+                                   content=generate_actual_bar_graph_bars(tactics,height,items[0],data_window_width,maximum_window_width,is_stain=False)
+                              ),ft.Container(
                                    padding=0,
                                    height=height * 0.8,
+                                   alignment=ft.alignment.center_left,
                                    width=maximum_window_width,
-                                   #expand=True,
-                                   bgcolor=ft.colors.BLACK
-                              )
+                                   bgcolor=ft.colors.TRANSPARENT,
+                                   content=generate_actual_bar_graph_bars(tactics,height,items[0],data_window_width,maximum_window_width,is_stain=True)
+                                   
+                              ),
                          ]
                     )
                )
                #print(results_container.content.controls[1].content)
                container_array.append(container)
      return container_array
-def generate_actual_bar_graph_bars(page):
-     pass
+def generate_actual_bar_graph_bars(tactics,height,operation,data_window_width,maximum_window_width,is_stain = False):
+     column_width = data_window_width * 0.25
+     index = .01
+     unit_measurement = None
+     unit_value = None
+     #print(tactics[2])
+     if is_stain:
+          bar_width_value = tactics[4]
+     else:
+          bar_width_value = tactics[1]
+          
+     width = 0
+     if operation != "Not Applicable":
+          if tactics[2] == "--":
+               unit_measurement = "m³/m"
+               unit_value = bar_width_value
+          else:
+               unit_measurement = "m³"
+               if is_stain:
+                    unit_value = tactics[5]
+               else:
+                    unit_value = tactics[2]
+          
+          
+          #print(bar_width_value)
+          
+          #determing width for bar
+          if bar_width_value > 0:
+               #print(index)
+
+               if bar_width_value > .01:
+                    while bar_width_value > index and index < 0.1:
+                         
+                         width += column_width
+                         index = round(index + .01, 2)
+                         #print(index)
+                    if bar_width_value > index:
+                         
+                         while bar_width_value > index and index <= global_variables.max_number:
+                              width += column_width
+                              index = round(index + .025, 3)
+                              #print(index)
+                         if global_variables.max_number in tactics:
+                              width += column_width
+                         else:
+                              width += (.025 - (index - bar_width_value)) / .025 * column_width
+                              
+                              
+                         
+                         
+                    else:
+                         width += (.01 - (index - bar_width_value)) / .01 * column_width
+                         
+                         
+                    
+               else:
+                    width = bar_width_value / .01 * column_width 
+                       
+               
+          
+          if width > maximum_window_width * .75:
+               return ft.Stack(
+                    alignment=ft.alignment.center_right,
+                    controls=[
+                         ft.Container(
+                              height=height * 0.8,
+                              width=width,
+                              border=ft.border.all(1,ft.colors.BLACK),
+                              padding=0,
+                              alignment=ft.alignment.center_left,
+                              content=fill_actual_bar(width,tactics,is_stain,height)
+                              
+                         ),
+                         ft.Container(
+                              bgcolor=ft.colors.GREY,
+                              content=ft.Text(f"{unit_value} {unit_measurement}",color=ft.colors.BLACK,font_family="roboto",size=height * .8 * .7)
+                         )
+                         ]
+               )
+          else:
+               return ft.Row(
+                    spacing=0,
+                    controls=[
+                         ft.Container(
+                              height=height * 0.8,
+                              width=width,
+                              border=ft.border.all(1,ft.colors.BLACK),
+                              padding=0,
+                              alignment=ft.alignment.center_left,
+                              content=fill_actual_bar(width,tactics,is_stain,height)
+                              
+                         ),
+                         ft.Container(
+                              bgcolor=ft.colors.with_opacity(0.5,ft.colors.GREY),
+                              content=ft.Text(f"{unit_value} {unit_measurement}",color=ft.colors.BLACK,font_family="roboto",size=height * .8 * .7)
+                         )
+                    ]
+               )
+          
+     else:
+          return ft.Container(
+               height=height * 0.8,
+               width=1,
+               border=ft.border.all(1,ft.colors.BLACK),
+               padding=0,
+               
+          )
+          
 def compressed_scale_click(page):
      def handle_click(e):
           results_container.content.controls[1] = create_results_content(page)
           page.update()
      return handle_click
+def fill_actual_bar(width,tactics,is_stain,height):
+     print(is_stain)
+     multiplier = None
+     container_1 = None
+     container_2 = None
+     
+     if is_stain:
+          
+          multiplier = tactics[6] / 100
+          yellow_width = width * multiplier
+          container_1 = ft.Container(
+                              padding=0,
+                              height=height * 0.8,
+                              width=yellow_width,
+                              content=ft.Image(src=r"images\bar graph context\yellow_striped_bar.png",fit=ft.ImageFit.COVER)
+                         )
+          
+     else:
+          
+          multiplier = tactics[3] / 100
+          yellow_width = width * multiplier
+          container_1 = ft.Container(
+                              padding=0,
+                              height=height * 0.8,
+                              width=yellow_width,
+                              bgcolor="#ECD502"
+                         )
+          
+
+     not_yellow_width = width - yellow_width
+     container=ft.Row(
+          spacing=0,
+          controls=[
+               container_1,
+               actual_graph_container_2(tactics[0],is_stain,not_yellow_width,height)
+          ]
+     )
+     return container
+def actual_graph_container_2(tactic,is_stain,width,height):
+     
+     
+     if is_stain:
+          if global_variables.substrate[global_variables.substrate_selected_index] == "Snow":
+               image_list = [ft.Image(src=r"images\bar graph context\gray_striped_bar.png",fit=ft.ImageFit.COVER) for num in range(20)]
+               return ft.Container(
+                              padding=0,
+                              width=width,
+                              height=height * 0.8,
+                              content=ft.Row(controls=image_list,spacing=0),
+                              clip_behavior=ft.ClipBehavior.HARD_EDGE
+                         )
+          elif tactic == "Washing and Recovery":
+               image_list = [ft.Image(src=r"images\bar graph context\blue_striped_bar.png",fit=ft.ImageFit.COVER) for num in range(20)]
+               return ft.Container(
+                              padding=0,
+                              width=width,
+                              height=height * 0.8,
+                              content=ft.Row(controls=image_list,spacing=0),
+                              clip_behavior=ft.ClipBehavior.HARD_EDGE
+                         )
+          else:
+               image_list = [ft.Image(src=r"images\bar graph context\red_striped_bar.png",fit=ft.ImageFit.COVER) for num in range(20)]
+               return ft.Container(
+                              padding=0,
+                              width=width,
+                              height=height * 0.8,
+                              content=ft.Row(controls=image_list,spacing=0),
+                              clip_behavior=ft.ClipBehavior.HARD_EDGE
+                         )
+     else:
+          if global_variables.substrate[global_variables.substrate_selected_index] == "Snow":
+              return ft.Container(
+                              padding=0,
+                              expand=True,
+                              bgcolor="#8697A1"
+                         )
+                
+          if tactic == "Washing and Recovery":
+               return ft.Container(
+                              padding=0,
+                              expand=True,
+                              bgcolor="#4162A6"
+                         )
+                
+          else:
+               return ft.Container(
+                              padding=0,
+                              expand=True,
+                              bgcolor="#A1383F"
+                         )
+                
+
 def create_results_columns(page):
      option_array = []
      data_body_height = global_variables.app_window.height * 0.95 * 0.75 
