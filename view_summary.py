@@ -691,7 +691,7 @@ def actual_graph_container_2(tactic,is_stain,width,height):
      
      if is_stain:
           if global_variables.substrate[global_variables.substrate_selected_index] == "Snow":
-               image_list = [ft.Image(src=r"images\bar graph context\gray_striped_bar.png",fit=ft.ImageFit.COVER) for num in range(20)]
+               image_list = [ft.Image(src=r"images\bar graph context\gray_striped_bar.png",fit=ft.ImageFit.COVER) for num in range(100)]
                return ft.Container(
                               padding=0,
                               width=width,
@@ -1738,6 +1738,22 @@ def create_summary_container(page):
      return container
 
 def create_summary_header(page):
+     shoreline_length = "--"
+     unit_of_measurement = ""
+     if global_variables.text_field_selection != 0:
+          shoreline_length = global_variables.text_field_selection
+          if global_variables.drop_down_selection == "Kilometres":
+               unit_of_measurement = "km"
+          if global_variables.drop_down_selection == "Metres":
+               unit_of_measurement = "m"
+          if global_variables.drop_down_selection == "Nautical Miles":
+               unit_of_measurement = "NM"
+          if global_variables.drop_down_selection == "Miles":
+               unit_of_measurement = "miles"
+          if global_variables.drop_down_selection == "Yards":
+               unit_of_measurement = "yds"
+          if global_variables.drop_down_selection == "Feet":
+               unit_of_measurement = "ft"
      global summary_header
      container = ft.Container(
         content= ft.Column(
@@ -1815,7 +1831,7 @@ def create_summary_header(page):
                                                           spans=[
                                                             ft.TextSpan(global_variables.surface_oil_category[global_variables.surface_oil_category_selected_index], style=ft.TextStyle(color=ft.colors.BLACK,font_family="Roboto",size=global_variables.app_window.height * 0.95 * 0.15 * 0.20 * 0.7)),
                                                             ft.TextSpan("\n"),
-                                                            ft.TextSpan(global_variables.shoreline_length, style=ft.TextStyle(color=ft.colors.BLACK,font_family="Roboto",size=global_variables.app_window.height * 0.95 * 0.15 * 0.20 * 0.7)),
+                                                            ft.TextSpan(f"{shoreline_length} {unit_of_measurement}", style=ft.TextStyle(color=ft.colors.BLACK,font_family="Roboto",size=global_variables.app_window.height * 0.95 * 0.15 * 0.20 * 0.7)),
                                                             
                                                         ]
                                                      ),

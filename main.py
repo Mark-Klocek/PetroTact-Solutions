@@ -108,7 +108,8 @@ def main(page:ft.Page):
         input_substrate_header = input_substrate_container.content.controls[0]
         input_substrate_header.height= input_substrate_container.height * 0.07
         input_substrate_header.width = input_substrate_container.width
-        input_substrate_header.content.controls[0].content.size = input_substrate_header.height *0.8
+        #input_substrate_header.content.controls[0].content.size = input_substrate_header.height *0.8
+        input_substrate_header.content.controls[0].content.size = global_variables.app_window.height * .02
         input_substrate_header.content.controls[1].content.size = global_variables.app_window.height * 0.95 * 0.15 * 0.20
         
             #creating row as 2nd column within substrate container, which will contain a row with inputs row and picture/description row, setting dimensions with regard to parent container
@@ -194,7 +195,7 @@ def main(page:ft.Page):
         input_oil_type_container_column_a = input_oil_type_container.content.controls[0]
         input_oil_type_container_column_a.height = input_oil_type_container.height * 0.15
         input_oil_type_container_column_a.width = input_oil_type_container.width
-        input_oil_type_container_column_a.content.controls[0].content.size = input_oil_type_container_column_a.height * 0.8
+        input_oil_type_container_column_a.content.controls[0].content.size = global_variables.app_window.height * .02
         input_oil_type_container_column_a.content.controls[1].content.size = global_variables.app_window.height * 0.95 * 0.15 * 0.20
         
         input_oil_type_container_column_b = input_oil_type_container.content.controls[1]
@@ -222,7 +223,7 @@ def main(page:ft.Page):
         
         surface_oil_header = surface_oil_container.content.controls[0]
         surface_oil_header.height = surface_oil_container.height * 0.10
-        surface_oil_header.content.controls[0].content.size = surface_oil_header.height * 0.8
+        surface_oil_header.content.controls[0].content.size = global_variables.app_window.height * .02
         surface_oil_header.content.controls[1].content.size = global_variables.app_window.height * 0.95 * 0.15 * 0.20
          
 

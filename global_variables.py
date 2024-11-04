@@ -20,6 +20,7 @@ actual_graph_selected = False
 text_field_selection = 0
 drop_down_selection = "Kilometres"
 meter_count = 0
+shoreline_length = "--"
 
 
 def on_container_hover_color_change(e):
@@ -60,7 +61,7 @@ oil_type = {
     3: "Heavy",
     4: "Solid"
 }
-shoreline_length = "--"
+
 so_columnd_dict = {
     "111": 1,    "112": 1,    "113": 0,    "114": 0,    
     "121": 2,    "122": 2,    "123": 1,    "124": 0,    

@@ -79,13 +79,14 @@ def substrate_info(page):
                                 ft.Container(
                                     content=ft.Text(
                                         spans=[
-                                            ft.TextSpan("Substrate",style=ft.TextStyle(weight=ft.FontWeight.BOLD, size=window_height * 0.05, font_family="Roboto",color=ft.colors.BLACK)),
+                                            ft.TextSpan("Substrate",style=ft.TextStyle(weight=ft.FontWeight.BOLD, size=window_height * 0.045, font_family="Roboto",color=ft.colors.BLACK)),
                                             ft.TextSpan("   Double click to select Substrate.",style=ft.TextStyle(size=window_height * .02,font_family="Roboto",color=ft.colors.BLACK)),
                                             
                                             
                                         ]
                                     ),
                                     #padding=ft.padding.only(left=window_width * 0.02)
+                                    alignment=ft.alignment.top_left
                                 ),
                                 
                                 ft.Container(
@@ -1202,8 +1203,8 @@ def oil_type_info(page):
                     ),
                     ft.Container(#title 2
                         padding=ft.padding.only(left=window_padding * 2),
-                        alignment=ft.alignment.center_left,
-                        content=ft.Text("Click jars to pour and refill",size=text_size,font_family="roboto",color="black"),
+                        alignment=ft.alignment.top_left,
+                        content=ft.Text("Click jars to pour and refill",size=text_size * .8,font_family="roboto",color="black"),
                         height=content_window_height * 0.07 * 0.55,
                         #border=ft.border.all(1,ft.colors.RED)
                         
@@ -1313,7 +1314,7 @@ def oil_type_info(page):
                                                         height=((body_height * .4) * .9)*0.35,
                                                         width=img_window_width,
                                                         #border=ft.border.all(1,ft.colors.RED),
-                                                        content=ft.Text("Gasoline products — viscosity like water",color="Black",font_family="Roboto",text_align=ft.TextAlign.CENTER,size=text_size * 0.75)
+                                                        content=ft.Text("Gasoline products — \n viscosity like water",color="Black",font_family="Roboto",text_align=ft.TextAlign.CENTER,size=text_size * 0.75)
                                                     )
                                                 ]
                                             ),
@@ -2498,7 +2499,7 @@ def treatment_tactic(page):
                         content=ft.Row(
                             controls=[
                                 ft.Container(
-                                    content=ft.Text("Treatment Tactic",color="Black",weight=ft.FontWeight.BOLD,font_family="Roboto",size=window_height * 0.05),
+                                    content=ft.Text("Treatment Tactic",color="Black",weight=ft.FontWeight.BOLD,font_family="Roboto",size=window_height * 0.04),
                                     #padding=ft.padding.only(left=window_width * 0.02)
                                 ),
                                 ft.Container(
@@ -2631,7 +2632,7 @@ def generate_content(i,window_height):
     if i == global_variables.tactic_selected_variable:
         return ft.Text(global_variables.treatment_tactic_name[i],color=ft.colors.BLACK,weight=ft.FontWeight.BOLD,font_family="Roboto",size=window_height * 0.03)
     else:
-        return ft.Text(global_variables.treatment_tactic_name[i],color=ft.colors.BLACK,font_family="Roboto",size=window_height * 0.03)
+        return ft.Text(global_variables.treatment_tactic_name[i],color=ft.colors.BLACK,font_family="Roboto",size=window_height * 0.03,text_align=ft.TextAlign.CENTER)
 def change_tactic_name_window_bgcolor(e):
     if e.data == "true" and e.control.bgcolor != "#E1E1E1":
         e.control.bgcolor = "#DCE7ED"

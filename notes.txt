@@ -68,4 +68,16 @@ while bar_width_value > index and index <= 0.1:
                          while bar_width_value > index and index <= global_variables.max_number:
                               width += column_width
                               index += .025
-                         width += (global_variables.max_number - bar_width_value) / .025 * column_width
+                         width += (global_variables.max_number - bar_width_value) / .025 * column_wid
+
+----input container header title text size uniform, more room between headers and columns
+
+-----shoreline length in view summary input container isnt populating upon data change
+
+-----subsrtate, treatment tactic space underneath header title
+
+-----treatment tactic in-situ name centered
+
+-----oil types click jars gets cut off
+
+-----image description oil types description cell 1 and 2 bleed into eachother
