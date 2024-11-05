@@ -81,3 +81,5 @@ while bar_width_value > index and index <= 0.1:
 -----oil types click jars gets cut off
 
 -----image description oil types description cell 1 and 2 bleed into eachother
+
+change save to save view

@@ -104,7 +104,7 @@ class functions:
                             ft.Container(
                                padding=ft.padding.only(left=page.width * .01,right=page.width * 0.01),
                                alignment=ft.alignment.center_left,
-                               content=ft.Text("Save",size=page.height * .03 * 0.6,font_family="roboto",color="White"),
+                               content=ft.Text("Save view",size=page.height * .03 * 0.6,font_family="roboto",color="White"),
                                on_hover=functions.on_container_hover_color_change,
                                expand=True,
                                bgcolor="#1D2024",
@@ -224,7 +224,7 @@ class functions:
                              ft.Container(
                                 padding=ft.padding.only(left=page.width * .01,right=page.width * 0.01),
                                 alignment=ft.alignment.center,
-                                content=ft.Text("Endpoints",size=page.height * .03 * 0.6,font_family="roboto",color="White"),
+                                content=ft.Text("Treatment Completion Target",size=page.height * .03 * 0.6,font_family="roboto",color="White"),
                                 on_hover=functions.on_container_hover_color_change,
                                 bgcolor="#1D2024",
                                 expand=True,
@@ -304,10 +304,10 @@ class functions:
         
         
         # Save the screenshot
-        screenshot.save(f"images\screen_shots\{file_name_png}")
-        image = Image.open(f"images/screen_shots/{file_name_png}")
-        image.convert('RGB').save(f"images/screen_shots/{file_name_pdf}", "PDF")
-        os.remove(f"images\screen_shots\{file_name_png}")
+        screenshot.save(rf"images\Save view\{file_name_png}")
+        image = Image.open(rf"images\Save view/{file_name_png}")
+        image.convert('RGB').save(rf"images\Save view/{file_name_pdf}", "PDF")
+        os.remove(rf"images\Save view\{file_name_png}")
         page.controls[0].content.controls[2].visible = True
         page.update()
     def go_to_summary(page):

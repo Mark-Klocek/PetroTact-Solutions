@@ -989,17 +989,18 @@ def create_key_info(page):
                                    content=ft.Row(
                                         controls=[
                                              ft.Container(
-                                                  content=ft.Text("Endpoints", color=ft.colors.BLACK, weight=ft.FontWeight.BOLD,text_align=ft.TextAlign.RIGHT,font_family="Roboto",size=text_size),
-                                                  width=global_variables.app_window.width * 0.1
+                                                  padding=0,
+                                                  content=ft.Text("Treatment Completion Target", color=ft.colors.BLACK, weight=ft.FontWeight.BOLD,text_align=ft.TextAlign.CENTER,font_family="Roboto",size=text_size * 0.72),
+                                                  #width=global_variables.app_window.width * 0.1
+                                                  expand=True
                                              ),
                                              ft.Container(
                                                   content=ft.Icon(name=ft.icons.INFO_OUTLINED,size=global_variables.app_window.height * 0.95 * 0.15 * 0.20 * 0.8,color=ft.colors.ORANGE,),
                                                   on_click=lambda e: info_buttons.endpoints_info(page),
-                                                  on_hover=global_variables.on_hover_change_color
+                                                  on_hover=global_variables.on_hover_change_color,
+                                                  padding=0
                                              ),
-                                             ft.Container(
-                                                  expand=True
-                                             )
+                                             
                                         ],
                                         spacing=0,
                                         expand=True
@@ -1977,7 +1978,7 @@ def create_summary_information(page):
                                                      content= ft.Row(
                                                           controls=[
                                                             ft.Container(
-                                                                 content=ft.Text("Endpoints",color=ft.colors.BLACK,weight=ft.FontWeight.BOLD,font_family="Roboto",text_align=ft.TextAlign.RIGHT,size=global_variables.app_window.height * 0.95 * 0.15 * 0.20 * 0.7),
+                                                                 content=ft.Text("Treatment Completion Target",color=ft.colors.BLACK,weight=ft.FontWeight.BOLD,font_family="Roboto",text_align=ft.TextAlign.RIGHT,size=global_variables.app_window.height * 0.95 * 0.15 * 0.20 * 0.7),
                                                                  width=global_variables.app_window.width * 0.22
                                                             ),
                                                             
