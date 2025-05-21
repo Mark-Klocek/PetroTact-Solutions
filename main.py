@@ -21,6 +21,7 @@ def main(page:ft.Page):
             
         )
     )
+    
     global_variables.app_window = page
     input_container = functions.create_input_container(page)
     results_container=view_summary.create_results_container(page)
