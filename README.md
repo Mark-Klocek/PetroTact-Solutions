@@ -23,4 +23,4 @@ Each combination of substrate and treatment goal maps to a specific set of tacti
 ---
 
 ## 🔒 Disclaimer
-Developed as part of a client engagement. Certain features or logic may be adapted or simplified in this public version for demonstration purposes.
+PetroTact Solutions was developed in collaboration with Owens Coastal Consultants, who retain ownership of the original product and its associated proprietary datasets. This public version has been modified for demonstration purposes. Public use of this code is permitted for educational and portfolio review only and may not be repurposed for commercial applications.
